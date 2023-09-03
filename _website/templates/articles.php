@@ -300,9 +300,9 @@ width: 100%;
     </style>
 
 </head>
-<body data-container="body" class="page-with-offers page-with-filter page-products categorypath-pool-accessories-and-chemicals-pool-accessories category-pool-accessories catalog-category-view page-layout-2columns-left">
+<body data-container="body" class="page-with-offers page-with-filter page-products categorypath-pool-accessories-and-chemicals-pool-accessories category-pool-accessories catalog-category-view">
 
-
+    <!-- page-layout-2columns-left -->
 
 <script async type="e028b536ec15088aeba82394-text/javascript" src="//apps.bazaarvoice.com/deployments/bestwaystore-uk/main_site/production/en_GB/bv.js"></script>
 <script type="e028b536ec15088aeba82394-text/javascript">
@@ -486,9 +486,6 @@ width: 100%;
             }
     }
 </script></div>
-<div class="category-banner-image-container">
-<img class="category-banner-image" src="/media/catalog/category/Pool_Acc._-_Desktop.png" alt="Category banner image" />
-</div>
 
 
 <div class="columns" style="border: none;">
@@ -759,7 +756,7 @@ width: 100%;
 
 
 
-<div class="block-content filter-content">
+<!-- <div class="block-content filter-content">
 
 <div role="heading" aria-level="2" class="block-subtitle filter-subtitle">Left </div>
 <div class="filter-options" id="narrow-by-list" data-role="content" data-mage-init=''>
@@ -767,49 +764,54 @@ width: 100%;
 LeftSide
 
 </div>
+</div> -->
 </div>
+</div></div></main>
+
+<div class="page-bottom">
+    <div class="featured-four">
+        <div class="content-limit">
+            <h3>You may also be interested in</h3>
+            <h2>These other fantastic products</h2>
+            
+            <?php
+            $g_feature_categories = g_feature_categories();
+            $chunk = array_chunk($g_feature_categories, 2);
+            ?>
+            <div class="content-container">
+                <div class="row">
+                    <?php
+                    foreach(@$chunk[0] as $v):
+                    ?>
+                        <div class="column">
+                            <a href="<?=href($v['id'])?>">
+                                <img src="<?=$v['image1']?>" alt="featured category Image">
+                                
+                                <button class="action primary"><span class="g-menuitem"><?=$v['title']?></span></button>
+                            </a>
+                        </div>
+                    <?php endforeach; ?>
+                </div>
+
+                <div class="row">
+                    <?php
+                    foreach(@$chunk[1] as $v):
+                    ?>
+                    <div class="column">
+                        <a href="<?=href($v['id'])?>">
+                            <img src="<?=$v['image1']?>" alt="featured category Image">
+                            <button class="action primary"><span class="g-menuitem"><?=$v['title']?></span></button>
+                        </a>
+                    </div>
+                    <?php endforeach; ?>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
-</div></div></main><div class="page-bottom">
-<div class="featured-four">
-<div class="content-limit">
-<h3>You may also be interested in</h3>
-<h2>These other fantastic products</h2>
-<div class="content-container">
-<div class="row"> <div class="column">
-<a href="/boats-sups/hydro-force-boats-rafts.html">
-<img src="/media/catalog/category/hydro_force_boats_cat_1.webp" alt="featured category Image" />
-<button class="action primary"><span>Hydro-Force Boats & Rafts</span></button>
-</a>
-</div>
-<div class="column">
-<a href="/pool-and-spa-spare-replacement-parts.html">
-<img src="/media/catalog/category/spare_parts_cat.webp" alt="featured category Image" />
-<button class="action primary"><span>Spare Parts</span></button>
-</a>
-</div>
-</div> <div class="row"> <div class="column">
-<a href="/pool-garden-beach-toys/garden-toys.html">
-<img src="/media/catalog/category/19_Summer_53301_2x.webp" alt="featured category Image" />
-<button class="action primary"><span>Garden Toys</span></button>
-</a>
-</div>
-<div class="column">
-<a href="/pools/paddling-pools.html">
-<img src="/media/catalog/category/16_Above_Ground_Pools_56438-2_2x.png" alt="featured category Image" />
-<button class="action primary"><span>Paddling Pools</span></button>
-</a>
-</div>
-</div> </div>
-</div>
-</div></div><footer class="page-footer"><div class="footer content"><script type="text/x-magento-init">
-    {
-        "#newsletter-footer": {
-            "WBL_MailChimpSignUp/js/footer": {
-                "formAction": "/wblklaviyosignup/index/signup/"
-            }
-        }
-    }
-</script>
+
+
+<footer class="page-footer"><div class="footer content">
 <div id="newsletter-footer" class="newsletter-wrapper footer">
 <div class="top-image">
 <img src="/static/version1681722880/frontend/Wilton/BW/en_GB/images/newsletter/newsletter-image.jpg" alt="Happy people" />
@@ -1062,30 +1064,6 @@ display: none;
         var desktopimage = "https://www.bestwaystore.co.uk/media/catalog/category/AGP_-_Desktop_1_.png";
         var tabletimage = "";
         var mobileimage = "";
-
-        jQuery(document).ready(function(){
-            checkScreenSize();
-        });
-
-        jQuery( window ).resize(function() {
-            checkScreenSize();
-        });
-
-        function checkScreenSize()
-        {
-            if(jQuery( window ).width() > 1024) {
-                jQuery(".category-banner-image").removeClass("mobile").removeClass("tablet").addClass("desktop");
-                jQuery(".category-banner-image").attr("src",desktopimage);
-            }
-            else if(jQuery( window ).width() > 768 && tabletimage) {
-                jQuery(".category-banner-image").removeClass("mobile").addClass("tablet").removeClass("desktop");
-                jQuery(".category-banner-image").attr("src",tabletimage);
-            }
-            else if(jQuery( window ).width() < 768 && mobileimage) {
-                jQuery(".category-banner-image").addClass("mobile").removeClass("tablet").removeClass("desktop");
-                jQuery(".category-banner-image").attr("src",mobileimage);
-            }
-        }
 
         jQuery(document).ready(function() {
             jQuery("body").on("click", ".action.delete", function (e) {

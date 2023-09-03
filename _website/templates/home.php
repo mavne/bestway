@@ -573,7 +573,7 @@ width: 100%;
                         foreach($sliced as $cat): 
                             $href = href($cat['id']);
                         ?>
-                        <div class="column">
+                        <div class="column g-column-hover-effect">
                             <a href="<?=$href?>">
                                 <img src="<?=$cat['image1']?>" alt="<?=htmlentities($cat['title'])?>">
                                 <button class="action primary"><span class="g-menuitem"><?=$cat['title']?></span></button>
@@ -886,37 +886,33 @@ width: 100%;
         
         <div class="content-container">
             <div class="row"> 
+                <?php
+                $g_feature_categories = g_feature_categories();
+                $chunk = array_chunk($g_feature_categories, 2);
+
+                foreach(@$chunk[0] as $v):
+                ?>
                 <div class="column">
-                    <a href="">
-                        <img src="./Bestway Store UK _ Leaders in Inflatables &amp; Above Ground Pools_files/cateairbedtest_3.webp" alt="featured category Image">
+                    <a href="<?=href($v['id'])?>">
+                        <img src="<?=$v['image1']?>" alt="featured category Image">
                         
-                        <button class="action primary"><span>Airbeds &amp; Furniture</span></button>
+                        <button class="action primary"><span class="g-menuitem"><?=$v['title']?></span></button>
                     </a>
                 </div>
-                
-                <div class="column">
-                    <a href="">
-                        <img src="./Bestway Store UK _ Leaders in Inflatables &amp; Above Ground Pools_files/0a2dda140a98507f794bb57baa117848_2x.webp" alt="featured category Image">
-                        <button class="action primary"><span>Boats &amp; SUPs</span></button>
-                    </a>
-                </div>
+                <?php endforeach; ?>
             </div>
 
             <div class="row">
+                <?php
+                foreach(@$chunk[1] as $v):
+                ?>
                 <div class="column">
-                    <a href="">
-                        <img src="./Bestway Store UK _ Leaders in Inflatables &amp; Above Ground Pools_files/9c0241f14cc930f95f8f018b8fc2975c_2x.webp" alt="featured category Image">
-                        <button class="action primary"><span>Pools </span></button>
+                    <a href="<?=href($v['id'])?>">
+                        <img src="<?=$v['image1']?>" alt="featured category Image">
+                        <button class="action primary"><span class="g-menuitem"><?=$v['title']?></span></button>
                     </a>
                 </div>
-                
-                <div class="column">
-                    <a href="">
-                        <img src="./Bestway Store UK _ Leaders in Inflatables &amp; Above Ground Pools_files/49caa76fa52af87ebe3bdd3881bc398a_2x.webp" alt="featured category Image">
-                        
-                        <button class="action primary"><span>Pool, Garden &amp; Beach Toys</span></button>
-                    </a>
-                </div>
+                <?php endforeach; ?>
             </div>
         </div>
     </div>

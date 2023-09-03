@@ -316,7 +316,7 @@ class Manager_Pages
         $all_news = $all ? " AND menuid IN (SELECT id FROM `".c("table.menus")."` WHERE `deleted` = '0' AND type = 'articles') " : " AND menuid = {$menu_id} ";
         //Pager: start
         $page = abs(get('page', 1));
-        $per_page = 9;
+        $per_page = 12;
         $limit = " LIMIT " . (($page - 1) * $per_page) . ",{$per_page}";
         $count = "SELECT COUNT(*) AS cnt FROM `".c("table.pages")."` WHERE language = '" . l() . "' {$all_news}AND deleted = 0 ORDER BY postdate ASC;";
         $count = db_fetch($count);

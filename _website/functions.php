@@ -961,13 +961,14 @@ function main_menu2(){
 			$out .= "</li>";
 			$out .= "</ul>";
 			$out .= "</li>";
+
 			$out .= "<li class=\"megaStaticBlock desktop-only\">";
-			$out .= "<img src=\"./Bestway Store UK _ Leaders in Inflatables &amp; Above Ground Pools_files/bestway-nav-menu-pools-accessories.jpg\" alt=\"Shop all Pool &amp; Accessories\" width=\"900\" height=\"225\">";
-			$out .= "<h4>Jump in!</h4>";
-			$out .= "<p>From paddling pools to steel-framed swimming pools, we have everything you need to enjoy the summer season.</p>";
+			$out .= sprintf("<img src=\"%s\" alt=\"\" class=\"g-catImageWidth\">", $n['image1']);
+			$out .= sprintf("<h4 class=\"g-menuitem\">%s</h4>", $n['title']);
+			$out .= sprintf("<p class=\"g-menuitem-sub\">%s</p>", strip_tags($n['description']));
 			$out .= "<button class=\"action primary\">";
 			$out .= "<span class=\"widget block block-category-link-inline\">";
-			$out .= "<a href=\"\" title=\"Shop all Pools\"><span>Shop Now</span></a>";
+			$out .= sprintf("<a href=\"%s\" class=\"g-menuitem\"><span>%s</span></a>", href($n['id']), l('read.more'));
 			$out .= "</span>";
 			$out .= "</button>";
 			$out .= "</li>";
@@ -1013,4 +1014,38 @@ function g_strip_classes($html){
 function g_gallery($menu_id, $limit = ''){
 	$out = db_fetch_all("SELECT * FROM `" . c("table.galleries") . "` WHERE  `language` = '" . l() . "' AND `deleted`=0 AND `menuid`='".$menu_id."' AND `visibility` = 1".$limit);
     return $out;
+}
+
+function replace_language($toLang){
+	$protocol = isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http";
+	$host = $_SERVER['HTTP_HOST'];
+	$uri = $_SERVER['REQUEST_URI'];
+
+	$fullURL = $protocol . "://" . $host . $uri;
+
+	$find = sprintf("/%s/", l());
+	
+	if (strpos($fullURL, $find) !== false) {
+		$replace = sprintf("/%s/", $toLang);
+		return str_replace($find, $replace, $fullURL);
+	}else{
+		return sprintf("/%s/", $toLang);
+	}
+}
+
+function g_feature_categories(){
+	$sql2 = "SELECT 
+	*
+	FROM 
+	`pages` 
+	WHERE 
+	`masterid`=0 AND 
+	`id`!=1 AND 
+	`language`='".l()."' AND 
+	`deleted`=0 AND 
+	`visibility`=1 AND 
+	`homepage`=1";
+	$fecth2 = db_fetch_all($sql2);
+
+	return $fecth2;
 }
