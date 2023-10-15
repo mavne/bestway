@@ -11,6 +11,8 @@
         <link rel="stylesheet" type="text/css" href="<?php echo JAVASCRIPT ?>/fancybox/css/jquery.fancybox2.css" />
         <link rel="stylesheet" type="text/css" href="<?php echo JAVASCRIPT ?>/beatpicker/beatpicker.min.css" />
         <script type="text/javascript" src="<?php echo JAVASCRIPT;?>/jquery/jquery-1.11.1.min.js"></script>
+        <!-- <script src="<?php echo JAVASCRIPT;?>/jquery/jquery-3.6.0.min.js"></script> -->
+        <script src="<?php echo JAVASCRIPT;?>/jquery/jquery-ui.min.js"></script>
         <script type="text/javascript" src="<?php echo JAVASCRIPT;?>/jquery/jquery.dropdown.js"></script>
         <script type="text/javascript" src="<?php echo JAVASCRIPT;?>/jquery/jquery.hoverIntent.js"></script>
         <script type="text/javascript" src="<?php echo JAVASCRIPT;?>/height-cms.js"></script>

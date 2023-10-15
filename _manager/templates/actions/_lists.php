@@ -7,8 +7,8 @@ function _build_lists($parent, $order_by, $start = -1, $per_page)
     $srch = get('srch', '');
     if ($srch)
         $srch =  ' AND `title` LIKE "%' . $srch . '%"';
-    $sql = "SELECT * FROM ".c("table.pages")." WHERE menuid = {$route[2]} AND language = '" . l() . "' AND `deleted` = 0 AND masterid = {$parent}{$srch} ORDER BY {$order_by} ".$limit.";";
-    $results = db_fetch_all($sql);
+    	$sql = "SELECT * FROM ".c("table.pages")." WHERE menuid = {$route[2]} AND language = '" . l() . "' AND `deleted` = 0 AND masterid = {$parent}{$srch} ORDER BY {$order_by} ".$limit.";";
+    	$results = db_fetch_all($sql);
     if (empty($results))
         return NULL;
 //    $undeletable = c('section.undeletable');
@@ -58,7 +58,7 @@ function _build_lists($parent, $order_by, $start = -1, $per_page)
 		$ch = ($result["visibility"]==1) ? '' : 'un';
 ?>
 
-                    <div class="<?php echo $class;?> fix" id="div<?php echo $result["id"];?>" >
+                    <div class="<?php echo $class;?> fix sortable-item" id="div<?php echo $result["id"];?>" data-id="<?php echo $result["id"];?>" data-position="<?php echo $result["position"];?>" data-perpage="<?=$per_page?>" data-menuid="<?=$route[2]?>" data-start="<?=(isset($_GET['start']) ? $_GET['start'] : 0)?>">
 						<div class="check">
 							<a href="javascript:chclick(<?php echo $result['id'];?>);"><img src="_manager/img/buttons/icon_<?php echo $ch;?>visible.png" class="star" title="<?php echo a('tt.visibility');?>" id="img_<?php echo $result['id'];?>" style="width:9px;height:9px;" /></a>
                             <input type="hidden" name="vis_<?php echo $result['id'];?>" id="vis_<?php echo $result['id'];?>" value="<?php echo $result['visibility'];?>" />
@@ -239,6 +239,8 @@ function _build_lists($parent, $order_by, $start = -1, $per_page)
 	switch($route[0]) :
 		case 'news':
 		case 'articles':
+			$per_page = 20;
+			break;
 		case 'events':
 			$per_page = 100;
 			break;
@@ -247,14 +249,18 @@ function _build_lists($parent, $order_by, $start = -1, $per_page)
 			break;
 	endswitch;
 
-	echo _build_lists(0, $order_by, $st, $per_page)
+	$cnt = db_fetch("SELECT COUNT(id) as cnt FROM ".c("table.pages")." WHERE menuid = {$route[2]} AND language = '" . l() . "' AND `deleted` = 0 AND masterid = 0;");
+	$count = (int)@$cnt['cnt'];
+	// echo ahref($route, $params);
+
+	echo _build_lists(0, $order_by, $st, $per_page);
 ?>
 				</div>
 				<div id="bottom" class="fix">
 <?php
 	if($pager == 'true') {
 		$curpage = ceil(($start + 1) / $per_page);
-		echo $per_page;
+		// echo $per_page;
 		$lastpage = ceil(($count) / $per_page);
 		$prevpage = ($curpage == 1) ? 1 : $curpage - 1;
 		$nextpage = ($curpage == $lastpage) ? $lastpage : $curpage + 1;
@@ -263,16 +269,16 @@ function _build_lists($parent, $order_by, $start = -1, $per_page)
 		$next = $per_page * ($nextpage - 1);
 ?>
 					<ul id="page" class="fix left" style="width:900px;">
-						<li><a href="<?php echo ahref($route, $params) . '&start=0'?>"><img src="_manager/img/prev2.png" width="5" height="5" alt=""  class="arrow" /></a></li>
-						<li><a href="<?php echo ahref($route, $params) . '&start=' . $prev;?>"><img src="_manager/img/prev.png" width="5" height="5" alt=""  class="arrow" /></a></li>
+						<li><a href="<?php echo ahref($route, array('start'=>0))?>"><img src="_manager/img/prev2.png" width="5" height="5" alt=""  class="arrow" /></a></li>
+						<li><a href="<?php echo ahref($route, array('start'=>$prev));?>"><img src="_manager/img/prev.png" width="5" height="5" alt=""  class="arrow" /></a></li>
 <?php
 		for($i = 1; $i<=$lastpage; $i++) {
 			$nst = $per_page * ($i - 1);
 ?>
-						<li><?php echo ($i == $curpage) ? '<span style="color:#2e84d7; font-weight:bold;">' : '<a href="' . ahref($route, $params) . '&start=' . $nst . '">';?><?php echo $i;?><?php echo ($i == $curpage) ? '</span>' : '</a>';?></li>
+						<li><?php echo ($i == $curpage) ? '<span style="color:#2e84d7; font-weight:bold;">' : '<a href="' . ahref($route, array('start'=>$nst)).'">';?><?php echo $i;?><?php echo ($i == $curpage) ? '</span>' : '</a>';?></li>
 <?php } ?>
-						<li><a href="<?php echo ahref($route, $params) . '&start=' . $next;?>"><img src="_manager/img/next.png" width="5" height="5" alt="" class="arrow" /></a></li>
-						<li><a href="<?php echo ahref($route, $params) . '&start=' . $last;?>"><img src="_manager/img/next2.png" width="5" height="5" alt="" class="arrow" /></a></li>
+						<li><a href="<?php echo ahref($route, array('start', $next));?>"><img src="_manager/img/next.png" width="5" height="5" alt="" class="arrow" /></a></li>
+						<li><a href="<?php echo ahref($route, array('start'=>$last));?>"><img src="_manager/img/next2.png" width="5" height="5" alt="" class="arrow" /></a></li>
 					</ul>
 <?php } ?>
 <?php if($route[0]=='sitemap') { ?>
@@ -331,4 +337,52 @@ $(".list2").mouseover(function(){
     }).mouseout(function(){
     	$(this).css('background', '#ffffff');
     });
+
+
+    $(document).ready(function() {
+	  // Make the list sortable
+	  $("#info").sortable({
+	  	start: function(event, ui) {
+	      if (!ui.item.hasClass("sortable-item")) {
+	        $(this).sortable("cancel");
+	      }
+	    },
+	    update: function(event, ui) {
+			var data = new Array();
+			$('#info .sortable-item').each(function(){
+				let id = $(this).attr('data-id');
+			  	let menuid = $(this).attr('data-menuid');
+			  	let position = $(this).attr('data-position');
+			  	let perpage = $(this).attr('data-perpage');         
+			  	let start = $(this).attr('data-start');
+
+			  	data.push({
+			  		id: id,
+			  		menuid: menuid,
+			  		position: position,
+			  		perpage: perpage,
+			  		start: start
+			  	});
+			});
+
+    		console.log(data);
+      
+			$.ajax({
+				url: "/<?=l()?>/?ajax=true",
+				type: "POST",
+				data: {
+					type:"changePosition",
+					product: data
+				},
+				success: function(response) {
+					location.realod();
+				},
+				error: function(jqXHR, textStatus, errorThrown) {
+					console.error("Error sending AJAX request: " + errorThrown);
+				}
+			});
+	    }
+	  });
+	});
+
 </script>

@@ -13,6 +13,48 @@ $out = array(
 $type = (isset($_POST['type']) && !empty($_POST['type'])) ? $_POST['type'] : "";
 
 switch($type){
+    case "changePosition":
+        if(
+            (!isset($_POST["product"]) || $_POST["product"]=="" || !is_array($_POST["product"]))
+        ){
+            $out = array(
+                "Error" => array(
+                    "Code"=>1, 
+                    "Text"=>"Error 1",
+                    "Details"=>""
+                ),
+                "Success"=>array(
+                    "Code"=>0, 
+                    "Text"=>""
+                )
+            );
+        }else{
+            $product_list = $_POST["product"];
+            $menuid = @$product_list[0]['menuid'];
+            $perpage = @$product_list[0]['perpage'];
+            $positionStartAt = @(int)$product_list[0]['start'] + 1;
+
+            foreach($product_list as $item){
+                $id = $item['id'];
+
+                db_query('UPDATE `pages` SET `position`="'.$positionStartAt.'" WHERE `id`="'.$id.'"');
+                $positionStartAt++;
+            }
+
+            $out = array(
+                "Error" => array(
+                    "Code"=>0, 
+                    "Text"=>"",
+                    "Details"=>""
+                ),
+                "Success"=>array(
+                    "Code"=>1, 
+                    "Text"=>"",
+                    "Details"=>""
+                )
+            );
+        }
+        break;
     case "loadlist":
         if(
             (!isset($_POST["menutype"]) || $_POST["menutype"]=="") || 

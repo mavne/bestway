@@ -299,6 +299,8 @@ width: 100%;
     }
     </style>
 
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/magnific-popup.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/jquery.magnific-popup.min.js"></script>
 </head>
 <body data-container="body" class="page-with-offers page-product-bundle catalog-product-view product-18ft-steel-pro-max-pool-set-with-swimming-machine categorypath-pools-above-ground-pools-24ft-pools-under-7-32m category-24ft-pools-under-7-32m page-layout-1column">
 
@@ -517,14 +519,133 @@ The store will not work correctly in the case when cookies are disabled.</div>
 <div class="flag-wrapper">
 </div>
 <div class="page-title-wrapper&#x20;product  ">
-<h1 class="page-title">
+<h1 class="page-title g-product-title">
 <span class="base g-menuitem" data-ui-id="page-title-wrapper"><?=$title?></span> </h1>
 </div>
 </div>
 
 <div class="product media"> 
-    <div class="gallery-placeholder _block-content-loading" data-gallery-role="gallery-placeholder">
+    <!-- <div class="gallery-placeholder _block-content-loading" data-gallery-role="gallery-placeholder">
         <img alt="main product photo" class="gallery-placeholder__image" src="<?=$image1?>" />
+    </div> -->
+
+    <div class="g-popup" id="g-popup" style="display:none;">
+        <div class="g-popup-nav">
+            <ul>
+                <li><a href="javascript:void(0)" class="g-change-poptype" data-type="video">ვიდეო</a></li>
+                <li><a href="javascript:void(0)" class="g-change-poptype active" data-type="image">ფოტო</a></li>
+            </ul>
+        </div>
+
+        <div class="g-popup-main-image">
+            <img src="https://m.media-amazon.com/images/I/71QDJHG1PqL._AC_SX679_PIbundle-2,TopRight,0,0_SH20_.jpg" />
+        </div>
+
+        <div class="g-popup-title-and-thumbs">
+            <h3><?=$title?></h3>
+
+            <div class="g-popup-thumbs">
+                
+            </div>
+        </div>
+
+        <div style="clear: both;"></div>
+    </div>
+
+
+    <div class="g-images-box">
+        <div class="g-thumbs">
+            <ul>
+                <?php
+                if(!empty($image1)):
+                ?>
+                <li>
+                    <a href="#g-popup" class="lightbox-link" data-type="image" data-src="<?=$image1?>">
+                        <img src="<?=$image1?>" alt="">
+                    </a>
+                </li>
+                <?php
+                endif;
+                ?>
+
+                <?php
+                if(!empty($image2)):
+                ?>
+                <li>
+                    <a href="#g-popup" class="lightbox-link" data-type="image" data-src="<?=$image2?>">
+                        <img src="<?=$image1?>" alt="">
+                    </a>
+                </li>
+                <?php
+                endif;
+                ?>
+
+                <?php
+                if(!empty($image3)):
+                ?>
+                <li>
+                    <a href="#g-popup" class="lightbox-link" data-type="image" data-src="<?=$image3?>">
+                        <img src="<?=$image3?>" alt="">
+                    </a>
+                </li>
+                <?php
+                endif;
+                ?>
+
+                <?php
+                if(!empty($youtube1)):
+                    $urlParts = parse_url($youtube1);
+                    parse_str($urlParts['query'], $queryParameters);
+                    $videoId = $queryParameters['v'];
+                ?>
+                <li>
+                    <a href="#g-popup" class="lightbox-link" data-type="video" data-src="<?=$youtube1?>" data-videoImage="https://i3.ytimg.com/vi/<?=$videoId?>/maxresdefault.jpg">
+                        <img src="https://i3.ytimg.com/vi/<?=$videoId?>/maxresdefault.jpg" alt="">
+                    </a>
+                </li>
+                <?php
+                endif;
+                ?>
+
+                <?php
+                if(!empty($youtube2)):
+                    $urlParts = parse_url($youtube2);
+                    parse_str($urlParts['query'], $queryParameters);
+                    $videoId = $queryParameters['v'];
+                ?>
+                <li>
+                    <a href="#g-popup" class="lightbox-link" data-type="video" data-src="<?=$youtube2?>" data-videoImage="https://i3.ytimg.com/vi/<?=$videoId?>/maxresdefault.jpg">
+                        <img src="https://i3.ytimg.com/vi/<?=$videoId?>/maxresdefault.jpg" alt="">
+                    </a>
+                </li>
+                <?php
+                endif;
+                ?>
+
+                <?php
+                if(!empty($youtube3)):
+                    $urlParts = parse_url($youtube3);
+                    parse_str($urlParts['query'], $queryParameters);
+                    $videoId = $queryParameters['v'];
+                ?>
+                <li>
+                    <a href="#g-popup" class="lightbox-link" data-type="video" data-src="<?=$youtube3?>" data-videoImage="https://i3.ytimg.com/vi/<?=$videoId?>/maxresdefault.jpg">
+                        <img src="https://i3.ytimg.com/vi/<?=$videoId?>/maxresdefault.jpg" alt="">
+                    </a>
+                </li>
+                <?php
+                endif;
+                ?>
+            </ul>
+        </div>
+
+        <div class="g-main-image">
+            <a href="#g-popup" class="lightbox-link">
+                <img src="<?=$image1?>">
+
+                <svg height="100%" version="1.1" viewBox="0 0 68 48" width="100%"><path class="ytp-large-play-button-bg" d="M66.52,7.74c-0.78-2.93-2.49-5.41-5.42-6.19C55.79,.13,34,0,34,0S12.21,.13,6.9,1.55 C3.97,2.33,2.27,4.81,1.48,7.74C0.06,13.05,0,24,0,24s0.06,10.95,1.48,16.26c0.78,2.93,2.49,5.41,5.42,6.19 C12.21,47.87,34,48,34,48s21.79-0.13,27.1-1.55c2.93-0.78,4.64-3.26,5.42-6.19C67.94,34.95,68,24,68,24S67.94,13.05,66.52,7.74z" fill="#f00"></path><path d="M 45,24 27,14 27,34" fill="#fff"></path></svg>
+            </a>
+        </div>
     </div>
 </div>
 
@@ -578,6 +699,11 @@ The store will not work correctly in the case when cookies are disabled.</div>
                         </span>
                     </span>
 
+           
+                    <a href="" class="action primary g-menuitem g-buy-button">
+                        <span>ყიდვა</span>
+                    </a>
+
                     <span class="old-price" style="display:none">
                         <span class="price-container price-configured_price&#x20;tax&#x20;weee">
                             <span class="price-label">Regular Price</span>
@@ -599,7 +725,7 @@ The store will not work correctly in the case when cookies are disabled.</div>
 
 <div class="product-confidence-container"><div class="confidence-banner-2-wrapper">
 <div class="content-limit">
-<div class="columns3">
+<div class="columns3 g-mobile-display-block">
 <div class="column delivery">
 <div class="logo-container">
 <img src="/static/version1681722880/frontend/Wilton/BW/en_GB/images/delivery.svg" alt="small truck icon" />
@@ -1705,5 +1831,174 @@ var gMenuClosed = true;
 </script>
 
 <!-- <script src="/cdn-cgi/scripts/7d0fa10a/cloudflare-static/rocket-loader.min.js" data-cf-settings="e028b536ec15088aeba82394-|49" defer=""></script> -->
+
+<script>
+$(document).on('mouseenter', '.g-images-box .g-thumbs ul li a', function(){
+    var type = $(this).attr('data-type');
+    var src = $(this).attr('data-src');
+    if(type=="image"){
+        $('#g-popup .g-popup-main-image').html('<img>');
+        $('.g-main-image a img').attr('src', src);
+        $('.g-popup-main-image img').attr('src', src);
+        $('.g-main-image a').removeClass('videosvg');                
+    }else{
+        var videoImage = $(this).attr('data-videoImage');
+        $('.g-main-image a').addClass('videosvg');
+        $('.g-main-image a img').attr('src', videoImage);
+
+
+        // $('.g-popup-main-image img').attr('src', videoImage);
+        var videoId = src.match(/[?&]v=([^&]+)/)[1];
+        var iframe = $("<iframe>", {
+            src: "https://www.youtube.com/embed/" + videoId + "?autoplay=1",
+            frameborder: 0,
+            allowfullscreen: true,
+            width: "100%",
+            height: "600" // You can adjust the width and height as needed
+          });
+        $('#g-popup .g-popup-main-image').html(iframe);
+    }            
+});
+
+function changePopType(type){
+    if(type=="image"){
+        $('#g-popup .g-popup-nav ul li a').removeClass('active');
+        $('#g-popup .g-popup-nav ul li a[data-type="image"]').addClass('active');
+        $('#g-popup .g-popup-title-and-thumbs .g-popup-thumbs ul li a[data-type="image"]').parent().show();
+        $('#g-popup .g-popup-title-and-thumbs .g-popup-thumbs ul li a[data-type="video"]').parent().hide();
+    }else{
+        $('#g-popup .g-popup-nav ul li a').removeClass('active');
+        $('#g-popup .g-popup-nav ul li a[data-type="video"]').addClass('active');
+        $('#g-popup .g-popup-title-and-thumbs .g-popup-thumbs ul li a[data-type="image"]').parent().hide();
+        $('#g-popup .g-popup-title-and-thumbs .g-popup-thumbs ul li a[data-type="video"]').parent().show();
+    }
+}
+
+$('.lightbox-link').magnificPopup({
+    type: 'inline',
+    callbacks: {
+        open: function() {
+            $('#g-popup').show();
+            var ul = $('.g-thumbs ul').prop('outerHTML');
+            $('#g-popup .g-popup-thumbs').html(ul);
+            $('#g-popup .g-popup-thumbs a').attr('href', 'javascript:void(0)').removeClass('lightbox-link').addClass('popup-lightbox');
+
+            if($('#g-popup .g-popup-main-image img').length){
+                changePopType('image');
+            }else{
+                changePopType('video');
+            }
+
+            $(document).on('click', '#g-popup .popup-lightbox', function(){
+                var type = $(this).attr('data-type');
+                var src = $(this).attr('data-src');
+                if(type=="image"){
+                    $('#g-popup .g-popup-main-image').html('<img>');
+                    $('#g-popup .g-popup-main-image img').attr('src', src);
+
+                    changePopType('image');
+                }else{
+                    var videoImage = $(this).attr('data-videoImage');
+                    var videoId = src.match(/[?&]v=([^&]+)/)[1];
+                    
+                    var iframe = $("<iframe>", {
+                        src: "https://www.youtube.com/embed/" + videoId + "?autoplay=1",
+                        frameborder: 0,
+                        allowfullscreen: true,
+                        width: "100%",
+                        height: "600" // You can adjust the width and height as needed
+                      });
+                    $('#g-popup .g-popup-main-image').html(iframe);
+
+                    changePopType('video');
+                }            
+            });
+
+            $(document).on('click', '#g-popup .g-change-poptype', function(){
+                $('#g-popup .g-change-poptype').removeClass('active');
+                $(this).addClass('active');
+
+                var type = $(this).attr('data-type');
+                var src = $(this).attr('data-src');
+                if(type=="image"){
+                    $('#g-popup .g-popup-title-and-thumbs .g-popup-thumbs ul li:first-child a').click();
+                }else{
+                    $('#g-popup .g-popup-title-and-thumbs .g-popup-thumbs ul li a[data-type="video"]').click();
+                }            
+            });
+
+
+        }
+    }
+});
+
+$(document).ready(function(){
+    var width = $(window).width();
+
+    if(width <= 960){
+        var owlHtml = '<div class="owl-carousel owl-theme" id="mobile-product-slider">';
+
+        $('.g-images-box .g-thumbs ul li').each(function(){
+            var type = $('a', this).attr('data-type');
+            var src = $('a', this).attr('data-src');
+            var videoimage = $('a', this).attr('data-videoimage');
+
+            
+
+            if(type=='video'){
+                const url = new URL(src);
+                const videoId = url.searchParams.get("v");
+
+                // console.log(videoId);
+                owlHtml += '<iframe width="100%" height="300" src="https://www.youtube.com/embed/'+videoId+'" frameborder="0" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>';
+                
+            }else{
+                owlHtml += '<a href="'+src+'" class="item mobile-lightbox" data-type="'+type+'" data-src="'+src+'">';
+                owlHtml += '<img src="'+src+'" alt="" loading="lazy">';
+                owlHtml += '</a>';
+            }           
+            
+            
+        });
+
+        owlHtml += '</div>';
+
+        $('.g-images-box .g-thumbs').html(owlHtml).show();
+
+        $('#mobile-product-slider').owlCarousel({
+            autoplay: false,
+            smartSpeed:1500,
+            loop:false,
+            margin:0,
+            nav:false,
+            dots: true,
+            responsive:{
+                0:{
+                    items:1
+                },
+                600:{
+                    items:1
+                },
+                1000:{
+                    items:1
+                }
+            }
+        });
+
+        $('.video-link').magnificPopup({
+            type: 'iframe'
+        });
+
+        // $('.mobile-lightbox').magnificPopup({
+        //     type: 'inline',
+        //     callbacks: {
+        //         open: function() {
+        //             $('#g-popup').show();
+        //         }
+        //     }
+        // });
+    }
+});
+</script>
 </body>
 </html>

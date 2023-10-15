@@ -330,7 +330,7 @@ class Manager_Pages
         $tpl['all_par'] = $all ? '&all=show' : null;
         //Pager: end
 
-        $sql = "SELECT * FROM `".c("table.pages")."` WHERE language = '" . l() . "' {$all_news}AND `deleted` = '0' ORDER BY postdate ASC{$limit};";
+        $sql = "SELECT * FROM `".c("table.pages")."` WHERE language = '" . l() . "' {$all_news}AND `deleted` = '0' ORDER BY `position` ASC{$limit};";
         $res = db_fetch_all($sql);
         $tpl['articles'] = $res;
 

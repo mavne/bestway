@@ -39,18 +39,70 @@
     .g-column-hover-effect:hover{
         opacity: 0.5;
     }
+
+    .header.content .block-search input {
+    transition: .3s;
+}
+
+    .header.content .block-search input:focus {
+    background-color: white;
+    color: #999;
+    padding-left: 20px;
+    border-radius: 20px;
+    width: 176%;
+}
+
+.g-nopadding{
+    padding: 0 !important;
+}
+
+.g-language{
+    margin: 0 10px;
+    padding: 0;
+    width: 25px;
+    height: 25px;
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+    text-indent: -9999px;
+    display: inline-block;
+}
+
+.g-language.g-ge{
+    background-image: url('/images/ge.svg');
+}
+
+.g-language.g-en{
+    background-image: url('/images/en.svg');
+}
+
+.g-language.g-ru{
+    background-image: url('/images/ru.svg');
+}
 </style>
 <header class="page-header">
 <div class="header-confidence-banner">
 <ul id="banners" class="">
 <li class="banner displayed">
-<p><a href="/delivery-and-returns">Free UK delivery on orders over £40</a></p>
+<p><a href="javascript:void(0)" class="g-menuitem-sub"><?=s('address')?></a></p>
 </li>
 <li class="banner displayed">
-<p><a href="/bestway-interest-free-finance">Klarna Available</a> *</p>
+<p><a href="tel:<?=s('telephone')?>" class="g-menuitem-sub"><?=s('telephone')?></a></p>
 </li>
 <li class="banner displayed">
-<p><a href="/warranty-list">Up to 2 Years Warranty Included</a></p>
+<p><a href="" class="g-menuitem-sub">ჩვენ შესახებ</a> /</p>
+<p><a href="" class="g-menuitem-sub">პარტნიორებისთვის</a> /</p>
+<p><a href="" class="g-menuitem-sub">კონტაქტი</a></p>
+    <?php 
+    //
+    $glangs = array('ge', 'en', 'ru');
+    foreach($glangs as $lan):
+        if($lan == l()){ continue; }
+    ?>
+    <p><a href="<?=replace_language($lan)?>" class="g-language g-<?=$lan?> g-menuitem-sub"><?=$lan?></a></p>
+    <?php
+    endforeach;
+    ?>
 </li>
 </ul>
 </div>
@@ -61,7 +113,7 @@ Skip to Content </span>
 <ul class="header links"><li class="link authorization-link" data-label="or">
 <a href="/customer/account/login/referer/aHR0cHM6Ly93d3cuYmVzdHdheXN0b3JlLmNvLnVrLw%2C%2C/">Sign In</a>
 </li>
-<li><a href="/customer/account/create/" id="idAeg6KyUW">Create an Account</a></li></ul></div></div><div class="header content">
+<li><a href="/customer/account/create/" id="idAeg6KyUW">Create an Account</a></li></ul></div></div><div class="header content g-nopadding">
 
     <div class="block block-search">
         <div class="block block-title"><strong>Search</strong></div>
@@ -144,7 +196,7 @@ Skip to Content </span>
         </li>
     </ul>
 
-    <ul class="g-languages">
+<!--     <ul class="g-languages">
         <li>
             <a href="<?=replace_language('ge')?>" class="<?=(l()=='ge') ? 'active' : ''?>">GE</a>
         </li>
@@ -156,7 +208,7 @@ Skip to Content </span>
         <li>
             <a href="<?=replace_language('ru')?>" class="<?=(l()=='ru') ? 'active' : ''?>">RU</a>
         </li>
-    </ul>
+    </ul> -->
 
     <div class="control"></div>
 </div>

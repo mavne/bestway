@@ -1049,3 +1049,20 @@ function g_feature_categories(){
 
 	return $fecth2;
 }
+
+// function replace_language($toLang){
+// 	$protocol = isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http";
+// 	$host = $_SERVER['HTTP_HOST'];
+// 	$uri = $_SERVER['REQUEST_URI'];
+
+// 	$fullURL = $protocol . "://" . $host . $uri;
+
+// 	$find = sprintf("/%s/", l());
+	
+// 	if (strpos($fullURL, $find) !== false) {
+// 		$replace = sprintf("/%s/", $toLang);
+// 		return str_replace($find, $replace, $fullURL);
+// 	}else{
+// 		return sprintf("/%s/", $toLang);
+// 	}
+// }

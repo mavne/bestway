@@ -47,3 +47,231 @@
 	margin-right: 0px !important;
 	margin-bottom: 80px !important;
 }
+
+.g-images-box{
+	margin: 0;
+	padding: 0;
+	width: 100%;
+	height: 600px;
+	position: relative;
+}
+
+.g-images-box .g-thumbs{
+	margin: 0;
+	padding: 0;
+	width: 40px;
+	height: 100%;
+	float: left;
+	margin-right: 10px;
+}
+
+.g-images-box .g-thumbs ul{
+	margin: 0;
+	padding: 0;
+	width: 100%;
+	list-style-type: none;
+}
+
+.g-images-box .g-thumbs ul li{
+	margin: 0;
+	padding: 0;
+	margin-bottom: 10px;
+}
+
+.g-images-box .g-thumbs ul li a{
+	margin: 0;
+	padding: 0;
+	display: block;
+	text-decoration: none;
+	width: 40px;
+	height: 40px;
+}
+
+.g-images-box .g-thumbs ul li a img{
+	margin: 0;
+	padding: 0;
+	display: block;
+	width: 38px;
+	height: 38px;
+	object-fit: cover;
+	object-position: center;
+	border: 1px solid #8ec7d9;
+	border-radius: 5px;
+}
+
+.g-images-box .g-main-image{
+	margin: 0;
+	padding: 0;
+	width: 685px;
+	height: 685px;
+	position: relative;
+	float: left;
+	display: flex;
+	align-items: center;
+	border: 1px solid #8ec7d9;
+	border-radius: 5px;
+}
+
+.g-images-box .g-main-image img{
+	margin: 0;
+	padding: 0;
+	display: block;
+	width: 100%;
+	height: auto;
+}
+
+.g-main-image a svg{
+	display: none;
+}
+
+.g-main-image a{
+	display: block;
+	text-decoration: none;
+}
+
+.g-main-image a.lightbox-link.videosvg svg{
+	margin: 0;
+	padding: 0;
+	width: 68px;
+	height: 48px;
+	position: absolute;
+	top: calc(50% - 34px);
+	left: calc(50% - 24px);
+	z-index: 10;
+	display: block;
+}
+
+.g-buy-button{
+	color:white; 
+	margin-top: -10px; 
+	margin-left: 15px;
+}
+
+#g-popup{
+	margin: 45px;
+	padding: 45px;
+	background-color: white;
+	width: calc(100% - 180px);
+	position: relative;
+}
+
+#g-popup .mfp-close{
+	margin: 0;
+    padding: 0;
+    width: 24px;
+    height: 44px;
+    position: absolute;
+    top: 20px;
+    right: 40px;
+    min-width: 24px;
+    min-height: 44px;
+}
+
+#g-popup .g-popup-nav{
+	margin: 0;
+	padding: 0;
+	width: 100%;
+	height: 45px;
+	border-bottom: 2px solid #E7E7E7;
+	margin-top: -20px;
+}
+
+#g-popup .g-popup-nav ul{
+	margin: 0;
+	padding: 0;
+	width: 100%;
+	list-style-type: none;
+}
+
+#g-popup .g-popup-nav ul li{
+	margin: 0 25px 0 0;
+	padding: 0;
+	display: inline-block;
+}
+
+#g-popup .g-popup-nav ul li a{
+	margin: 0;
+	padding: 0;
+	display: inline-block;
+	font-family: "Roboto _GEO Mt";
+	font-size: 16px;
+	line-height: 45px;
+	text-decoration: none;
+	color: rgb(34, 34, 34);
+}
+
+#g-popup .g-popup-nav ul li a.active,
+#g-popup .g-popup-nav ul li a:hover{
+	border-bottom: solid 2px #fab502;
+}
+
+#g-popup .g-popup-main-image{
+	margin: 20px 30px 0 0;
+	width: calc(75% - 30px);
+	height: 600px;
+	position: relative;
+	text-align: center;
+	float: left;
+}
+
+#g-popup .g-popup-main-image img{
+	margin: 0 auto;
+	padding: 0;
+	height: 600px;
+	vertical-align: top;
+}
+
+#g-popup .g-popup-title-and-thumbs{
+	margin: 0;
+	padding: 0;
+	width: 25%;
+	float: right;
+}
+
+#g-popup .g-popup-title-and-thumbs h3{
+	margin: 30px 0 0 0;
+	padding: 0;
+	font-family: "Roboto _GEO Mt";
+	font-size: 18px;
+	line-height: 18px;
+	color: rgb(34, 34, 34);
+	margin-bottom: 30px;
+	text-align: left;
+}
+
+#g-popup .g-popup-title-and-thumbs .g-popup-thumbs{
+	margin: 0;
+	padding: 0;
+	width: 100%;
+}
+
+#g-popup .g-popup-title-and-thumbs .g-popup-thumbs ul{
+	margin: 0;
+	padding: 0;
+	width: 100%;
+	list-style-type: none;
+}
+
+#g-popup .g-popup-title-and-thumbs .g-popup-thumbs ul li{
+	margin: 0 15px 15px 0;
+	padding: 0;
+	display: inline-block;
+}
+
+#g-popup .g-popup-title-and-thumbs .g-popup-thumbs ul li a{
+	margin: 0;
+	padding: 0;
+	display: block;
+	text-decoration: none;
+}
+
+#g-popup .g-popup-title-and-thumbs .g-popup-thumbs ul li a img{
+	margin: 0;
+	padding: 0;
+	width: 50px;
+	height: 50px;
+	object-fit: contain;
+	object-position: center;
+	border: 1px solid #8ec7d9;
+	border-radius: 5px;
+}

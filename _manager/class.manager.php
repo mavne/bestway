@@ -405,6 +405,11 @@ class Admin_Manager
 						'slug' => $_POST['slug'],
 						'template' => $_POST['template'],
 						'image1' => $_POST['image1'],
+						'image2' => $_POST['image2'],
+						'image3' => $_POST['image3'],
+						'youtube1' => $_POST['youtube1'],
+						'youtube2' => $_POST['youtube2'],
+						'youtube3' => $_POST['youtube3'],
                     );
 	                $update = db_update(c("table.pages"), $data, "WHERE id = {$this->route[2]}");
                     db_query($update);
@@ -470,7 +475,7 @@ class Admin_Manager
 
     public function articles()
     {
-        $this->_lists('postdate DESC', 'true', 'articles');
+        $this->_lists('position ASC', 'true', 'articles');
     }
 
     public function customlist()

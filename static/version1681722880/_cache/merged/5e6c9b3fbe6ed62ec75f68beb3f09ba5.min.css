@@ -2223,3 +2223,145 @@ transform:rotate(359deg)
 	width: 176%;
 }
 
+.product-item-name{
+	height: unset !important;
+}
+
+.product-item .price-box{
+	margin: 0 !important;
+}
+
+.column.main .product-item-info .product-item-details .details-container{
+	justify-content: unset !important;
+}
+
+@media(max-width: 960px){
+	.g-menuitem{
+		font-family: 'Roboto _GEO Mt' !important;
+	}
+
+	.g-menuitem-sub{
+		font-family: 'Roboto _Nusx' !important;
+	}
+
+	.g-product-title{
+		font-size: 30px !important;
+		width: 90% !important;
+		max-width: 90% !important;
+	}
+
+	.g-product-title span{
+		font-size: 30px !important;
+	}
+
+	.g-main-image{
+		display: none;
+	}
+
+	.g-mobile-display-block{
+		display: block !important;
+	}
+
+	.g-buy-button{
+		margin: -15px 0 0 10px;
+	}
+
+	.g-images-box .g-thumbs{
+		display: none;
+		margin: 0 15px;
+		padding-bottom: 50px;
+	}
+
+	.g-images-box .g-thumbs #mobile-product-slider{
+		width: 100%;
+		height: 300px;
+	}
+
+	.g-images-box .g-thumbs #mobile-product-slider .owl-stage-outer{
+		width: 100%;
+		height: 100%;
+		position: relative;
+	}
+
+	.g-images-box .g-thumbs #mobile-product-slider .owl-stage-outer .owl-stage{
+		height: 100%;
+		position: relative;
+	}
+
+	.g-images-box .g-thumbs #mobile-product-slider .owl-stage-outer .owl-stage .owl-item{
+		height: 100%;
+		position: relative;
+	}
+
+	.g-images-box .g-thumbs #mobile-product-slider .owl-stage-outer .owl-stage .owl-item .item{
+		display: block;
+		text-decoration: none;
+		width: 100%;
+		height: 100%;
+		position: relative;
+	}
+
+	.g-images-box .g-thumbs #mobile-product-slider .owl-stage-outer .owl-stage .owl-item .item svg{
+		display: none;
+	}
+
+	.g-images-box .g-thumbs #mobile-product-slider .owl-stage-outer .owl-stage .owl-item .item.video-link svg{
+		display: block;
+		margin: 0;
+		padding: 0;
+		width: 68px;
+		height: 48px;
+		position: absolute;
+		top: calc(50% - 34px);
+		left: calc(50% - 24px);
+		z-index: 10;
+		transform: scale(0.8);
+	}
+
+	.g-images-box .g-thumbs #mobile-product-slider .owl-stage-outer .owl-stage .owl-item .item img{
+		display: block;
+		text-decoration: none;
+		width: 100%;
+		height: 100%;
+		object-fit: cover;
+	}
+
+	.g-images-box .g-thumbs #mobile-product-slider .owl-dots{
+		width: 100%;
+		height: 50px;
+		line-height: 50px;
+		position: absolute;
+		left: 0;
+		bottom: -40px;
+		text-align: center;
+	}
+
+	.g-images-box .g-thumbs #mobile-product-slider .owl-dots button{
+		width: 10px;
+		height: 10px;
+		min-width: 10px;
+		min-height: 10px;
+		margin: 0 10px;
+		display: inline-block;
+	}
+
+	.mfp-arrow{
+		display: none !important;
+	}
+
+	/*.mfp-arrow{
+		overflow: hidden;
+		min-width: 50px !important;
+		max-width: 50px !important;
+		min-height: 50px !important;
+		max-height: 50px !important;
+		width: 50px !important;
+		height: 50px !important;
+		margin-top: 0px !important;
+		top: calc(50% - 25px) !important;
+	}
+
+	.mfp-arrow:before, .mfp-arrow:after{
+		margin-top: 0px !important;
+	}*/
+}

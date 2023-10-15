@@ -202,18 +202,66 @@
                         <div class="name"><?php echo a("image");?>: <span class="star">*</span></div>
                         <input type="text" id="image1" name="image1" value="<?php echo ($route[1]=='edit') ? $edit["image1"] : '' ?>" class="inp" style="width:500px;" />
                         <a href="javascript:;" class="popup button br" data-browse="image1"><?php echo a('browse') ?></a>
+                        <?php if($route[1]=='edit' && $edit["image1"] != ""): ?> 
+                        <a href="<?=$edit["image1"]?>" target="_blank">
+                            <img src="<?=$edit["image1"]?>" alt="" width="70" style="margin-left: 15px;">
+                        </a>
+                        <?php endif; ?>
                     </div>
 
                     <div class="list2 fix">
                         <div class="name"><?php echo a("image");?>: <span class="star">*</span></div>
                         <input type="text" id="image2" name="image2" value="<?php echo ($route[1]=='edit') ? $edit["image2"] : '' ?>" class="inp" style="width:500px;" />
                         <a href="javascript:;" class="popup button br" data-browse="image2"><?php echo a('browse') ?></a>
+                        <?php if($route[1]=='edit' && $edit["image2"] != ""): ?>      
+                        <a href="<?=$edit["image2"]?>" target="_blank">                 
+                            <img src="<?=$edit["image2"]?>" alt="" width="70" style="margin-left: 15px;">
+                        </a>
+                        <?php endif; ?>
                     </div>
 
                     <div class="list fix">
                         <div class="name"><?php echo a("image");?>: <span class="star">*</span></div>
                         <input type="text" id="image3" name="image3" value="<?php echo ($route[1]=='edit') ? $edit["image3"] : '' ?>" class="inp" style="width:500px;" />
                         <a href="javascript:;" class="popup button br" data-browse="image3"><?php echo a('browse') ?></a>
+                        <?php if($route[1]=='edit' && $edit["image3"] != ""): ?>    
+                        <a href="<?=$edit["image3"]?>" target="_blank">                   
+                            <img src="<?=$edit["image3"]?>" alt="" width="70" style="margin-left: 15px;">
+                        </a>
+                        <?php endif; ?>
+                    </div>
+
+                    <div class="list fix">
+                        <div class="name">Youtube 1: <span class="star">*</span></div>
+                        <input type="text" id="youtube1" name="youtube1" value="<?php echo ($route[1]=='edit') ? $edit["youtube1"] : '' ?>" class="inp" style="width:500px;" />
+                        <a href="javascript:;" class="popup button br" data-browse="youtube1"><?php echo a('browse') ?></a>
+                        <?php if($route[1]=='edit' && $edit["youtube1"] != ""): ?>    
+                        <a href="<?=$edit["youtube1"]?>" target="_blank">                   
+                            <p style="margin-left: 15px;">video</p>
+                        </a>
+                        <?php endif; ?>
+                    </div>
+
+                    <div class="list fix">
+                        <div class="name">Youtube 2: <span class="star">*</span></div>
+                        <input type="text" id="youtube2" name="youtube2" value="<?php echo ($route[1]=='edit') ? $edit["youtube2"] : '' ?>" class="inp" style="width:500px;" />
+                        <a href="javascript:;" class="popup button br" data-browse="youtube2"><?php echo a('browse') ?></a>
+                        <?php if($route[1]=='edit' && $edit["youtube2"] != ""): ?>    
+                        <a href="<?=$edit["youtube2"]?>" target="_blank">                   
+                            <p style="margin-left: 15px;">video</p>
+                        </a>
+                        <?php endif; ?>
+                    </div>
+
+                    <div class="list fix">
+                        <div class="name">Youtube 3: <span class="star">*</span></div>
+                        <input type="text" id="youtube3" name="youtube3" value="<?php echo ($route[1]=='edit') ? $edit["youtube3"] : '' ?>" class="inp" style="width:500px;" />
+                        <a href="javascript:;" class="popup button br" data-browse="youtube3"><?php echo a('browse') ?></a>
+                        <?php if($route[1]=='edit' && $edit["youtube3"] != ""): ?>    
+                        <a href="<?=$edit["youtube3"]?>" target="_blank">                   
+                            <p style="margin-left: 15px;">video</p>
+                        </a>
+                        <?php endif; ?>
                     </div>
                 </div>
 
