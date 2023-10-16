@@ -410,6 +410,7 @@ class Admin_Manager
 						'youtube1' => $_POST['youtube1'],
 						'youtube2' => $_POST['youtube2'],
 						'youtube3' => $_POST['youtube3'],
+						'max_quentity' => $_POST['max_quentity']
                     );
 	                $update = db_update(c("table.pages"), $data, "WHERE id = {$this->route[2]}");
                     db_query($update);

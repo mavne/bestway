@@ -1050,6 +1050,14 @@ function g_feature_categories(){
 	return $fecth2;
 }
 
+function g_related($menu_id, $limit = ''){
+	$out = db_fetch_all("SELECT * FROM `" . c("table.pages") . "` WHERE  `language` = '" . l() . "' AND `deleted`=0 AND `menuid`='".$menu_id."' AND `visibility` = 1".$limit);
+
+	echo "SELECT * FROM `" . c("table.pages") . "` WHERE  `language` = '" . l() . "' AND `deleted`=0 AND `menuid`='".$menu_id."' AND `visibility` = 1".$limit;
+
+    return $out;
+}
+
 // function replace_language($toLang){
 // 	$protocol = isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http";
 // 	$host = $_SERVER['HTTP_HOST'];

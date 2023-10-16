@@ -90,7 +90,7 @@
                     </div>
 
                     <div class="list2 fix">
-                        <div class="name">ფასი:</div>
+                        <div class="name">Price:</div>
                         <input type="text" id="price" name="price" value="<?php echo ($route[1]=='edit') ? $edit["price"] : '' ?>" class="inp"/>
                     </div>
 
@@ -262,6 +262,11 @@
                             <p style="margin-left: 15px;">video</p>
                         </a>
                         <?php endif; ?>
+                    </div>
+
+                    <div class="list2 fix">
+                        <div class="name">Quentity:</div>
+                        <input type="text" id="max_quentity" name="max_quentity" value="<?php echo ($route[1]=='edit') ? $edit["max_quentity"] : '' ?>" class="inp"/>
                     </div>
                 </div>
 

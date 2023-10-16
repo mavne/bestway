@@ -564,78 +564,22 @@ width: 100%;
             ?>
             </span>
         </p>
+
+        <div style="clear: both;"></div>
         
-        <!-- <div class="click-filter-button">
-            <div id="click-filter">Filters</div>
+        <div class="page-title-wrapper product">
+            <h1 class="page-title g-product-title">
+                <span class="base g-menuitem" data-ui-id="page-title-wrapper">
+                    <?=$title?>
+                </span>
+            </h1>
         </div>
-
-        <div class="modes">
-            <strong class="modes-label" id="modes-label">View as</strong>
-                <a class="modes-mode mode-list" title="List" href="#" data-role="mode-switcher" data-value="list" id="mode-list" aria-labelledby="modes-label mode-list">
-                    <span>List View</span>
-                </a>
-                <strong title="Grid" class="modes-mode active mode-grid" data-value="grid">
-                    <span>Grid View</span>
-                </strong>
-        </div> -->
-
-        <!-- <div class="pages">
-            <strong class="label pages-label" id="paging-label">Page</strong>
-            <ul class="items pages-items" aria-labelledby="paging-label">
-                <li class="item current">
-                    <strong class="page">
-                        <span class="label">You&#039;re currently reading page</span>
-                        <span>1</span>
-                    </strong>
-                </li>
-                <li class="item">
-                    <a href="/pool-accessories-and-chemicals/pool-accessories.html?p=2" class="page">
-                        <span class="label">Page</span>
-                        <span>2</span>
-                    </a>
-                </li>
-                <li class="item pages-item-next">
-                    <a class="action  next" href="/pool-accessories-and-chemicals/pool-accessories.html?p=2" title="Next">
-                        <span class="label">Page</span>
-                        <span>Next</span>
-                    </a>
-                </li>
-            </ul>
-        </div> -->
-        
-        <!-- <div id="am-page-count" style="display: none">8</div>
-            
-        <div class="field limiter">
-            <label class="label" for="limiter">
-                <span>Show</span>
-            </label>
-            
-            <div class="control">
-                <select id="limiter" data-role="limiter" class="limiter-options">
-                    <option value="12" selected="selected">12</option>
-                    <option value="24">24</option>
-                    <option value="36">36x</option>
-                </select>
-            </div>
-            
-            <span class="limiter-text">per page</span>
-        </div> -->
-
-        <!-- <div class="toolbar-sorter sorter">
-            <select id="sorter" data-role="sorter" class="sorter-options">
-                <option selected disabled>SORT BY</option>
-                <option value="name" data-direction="asc">Product Name A..Z </option>
-                <option value="name" data-direction="desc">Product Name Z..A </option>
-                <option value="price" data-direction="asc">Price Low High </option>
-                <option value="price" data-direction="desc">Price High Low </option>
-            </select>
-        </div> -->
     </div>
 
     <div class="products wrapper grid products-grid">
         <style>
             .product-image-container-6012 { width: 440px;}
-            .product-image-container-6012 span.product-image-wrapper { padding-bottom: 59.090909090909%;}
+            .product-image-container-6012 span.product-image-wrapper { padding-bottom: 100%;}
         </style>
         <ol class="products list items product-items" id="g_ajax_load_container">
             <?php 
@@ -668,15 +612,13 @@ width: 100%;
                                 </span>
                             </div>
 
-                            <div class="view-details-wrapper">
-                                <a class="product-item-link details g-menuitem-sub" href="<?=href($a['id'])?>"><?=l('read.more')?></a>
-                            </div>
+                            
 
                             <div class="product-item-inner">
                                 <div class="product actions product-item-actions">
                                     <div class="actions-primary">
                                         <?php
-                                        if($a['visibility']==1){
+                                        if($a['max_quentity']>=1){
                                         ?>
                                             <div class="stock available g-menuitem-sub"><span><?=l('instack')?></span></div>
                                             
@@ -687,6 +629,10 @@ width: 100%;
                                                 <button type="submit" title="Add" class="action tocart primary">
                                                     <span class="g-menuitem-sub"><?=l('add.cart')?></span>
                                                 </button>
+
+                                                <div class="view-details-wrapper">
+                                                    <a class="product-item-link details g-menuitem-sub" href="<?=href($a['id'])?>"><?=l('read.more')?></a>
+                                                </div>
                                             </form>
                                         <?php
                                         }else{

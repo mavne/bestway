@@ -2235,6 +2235,237 @@ transform:rotate(359deg)
 	justify-content: unset !important;
 }
 
+.g-images-box .g-thumbs ul li a[data-type="video"]{
+	position: relative;
+}
+
+.g-images-box .g-thumbs ul li a[data-type="video"]::after{
+	content: "";
+	width: 100%;
+	height: 100%;
+	position: absolute;
+	top: 0;
+	left: 0;
+	z-index: 1000;
+	background-color: white;
+	-webkit-mask-image: url(/images/play.svg);
+	mask-image: url(/images/play.svg);
+	-webkit-mask-size: 25px;
+	mask-size: 25px;
+	-webkit-mask-repeat: no-repeat;
+	mask-repeat: no-repeat;
+	-webkit-mask-position: center;
+	mask-position: center;
+}
+
+#g-popup .g-popup-title-and-thumbs .g-popup-thumbs ul li a[data-type="video"]{
+	position: relative;
+}
+
+#g-popup .g-popup-title-and-thumbs .g-popup-thumbs ul li a[data-type="video"]::after{
+	content: "";
+	width: 100%;
+	height: 100%;
+	position: absolute;
+	top: 0;
+	left: 0;
+	z-index: 1000;
+	background-color: white;
+	-webkit-mask-image: url(/images/play.svg);
+	mask-image: url(/images/play.svg);
+	-webkit-mask-size: 25px;
+	mask-size: 25px;
+	-webkit-mask-repeat: no-repeat;
+	mask-repeat: no-repeat;
+	-webkit-mask-position: center;
+	mask-position: center;
+}
+
+.catalog-category-view .product-item .product-item-actions .actions-primary form[data-role=tocart-form]{
+	width: 100% !important;
+}
+
+.catalog-category-view .product-item .product-item-actions .actions-primary form[data-role=tocart-form] .tocart{
+	display: inline-block;
+	float: left;
+	width: auto;
+}
+
+.product-items .product-item .view-details-wrapper{
+	display: inline-block;
+    float: right;
+    width: auto;
+    line-height: 50px;
+    text-align: right !important;
+}
+
+.product-item .price-box .price, .price-box .price{
+	color: #0a65ae !important;
+}
+
+.product-view-title-wrapper{
+	margin-top: 0px !important;
+}
+
+.g-stock{
+	margin: 0;
+	padding: 0 0 0 25px;
+	width: 100%;
+	height: 25px;
+	position: relative;
+	text-align: left;
+	font-size: 15px;
+}
+
+.g-stock::before{
+	width: 19px;
+    height: 14px;
+    background: url(../../frontend/Wilton/BW/en_GB/images/tick.png);
+    background-size: 19px 14px;
+    position: absolute;
+    top: 50%;
+    left: 0;
+    content: ' ';
+    transform: translateY(-50%);
+}
+
+.g-not-stock{
+	padding: 0 !important;
+}
+
+.g-not-stock::before{
+	content:none !important;
+	font-weight: bold;
+}
+
+.g-select-quantity{
+	margin: 10px 0 10px 10px;
+	padding: 0 5px;
+	width: 70px;
+	background-color: #F0F2F2;
+	box-shadow: 0 2px 5px rgba(15,17,17,.15);
+	clear: both;
+	appearance: auto;
+	-webkit-appearance: auto;
+}
+
+.g-yellow-btn{
+	background: #FFD814 !important;
+    border-color: #FCD200 !important;
+    box-shadow: 0 2px 5px 0 rgba(213,217,217,.5) !important;
+	border-radius: 3px !important;
+    border-style: solid !important;
+    border-width: 1px !important;
+    cursor: pointer !important;
+    display: inline-block !important;
+    padding: 0 20px !important;
+    text-align: center !important;
+    text-decoration: none !important;
+    vertical-align: middle !important;
+    color: #0F1111 !important;
+    height: 29px !important;
+    line-height: 29px !important;
+    border-radius: 15px !important;
+    font-size: 13px;
+    transition-property: background, border-color;
+    transition-duration: 600ms;
+    transition-timing-function: easy-in-out;
+}
+
+.g-orange-btn{
+	background: #FFA41C !important;
+    border-color: #FF8F00 !important;
+    box-shadow: 0 2px 5px 0 rgba(213,217,217,.5) !important;
+	border-radius: 3px !important;
+    border-style: solid !important;
+    border-width: 1px !important;
+    cursor: pointer !important;
+    display: inline-block !important;
+    padding: 0 20px !important;
+    text-align: center !important;
+    text-decoration: none !important;
+    vertical-align: middle !important;
+    color: #0F1111 !important;
+    height: 29px !important;
+    line-height: 29px !important;
+    border-radius: 15px !important;
+    font-size: 13px;
+    transition-property: background, border-color;
+    transition-duration: 600ms;
+    transition-timing-function: easy-in-out;
+}
+
+.g-yellow-btn:hover{
+	background: #FFA41C !important;
+    border-color: #FF8F00 !important;
+} 
+
+.g-orange-btn:hover{
+	background: #FFD814 !important;
+    border-color: #FCD200 !important;
+}
+
+.block.related .product-image-container-5997 {
+    width: 250px;
+}
+
+.block.related .product-image-container-5997 span.product-image-wrapper {
+    padding-bottom: 100%;
+}
+
+.block.related .related-available .product-image-photo{
+    width: calc(100% - 20px) !important;
+}
+
+.block.related .column.main .product-item-info .product-item-details{
+    display: block;
+}
+
+.block.related .product.name.product-item-name{
+    margin-bottom: 10px !important;
+}
+
+.block.related .g-stock-box{
+    display: block;
+    text-align: center;
+    margin: 10px 0;
+}
+
+.block.related .g-stock{
+    display: inline-block !important;
+    width: auto !important;
+}
+
+.block.related .product-item .tocart{
+    width: 60%;
+    float: left;
+}
+
+.block.related .g-unavailable::before{
+	content: none !important;
+}
+
+@media(min-width: 960px){
+	.catalog-product-view.page-layout-1column .product-view-product-wrapper .product.media{
+		width: 40% !important;
+		margin-left: 10% !important;
+	}
+
+	.catalog-product-view.page-layout-1column .product-view-product-wrapper .product-info-main{
+		width: calc(40% - 50px) !important;
+		margin-right: 10% !important;
+	}
+
+	.g-breadcrumbs-product{
+		width: 80% !important;
+	}
+
+	.g-cart-button,
+	.g-instalment-button{
+		margin: -15px 0 0 10px;
+	}
+}
+
 @media(max-width: 960px){
 	.g-menuitem{
 		font-family: 'Roboto _GEO Mt' !important;
@@ -2263,6 +2494,10 @@ transform:rotate(359deg)
 	}
 
 	.g-buy-button{
+		margin: -15px 0 0 10px;
+	}
+
+	.g-cart-button{
 		margin: -15px 0 0 10px;
 	}
 

@@ -509,7 +509,7 @@ The store will not work correctly in the case when cookies are disabled.</div>
                 }
             }
     }
-</script></div><div class="columns"><div class="column main"><div class="breadcrumbs">
+</script></div><div class="columns"><div class="column main"><div class="breadcrumbs g-breadcrumbs-product">
 <ul class="items g-menuitem-sub">
 <?=location()?>
 <li class="item"><?=$title?></li>
@@ -518,21 +518,18 @@ The store will not work correctly in the case when cookies are disabled.</div>
 <div class="product-view-product-wrapper"><div class="product-view-title-wrapper">
 <div class="flag-wrapper">
 </div>
-<div class="page-title-wrapper&#x20;product  ">
-<h1 class="page-title g-product-title">
-<span class="base g-menuitem" data-ui-id="page-title-wrapper"><?=$title?></span> </h1>
-</div>
+
 </div>
 
 <div class="product media"> 
-    <!-- <div class="gallery-placeholder _block-content-loading" data-gallery-role="gallery-placeholder">
-        <img alt="main product photo" class="gallery-placeholder__image" src="<?=$image1?>" />
-    </div> -->
-
     <div class="g-popup" id="g-popup" style="display:none;">
         <div class="g-popup-nav">
             <ul>
+                <?php
+                if(!empty($youtube1) || !empty($youtube2) || !empty($youtube3)):
+                ?>
                 <li><a href="javascript:void(0)" class="g-change-poptype" data-type="video">ვიდეო</a></li>
+                <?php endif; ?>
                 <li><a href="javascript:void(0)" class="g-change-poptype active" data-type="image">ფოტო</a></li>
             </ul>
         </div>
@@ -652,7 +649,7 @@ The store will not work correctly in the case when cookies are disabled.</div>
 <div class="product-info-main">
 
 
-<style>
+    <style>
     [data-bv-show="rating_summary"] .bv_main_container .bv_numReviews_text {
         text-decoration: underline !important;
     }
@@ -670,815 +667,212 @@ The store will not work correctly in the case when cookies are disabled.</div>
         margin: 70px auto 0 auto !important;
     }
     </style>
-<div class="product-features-wrapper g-menuitem-sub">
-    <!-- <ul>
-        <li>Save £800 (35%) Off RRP</li>
-        <li>Everything you need to start your swim training from home, complete your home gym with this Above Ground Pool and Swim Fitness Machine</li>
-        <li>18ft Steel Pro Max with realistic prismatic stone print design and corrosion resistant steel frame</li>
-        <li>Includes Swim Training Machine with 8 variable speeds, LED display and wireless wrist remote controller</li>
-        <li>Full pool set to include Flowclear filter pump, filter cartridge, chemical dispenser, pool ladder and pool cover</li> 
-    </ul> 
+    <div class="product-features-wrapper g-menuitem-sub">
+        <div class="page-title-wrapper&#x20;product" style="margin-top:0px;">
+            <h1 class="page-title g-product-title" style="text-align: left;">
+                <span class="base g-menuitem" data-ui-id="page-title-wrapper">
+                    <?=$title?>
+                </span>
+            </h1>
+        </div>
 
-    <p class="bundle-product-title">This bundle contains the following</p> -->
-
-    <?=g_strip_classes($content)?>
-</div>
+        <?=g_strip_classes($content)?>
+    </div>
 
 
 <div class="bundle-options-container">
-    <div class="product-add-form ">
-    <form data-product-type="bundle" action="" method="post" id="product_addtocart_form">
-        <div class="product-info-price">
-            <div class="price-box price-configured_price" data-role="priceBox" data-product-id="6435" data-price-box="product-id-6435">
-                <p class="price-as-configured">
-                    <span class="bundle-price">
-                        <span class="price-container price-configured_price tax weee">
-                            <span id="product-price-6435" data-price-amount="1499.98" data-price-type="bundleFinalPrice" class="price-wrapper ">
-                                <span class="price"><?=$price?> ₾</span> 
-                            </span>
-                        </span>
-                    </span>
+    <div class="product-add-form" style="padding-top:0">
 
-           
-                    <a href="" class="action primary g-menuitem g-buy-button">
-                        <span>ყიდვა</span>
-                    </a>
-
-                    <span class="old-price" style="display:none">
-                        <span class="price-container price-configured_price&#x20;tax&#x20;weee">
-                            <span class="price-label">Regular Price</span>
-                            <span id="old-price-6435" data-price-amount="1499.98" data-price-type="oldPrice" class="price-wrapper ">
-                                <span class="price">£1,499.98</span>
-                            </span>
-                        </span>
-                    </span>
-                </p>
-            </div>
+        <?php
+        if($max_quentity >= 1){
+        ?>
+        <div class="g-stock g-menuitem-sub">
+            <span><?=l('instack')?></span>
         </div>
-    </form>
-</div>
 
+
+        <form data-product-type="bundle" action="" method="post" id="product_addtocart_form">
+            <div class="product-info-price">
+                <div class="price-box price-configured_price" data-role="priceBox" data-product-id="6435" data-price-box="product-id-6435">
+                    <p class="price-as-configured">
+                        <span class="bundle-price">
+                            <span class="price-container price-configured_price tax weee">
+                                <strong class="g-menuitem-sub" style="font-size:14px;"><?=l('quentity')?>:</strong> 
+                                <select class="g-select-quantity g-menuitem-sub">
+                                    <?php
+                                    for ($i=1; $i <= $max_quentity; $i++) { 
+                                        ?>
+                                        <option value="<?=$i?>"><?=$i?></option>
+                                        <?php
+                                    }
+                                    ?>
+                                </select>
+                            </span>
+                        </span>
+
+                        <div style="clear: both;"></div>
+
+                        <span class="bundle-price">
+                            <span class="price-container price-configured_price tax weee">
+                                <span id="product-price-6435" data-price-amount="1499.98" data-price-type="bundleFinalPrice" class="price-wrapper ">
+                                    <span class="price"><?=$price?> ₾</span> 
+                                </span>
+                            </span>
+                        </span>
+
+               
+                        <a href="" class="action primary g-menuitem g-buy-button g-orange-btn">
+                            <span><?=l('buy')?></span>
+                        </a>
+
+                        <a href="" class="action primary g-menuitem g-cart-button g-yellow-btn">
+                            <span><?=l('addtocart')?></span>
+                        </a>
+
+                        <a href="" class="action primary g-menuitem g-instalment-button g-orange-btn">
+                            <span><?=l('buyInstalment')?></span>
+                        </a>
+
+                        <span class="old-price" style="display:none">
+                            <span class="price-container price-configured_price&#x20;tax&#x20;weee">
+                                <span class="price-label">Regular Price</span>
+                                <span id="old-price-6435" data-price-amount="1499.98" data-price-type="oldPrice" class="price-wrapper ">
+                                    <span class="price">£1,499.98</span>
+                                </span>
+                            </span>
+                        </span>
+                    </p>
+                </div>
+            </div>
+        </form>
+        <?php
+        }else{
+        ?>
+        <div class="g-stock g-not-stock g-menuitem-sub">
+            <span><?=l('outonstack')?></span>
+        </div>
+        <?php
+        }
+        ?>
+    </div>
 </div>
 
 
 </div></div>
 
-<div class="product-confidence-container"><div class="confidence-banner-2-wrapper">
-<div class="content-limit">
-<div class="columns3 g-mobile-display-block">
-<div class="column delivery">
-<div class="logo-container">
-<img src="/static/version1681722880/frontend/Wilton/BW/en_GB/images/delivery.svg" alt="small truck icon" />
-</div>
-<h5>Free Uk Delivery</h5>
-<p>On all Above Ground Pools!</p>
-</div>
-<div class="column warranty">
-<div class="logo-container">
-<img src="/static/version1681722880/frontend/Wilton/BW/en_GB/images/returns.svg" alt="returns" />
-</div>
-<h5>30 DAY HASSLE-FREE RETURNS</h5>
-<p>Just in case you change your mind</p>
-</div>
-<div class="column warranty">
-<div class="logo-container">
-<img src="/static/version1681722880/frontend/Wilton/BW/en_GB/images/uk-customer-support.svg" alt="Dedicated customer support" />
-</div>
-<h5>DEDICATED CUSTOMER SUPPORT</h5>
-<p>We're here to help</p>
-</div>
-<div class="column">
-<div class="logo-container">
-<img src="/static/version1681722880/frontend/Wilton/BW/en_GB/images/secure-shopping.svg" alt="padlock" />
-</div>
-<h5>SAFE & SECURE SHOPPING</h5>
-<p>So that you have complete peace of mind</p>
-</div>
-</div>
-</div>
-</div>
-<script type="6c527928c79c59796f9fe62e-text/javascript">
-    require([
-        'jquery',
-        'slick'
-    ], function ($) {
-        $(document).ready(function () {
+<div style="clear: both;"></div>
 
-            if ($('.confidence-banner-2-wrapper .columns3').length) {
-                var item = $('.confidence-banner-2-wrapper .columns3');
-                confidenceSlick();
-            }
+<div class="block related">
+    <h2 class="g-menuitem"><?=l('related.products')?></h2>
 
-            $(window).resize(function(){
-                $screensize = $('body').width();
-                if ($screensize < 1024) {
-                    confidenceSlick();
-                }
-            });
-
-            function confidenceSlick() {
-                if ( !item.hasClass('slick-initialized') ) {
-                    item.slick({
-                        slidesToShow: 1,
-                        arrows: false,
-                        dots: false,
-                        autoplay: true,
-                        autoplaySpeed: 2000,
-                        responsive: [
-                            {
-                                breakpoint: 9999,
-                                settings: "unslick"
-                            },
-                            {
-                                breakpoint: 1024,
-                                settings: {
-                                    slidesToShow: 2
-                                }
-                            },
-                            {
-                                breakpoint: 768,
-                                settings: {
-                                    slidesToShow: 1
-                                }
-                            }
-                        ]
-                    });
-                }
-            }
-
-
-        });
-
-    });
-</script>
-</div>
-<a name="detail"></a>
-<div class="product-view-details-wrapper product-classic">
-<div class="content-limit">
-<h3>Product details</h3>
-<h2>About 18ft Steel Pro Max Pool & Swimfinity Machine Bundle</h2>
-<div class="magezon-builder magezon-builder-preload"><div class="lb59n52 mgz-element mgz-element-row full_width_row"><div class="mgz-element-inner lb59n52-s"><div class="inner-content mgz-container"><div class="do4rr4a mgz-element mgz-element-column mgz-col-xs-12"><div class="mgz-element-inner do4rr4a-s"><div class="e6igq8r mgz-element mgz-child mgz-element-text"><div class="mgz-element-inner e6igq8r-s"><p>Everything you need to start your swim training from home, complete your home gym with this Above Ground Pool and Swim Fitness Machine.</p><br /><p><a href="/18ft-steel-pro-max-steel-pro-set.html" title="18ft Steel Pro Max Steel Pro Set">18ft Steel Pro Max Steel Pro Set</a></p><p>Bestway® Steel Pro MAX™ Pools offer a high-quality option at an affordable price compared to other above ground pools on the market. The mosaic liners provide an attractive look and nostalgic pool feel. Assembly is a breeze, and pool owners can easily connect the frame pieces until they hear a click. Families can enjoy Steel Pro MAX pools for many seasons to come, due to the durable, puncture-resistant DuraPlus™ liner and corrosion-resistant steel frame. Steel Pro MAX pools are affordably high-quality with design touches that will be loved by many.</p><br /><p><a href="/swimfinity-pool-swimming-machine.html" title="Swimfinity Swim Fitness Machine">Swimfinity Swim Fitness Machine</a></p><p>If you’re new to swimming and want to build up your confidence in the privacy of your own pool, Swimfinity is perfect for you. Brought to you by Bestway®, the world’s leading above ground pool experts, Swimfinity lets you transform your above ground or in ground pool into a counter current swimming pool.</p><p>Fitting neatly to the edge of your above ground or in-ground swimming pool, Swimfinity allows you to swim against a smooth, uninterrupted current so you never reach the end of the pool. With fully adjustable water flow speed, depth and angle, you can concentrate on perfecting your stroke and technique.</p><p>The wireless wrist remote controller also enables you to make changes to water flow speed while you’re on the go, so you’re activity is never disrupted. You can even swim into the night thanks to the powerful built in LED light. Add an extra dimension to your swimming pool with Swimfinity – the affordable solution to counter current pool swimming.</p><br /><ul><li>Minimum pool size requirements: Depth 3.28ft (1.0m), Length 15.1ft (4.6m), Width 8.2ft (2.5m)</li> <li>Set includes: Swimfinity console, transformer, deck-mount bracket, remote control.</li> </ul></div></div></div></div></div></div></div></div>
-</div>
-</div>
-<script type="6c527928c79c59796f9fe62e-text/javascript">
-    require(['vimeo-add'], function() {
-
-    });
-</script><input name="form_key" type="hidden" value="e0lj7e6Kogx0Cbuw" /><div id="authenticationPopup" data-bind="scope:'authenticationPopup', style: {display: 'none'}">
-<script type="6c527928c79c59796f9fe62e-text/javascript">window.authenticationPopup = {"autocomplete":"off","customerRegisterUrl":"https:\/\/www.bestwaystore.co.uk\/customer\/account\/create\/","customerForgotPasswordUrl":"https:\/\/www.bestwaystore.co.uk\/customer\/account\/forgotpassword\/","baseUrl":"https:\/\/www.bestwaystore.co.uk\/"}</script> <!-- ko template: getTemplate() --><!-- /ko -->
-<script type="text/x-magento-init">
-        {
-            "#authenticationPopup": {
-                "Magento_Ui/js/core/app": {"components":{"authenticationPopup":{"component":"Magento_Customer\/js\/view\/authentication-popup","children":{"messages":{"component":"Magento_Ui\/js\/view\/messages","displayArea":"messages"},"captcha":{"component":"Magento_Captcha\/js\/view\/checkout\/loginCaptcha","displayArea":"additional-login-form-fields","formId":"user_login","configSource":"checkout"},"recaptcha":{"component":"Magento_ReCaptchaFrontendUi\/js\/reCaptcha","displayArea":"additional-login-form-fields","reCaptchaId":"recaptcha-popup-login","settings":{"rendering":{"sitekey":"6LcLgJ4UAAAAAL9xamPk9GENBnr1PEItaGBt5-j2","badge":"inline","size":"invisible","theme":"light","hl":""},"invisible":true}},"amazon-button":{"component":"Amazon_Login\/js\/view\/login-button-wrapper","sortOrder":"0","displayArea":"additional-login-form-fields","config":{"tooltip":"Securely login to our website using your existing Amazon details.","componentDisabled":true}}}}}}            },
-            "*": {
-                "Magento_Ui/js/block-loader": "https\u003A\u002F\u002Fwww.bestwaystore.co.uk\u002Fstatic\u002Fversion1681722880\u002Ffrontend\u002FWilton\u002FBW\u002Fen_GB\u002Fimages\u002Floader\u002D1.gif"
-            }
+    <style>
+        .page-wrapper footer.page-footer{
+            margin-top: 0px !important;
         }
-    </script>
-</div>
-<script type="text/x-magento-init">
-    {
-        "*": {
-            "Magento_Customer/js/section-config": {
-                "sections": {"stores\/store\/switch":["*"],"stores\/store\/switchrequest":["*"],"directory\/currency\/switch":["*"],"*":["messages"],"customer\/account\/logout":["*","recently_viewed_product","recently_compared_product","persistent"],"customer\/account\/loginpost":["*"],"customer\/account\/createpost":["*"],"customer\/account\/editpost":["*"],"customer\/ajax\/login":["checkout-data","cart","captcha"],"catalog\/product_compare\/add":["compare-products","wp_ga4","gtm"],"catalog\/product_compare\/remove":["compare-products"],"catalog\/product_compare\/clear":["compare-products"],"sales\/guest\/reorder":["cart","ammessages"],"sales\/order\/reorder":["cart","ammessages"],"checkout\/cart\/add":["cart","directory-data","ammessages","wp_ga4","gtm"],"checkout\/cart\/delete":["cart","ammessages","wp_ga4","gtm"],"checkout\/cart\/updatepost":["cart","ammessages"],"checkout\/cart\/updateitemoptions":["cart","ammessages"],"checkout\/cart\/couponpost":["cart","ammessages"],"checkout\/cart\/estimatepost":["cart","ammessages"],"checkout\/cart\/estimateupdatepost":["cart","ammessages"],"checkout\/onepage\/saveorder":["cart","checkout-data","last-ordered-items","ammessages"],"checkout\/sidebar\/removeitem":["cart","ammessages","wp_ga4","gtm"],"checkout\/sidebar\/updateitemqty":["cart","ammessages"],"rest\/*\/v1\/carts\/*\/payment-information":["cart","last-ordered-items","instant-purchase","ammessages","wp_ga4","gtm"],"rest\/*\/v1\/guest-carts\/*\/payment-information":["cart","ammessages","wp_ga4","gtm"],"rest\/*\/v1\/guest-carts\/*\/selected-payment-method":["cart","checkout-data","ammessages"],"rest\/*\/v1\/carts\/*\/selected-payment-method":["cart","checkout-data","instant-purchase","ammessages"],"customer\/address\/*":["instant-purchase"],"customer\/account\/*":["instant-purchase"],"vault\/cards\/deleteaction":["instant-purchase"],"multishipping\/checkout\/overviewpost":["cart","ammessages"],"paypal\/express\/placeorder":["cart","checkout-data","ammessages"],"paypal\/payflowexpress\/placeorder":["cart","checkout-data","ammessages"],"paypal\/express\/onauthorization":["cart","checkout-data","ammessages"],"persistent\/index\/unsetcookie":["persistent"],"review\/product\/post":["review"],"wishlist\/index\/add":["wishlist","wp_ga4","gtm"],"wishlist\/index\/remove":["wishlist"],"wishlist\/index\/updateitemoptions":["wishlist"],"wishlist\/index\/update":["wishlist"],"wishlist\/index\/cart":["wishlist","cart","wp_ga4","gtm"],"wishlist\/index\/fromcart":["wishlist","cart"],"wishlist\/index\/allcart":["wishlist","cart","wp_ga4","gtm"],"wishlist\/shared\/allcart":["wishlist","cart"],"wishlist\/shared\/cart":["cart"],"amasty_cart\/cart\/add":["cart","messages","directory-data"],"amasty_cart\/cart\/updateitemoptions":["cart","messages"],"amasty_cart\/wishlist\/cart":["cart","wishlist","messages"],"amasty_cart\/cart\/update":["cart"],"amasty_cart\/quote\/add":["quotecart","messages"],"amasty_cart\/quote\/update":["quotecart","messages"],"amasty_cart\/quote\/updateitemoptions":["quotecart","messages"],"amasty_promo\/cart\/add":["cart","ammessages"],"braintree\/paypal\/placeorder":["ammessages","cart","checkout-data"],"authorizenet\/directpost_payment\/place":["ammessages"],"reclaim\/checkout\/reload":["cart"],"braintree\/googlepay\/placeorder":["cart","checkout-data"],"checkout\/cart\/configure":["wp_ga4","gtm"],"rest\/*\/v1\/guest-carts\/*\/shipping-information":["wp_ga4","gtm"],"rest\/*\/v1\/carts\/*\/shipping-information":["wp_ga4","gtm"]},
-                "clientSideSections": ["checkout-data","cart-data","chatData"],
-                "baseUrls": ["https:\/\/www.bestwaystore.co.uk\/"],
-                "sectionNames": ["messages","customer","compare-products","last-ordered-items","cart","directory-data","captcha","instant-purchase","loggedAsCustomer","persistent","review","wishlist","ammessages","chatData","wp_ga4","gtm","recently_viewed_product","recently_compared_product","product_data_storage","paypal-billing-agreement"]            }
+    </style>
+
+    <script>
+        prodImageContainers = document.querySelectorAll(".product-image-container-5997");
+        for (var i = 0; i < prodImageContainers.length; i++) {
+            prodImageContainers[i].style.width = "250px";
         }
-    }
-</script>
-<script type="text/x-magento-init">
-    {
-        "*": {
-            "Magento_Customer/js/customer-data": {
-                "sectionLoadUrl": "https\u003A\u002F\u002Fwww.bestwaystore.co.uk\u002Fcustomer\u002Fsection\u002Fload\u002F",
-                "expirableSectionLifetime": 60,
-                "expirableSectionNames": ["cart","persistent"],
-                "cookieLifeTime": "3600",
-                "updateSessionUrl": "https\u003A\u002F\u002Fwww.bestwaystore.co.uk\u002Fcustomer\u002Faccount\u002FupdateSession\u002F"
-            }
-        }
-    }
-</script>
-<script type="text/x-magento-init">
-    {
-        "*": {
-            "Magento_Customer/js/invalidation-processor": {
-                "invalidationRules": {
-                    "website-rule": {
-                        "Magento_Customer/js/invalidation-rules/website-rule": {
-                            "scopeConfig": {
-                                "websiteId": "9"
-                            }
-                        }
-                    }
-                }
-            }
-        }
-    }
-</script>
-<script type="text/x-magento-init">
-    {
-        "body": {
-            "pageCache": {"url":"https:\/\/www.bestwaystore.co.uk\/page_cache\/block\/render\/id\/6435\/","handles":["default","catalog_product_view","catalog_product_view_extendedlayout_","catalog_product_view_id_6435","catalog_product_view_sku_SWIMFINITY-18MAX","catalog_product_view_type_bundle"],"originalRequest":{"route":"catalog","controller":"product","action":"view","uri":"\/18ft-steel-pro-max-pool-set-with-swimming-machine.html"},"versionCookieName":"private_content_version"}        }
-    }
-</script>
-<div class="get_compare_list_bar">
-</div>
-<script type="text/x-magento-init">
-            {
-                "*": {
-                "ajaxCompare": {"url":"/ajaxcompare/product/comparebox","showbox":1}
-                }
-            }
-</script>
-<script type="6c527928c79c59796f9fe62e-text/javascript">
-    require([    
-        "jquery","MageArray_AjaxCompare/js/ajaxCompare"
-        ], function ($,addCompare) {
-            "use strict";
-           
-        $(document).ready(function() {
-            $("body").on("click", ".action.delete", function (e) {
-                e.stopImmediatePropagation();
-                addCompare().addDelete($(this));
-            });
-        });
         
-    });
-                        
-</script> <script type="text/x-magento-init">
-    {"#product_addtocart_form:not([amcart-observed]):not([data-product-configurable=\"true\"]), form[data-role=\"tocart-form\"]:not([amcart-observed]):not([data-product-configurable=\"true\"]), .action.tocart:not([amcart-observed]):not([data-product-configurable=\"true\"])":{"WBL_ExtendAmastyCart\/js\/amcart":{"send_url":"https:\/\/www.bestwaystore.co.uk\/amasty_cart\/cart\/add\/","src_image_progress":"https:\/\/www.bestwaystore.co.uk\/static\/version1681722880\/frontend\/Wilton\/BW\/en_GB\/images\/ajax-loader.gif","type_loading":"0","align":"0","open_minicart":false,"autosubmit":1}}}    </script>
-<div data-mage-init='{"feedReport":[]}'></div><script type="text/x-magento-init">
-    {
-        "body": {
-            "requireCookie": {"noCookieUrl":"https:\/\/www.bestwaystore.co.uk\/cookie\/index\/noCookies\/","triggers":[".action.towishlist"],"isRedirectCmsPage":true}        }
-    }
-</script>
-<script type="text/x-magento-init">
-    {
-        "*": {
-                "Magento_Catalog/js/product/view/provider": {
-                    "data": {"items":{"6435":{"add_to_cart_button":{"post_data":"{\"action\":\"https:\\\/\\\/www.bestwaystore.co.uk\\\/18ft-steel-pro-max-pool-set-with-swimming-machine.html?options=cart\",\"data\":{\"product\":\"6435\",\"uenc\":\"%uenc%\"}}","url":"https:\/\/www.bestwaystore.co.uk\/18ft-steel-pro-max-pool-set-with-swimming-machine.html?options=cart","required_options":true},"add_to_compare_button":{"post_data":null,"url":"{\"action\":\"https:\\\/\\\/www.bestwaystore.co.uk\\\/catalog\\\/product_compare\\\/add\\\/\",\"data\":{\"product\":\"6435\",\"uenc\":\"aHR0cHM6Ly93d3cuYmVzdHdheXN0b3JlLmNvLnVrLzE4ZnQtc3RlZWwtcHJvLW1heC1wb29sLXNldC13aXRoLXN3aW1taW5nLW1hY2hpbmUuaHRtbA,,\"}}","required_options":null},"price_info":{"final_price":1499.98,"max_price":1499.98,"max_regular_price":1499.98,"minimal_regular_price":1499.98,"special_price":null,"minimal_price":1499.98,"regular_price":1499.98,"formatted_prices":{"final_price":"<span class=\"price\">\u00a31,499.98<\/span>","max_price":"<span class=\"price\">\u00a31,499.98<\/span>","minimal_price":"<span class=\"price\">\u00a31,499.98<\/span>","max_regular_price":"<span class=\"price\">\u00a31,499.98<\/span>","minimal_regular_price":"<span class=\"price\">\u00a31,499.98<\/span>","special_price":null,"regular_price":"<span class=\"price\">\u00a31,499.98<\/span>"},"extension_attributes":{"msrp":{"msrp_price":"<span class=\"price\">\u00a30.00<\/span>","is_applicable":"","is_shown_price_on_gesture":"","msrp_message":"","explanation_message":"Our price is lower than the manufacturer&#039;s &quot;minimum advertised price.&quot; As a result, we cannot show you the price in catalog or the product page. <br><br> You have no obligation to purchase the product once you know the price. You can simply remove the item from your cart."},"tax_adjustments":{"final_price":1499.98,"max_price":1499.98,"max_regular_price":1499.98,"minimal_regular_price":1499.98,"special_price":1499.98,"minimal_price":1499.98,"regular_price":1499.98,"formatted_prices":{"final_price":"<span class=\"price\">\u00a31,499.98<\/span>","max_price":"<span class=\"price\">\u00a31,499.98<\/span>","minimal_price":"<span class=\"price\">\u00a31,499.98<\/span>","max_regular_price":"<span class=\"price\">\u00a31,499.98<\/span>","minimal_regular_price":null,"special_price":"<span class=\"price\">\u00a31,499.98<\/span>","regular_price":"<span class=\"price\">\u00a31,499.98<\/span>"}},"weee_attributes":[],"weee_adjustment":"<span class=\"price\">\u00a31,499.98<\/span>"}},"images":[{"url":"https:\/\/www.bestwaystore.co.uk\/media\/catalog\/product\/cache\/ac06747af0ffb4f2eb59058b817c4876\/b\/w\/bw5618ygb.jpg","code":"recently_viewed_products_grid_content_widget","height":250,"width":250,"label":"Swim resistance training","resized_width":250,"resized_height":250},{"url":"https:\/\/www.bestwaystore.co.uk\/media\/catalog\/product\/cache\/d701c5688ec02630e8134e3d2f24f023\/b\/w\/bw5618ygb.jpg","code":"recently_viewed_products_list_content_widget","height":340,"width":270,"label":"Swim resistance training","resized_width":270,"resized_height":340},{"url":"https:\/\/www.bestwaystore.co.uk\/media\/catalog\/product\/cache\/0b72840f64fb633d33de9abb0c5d1f55\/b\/w\/bw5618ygb.jpg","code":"recently_viewed_products_images_names_widget","height":90,"width":75,"label":"Swim resistance training","resized_width":75,"resized_height":90},{"url":"https:\/\/www.bestwaystore.co.uk\/media\/catalog\/product\/cache\/ac06747af0ffb4f2eb59058b817c4876\/b\/w\/bw5618ygb.jpg","code":"recently_compared_products_grid_content_widget","height":250,"width":250,"label":"Swim resistance training","resized_width":250,"resized_height":250},{"url":"https:\/\/www.bestwaystore.co.uk\/media\/catalog\/product\/cache\/d701c5688ec02630e8134e3d2f24f023\/b\/w\/bw5618ygb.jpg","code":"recently_compared_products_list_content_widget","height":340,"width":270,"label":"Swim resistance training","resized_width":270,"resized_height":340},{"url":"https:\/\/www.bestwaystore.co.uk\/media\/catalog\/product\/cache\/0b72840f64fb633d33de9abb0c5d1f55\/b\/w\/bw5618ygb.jpg","code":"recently_compared_products_images_names_widget","height":90,"width":75,"label":"Swim resistance training","resized_width":75,"resized_height":90}],"url":"https:\/\/www.bestwaystore.co.uk\/18ft-steel-pro-max-pool-set-with-swimming-machine.html","id":6435,"name":"18ft Steel Pro Max Pool & Swimfinity Machine Bundle","type":"bundle","is_salable":"1","store_id":10,"currency_code":"GBP","extension_attributes":{"review_html":"","wishlist_button":{"post_data":null,"url":"{\"action\":\"https:\\\/\\\/www.bestwaystore.co.uk\\\/wishlist\\\/index\\\/add\\\/\",\"data\":{\"product\":6435,\"uenc\":\"aHR0cHM6Ly93d3cuYmVzdHdheXN0b3JlLmNvLnVrLzE4ZnQtc3RlZWwtcHJvLW1heC1wb29sLXNldC13aXRoLXN3aW1taW5nLW1hY2hpbmUuaHRtbA,,\"}}","required_options":null}}}},"store":"10","currency":"GBP","productCurrentScope":"website"}            }
+        prodImageContainersWrappers = document.querySelectorAll(
+            ".product-image-container-5997  span.product-image-wrapper"
+        );
+
+        for (var i = 0; i < prodImageContainersWrappers.length; i++) {
+            prodImageContainersWrappers[i].style.paddingBottom = "100%";
         }
-    }
-</script>
-<script type="6c527928c79c59796f9fe62e-text/javascript">
- require(['jquery', 'accordion'], function ($) {
-    $(".faq-accordion").accordion({
-        active:[],
-        animate: {
-            duration: 400
-        },
-        icons: {
-            "header": "plus",
-            "activeHeader": "minus"
-        },
-        "collapsible" : true,
-        "multipleCollapsible" : true
-    });
-});
-</script>
-<div class="product-reviews">
-<div class="no-reviews-container"> </div>
-<script type="6c527928c79c59796f9fe62e-text/javascript">
-        require(['jquery'],function($){
-
-            const reviewUpdate = function(element){
-                $jq(".pm-trust-pilot-loadmore").addClass("pm-trust-pilot-loadmore-loading");
-                var current = $jq('.pm-trust-pilot-loadmore').data("current");
-                var limit = $jq('.pm-trust-pilot-loadmore').data("limit");
-                var filter = $jq(element).data("filter");
-
-                $jq.ajax({ type: "GET",
-                    url: '/trustpilotreviews/index/reviews/sku/SWIMFINITY-18MAX/base/SWIMFINITY-18MAX/current/'+current+'/limit/'+limit+'/filter/'+filter,
-                    async: true,
-                    success : function(response)  {
-                        var morereviews = $jq(response).find('.ajax-wrap').html();
-                        if(morereviews.length) {
-                            $jq(".pm-review-placeholder").replaceWith(morereviews);
-                        }
-                        if(filter !=0){
-                            $jq('.pm-trust-pilot-review').each(function(){
-                                if($jq(this).data("stars") !== filter){
-                                    $jq(this).css('display','none');
-                                }
-                            });
-                        }
-
-                    }
-                });
-            };
-
-            $jq = jQuery.noConflict();
-            $jq("body").on("click",".pm-trust-pilot-loadmore",function() {
-                reviewUpdate(this);
-            });
-
-            $jq("body").on("click",".review-filter > li", function() {
-                $jq(".review-filter li").each(function() { $jq(this).removeClass("activefilt")})
-                $jq(this).addClass("activefilt");
-                $jq(".review-filter button.clear").show();
-                $jq(".pm-trust-pilot-loadmore").data('filter', $jq(this).data("filter"));
-                reviewUpdate(this);
-            });
-
-            $jq("body").on("click",'.clear', function (){
-                $jq('.pm-trust-pilot-loadmore').data('filter','0');
-                $jq('.pm-trust-pilot-review').css('display','block');
-                $jq('.activefilt').removeClass('activefilt');
-                $jq(this).hide();
-                event.stopPropagation();
-            });
-
-            $('body').on('click', '.close-reviews', function(){
-                var text = $(this).find('.text');
-                var content = $(this).siblings('.bottom-line, .pm-review-placeholder');
-                if (content.is(":hidden")) {
-                    content.show('slow');
-                    text.text('close reviews');
-                } else {
-                    content.hide('slow');
-                    text.text('open reviews');
-                }
-            });
-
-        });
     </script>
-</div><div class="product-bazaarvoice-reviews">
+    
+    <div class="block-content content" aria-labelledby="block-related-heading">
+        <div class="products wrapper grid products-grid products-related">
+            <ol class="products list items product-items slick-related">
+                <?php
+                $limit = ' AND `id`!='.$id.' ORDER BY RAND() LIMIT 4';
 
-<div class="reviews-wrapper">
-<h3>Reviews</h3>
-<div data-bv-show="reviews" data-bv-product-id="SWIMFINITY-18MAX">
-</div>
-</div>
-</div>
-<div class="block related" data-mage-init='{"relatedProducts":{"relatedCheckbox":".related.checkbox"}}' data-limit="0" data-shuffle="0">
-<div class="block-title title">
-<h3 id="block-related-heading" role="heading" aria-level="2">Related Products</h3>
-</div>
-<h2>You may also like</h2>
-<div class="block-content content" aria-labelledby="block-related-heading">
-<div class="products wrapper grid products-grid products-related">
-<ol class="products list items product-items slick-related">
-<li class="item product product-item related-prod-cat-poolcleaning&care" style="display: none;">
-<div class="product-item-info related-available ">
- <a href="/filter-cartridge-size-3.html" class="product photo product-item-photo">
-<span class="product-image-container product-image-container-5997">
-<span class="product-image-wrapper">
-<img class="product-image-photo" src="/media/catalog/product/cache/ac06747af0ffb4f2eb59058b817c4876/f/i/filtercartridgesize3.jpg" loading="lazy" width="250" height="250" alt="Filter&#x20;Cartridge&#x20;&#x28;Size&#x20;3&#x29;&#x20;" /></span>
-</span>
-<style>.product-image-container-5997 {
-    width: 250px;
-}
-.product-image-container-5997 span.product-image-wrapper {
-    padding-bottom: 100%;
-}</style><script type="text&#x2F;javascript">prodImageContainers = document.querySelectorAll(".product-image-container-5997");
-for (var i = 0; i < prodImageContainers.length; i++) {
-    prodImageContainers[i].style.width = "250px";
-}
-prodImageContainersWrappers = document.querySelectorAll(
-    ".product-image-container-5997  span.product-image-wrapper"
-);
-for (var i = 0; i < prodImageContainersWrappers.length; i++) {
-    prodImageContainersWrappers[i].style.paddingBottom = "100%";
-}</script> </a>
-<div class="product details product-item-details">
-<strong class="product name product-item-name"><a class="product-item-link" title="Filter Cartridge (Size 3) " href="/filter-cartridge-size-3.html">
-Filter Cartridge (Size 3) </a>
-</strong>
+                $g_related = g_related($menuid, $limit);
 
-<div class="price-box price-final_price" data-role="priceBox" data-product-id="5997" data-price-box="product-id-5997">
-<span class="price-container price-final_price&#x20;tax&#x20;weee">
-<span id="product-price-5997" data-price-amount="5.99" data-price-type="finalPrice" class="price-wrapper "><span class="price">£5.99</span></span>
-</span>
-</div>
-<div class="view-details-wrapper">
-<a class="product-item-link details" href="/filter-cartridge-size-3.html">View Details</a>
-</div>
-<div class="product-item-inner">
-<div class="product actions product-item-actions">
-<
-</div>
-</div>
-</div>
-</div>
-</li>
-<li class="item product product-item related-prod-cat-poolchemicals" style="display: none;">
-<div class="product-item-info  ">
- <a href="/shock-dose-pack.html" class="product photo product-item-photo">
-<span class="product-image-container product-image-container-6396">
-<span class="product-image-wrapper">
-<img class="product-image-photo" src="/media/catalog/product/cache/ac06747af0ffb4f2eb59058b817c4876/s/h/shock_dose_pack_1.jpg" loading="lazy" width="250" height="250" alt="hot&#x20;tub&#x20;shock&#x20;dose&#x20;chemicals" /></span>
-</span>
-<style>.product-image-container-6396 {
-    width: 250px;
-}
-.product-image-container-6396 span.product-image-wrapper {
-    padding-bottom: 100%;
-}</style><script type="text&#x2F;javascript">prodImageContainers = document.querySelectorAll(".product-image-container-6396");
-for (var i = 0; i < prodImageContainers.length; i++) {
-    prodImageContainers[i].style.width = "250px";
-}
-prodImageContainersWrappers = document.querySelectorAll(
-    ".product-image-container-6396  span.product-image-wrapper"
-);
-for (var i = 0; i < prodImageContainersWrappers.length; i++) {
-    prodImageContainersWrappers[i].style.paddingBottom = "100%";
-}</script> </a>
-<div class="product details product-item-details">
-<strong class="product name product-item-name"><a class="product-item-link" title="Shock Dose Pack" href="/shock-dose-pack.html">
-Shock Dose Pack</a>
-</strong>
+                foreach($g_related as $rel):
+                    $link = href($rel['id']);
+                ?>
 
-<div class="price-box price-final_price" data-role="priceBox" data-product-id="6396" data-price-box="product-id-6396">
-<span class="price-container price-final_price&#x20;tax&#x20;weee">
-<span id="product-price-6396" data-price-amount="24.99" data-price-type="" class="price-wrapper "><span class="price">£24.99</span></span>
-</span>
-</div>
-<div class="view-details-wrapper">
-<a class="product-item-link details" href="/shock-dose-pack.html">View Details</a>
-</div>
-<div class="product-item-inner">
-<div class="product actions product-item-actions">
-<
-</div>
-</div>
-</div>
-</div>
-</li>
-<li class="item product product-item related-prod-cat-poolcleaning&care" style="display: none;">
-<div class="product-item-info related-available ">
- <a href="/80-maintenance-kit.html" class="product photo product-item-photo">
-<span class="product-image-container product-image-container-5998">
-<span class="product-image-wrapper">
-<img class="product-image-photo" src="/media/catalog/product/cache/ac06747af0ffb4f2eb59058b817c4876/b/w/bw58013gb-filter-cartridge-size-3-1.jpg" loading="lazy" width="250" height="250" alt="80&quot;&#x20;Maintenance&#x20;Kit&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;" /></span>
-</span>
-<style>.product-image-container-5998 {
-    width: 250px;
-}
-.product-image-container-5998 span.product-image-wrapper {
-    padding-bottom: 100%;
-}</style><script type="text&#x2F;javascript">prodImageContainers = document.querySelectorAll(".product-image-container-5998");
-for (var i = 0; i < prodImageContainers.length; i++) {
-    prodImageContainers[i].style.width = "250px";
-}
-prodImageContainersWrappers = document.querySelectorAll(
-    ".product-image-container-5998  span.product-image-wrapper"
-);
-for (var i = 0; i < prodImageContainersWrappers.length; i++) {
-    prodImageContainersWrappers[i].style.paddingBottom = "100%";
-}</script> </a>
-<div class="product details product-item-details">
-<strong class="product name product-item-name"><a class="product-item-link" title="80&quot; Maintenance Kit                " href="/80-maintenance-kit.html">
-80&quot; Maintenance Kit </a>
-</strong>
+                <li class="item product product-item related-prod-cat-poolcleaning&care">
+                    <div class="product-item-info related-available ">
+                        <a href="<?=$link?>" class="product photo product-item-photo">
+                            <span class="product-image-container product-image-container-5997">
+                                <span class="product-image-wrapper">
+                                    <img class="product-image-photo" src="<?=$rel['image1']?>" loading="lazy" alt="" />
+                                </span>
+                            </span>
+                        </a>
+                        
+                        <div class="product details product-item-details">
+                            <strong class="product name product-item-name">
+                                <a class="product-item-link g-menuitem-sub" title="" href="<?=$link?>">
+                                    <?=$rel['title']?>
+                                </a>
+                            </strong>
 
-<div class="price-box price-final_price" data-role="priceBox" data-product-id="5998" data-price-box="product-id-5998">
-<span class="special-price">
-<span class="price-container price-final_price&#x20;tax&#x20;weee">
-<span class="price-label">Special Price</span>
-<span id="product-price-5998" data-price-amount="19.99" data-price-type="finalPrice" class="price-wrapper "><span class="price">£19.99</span></span>
-</span>
-</span>
-<span class="old-price">
-<span class="price-container price-final_price&#x20;tax&#x20;weee">
-<span class="price-label">Regular Price</span>
-<span id="old-price-5998" data-price-amount="26.99" data-price-type="oldPrice" class="price-wrapper "><span class="price">£26.99</span></span>
-</span>
-</span>
-</div>
-<div class="view-details-wrapper">
-<a class="product-item-link details" href="/80-maintenance-kit.html">View Details</a>
-</div>
-<div class="product-item-inner">
-<div class="product actions product-item-actions">
-<
-</div>
-</div>
-</div>
-</div>
-</li>
-<li class="item product product-item related-prod-cat-pool,garden&beachtoys" style="display: none;">
-<div class="product-item-info  ">
- <a href="/20-beach-ball.html" class="product photo product-item-photo">
-<span class="product-image-container product-image-container-6095">
-<span class="product-image-wrapper">
-<img class="product-image-photo" src="/media/catalog/product/cache/ac06747af0ffb4f2eb59058b817c4876/b/w/bw31021-16in-panel-beach-ball-1.jpg" loading="lazy" width="250" height="250" alt="20&quot;&#x20;Beach&#x20;Ball" /></span>
-</span>
-<style>.product-image-container-6095 {
-    width: 250px;
-}
-.product-image-container-6095 span.product-image-wrapper {
-    padding-bottom: 100%;
-}</style><script type="text&#x2F;javascript">prodImageContainers = document.querySelectorAll(".product-image-container-6095");
-for (var i = 0; i < prodImageContainers.length; i++) {
-    prodImageContainers[i].style.width = "250px";
-}
-prodImageContainersWrappers = document.querySelectorAll(
-    ".product-image-container-6095  span.product-image-wrapper"
-);
-for (var i = 0; i < prodImageContainersWrappers.length; i++) {
-    prodImageContainersWrappers[i].style.paddingBottom = "100%";
-}</script> </a>
-<div class="product details product-item-details">
-<strong class="product name product-item-name"><a class="product-item-link" title="20&quot; Beach Ball" href="/20-beach-ball.html">
-20&quot; Beach Ball</a>
-</strong>
+                            <div class="price-box price-final_price">
+                                <span class="price-container price-final_price tax weee">
+                                    <span id="product-price-5997" class="price-wrapper ">
+                                        <span class="price g-menuitem-sub"><?=$rel['price']?> ₾</span>
+                                    </span>
+                                </span>
+                            </div>
 
-<div class="price-box price-final_price" data-role="priceBox" data-product-id="6095" data-price-box="product-id-6095">
-<span class="price-container price-final_price&#x20;tax&#x20;weee">
-<span id="product-price-6095" data-price-amount="2.99" data-price-type="finalPrice" class="price-wrapper "><span class="price">£2.99</span></span>
-</span>
+                            <?php 
+                            if($rel['max_quentity']>=1){
+                            ?>
+                            <div class="g-stock-box">
+                                <div class="g-stock available g-menuitem-sub"><span><?=l('instack')?></span></div>
+                            </div>
+                        
+
+                            <form data-role="tocart-form" data-product-configurable="false" data-product-type="simple" data-product-sku="BW58093-21" action="" method="post" style="width: unset;">
+                                <input type="hidden" name="product" value="6012">
+                                <input type="hidden" name="uenc" value="">
+                                <input name="form_key" type="hidden" value="m8qrOfNYC6kwzS74" />
+                                <button type="submit" title="Add" class="action tocart primary">
+                                    <span class="g-menuitem-sub"><?=l('add.cart')?></span>
+                                </button>
+
+                                <div class="view-details-wrapper">
+                                    <a class="product-item-link details g-menuitem-sub" href="<?=$link?>"><?=l('read.more')?></a>
+                                </div>
+                            </form>
+                            <?php
+                            }else{
+                            ?>
+                            <div class="g-stock-box">
+                                <div class="g-stock available g-menuitem-sub g-unavailable"><span><?=l('outonstack')?></span></div>
+                            </div>
+                            <?php
+                            }
+                            ?>
+                        </div>
+                    </div>
+                </li>
+                <?php
+                endforeach;
+                ?>
+
+            </ol>
+        </div>
+    </div>
 </div>
-<div class="view-details-wrapper">
-<a class="product-item-link details" href="/20-beach-ball.html">View Details</a>
-</div>
-<div class="product-item-inner">
-<div class="product actions product-item-actions">
-<
+
+<div style="clear: both;"></div>
 
 </div>
 </div>
-</div>
-</div>
-</li>
-</ol>
-</div>
-</div>
-</div>
-<script type="6c527928c79c59796f9fe62e-text/javascript">
-            require([
-                'jquery',
-                'slick'
-            ], function ($) {
-                $(document).ready(function () {
-
-                    if ($('.slick-related').length) {
-                        var item1 = $('.slick-related');
-
-                        if ( !item1.hasClass('slick-initialized') && ($(window).width() < 768) ) {
-                            item1.slick({
-                                slidesToShow: 2,
-                                dots: true,
-                                arrows: false,
-                                infinite: false,
-                            });
-
-                        }
-                    }
-
-                    if ($('.slick-upsell').length) {
-                        var item2 = $('.slick-upsell');
-
-                        if ( !item2.hasClass('slick-initialized') && ($(window).width() < 1024) ) {
-                            item2.slick({
-                                centerMode: false,
-                                slidesToShow: 2,
-                                slidesToScroll: 1,
-                                arrows: false,
-                                dots: true,
-                                responsive: [
-                                    {
-                                        breakpoint: 950,
-                                        settings: {
-                                            slidesToShow: 2
-                                        }
-                                    },
-                                    {
-                                        breakpoint: 640,
-                                        settings: {
-                                            slidesToShow: 1
-                                        }
-                                    }
-                                ]
-                            });
-                        }
-                    }
-
-                });
-            });
-        </script>
-<script type="text/x-magento-init">
-    {
-        "*": {
-            "Amasty_Preorder/js/product/preorder_list": {
-                "jsonConfig" : []            }
-        }
-    }
-</script>
-<div class="block upsell" data-mage-init='{"upsellProducts":{}}' data-limit="0" data-shuffle="0">
-<div class="block-title title">
-<h3 id="block-upsell-heading" role="heading" aria-level="2">Alternative products</h3>
-</div>
-<h2>You might consider</h2>
-<div class="block-content content" aria-labelledby="block-upsell-heading">
-<div class="products wrapper grid products-grid products-upsell">
-<ol class="products list items product-items slick-upsell">
-<li class="item product product-item " style="display: none;">
-<div class="product-item-info  ">
-<div class="title-wrapper  ">
-<strong class="product name product-item-name">
-<a class="product-item-link" href="/20-x-12-x-48-comfort-jet-oval-pool-set.html">
-20ft Power Steel Comfort Jet Oval Pool Set </a>
-</strong>
-<div class="trust-reviews" data-prod_id="5692"></div>
-</div>
- <a href="/20-x-12-x-48-comfort-jet-oval-pool-set.html" class="product photo product-item-photo">
-<span class="product-image-container product-image-container-5692">
-<span class="product-image-wrapper">
-<img class="product-image-photo" src="/media/catalog/product/cache/50b1ee37b84cff3899065213e4edf26d/b/e/bestway_agp_set_20ftx12ftx48in_power_steel_56719_56719gb_56719gs_150dpi.jpg" loading="lazy" width="440" height="260" alt="20ft&#x20;Power&#x20;Steel&#x20;Comfort&#x20;Jet&#x20;Oval&#x20;Pool&#x20;Set" /></span>
-</span>
-<style>.product-image-container-5692 {
-    width: 440px;
-}
-.product-image-container-5692 span.product-image-wrapper {
-    padding-bottom: 59.090909090909%;
-}</style><script type="text&#x2F;javascript">prodImageContainers = document.querySelectorAll(".product-image-container-5692");
-for (var i = 0; i < prodImageContainers.length; i++) {
-    prodImageContainers[i].style.width = "440px";
-}
-prodImageContainersWrappers = document.querySelectorAll(
-    ".product-image-container-5692  span.product-image-wrapper"
-);
-for (var i = 0; i < prodImageContainersWrappers.length; i++) {
-    prodImageContainersWrappers[i].style.paddingBottom = "59.090909090909%";
-}</script> </a>
-<div class="product details product-item-details">
-
-<div class="price-box price-final_price" data-role="priceBox" data-product-id="5692" data-price-box="product-id-5692">
-<span class="price-container price-final_price&#x20;tax&#x20;weee">
-<span id="product-price-5692" data-price-amount="1099.99" data-price-type="finalPrice" class="price-wrapper "><span class="price">£1,099.99</span></span>
-</span>
-</div>
-<div class="product-item-inner">
-<div class="product actions product-item-actions">
-<div class="actions-primary">
-<a href="/20-x-12-x-48-comfort-jet-oval-pool-set.html">
-<button class="action outline">
-<span>View Product</span>
-</button>
-</a>
-<div class="stock available"><span>In stock</span></div>
-</div>
-</div>
-</div>
-</div>
-</div>
-</li>
-<li class="item product product-item " style="display: none;">
-<div class="product-item-info  ">
-<div class="title-wrapper  ">
-<strong class="product name product-item-name">
-<a class="product-item-link" href="/20ft-power-steel-wood-panel-print-oval-pool-set.html">
-20ft Power Steel Wood Panel Print Oval Pool Set </a>
-</strong>
- <div class="trust-reviews" data-prod_id="6282"></div>
-</div>
- <a href="/20ft-power-steel-wood-panel-print-oval-pool-set.html" class="product photo product-item-photo">
-<span class="product-image-container product-image-container-6282">
-<span class="product-image-wrapper">
-<img class="product-image-photo" src="/media/catalog/product/cache/50b1ee37b84cff3899065213e4edf26d/2/0/20ftpowersteelwoodpanelprintovalpoolset_1_.jpg" loading="lazy" width="440" height="260" alt="20ft&#x20;Power&#x20;Steel&#x20;Wood&#x20;Panel&#x20;Print&#x20;Oval&#x20;Pool&#x20;Set" /></span>
-</span>
-<style>.product-image-container-6282 {
-    width: 440px;
-}
-.product-image-container-6282 span.product-image-wrapper {
-    padding-bottom: 59.090909090909%;
-}</style><script type="text&#x2F;javascript">prodImageContainers = document.querySelectorAll(".product-image-container-6282");
-for (var i = 0; i < prodImageContainers.length; i++) {
-    prodImageContainers[i].style.width = "440px";
-}
-prodImageContainersWrappers = document.querySelectorAll(
-    ".product-image-container-6282  span.product-image-wrapper"
-);
-for (var i = 0; i < prodImageContainersWrappers.length; i++) {
-    prodImageContainersWrappers[i].style.paddingBottom = "59.090909090909%";
-}</script> </a>
-<div class="product details product-item-details">
-
-<div class="price-box price-final_price" data-role="priceBox" data-product-id="6282" data-price-box="product-id-6282">
-<span class="price-container price-final_price&#x20;tax&#x20;weee">
-<span id="product-price-6282" data-price-amount="1299.99" data-price-type="finalPrice" class="price-wrapper "><span class="price">£1,299.99</span></span>
-</span>
-</div>
-<div class="product-item-inner">
-<div class="product actions product-item-actions">
-<div class="actions-primary">
-<a href="/20ft-power-steel-wood-panel-print-oval-pool-set.html">
-<button class="action outline">
-<span>View Product</span>
-</button>
-</a>
-<div class="stock available"><span>In stock</span></div>
-</div>
-</div>
-</div>
-</div>
-</div>
-</li>
-</ol>
-</div>
-</div>
-</div>
-<script type="6c527928c79c59796f9fe62e-text/javascript">
-            require([
-                'jquery',
-                'slick'
-            ], function ($) {
-                $(document).ready(function () {
-
-                    if ($('.slick-related').length) {
-                        var item1 = $('.slick-related');
-
-                        if ( !item1.hasClass('slick-initialized') && ($(window).width() < 768) ) {
-                            item1.slick({
-                                slidesToShow: 2,
-                                dots: true,
-                                arrows: false,
-                                infinite: false,
-                            });
-
-                        }
-                    }
-
-                    if ($('.slick-upsell').length) {
-                        var item2 = $('.slick-upsell');
-
-                        if ( !item2.hasClass('slick-initialized') && ($(window).width() < 1024) ) {
-                            item2.slick({
-                                centerMode: false,
-                                slidesToShow: 2,
-                                slidesToScroll: 1,
-                                arrows: false,
-                                dots: true,
-                                responsive: [
-                                    {
-                                        breakpoint: 950,
-                                        settings: {
-                                            slidesToShow: 2
-                                        }
-                                    },
-                                    {
-                                        breakpoint: 640,
-                                        settings: {
-                                            slidesToShow: 1
-                                        }
-                                    }
-                                ]
-                            });
-                        }
-                    }
-
-                });
-            });
-        </script>
-<script type="text/x-magento-init">
-    {
-        "*": {
-            "Amasty_Preorder/js/product/preorder_list": {
-                "jsonConfig" : []            }
-        }
-    }
-</script>
-</div></div></main>
+</main>
 
 
-<footer class="page-footer"><div class="footer content"><script type="text/x-magento-init">
-    {
-        "#newsletter-footer": {
-            "WBL_MailChimpSignUp/js/footer": {
-                "formAction": "/wblklaviyosignup/index/signup/"
-            }
-        }
-    }
-</script>
-<div id="newsletter-footer" class="newsletter-wrapper footer">
-<div class="top-image">
-<img src="/static/version1681722880/frontend/Wilton/BW/en_GB/images/newsletter/newsletter-image.jpg" alt="Happy people" />
-</div>
-<h2>Stay up to date</h2>
-<p>Sign up to our newsletter and join our community for the latest news, tips and advice.</p>
-<div class="block newsletter">
-<div class="title"><strong>Newsletter</strong></div>
-<div class="content">
-<form action="/wblklaviyosignup/index/signup/" method="post">
-<input name="form_key" type="hidden" value="m8qrOfNYC6kwzS74" /> <div class="block-content">
-<div class="input-box">
-<input name="firstname" placeholder="First Name" required type="text">
-</div>
-<div class="input-box mc-email">
-<input name="email" placeholder="Email" required type="email">
-</div>
-<div class="actions">
-<input type="submit" value="Sign Up" class="action subscribe primary">
-</div>
-</div>
-</form>
-<p>By submitting your email, you are giving your consent to receive email updates on products, special offers and exclusive discounts from Bestwaystore.co.uk. Please refer to our <a href="/privacy-policy">privacy policy</a> to see how we look after your data.</p>
-</div>
-</div>
-</div></div><div class="footer-wrapper"><div class="footer-wrapper-limit"><div class="footer-logo">
+<footer class="page-footer">
+    <div class="footer-wrapper"><div class="footer-wrapper-limit"><div class="footer-logo">
 <img src="/static/version1681722880/frontend/Wilton/BW/en_GB/images/logo.svg" alt="Bestway Store Logo" />
 </div>
 <div class="social-links">
@@ -1850,7 +1244,7 @@ $(document).on('mouseenter', '.g-images-box .g-thumbs ul li a', function(){
         // $('.g-popup-main-image img').attr('src', videoImage);
         var videoId = src.match(/[?&]v=([^&]+)/)[1];
         var iframe = $("<iframe>", {
-            src: "https://www.youtube.com/embed/" + videoId + "?autoplay=1",
+            src: "https://www.youtube.com/embed/" + videoId + "?autoplay=1&mute=1",
             frameborder: 0,
             allowfullscreen: true,
             width: "100%",
@@ -1902,7 +1296,7 @@ $('.lightbox-link').magnificPopup({
                     var videoId = src.match(/[?&]v=([^&]+)/)[1];
                     
                     var iframe = $("<iframe>", {
-                        src: "https://www.youtube.com/embed/" + videoId + "?autoplay=1",
+                        src: "https://www.youtube.com/embed/" + videoId + "?autoplay=1&mute=1",
                         frameborder: 0,
                         allowfullscreen: true,
                         width: "100%",
@@ -1923,7 +1317,9 @@ $('.lightbox-link').magnificPopup({
                 if(type=="image"){
                     $('#g-popup .g-popup-title-and-thumbs .g-popup-thumbs ul li:first-child a').click();
                 }else{
-                    $('#g-popup .g-popup-title-and-thumbs .g-popup-thumbs ul li a[data-type="video"]').click();
+                    
+                    // $('#g-popup .g-popup-title-and-thumbs .g-popup-thumbs ul li a[data-type="video"]').click();
+                    $('#g-popup .g-popup-title-and-thumbs .g-popup-thumbs ul li a[data-type="video"]').parent()[0].children[0].click();
                 }            
             });
 
