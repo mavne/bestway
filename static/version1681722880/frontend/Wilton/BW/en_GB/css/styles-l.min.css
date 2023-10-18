@@ -102,13 +102,12 @@
 .g-images-box .g-main-image{
 	margin: 0;
 	padding: 0;
-	width: 685px;
-	height: 685px;
+	width: 460px;
+	height: 460px;
 	position: relative;
 	float: left;
 	display: flex;
-	align-items: center;
-	border: 1px solid #8ec7d9;
+	align-items: start;
 	border-radius: 5px;
 }
 
@@ -274,4 +273,25 @@
 	object-position: center;
 	border: 1px solid #8ec7d9;
 	border-radius: 5px;
+}
+
+.page-title-wrapper.product h1{
+	font-size: 24px !important;
+	line-height: 30px !important;
+}
+
+.bundle-options-container{
+	margin: 0 !important;
+	padding: 10px 18px !important;
+	width: 242px !important;
+	float: left !important;
+	clear: unset !important;
+	border: 1px #D5D9D9 solid;
+	border-radius: 8px 8px 0 0;
+}
+
+.product-options-bottom .price-box, .product-info-price .price-box{
+	display: block !important;
+	height: unset !important;
+	padding-bottom: 0px !important;
 }

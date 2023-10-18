@@ -161,40 +161,73 @@ Skip to Content </span>
         <img src="./Bestway Store UK _ Leaders in Inflatables &amp; Above Ground Pools_files/logo.svg" title="Bestway Store" alt="Bestway Store" width="170">
     </a>
 
-    <div class="minicart-wrapper empty">
-        <a class="action showcart" href="">
-            <span class="text">My Cart</span>
-            <span class="counter qty">
-                <span class="counter-number">0</span>
-                <span class="counter-label"></span>
-            </span>
-            <span class="icon empty"></span>
-        </a>
+    <style type="text/css">
+        .g-icon-wrap{
+                width: 100px;
+                height: 30px;
+                margin-top: 0;
+                margin-right: 0;
+                position: relative;
+            }
 
-        <div class="ui-dialog ui-widget ui-widget-content ui-corner-all ui-front mage-dropdown-dialog" style="display: none;">
-            <div class="block block-minicart ui-dialog-content ui-widget-content" id="ui-id-1" style="display: block;">
-                <div id="minicart-content-wrapper">
-                    <div class="block-title">
-                        <strong>
-                            <span class="text">My Cart</span>
-                            <span class="qty empty" title="Items in Cart"></span>
-                        </strong>
-                    </div>
-                    
-                    <div class="block-content">
-                        <strong class="subtitle empty">You have no items in your shopping basket.</strong>
-                        <div id="minicart-widgets" class="minicart-widgets"></div>
+            .g-icon-wrap .minicart-wrapper{
+                margin-top: 0px;
+            }
+
+            .g-icon-wrap .header.links{
+                margin-top: 0 !important;
+            }
+        @media (max-width:960px){
+            .g-icon-wrap{
+                width: 100px;
+                height: 30px;
+                margin-top: 35px;
+                margin-right: 15px;
+                position: relative;
+            }
+
+            .g-icon-wrap .minicart-wrapper{
+                margin-top: 0px;
+            }
+        }
+    </style>
+
+    <div class="g-icon-wrap">
+        <div class="minicart-wrapper empty">
+            <a class="action showcart" href="">
+                <span class="text">My Cart</span>
+                <span class="counter qty">
+                    <span class="counter-number">0</span>
+                    <span class="counter-label"></span>
+                </span>
+                <span class="icon empty"></span>
+            </a>
+
+            <div class="ui-dialog ui-widget ui-widget-content ui-corner-all ui-front mage-dropdown-dialog" style="display: none;">
+                <div class="block block-minicart ui-dialog-content ui-widget-content" id="ui-id-1" style="display: block;">
+                    <div id="minicart-content-wrapper">
+                        <div class="block-title">
+                            <strong>
+                                <span class="text">My Cart</span>
+                                <span class="qty empty" title="Items in Cart"></span>
+                            </strong>
+                        </div>
+                        
+                        <div class="block-content">
+                            <strong class="subtitle empty">You have no items in your shopping basket.</strong>
+                            <div id="minicart-widgets" class="minicart-widgets"></div>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
 
-    <ul class="header links">
-        <li>
-            <a href="" id="idrsh7YgW7"></a>
-        </li>
-    </ul>
+        <ul class="header links">
+            <li>
+                <a href="" id="idrsh7YgW7"></a>
+            </li>
+        </ul>
+    </div>
 
 <!--     <ul class="g-languages">
         <li>

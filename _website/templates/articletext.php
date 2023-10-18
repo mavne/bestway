@@ -206,6 +206,16 @@ width: 100%;
     @media (min-width: 100px) {
         .magezon-builder .mgz-container {width: 100%;}
     }
+
+    @media(max-width:960px){
+        .columns .column.main{
+            padding-bottom: 0 !important;
+        }
+
+        .products-related .product-items .action.primary{
+            width: 60% !important;
+        }
+    }
     </style>
 <link rel="stylesheet" type="text/css" media="all" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" />
 
@@ -535,7 +545,7 @@ The store will not work correctly in the case when cookies are disabled.</div>
         </div>
 
         <div class="g-popup-main-image">
-            <img src="https://m.media-amazon.com/images/I/71QDJHG1PqL._AC_SX679_PIbundle-2,TopRight,0,0_SH20_.jpg" />
+            <img src="<?=$image1?>" />
         </div>
 
         <div class="g-popup-title-and-thumbs">
@@ -676,12 +686,27 @@ The store will not work correctly in the case when cookies are disabled.</div>
             </h1>
         </div>
 
+        <div style="clear: both;"></div>
+        <div class="g-images-box ggg-show">
+        <div class="g-thumbs g-hidemobimages" style="display:none">
+        </div>
+        </div>
+
+        <div style="clear: both;"></div>
+
+        <div class="mobile-price-button-box"></div>
+
+        <div style="clear: both;"></div>
+
         <?=g_strip_classes($content)?>
     </div>
-
+</div>
 
 <div class="bundle-options-container">
     <div class="product-add-form" style="padding-top:0">
+
+
+        <h2 class="g-price"><?=$price?>₾</h2> 
 
         <?php
         if($max_quentity >= 1){
@@ -689,7 +714,6 @@ The store will not work correctly in the case when cookies are disabled.</div>
         <div class="g-stock g-menuitem-sub">
             <span><?=l('instack')?></span>
         </div>
-
 
         <form data-product-type="bundle" action="" method="post" id="product_addtocart_form">
             <div class="product-info-price">
@@ -712,26 +736,24 @@ The store will not work correctly in the case when cookies are disabled.</div>
 
                         <div style="clear: both;"></div>
 
-                        <span class="bundle-price">
-                            <span class="price-container price-configured_price tax weee">
-                                <span id="product-price-6435" data-price-amount="1499.98" data-price-type="bundleFinalPrice" class="price-wrapper ">
-                                    <span class="price"><?=$price?> ₾</span> 
-                                </span>
-                            </span>
-                        </span>
-
                
                         <a href="" class="action primary g-menuitem g-buy-button g-orange-btn">
                             <span><?=l('buy')?></span>
                         </a>
 
+                        <div style="clear: both;"></div>
+
                         <a href="" class="action primary g-menuitem g-cart-button g-yellow-btn">
                             <span><?=l('addtocart')?></span>
                         </a>
 
+                        <div style="clear: both;"></div>
+
                         <a href="" class="action primary g-menuitem g-instalment-button g-orange-btn">
                             <span><?=l('buyInstalment')?></span>
                         </a>
+
+                        <div style="clear: both;"></div>
 
                         <span class="old-price" style="display:none">
                             <span class="price-container price-configured_price&#x20;tax&#x20;weee">
@@ -757,8 +779,7 @@ The store will not work correctly in the case when cookies are disabled.</div>
     </div>
 </div>
 
-
-</div></div>
+</div>
 
 <div style="clear: both;"></div>
 
@@ -1353,13 +1374,16 @@ $(document).ready(function(){
                 owlHtml += '<img src="'+src+'" alt="" loading="lazy">';
                 owlHtml += '</a>';
             }           
-            
-            
         });
 
         owlHtml += '</div>';
 
-        $('.g-images-box .g-thumbs').html(owlHtml).show();
+        $('.g-hidemobimages').html(owlHtml).show();
+
+        var bundle = $('.bundle-options-container').prop('outerHTML');
+        $('.bundle-options-container').remove();
+        $('.mobile-price-button-box').html(bundle);
+
 
         $('#mobile-product-slider').owlCarousel({
             autoplay: false,
@@ -1368,6 +1392,28 @@ $(document).ready(function(){
             margin:0,
             nav:false,
             dots: true,
+            responsive:{
+                0:{
+                    items:1
+                },
+                600:{
+                    items:1
+                },
+                1000:{
+                    items:1
+                }
+            }
+        });
+
+
+        $('.column.main .products .product-items').addClass('owl-carousel owl-theme');
+        $('.column.main .products .product-items').owlCarousel({
+            autoplay: true,
+            smartSpeed:1500,
+            loop:true,
+            margin:0,
+            nav:true,
+            dots: false,
             responsive:{
                 0:{
                     items:1

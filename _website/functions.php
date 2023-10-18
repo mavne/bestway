@@ -1053,8 +1053,6 @@ function g_feature_categories(){
 function g_related($menu_id, $limit = ''){
 	$out = db_fetch_all("SELECT * FROM `" . c("table.pages") . "` WHERE  `language` = '" . l() . "' AND `deleted`=0 AND `menuid`='".$menu_id."' AND `visibility` = 1".$limit);
 
-	echo "SELECT * FROM `" . c("table.pages") . "` WHERE  `language` = '" . l() . "' AND `deleted`=0 AND `menuid`='".$menu_id."' AND `visibility` = 1".$limit;
-
     return $out;
 }
 
