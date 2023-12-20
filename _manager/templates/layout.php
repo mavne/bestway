@@ -62,7 +62,7 @@
         <div id="digital">
             <div id="header">
                 <a href="<?php echo ahref(array('main')) ?>"><img src="<?php echo CMS;?>/img/logo.png" width="300" height="23" alt="" id="logo"/></a>
-                <a href="<?php echo ahref(array('access', 'logout')) ?>" id="logout"><?php echo a("logout");?></a>
+                <a href="<?php echo ahref(array('access', 'logout')) ?>" id="logout" class="g-fs16"><?php echo a("logout");?></a>
                 <a href="<?php echo c('site.url') ?>" id="site" class="right">საიტზე გადასვლა</a>
                 <span id="welcome">
                     <?php echo a("user"); ?>:

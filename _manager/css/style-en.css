@@ -228,7 +228,7 @@ li#lang { background: none; padding: 0px; text-shadow: 0 0 0;float: right }
 #news .date-icon { width: 16px; height: 16px; line-height: 16px; margin: 8px 0 0 -101px; float: left }
 #news .image-icon { width: 16px; height: 16px; line-height: 16px; margin: 8px 0 0 -21px; float: left }
 #news .title { font-weight: bold; color: #555; float: left;}
-#news .name { width: 165px; color: #555; padding: 0 0 0 5px; float: left }
+#news .name { width: 165px; color: #555; padding: 0 0 0 5px; float: left; font-size:18px; }
 #news .name.link {width: 110px; }
 #news .star { font-weight: normal; color: #4e9be6; cursor:pointer; padding:0; }
 #news .file { width: 240px; background: #fff; border: 1px solid #d8d8d8; padding: 5px; margin: 4px 0 0 0; font-size: 12px; float: left }
@@ -236,7 +236,7 @@ li#lang { background: none; padding: 0px; text-shadow: 0 0 0;float: right }
 #news .editor { padding-left:50px; }
 #news a { color: #000 !important; text-decoration: none }
 #news a:hover { color: #555 !important; text-decoration: underline; }
-.inp { width: 600px; background: #fff; border: 1px solid #d8d8d8; padding: 4px; margin: 4px 0 0 0; font-size: 12px; float: left }
+.inp { width: 600px; background: #fff; border: 1px solid #d8d8d8; padding: 4px; margin: 4px 0 0 0; font-size: 16px; float: left; }
 .inp-small { width: 200px; background: #fff; border: 1px solid #d8d8d8; padding: 4px; margin: 4px 80px 0 0; font-size: 12px; float: left }
 .inp-check { width: 20px; border: none; padding: 4px; margin: 10px 100px 0 0; font-size: 12px; float: left; }
 .readonly {background:#ddd;}
@@ -347,3 +347,19 @@ li#lang { background: none; padding: 0px; text-shadow: 0 0 0;float: right }
 #footer .menu { float: left }
 #footer .contact { float: right }
 #footer .copyright { clear: both; line-height: 32px; color: #999 }
+
+.g-scale15{
+	transform: scale(1.5) translateX(-7%);
+}
+
+.g-fs18{
+	font-size: 18px !important;
+}
+
+.g-fs16{
+	font-size: 16px !important;
+}
+
+.g-scale12{
+	transform: scale(1.2);
+}

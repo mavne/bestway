@@ -47,3 +47,11 @@ a:hover { color: #555; text-decoration:underline }
 #login .check { margin: 6px 6px 0 90px; float: left }
 
 #copyright { color: #999; font-size: 10px; }
+
+.g-scale15{
+	transform: scale(1.5) translateX(-7%);
+}
+
+.g-fs18{
+	font-size: 18px;
+}

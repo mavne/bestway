@@ -783,7 +783,7 @@ The store will not work correctly in the case when cookies are disabled.</div>
 
 <div style="clear: both;"></div>
 
-<div class="block related">
+<div class="block related" style="overflow:visible;">
     <h2 class="g-menuitem"><?=l('related.products')?></h2>
 
     <style>
@@ -808,10 +808,10 @@ The store will not work correctly in the case when cookies are disabled.</div>
     </script>
     
     <div class="block-content content" aria-labelledby="block-related-heading">
-        <div class="products wrapper grid products-grid products-related">
-            <ol class="products list items product-items slick-related">
+        <div class="products wrapper grid products-grid products-related g-owl-container">
+            <ol class="products list items product-items owl-carousel owl-theme" id="g-ralated-products" style="width:100%; margin-left: 0px;">
                 <?php
-                $limit = ' AND `id`!='.$id.' ORDER BY RAND() LIMIT 4';
+                $limit = ' AND `id`!='.$id.' ORDER BY RAND() LIMIT 15';
 
                 $g_related = g_related($menuid, $limit);
 
@@ -819,7 +819,7 @@ The store will not work correctly in the case when cookies are disabled.</div>
                     $link = href($rel['id']);
                 ?>
 
-                <li class="item product product-item related-prod-cat-poolcleaning&care">
+                <li class="item product product-item related-prod-cat-poolcleaning&care" style="width:100% !important;">
                     <div class="product-item-info related-available ">
                         <a href="<?=$link?>" class="product photo product-item-photo">
                             <span class="product-image-container product-image-container-5997">
@@ -879,8 +879,12 @@ The store will not work correctly in the case when cookies are disabled.</div>
                 <?php
                 endforeach;
                 ?>
-
             </ol>
+
+            <div class="g-owlBtns">
+                <button class="prev">prev</button>
+                <button class="next">next</button>
+            </div>
         </div>
     </div>
 </div>
@@ -981,6 +985,71 @@ display: none;
 }
 .checkout-cart-index .wrapper .cart #shopping-cart-table .product-cart-actions .qty-input-box {
 display: none;
+}
+
+.g-owl-container{
+    position: relative;
+}
+
+.g-owl-container .g-owlBtns{
+    margin: 0;
+    padding: 0;
+    width: calc(100% + 100px);
+    height: 50px;
+    position: absolute;
+    top: calc(50% - 25px);
+    left: -50px;
+    pointer-events: none;
+}
+
+.g-owl-container .g-owlBtns button{
+    margin: 0;
+    padding: 0;
+    width: 50px;
+    height: 50px;
+    min-width: 50px;
+    max-width: 50px;
+    pointer-events: all;
+    background-color: #7cc6d1;
+    text-indent: -9999px;
+    position: relative;
+    border-radius: 0px;
+}
+
+.g-owl-container .g-owlBtns button::after{
+    content: "";
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    -webkit-mask-image: url(/images/arrow.svg);
+    mask-image: url(/images/arrow.svg);
+    -webkit-mask-size: 25px;
+    mask-size: 25px;
+    -webkit-mask-repeat: no-repeat;
+    mask-repeat: no-repeat;
+    -webkit-mask-position: center;
+    mask-position: center;
+    background-color: white;
+}
+
+.g-owl-container .g-owlBtns button:first-child{
+    float: left;
+}
+
+.g-owl-container .g-owlBtns button:first-child::after{
+    transform: rotate(180deg);
+}
+
+.g-owl-container .g-owlBtns button:last-child{
+    float: right;
+}
+
+@media (max-width:960px){
+    .g-owl-container .g-owlBtns{
+        display: none;
+    }
 }
 </style>
 
@@ -1405,7 +1474,6 @@ $(document).ready(function(){
             }
         });
 
-
         $('.column.main .products .product-items').addClass('owl-carousel owl-theme');
         $('.column.main .products .product-items').owlCarousel({
             autoplay: true,
@@ -1440,6 +1508,39 @@ $(document).ready(function(){
         //     }
         // });
     }
+
+
+    $('#g-ralated-products').owlCarousel({
+            autoplay: true,
+            smartSpeed:1500,
+            loop:true,
+            margin:10,
+            nav:false,
+            dots: false,
+            responsive:{
+                0:{
+                    items:1
+                },
+                600:{
+                    items:1
+                },
+                1000:{
+                    items:4
+                }
+            }
+        });
+
+
+    //.g-owl-container .g-owlBtns button
+
+    $('.g-owl-container .g-owlBtns button.prev').on('click', function () {
+        $('#g-ralated-products').trigger('prev.owl.carousel');
+    });
+
+    $('.g-owl-container .g-owlBtns button.next').on('click', function () {
+        $('#g-ralated-products').trigger('next.owl.carousel');
+    });
+
 });
 </script>
 </body>

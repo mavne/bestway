@@ -72,7 +72,7 @@ function _build_lists($parent, $order_by, $start = -1, $per_page)
                         	<div class="arrows"><?php echo $pad;?></div>
                             <div class="links">
                                 <a href="<?php echo ahref(array($route[0], 'edit', $result["id"]));?>">
-                                    <strong><span class="star" title="<?php echo $result["title"];?>">
+                                    <strong><span class="star g-fs18" title="<?php echo $result["title"];?>">
                                         <?php echo mb_substr($result["title"],0,64,'UTF-8') . ((mb_strlen($result["title"],'UTF-8')>64) ? '...' : '');?>
                                     </span></strong>
                                 </a>
@@ -94,7 +94,7 @@ function _build_lists($parent, $order_by, $start = -1, $per_page)
                                 <?php } ?>
                             </div>
                         </div>
-                        <div class="action fix">
+                        <div class="action fix g-scale12">
                         	<a href="<?php echo href($result['id']) ?>" target="_blank"><img src="_manager/img/buttons/icon_preview.png" class="star" title="<?php echo a('ql.preview');?>" /></a>
                             <a href="<?php echo ahref(array($route[0], 'edit', $result["id"]));?>"><img src="_manager/img/buttons/icon_edit.png" class="star" title="<?php echo a('ql.edit');?>" /></a>
 <?php
@@ -154,11 +154,11 @@ function _build_lists($parent, $order_by, $start = -1, $per_page)
 <?php } ?>
                         </div>
 
-						<div class="id"><?php echo $result["id"];?></div>
+						<div class="id g-fs18"><?php echo $result["id"];?></div>
 						<?php if(is_from_list($result["menuid"])) {	?>
 						<div class="date"><?php echo $result["postdate"];?></div>
 <?php } else { ?>
-						<div class="date"><?php echo $menucat;?></div>
+						<div class="date g-fs18"><?php echo $menucat;?></div>
 <?php } ?>
 
 

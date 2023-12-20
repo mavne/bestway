@@ -48,7 +48,7 @@
             </div>
 <?php } ?>        
 			<div style="clear:both;"></div>
-			<form action="<?php echo ahref(array('access', 'login')) ?>" method="post" name="loginform" id="loginform" style="width:300px; padding-left:170px;">
+			<form action="<?php echo ahref(array('access', 'login')) ?>" method="post" name="loginform" id="loginform" style="width:300px; padding-left:170px;" class="g-scale15">
 				<input type="hidden" name="dd_login" value="1">
                 <div class="list fix">
                     <div class="name">Username: <span class="star" title="<?php echo a('tt.username');?>">*</span></div>			

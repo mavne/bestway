@@ -18,7 +18,7 @@
 ?>
         <ul id="topnav" class="menu fix">
             <li>
-            	<div class="rootmenu" >
+            	<div class="rootmenu g-fs18" >
 					<a href="<?php echo ahref();?>"><?php echo a("home"); ?></a>
                 </div>
                 <ul></ul>
@@ -26,7 +26,7 @@
 <?php 
 	if(getUserRight($_SESSION['auth']["id"], 'sitemap')) {
 ?>
-			<li><div class="rootmenu" ><?php echo a("site"); ?></div>
+			<li><div class="rootmenu g-fs18" ><?php echo a("site"); ?></div>
                 <div class="sub">
                     <ul>
 <?php
@@ -37,7 +37,7 @@
 ?>                    
 						<li style="background:none">
                             <div class="submenu">
-								<a href="<?php echo ahref(array('sitemap', 'show', $cat['id']));?>"><?php echo $cat["title"]; ?></a>
+								<a href="<?php echo ahref(array('sitemap', 'show', $cat['id']));?>" class="g-fs18"><?php echo $cat["title"]; ?></a>
                             </div>
                         </li>
 <?php
@@ -45,7 +45,7 @@
 ?>
                         <li style="background:none;">
                             <div class="submenu1">
-								<a href="<?php echo ahref(array('pages'));?>"><?php echo a("menulist"); ?></a>
+								<a href="<?php echo ahref(array('pages'));?>" class="g-fs18"><?php echo a("menulist"); ?></a>
                             </div>
                         </li>
             		</ul>
@@ -56,7 +56,7 @@
 	if(getUserRight($_SESSION['auth']["id"], 'files')) {
 ?>
 			<li>
-            	<div class="rootmenu" >
+            	<div class="rootmenu g-fs18" >
 					<a href="<?php echo ahref(array('filemanager'));?>"><?php echo a("filemanager"); ?></a>
                 </div>
             </li>
@@ -64,7 +64,7 @@
 	}
 	if(getUserRight($_SESSION['auth']["id"], 'modules')) {
 ?>       
-			<li><div class="rootmenu" ><?php echo a("modules"); ?></div>
+			<li><div class="rootmenu g-fs18" ><?php echo a("modules"); ?></div>
                 <div class="sub">
                     <ul>
 <?php
@@ -73,7 +73,7 @@
 ?>            
                         <li style="background:none;">
                             <div class="submenu">
-								<a href="<?php echo ahref(array('categories'));?>"><?php echo a("news.articles"); ?></a>
+								<a href="<?php echo ahref(array('categories'));?>" class="g-fs18"><?php echo a("news.articles"); ?></a>
                             </div>
                         </li>
 <?php
@@ -84,7 +84,7 @@
 ?>            
                         <li style="background:none;">
                             <div class="submenu">
-								<a href="<?php echo ahref(array('lists'));?>"><?php echo a("lists"); ?></a>
+								<a href="<?php echo ahref(array('lists'));?>" class="g-fs18"><?php echo a("lists"); ?></a>
                             </div>
                         </li>
 <?php
@@ -95,7 +95,7 @@
 ?>            
                         <li style="background:none;">
                             <div class="submenu">
-								<a href="<?php echo ahref(array('gallerylist'));?>"><?php echo a("galleries"); ?></a>
+								<a href="<?php echo ahref(array('gallerylist'));?>" class="g-fs18"><?php echo a("galleries"); ?></a>
                             </div>
                         </li>
 <?php
@@ -106,7 +106,7 @@
 ?>            
                         <li style="background:none">
                             <div class="submenu">
-								<a href="<?php echo ahref(array('polls'));?>"><?php echo a("polls"); ?></a>
+								<a href="<?php echo ahref(array('polls'));?>" class="g-fs18"><?php echo a("polls"); ?></a>
                             </div>
                         </li>
 <?php
@@ -117,7 +117,7 @@
 ?>            
                         <li style="background:none">
                             <div class="submenu">
-								<a href="<?php echo ahref(array('catalogs'));?>"><?php echo a("catalogs"); ?></a>
+								<a href="<?php echo ahref(array('catalogs'));?>" class="g-fs18"><?php echo a("catalogs"); ?></a>
                             </div>
                         </li>
 <?php
@@ -128,7 +128,7 @@
 ?>            
                         <li style="background:none">
                             <div class="submenu">
-								<a href="<?php echo ahref(array('faqs'));?>"><?php echo a("faqs"); ?></a>
+								<a href="<?php echo ahref(array('faqs'));?>" class="g-fs18"><?php echo a("faqs"); ?></a>
                             </div>
                         </li>
 <?php
@@ -143,7 +143,7 @@
 
 	if(getUserRight($_SESSION['auth']["id"], 'users')) {
 ?>
-            <li><div id="users" class="rootmenu" ><?php echo a("users"); ?></div>
+            <li><div id="users" class="rootmenu g-fs18" ><?php echo a("users"); ?></div>
                 <div class="sub">
                     <ul>
 
@@ -152,7 +152,7 @@
 ?>
                         <li style="background:none">
                             <div class="submenu">
-								<a href="<?php echo ahref(array('users'));?>"><?php echo a("userlist"); ?></a>
+								<a href="<?php echo ahref(array('users'));?>" class="g-fs18"><?php echo a("userlist"); ?></a>
                             </div>
                         </li>
 <?php 
@@ -161,7 +161,7 @@
 ?>
                         <!-- <li style="background:none">
                             <div class="submenu">
-								<a href="<?php echo ahref(array('userrights'));?>"><?php echo a("userrights"); ?></a>
+								<a href="<?php echo ahref(array('userrights'));?>" class="g-fs18"><?php echo a("userrights"); ?></a>
                             </div>
                         </li> -->
 <?php
@@ -170,7 +170,7 @@
 ?>
                         <!-- <li style="background:none">
                             <div class="submenu1">
-								<a href="<?php echo ahref(array('siteusers'));?>"><?php echo a("siteuserlist"); ?></a>
+								<a href="<?php echo ahref(array('siteusers'));?>" class="g-fs18"><?php echo a("siteuserlist"); ?></a>
                             </div>
                         </li> -->
 <?php
@@ -182,7 +182,7 @@
 <?php 
 	}
 ?>
-            <!-- <li><div id="tools" class="rootmenu" ><?php echo a("tools"); ?></div>
+            <!-- <li><div id="tools" class="rootmenu g-fs18" ><?php echo a("tools"); ?></div>
                 <div class="sub">
                     <ul>
 <?php 
@@ -190,7 +190,7 @@
 ?>
                         <li style="background:none">
                             <div class="submenu">
-								<a href="<?php echo ahref(array('backup'));?>"><?php echo a("backup"); ?></a>
+								<a href="<?php echo ahref(array('backup'));?>" class="g-fs18"><?php echo a("backup"); ?></a>
                             </div>
                         </li>
 <?php 
@@ -198,18 +198,18 @@
 ?>
                         <li style="background:none">
                             <div class="submenu">
-								<a href="<?php echo ahref(array('textconverter'));?>"><?php echo a("textconverter"); ?></a>
+								<a href="<?php echo ahref(array('textconverter'));?>" class="g-fs18"><?php echo a("textconverter"); ?></a>
                             </div>
                         </li>
                         <li style="background:none">
                             <div class="submenu">
-								<a href="<?php echo ahref(array('log'));?>"><?php echo a("log"); ?></a>
+								<a href="<?php echo ahref(array('log'));?>" class="g-fs18"><?php echo a("log"); ?></a>
                             </div>
                         </li> 
                         <li style="background:none">
                             <div class="submenu">
-                                <a href="<?php echo ahref(array('mailinglistnews'));?>"><?php echo 'News Mailing List'; ?></a>
-                                <a href="<?php echo ahref('mailinglistnews','show');?>"><?php echo 'News Mailing List'; ?></a> 
+                                <a href="<?php echo ahref(array('mailinglistnews'));?>" class="g-fs18"><?php echo 'News Mailing List'; ?></a>
+                                <a href="<?php echo ahref('mailinglistnews','show');?>" class="g-fs18"><?php echo 'News Mailing List'; ?></a> 
                             </div>
                         </li>
                     </ul>
@@ -219,12 +219,12 @@
 <?php
 	if((getUserRight($_SESSION['auth']["id"], 'settings'))||(getUserRight($_SESSION['auth']["id"], 'langdata'))||(getUserRight($_SESSION['auth']["id"], 'adminsettings'))) {
 ?>
-            <li><div id="settings" class="rootmenu" ><?php echo a("settings"); ?></div>
+            <li><div id="settings" class="rootmenu g-fs18" ><?php echo a("settings"); ?></div>
                 <div class="sub">
                     <ul>
                         <li style="background:none">
                             <div class="submenu">
-								<a href="<?php echo ahref(array('textconverter'));?>"><?php echo a("textconverter"); ?></a>
+								<a href="<?php echo ahref(array('textconverter'));?>" class="g-fs18"><?php echo a("textconverter"); ?></a>
                             </div>
                         </li>
 <?php 
@@ -232,7 +232,7 @@
 ?>
                         <li style="background:none">
                             <div class="submenu">
-                                <a href="<?php echo ahref(array('settings'));?>"><?php echo a("sitesettings"); ?></a>
+                                <a href="<?php echo ahref(array('settings'));?>" class="g-fs18"><?php echo a("sitesettings"); ?></a>
                             </div>
                         </li>
 <?php 
@@ -241,14 +241,14 @@
 ?>
                         <li style="background:none">
                             <div class="submenu">
-								<a href="<?php echo ahref(array('langdata'));?>"><?php echo a("sitelanguagedata"); ?></a>
+								<a href="<?php echo ahref(array('langdata'));?>" class="g-fs18"><?php echo a("sitelanguagedata"); ?></a>
                             </div>
                         </li>
 <?php 
 ?>
                         <li style="background:none;">
                             <div class="submenu1">
-								<a href="<?php echo ahref(array('adminsettings'));?>"><?php echo a("adminsettings"); ?></a>
+								<a href="<?php echo ahref(array('adminsettings'));?>" class="g-fs18"><?php echo a("adminsettings"); ?></a>
                             </div>
                         </li>
 <?php 
@@ -260,23 +260,23 @@
 <?php 
 	}
 ?>
-            <!-- <li><div id="help" class="rootmenu" ><?php echo a("help"); ?></div>
+            <!-- <li><div id="help" class="rootmenu g-fs18" ><?php echo a("help"); ?></div>
                 <div class="sub">
                     <ul>
                         <li style="background:none">
                             <div class="submenu">
-								<a href="<?php echo ahref(array('help'));?>"><?php echo a("help"); ?></a>
+								<a href="<?php echo ahref(array('help'));?>" class="g-fs18"><?php echo a("help"); ?></a>
                             </div>
                         </li>
                         <li style="background:none">
                             <div class="submenu">
-								<a href="<?php echo ahref(array('about'));?>"><?php echo a("about"); ?></a>
+								<a href="<?php echo ahref(array('about'));?>" class="g-fs18"><?php echo a("about"); ?></a>
                             </div>
                         </li>
                     </ul>
                 </div>
             </li> -->
-        	<!--<li class="last"><div id="tools" class="rootmenu" ><a href="<?php echo ahref(array('help'));?>">Check</a></div></li>-->
+        	<!--<li class="last"><div id="tools" class="rootmenu g-fs18" ><a href="<?php echo ahref(array('help'));?>">Check</a></div></li>-->
         </ul>
 <script language="javascript">
 $(".rootmenu").mouseover(function(){
