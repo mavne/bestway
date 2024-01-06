@@ -564,40 +564,29 @@ The store will not work correctly in the case when cookies are disabled.</div>
         <div class="g-thumbs">
             <ul>
                 <?php
-                if(!empty($image1)):
+                if($image_positions!=""){
+                   $imageP = explode(",", $image_positions);
+                }else{ 
+                    $imageP = array();
+                    for($x=1; $x<=30; $x++):
+                        $imageP[] = "image".$x;
+                    endfor;
+                }
+
+                foreach($imageP as $im):
+                    if($$im != ""):
                 ?>
-                <li>
-                    <a href="#g-popup" class="lightbox-link" data-type="image" data-src="<?=$image1?>">
-                        <img src="<?=$image1?>" alt="">
-                    </a>
-                </li>
+                    <li>
+                        <a href="#g-popup" class="lightbox-link" data-type="image" data-src="<?=$$im?>">
+                            <img src="<?=$$im?>" alt="">
+                        </a>
+                    </li>
                 <?php
-                endif;
+                    endif;
+                endforeach;
                 ?>
 
-                <?php
-                if(!empty($image2)):
-                ?>
-                <li>
-                    <a href="#g-popup" class="lightbox-link" data-type="image" data-src="<?=$image2?>">
-                        <img src="<?=$image1?>" alt="">
-                    </a>
-                </li>
-                <?php
-                endif;
-                ?>
-
-                <?php
-                if(!empty($image3)):
-                ?>
-                <li>
-                    <a href="#g-popup" class="lightbox-link" data-type="image" data-src="<?=$image3?>">
-                        <img src="<?=$image3?>" alt="">
-                    </a>
-                </li>
-                <?php
-                endif;
-                ?>
+                
 
                 <?php
                 if(!empty($youtube1)):
@@ -643,12 +632,46 @@ The store will not work correctly in the case when cookies are disabled.</div>
                 <?php
                 endif;
                 ?>
+
+                <?php
+                if(!empty($youtube4)):
+                    $urlParts = parse_url($youtube4);
+                    parse_str($urlParts['query'], $queryParameters);
+                    $videoId = $queryParameters['v'];
+                ?>
+                <li>
+                    <a href="#g-popup" class="lightbox-link" data-type="video" data-src="<?=$youtube4?>" data-videoImage="https://i3.ytimg.com/vi/<?=$videoId?>/maxresdefault.jpg">
+                        <img src="https://i3.ytimg.com/vi/<?=$videoId?>/maxresdefault.jpg" alt="">
+                    </a>
+                </li>
+                <?php
+                endif;
+                ?>
+
+                <?php
+                if(!empty($youtube5)):
+                    $urlParts = parse_url($youtube5);
+                    parse_str($urlParts['query'], $queryParameters);
+                    $videoId = $queryParameters['v'];
+                ?>
+                <li>
+                    <a href="#g-popup" class="lightbox-link" data-type="video" data-src="<?=$youtube5?>" data-videoImage="https://i3.ytimg.com/vi/<?=$videoId?>/maxresdefault.jpg">
+                        <img src="https://i3.ytimg.com/vi/<?=$videoId?>/maxresdefault.jpg" alt="">
+                    </a>
+                </li>
+                <?php
+                endif;
+                ?>
             </ul>
         </div>
 
         <div class="g-main-image">
             <a href="#g-popup" class="lightbox-link">
-                <img src="<?=$image1?>">
+                <?php
+                $imagexx = ($image_positions!="") ? explode(",", $image_positions) : array('image1');
+                $newImage = ${$imagexx[0]};
+                ?>
+                <img src="<?php echo $newImage; ?>">
 
                 <svg height="100%" version="1.1" viewBox="0 0 68 48" width="100%"><path class="ytp-large-play-button-bg" d="M66.52,7.74c-0.78-2.93-2.49-5.41-5.42-6.19C55.79,.13,34,0,34,0S12.21,.13,6.9,1.55 C3.97,2.33,2.27,4.81,1.48,7.74C0.06,13.05,0,24,0,24s0.06,10.95,1.48,16.26c0.78,2.93,2.49,5.41,5.42,6.19 C12.21,47.87,34,48,34,48s21.79-0.13,27.1-1.55c2.93-0.78,4.64-3.26,5.42-6.19C67.94,34.95,68,24,68,24S67.94,13.05,66.52,7.74z" fill="#f00"></path><path d="M 45,24 27,14 27,34" fill="#fff"></path></svg>
             </a>
@@ -824,7 +847,11 @@ The store will not work correctly in the case when cookies are disabled.</div>
                         <a href="<?=$link?>" class="product photo product-item-photo">
                             <span class="product-image-container product-image-container-5997">
                                 <span class="product-image-wrapper">
-                                    <img class="product-image-photo" src="<?=$rel['image1']?>" loading="lazy" alt="" />
+                                    <?php
+                                    $image_positions = ($rel['image_positions']!="") ? explode(",", $rel['image_positions']) : array('image1');
+                                    ?>
+
+                                    <img class="product-image-photo" src="<?=$rel[$image_positions[0]]?>" loading="lazy" alt="" />
                                 </span>
                             </span>
                         </a>

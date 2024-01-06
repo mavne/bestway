@@ -185,7 +185,7 @@
 					</div>
 
                     <div class="list2 fix">
-                        <div class="name">Homepage: <span class="star">*</span></div>
+                        <div class="name"><?php echo a("homepage");?>: <span class="star">*</span></div>
                         <input type="checkbox" name="homepage" class="inp-check"<?php echo (($route[1]=='edit')&&($edit["homepage"]==0)) ? '' : ' checked' ?> />
                     </div>
 
@@ -198,38 +198,53 @@
                         <div class="name"><?php echo a("keywords");?> <span class="star">*</span></div>
                         <input type="text" name="meta_keys" value="<?php echo ($route[1]=='edit') ? $edit["meta_keys"] : '' ?>" class="inp"/>
                     </div>
-                    <div class="list fix">
-                        <div class="name"><?php echo a("image");?>: <span class="star">*</span></div>
-                        <input type="text" id="image1" name="image1" value="<?php echo ($route[1]=='edit') ? $edit["image1"] : '' ?>" class="inp" style="width:500px;" />
-                        <a href="javascript:;" class="popup button br" data-browse="image1"><?php echo a('browse') ?></a>
-                        <?php if($route[1]=='edit' && $edit["image1"] != ""): ?> 
-                        <a href="<?=$edit["image1"]?>" target="_blank">
-                            <img src="<?=$edit["image1"]?>" alt="" width="70" style="margin-left: 15px;">
-                        </a>
-                        <?php endif; ?>
+
+                    <?php
+                    $imagePositions = array(
+                        'image1',
+                        'image2',
+                        'image3',
+                        'image4',
+                        'image5',
+                        'image6',
+                        'image7',
+                        'image8',
+                        'image9',
+                        'image10',
+                        'image11',
+                        'image12',
+                        'image13',
+                        'image14',
+                        'image15',
+                        'image16',
+                        'image17',
+                        'image18',
+                        'image19',
+                        'image20'
+                    );
+                    if(isset($edit['image_positions']) && $edit['image_positions']!=""){
+                        $imagePositions = explode(",", $edit['image_positions']);
+                    }
+                    ?>
+
+                    <div class="g-image-sortable" id="g-image-sortable" style="position: relative;">
+                        <?php foreach($imagePositions as $col): ?>
+                            <div class="dragable">
+                                <div class="list fix g-image-list" data-col="<?=$col?>">
+                                    <div class="name"><?php echo a("image");?>: <span class="star">*</span></div>
+                                    <input type="text" id="<?=$col?>" name="<?=$col?>" value="<?php echo ($route[1]=='edit') ? $edit[$col] : '' ?>" class="inp" style="width:500px;" />
+                                    <a href="javascript:;" class="popup button br" data-browse="<?=$col?>"><?php echo a('browse') ?></a>
+                                    <?php if($route[1]=='edit' && $edit[$col] != ""): ?> 
+                                    <a href="<?=$edit[$col]?>" target="_blank">
+                                        <img src="<?=$edit[$col]?>" alt="" width="70" style="margin-left: 15px;">
+                                    </a>
+                                    <?php endif; ?>
+                                </div>
+                            </div>
+                        <?php endforeach; ?>
                     </div>
 
-                    <div class="list2 fix">
-                        <div class="name"><?php echo a("image");?>: <span class="star">*</span></div>
-                        <input type="text" id="image2" name="image2" value="<?php echo ($route[1]=='edit') ? $edit["image2"] : '' ?>" class="inp" style="width:500px;" />
-                        <a href="javascript:;" class="popup button br" data-browse="image2"><?php echo a('browse') ?></a>
-                        <?php if($route[1]=='edit' && $edit["image2"] != ""): ?>      
-                        <a href="<?=$edit["image2"]?>" target="_blank">                 
-                            <img src="<?=$edit["image2"]?>" alt="" width="70" style="margin-left: 15px;">
-                        </a>
-                        <?php endif; ?>
-                    </div>
-
-                    <div class="list fix">
-                        <div class="name"><?php echo a("image");?>: <span class="star">*</span></div>
-                        <input type="text" id="image3" name="image3" value="<?php echo ($route[1]=='edit') ? $edit["image3"] : '' ?>" class="inp" style="width:500px;" />
-                        <a href="javascript:;" class="popup button br" data-browse="image3"><?php echo a('browse') ?></a>
-                        <?php if($route[1]=='edit' && $edit["image3"] != ""): ?>    
-                        <a href="<?=$edit["image3"]?>" target="_blank">                   
-                            <img src="<?=$edit["image3"]?>" alt="" width="70" style="margin-left: 15px;">
-                        </a>
-                        <?php endif; ?>
-                    </div>
+                    
 
                     <div class="list fix">
                         <div class="name">Youtube 1: <span class="star">*</span></div>
@@ -264,8 +279,30 @@
                         <?php endif; ?>
                     </div>
 
+                    <div class="list fix">
+                        <div class="name">Youtube 4: <span class="star">*</span></div>
+                        <input type="text" id="youtube4" name="youtube4" value="<?php echo ($route[1]=='edit') ? $edit["youtube4"] : '' ?>" class="inp" style="width:500px;" />
+                        <a href="javascript:;" class="popup button br" data-browse="youtube4"><?php echo a('browse') ?></a>
+                        <?php if($route[1]=='edit' && $edit["youtube4"] != ""): ?>    
+                        <a href="<?=$edit["youtube4"]?>" target="_blank">                   
+                            <p style="margin-left: 15px;">video</p>
+                        </a>
+                        <?php endif; ?>
+                    </div>
+
+                    <div class="list fix">
+                        <div class="name">Youtube 5: <span class="star">*</span></div>
+                        <input type="text" id="youtube5" name="youtube5" value="<?php echo ($route[1]=='edit') ? $edit["youtube5"] : '' ?>" class="inp" style="width:500px;" />
+                        <a href="javascript:;" class="popup button br" data-browse="youtube5"><?php echo a('browse') ?></a>
+                        <?php if($route[1]=='edit' && $edit["youtube5"] != ""): ?>    
+                        <a href="<?=$edit["youtube5"]?>" target="_blank">                   
+                            <p style="margin-left: 15px;">video</p>
+                        </a>
+                        <?php endif; ?>
+                    </div>
+
                     <div class="list2 fix">
-                        <div class="name">Quentity:</div>
+                        <div class="name"><?php echo a("quantity");?>:</div>
                         <input type="text" id="max_quentity" name="max_quentity" value="<?php echo ($route[1]=='edit') ? $edit["max_quentity"] : '' ?>" class="inp"/>
                     </div>
                 </div>
@@ -416,4 +453,36 @@
     function nextlang(lang) {
         save(lang);
     }
+
+    <?php if($route[1]=='edit'): ?>
+    $(document).ready(function() {
+      // Make the list sortable
+      $("#g-image-sortable").sortable({
+        update: function(event, ui) {
+            var data = new Array();
+            $('#g-image-sortable .g-image-list').each(function(){
+                let col = $(this).attr('data-col');
+
+                data.push(col);
+            });
+      
+            $.ajax({
+                url: "/ge/?ajax=true&imgid=<?=$edit['id']?>",
+                type: "POST",
+                data: {
+                    type:"changeImagePosition",
+                    images: data
+                },
+                success: function(response) {
+                    location.realod();
+                },
+                error: function(jqXHR, textStatus, errorThrown) {
+                    console.error("Error sending AJAX request: " + errorThrown);
+                }
+            });
+        }
+      });
+    });
+    <?php endif; ?>
+
 </script>

@@ -97,3 +97,13 @@
 	text-align: center;
 	color: white;
 }
+
+@media(max-width:960px){
+	.g-menuitem{
+		font-family: 'Roboto _GEO Mt' !important;
+	}
+
+	.g-menuitem-sub{
+		font-family: 'Roboto _Nusx' !important;
+	}
+}

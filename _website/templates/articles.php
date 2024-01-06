@@ -77,10 +77,20 @@ width: 100%;
 }
 
 @media only screen and (max-width: 767px){
-    .nav-open .nav-sections, .nav-before-open .nav-sections{
+    /*.nav-open .nav-sections, .nav-before-open .nav-sections{
         top: 173px;
         height: calc(100% - 173px);
-    }    
+    } */   
+}
+
+.g-menuitem{
+    font-family: 'Roboto _GEO Mt' !important;
+    text-transform: uppercase !important;
+}
+
+.g-menuitem-sub{
+    font-family: 'Roboto _Nusx' !important;
+    text-transform: lowercase; !important;
 }
 
 </style> 
@@ -557,7 +567,7 @@ width: 100%;
 
 <div id="amasty-shopby-product-list">
     <div class="toolbar toolbar-products">
-        <p class="toolbar-total" id="toolbar-total">
+        <p class="toolbar-total g-toolbar-total" id="toolbar-total">
             <span class="toolbar-number g-menuitem-sub">
             <?php
             echo sprintf(l('allproducts'), $item_count)
@@ -568,7 +578,7 @@ width: 100%;
         <div style="clear: both;"></div>
         
         <div class="page-title-wrapper product">
-            <h1 class="page-title g-product-title">
+            <h1 class="page-title g-product-title g-product-title2">
                 <span class="base g-menuitem" data-ui-id="page-title-wrapper">
                     <?=$title?>
                 </span>
@@ -592,14 +602,17 @@ width: 100%;
                     <a href="<?=href($a['id'])?>" class="product photo product-item-photo" tabindex="-1">
                         <span class="product-image-container product-image-container-6012">
                             <span class="product-image-wrapper">
-                                <img class="product-image-photo" src="<?=$a['image1']?>" loading="lazy" width="440" height="260" alt="Filter&#x20;Cartridge&#x20;&#x28;Size&#x20;1&#x29;&#x20;" />
+                                <?php
+                                $image_positions = ($a['image_positions']!="") ? explode(",", $a['image_positions']) : array('image1');
+                                ?>
+                                <img class="product-image-photo" src="<?=$a[$image_positions[0]]?>" loading="lazy" width="440" height="260" alt="Filter&#x20;Cartridge&#x20;&#x28;Size&#x20;1&#x29;&#x20;" />
                             </span>
                         </span>
                     </a>
 
                     <div class="product details product-item-details">
                         <strong class="product name product-item-name">
-                            <a class="product-item-link g-menuitem" href="<?=href($a['id'])?>"><?=$a['title']?></a>
+                            <a class="g-menuitem" href="<?=href($a['id'])?>"><?=$a['title']?></a>
                         </strong>
                         
                         <div class="details-container">
@@ -626,11 +639,11 @@ width: 100%;
                                                 <input type="hidden" name="product" value="6012">
                                                 <input type="hidden" name="uenc" value="">
                                                 <input name="form_key" type="hidden" value="m8qrOfNYC6kwzS74" />
-                                                <button type="submit" title="Add" class="action tocart primary">
+                                                <button type="submit" title="Add" class="action tocart g-tocart primary">
                                                     <span class="g-menuitem-sub"><?=l('add.cart')?></span>
                                                 </button>
 
-                                                <div class="view-details-wrapper">
+                                                <div class="view-details-wrapper g-view-details-wrapper">
                                                     <a class="product-item-link details g-menuitem-sub" href="<?=href($a['id'])?>"><?=l('read.more')?></a>
                                                 </div>
                                             </form>

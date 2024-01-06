@@ -553,12 +553,12 @@ width: 100%;
     </div>
 
 
-    <div class="featured-six">
+    <div class="featured-six g-featured-six">
         <div class="content-limit">
             <!-- <h3>FEATURED CATEGORIES</h3> -->
             <h2 class="g-menuitem"><?=l('categories')?></h2>
             
-            <div class="content-container">
+            <div class="content-container g-content-container">
 
 
                 <?php

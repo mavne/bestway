@@ -197,7 +197,8 @@
 	$a["friendlyURL"] = "Краткий URL";
 	$a["redirectlink"] = "Линк переадресации";
 	$a["visibility"] = "Видимость";
-	$a["homepage"] = "Показать на Гл./странице";
+	$a["homepage"] = "Гл.странице";
+	$a["quantity"] = "Количество";
 	$a["show"] = "Показать";
 	$a["keywords"] = "Ключевые слова";
 	$a["description"] = "Краткое описание";

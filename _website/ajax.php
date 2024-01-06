@@ -13,6 +13,42 @@ $out = array(
 $type = (isset($_POST['type']) && !empty($_POST['type'])) ? $_POST['type'] : "";
 
 switch($type){
+    case "changeImagePosition":
+        if(
+            (!isset($_POST["images"]) || $_POST["images"]=="" || !is_array($_POST["images"])) ||
+            !isset($_GET['imgid'])
+        ){
+            $out = array(
+                "Error" => array(
+                    "Code"=>1, 
+                    "Text"=>"Error 1",
+                    "Details"=>""
+                ),
+                "Success"=>array(
+                    "Code"=>0, 
+                    "Text"=>""
+                )
+            );
+        }else{
+            $images = $_POST["images"];
+            $imgid = (int)$_GET["imgid"];
+
+            db_query('UPDATE `pages` SET `image_positions`="'.implode(",", $images).'" WHERE `id`="'.$imgid.'"');
+
+            $out = array(
+                "Error" => array(
+                    "Code"=>0, 
+                    "Text"=>"",
+                    "Details"=>""
+                ),
+                "Success"=>array(
+                    "Code"=>1, 
+                    "Text"=>"",
+                    "Details"=>""
+                )
+            );
+        }
+        break;
     case "changePosition":
         if(
             (!isset($_POST["product"]) || $_POST["product"]=="" || !is_array($_POST["product"]))
@@ -94,9 +130,12 @@ switch($type){
                     );
                     $html .= '<span class="product-image-container product-image-container-6012">';
                     $html .= '<span class="product-image-wrapper">';
+
+                    $image_positions = ($a['image_positions']!="") ? explode(",", $a['image_positions']) : array('image1');
+
                     $html .= sprintf(
                         '<img class="product-image-photo" src="%s" loading="lazy" width="440" height="260" alt="%s" />',
-                        $a['image1'],
+                        $a[$image_positions[0]],
                         htmlentities($a['title'])
                     );
                     $html .= '</span>';

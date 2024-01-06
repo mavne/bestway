@@ -204,7 +204,8 @@
 	$a["friendlyURL"] = "Friendly URL";
 	$a["redirectlink"] = "Redirect Link";
 	$a["visibility"] = "Visibility";
-	$a["homepage"] = "Show at H/Page";
+	$a["homepage"] = "Homepage";
+	$a["quantity"] = "Quentity";
 	$a["show"] = "Show";
 	$a["link_header"] = "Link in header";
 	$a["link_footer"] = "Link in footer";

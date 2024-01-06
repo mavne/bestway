@@ -25,7 +25,7 @@ $c['database.name'] = 'bestway';
 
 $c['languages.all'] = array('ge', 'en', 'ru');
 $c['languages.default'] = $c['languages.all'][0];
-$c['languages.admin'] = 'en';
+$c['languages.admin'] = 'ru';
 $c['languages.full'] = array(
     'ge' => 'Georgian',
     'en' => 'English',

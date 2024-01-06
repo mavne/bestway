@@ -2204,3 +2204,28 @@ transform:rotate(359deg)
 	font-family: 'Roboto _Nusx' !important
 }
 
+
+.g-menuitem{
+	font-family: 'Roboto _GEO Mt' !important;
+	text-transform: uppercase !important;
+}
+
+.g-menuitem-sub{
+	font-family: 'Roboto _Nusx' !important;
+	text-transform: lowercase;
+}
+
+@media(max-width: 960px){
+	#bannerslider-list-items-1-64ddd630ef5be .owl-nav{
+		display: none !important;
+	}
+
+	.g-featured-six,
+	.g-content-container{
+		margin-top: 40px !important;
+	}
+
+	.nav-open .nav-sections, .nav-before-open .nav-sections{
+		top:198px !important;
+	}
+}

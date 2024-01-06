@@ -14,8 +14,10 @@ function _build_lists($parent, $order_by, $start = -1, $per_page)
 //    $undeletable = c('section.undeletable');
     $total = count($results);
     $count = 1;
+    $ggg = 0;
     global $class;
     foreach ($results AS $result):
+    	$ggg++;
 		switch($result["category"]) {
 			case 1:  $menucat = a("mt.text"); 			$menulink = ""; 			break;
 			case 2:  $menucat = a("mt.home"); 			$menulink = ""; 			break;
@@ -69,7 +71,17 @@ function _build_lists($parent, $order_by, $start = -1, $per_page)
 						<div class="icon"><?php echo $arrows;?>&nbsp;</div>
 <?php } ?>
 						<div class="name">
-                        	<div class="arrows"><?php echo $pad;?></div>
+                        	<div class="arrows">
+                        		<?php
+                        		if($route[2]==1){
+                        			echo $pad;
+                        		}else{
+                        			?>
+                        			<span style="padding:0 5px; font-size: 18px;"><?=$ggg?>.</span>
+                        			<?php
+                        		}
+                        		?>                        		
+                        	</div>
                             <div class="links">
                                 <a href="<?php echo ahref(array($route[0], 'edit', $result["id"]));?>">
                                     <strong><span class="star g-fs18" title="<?php echo $result["title"];?>">
@@ -239,7 +251,7 @@ function _build_lists($parent, $order_by, $start = -1, $per_page)
 	switch($route[0]) :
 		case 'news':
 		case 'articles':
-			$per_page = 20;
+			$per_page = 100;
 			break;
 		case 'events':
 			$per_page = 100;

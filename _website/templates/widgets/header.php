@@ -79,27 +79,62 @@
 .g-language.g-ru{
     background-image: url('/images/ru.svg');
 }
+
+@media(max-width:960px){
+    .g-mobile-top-left{
+        text-align: left !important;
+        width: calc(60% - 15px) !important;
+        padding-left: 15px;
+    }
+
+    .g-mobile-top-left a{
+        font-size: 12px !important;
+    }
+
+    .g-mobile-top-right{
+        width: 40% !important;
+        text-align: right !important;
+    }
+
+    .g-mobile-top-right .g-mobile-language{
+        margin: 0 !important;
+        padding: 0 !important;
+        width: 25px !important;
+        height: 25px !important;
+        display: block !important;
+        float: right !important;
+        margin-right: 15px !important;
+    }
+
+    .g-mobile-top-right .g-mobile-language a{
+        margin: 0 !important;
+    }
+
+    .g-mobile-hide{
+        display: none !important;
+    }
+}
 </style>
 <header class="page-header">
 <div class="header-confidence-banner">
 <ul id="banners" class="">
-<li class="banner displayed">
+<li class="banner displayed g-mobile-top-left">
 <p><a href="javascript:void(0)" class="g-menuitem-sub"><?=s('address')?></a></p>
 </li>
-<li class="banner displayed">
+<li class="banner displayed g-mobile-hide">
 <p><a href="tel:<?=s('telephone')?>" class="g-menuitem-sub"><?=s('telephone')?></a></p>
 </li>
-<li class="banner displayed">
-<p><a href="" class="g-menuitem-sub">ჩვენ შესახებ</a> /</p>
-<p><a href="" class="g-menuitem-sub">პარტნიორებისთვის</a> /</p>
-<p><a href="" class="g-menuitem-sub">კონტაქტი</a></p>
+<li class="banner displayed g-mobile-top-right">
+<p class="g-mobile-hide"><a href="" class="g-menuitem-sub">ჩვენ შესახებ</a> /</p>
+<p class="g-mobile-hide"><a href="" class="g-menuitem-sub">პარტნიორებისთვის</a> /</p>
+<p class="g-mobile-hide"><a href="" class="g-menuitem-sub">კონტაქტი</a></p>
     <?php 
     //
     $glangs = array('ge', 'en', 'ru');
     foreach($glangs as $lan):
         if($lan == l()){ continue; }
     ?>
-    <p><a href="<?=replace_language($lan)?>" class="g-language g-<?=$lan?> g-menuitem-sub"><?=$lan?></a></p>
+    <p class="g-mobile-language"><a href="<?=replace_language($lan)?>" class="g-language g-<?=$lan?> g-menuitem-sub"></a></p>
     <?php
     endforeach;
     ?>
