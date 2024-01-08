@@ -402,14 +402,36 @@ class Admin_Manager
                     
 //  update identically
                     $data = array(
+						'price' => $_POST['price'],
+						'discount' => $_POST['discount'],
 						'slug' => $_POST['slug'],
 						'template' => $_POST['template'],
 						'image1' => $_POST['image1'],
 						'image2' => $_POST['image2'],
 						'image3' => $_POST['image3'],
+						'image4' => $_POST['image4'],
+						'image5' => $_POST['image5'],
+						'image6' => $_POST['image6'],
+						'image7' => $_POST['image7'],
+						'image8' => $_POST['image8'],
+						'image9' => $_POST['image9'],
+						'image10' => $_POST['image10'],
+						'image11' => $_POST['image11'],
+						'image12' => $_POST['image12'],
+						'image13' => $_POST['image13'],
+						'image14' => $_POST['image14'],
+						'image15' => $_POST['image15'],
+						'image16' => $_POST['image16'],
+						'image17' => $_POST['image17'],
+						'image18' => $_POST['image18'],
+						'image19' => $_POST['image19'],
+						'image20' => $_POST['image20'],
 						'youtube1' => $_POST['youtube1'],
 						'youtube2' => $_POST['youtube2'],
 						'youtube3' => $_POST['youtube3'],
+						'youtube4' => $_POST['youtube4'],
+						'youtube5' => $_POST['youtube5'],
+						'homepage' => $_POST['homepage'],
 						'max_quentity' => $_POST['max_quentity']
                     );
 	                $update = db_update(c("table.pages"), $data, "WHERE id = {$this->route[2]}");

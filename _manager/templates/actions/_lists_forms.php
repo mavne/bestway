@@ -90,8 +90,13 @@
                     </div>
 
                     <div class="list2 fix">
-                        <div class="name">Price:</div>
+                        <div class="name"><?php echo a("price");?>:</div>
                         <input type="text" id="price" name="price" value="<?php echo ($route[1]=='edit') ? $edit["price"] : '' ?>" class="inp"/>
+                    </div>
+
+                    <div class="list2 fix">
+                        <div class="name"><?php echo a("discount");?>:</div>
+                        <input type="text" id="discount" name="discount" value="<?php echo ($route[1]=='edit') ? $edit["discount"] : '' ?>" class="inp"/>
                     </div>
 
                     <div class="list fix">

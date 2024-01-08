@@ -249,13 +249,21 @@
 	border-bottom: solid 2px #fab502;
 }
 
-#g-popup .g-popup-main-image{
+#g-popup .g-popup-main-image-wrapper{
 	margin: 20px 30px 0 0;
 	width: calc(75% - 30px);
 	height: 600px;
 	position: relative;
 	text-align: center;
 	float: left;
+}
+
+#g-popup .g-popup-main-image{
+	margin: 0;
+	width: 100%;
+	height: 600px;
+	position: relative;
+	text-align: center;
 }
 
 #g-popup .g-popup-main-image img{
@@ -339,4 +347,92 @@
 	display: block !important;
 	height: unset !important;
 	padding-bottom: 0px !important;
+}
+
+.g-arrows{
+	margin: 0;
+	padding: 0;
+	width: 100%;
+	height: 30px;
+	position: absolute;
+	top: calc(50% - 15px);
+	left: 0;
+	z-index: 100;
+	pointer-events: none;
+}
+
+.g-arrows button{
+	margin: 0;
+	padding: 0;
+	border: 0;
+	width: 30px;
+	min-width: 30px;
+	max-width: 30px;
+	height: 30px;
+	min-height: 30px;
+	max-height: 30px;
+	pointer-events: all;
+	position: absolute;
+	top: 0;
+	left: 15px;
+	background-color: #FF8F00;
+	-webkit-mask-image: url(/arrow.svg);
+	mask-image: url(/arrow.svg);
+	-webkit-mask-size: contain;
+	mask-size: contain;
+	-webkit-mask-repeat: no-repeat;
+	mask-repeat: no-repeat;
+	-webkit-mask-position: center;
+	mask-position: center;
+	transform: rotate(180deg);
+}
+
+.g-arrows button.g-next{
+	transform: rotate(0deg);
+	left: unset;
+	right: 15px;
+}
+
+.g-popup-arrows{
+	margin: 0;
+	padding: 0;
+	width: 100%;
+	height: 30px;
+	position: absolute;
+	top: calc(50% - 15px);
+	left: 0;
+	z-index: 100;
+	pointer-events: none;
+}
+
+.g-popup-arrows button{
+	margin: 0;
+	padding: 0;
+	border: 0;
+	width: 30px;
+	min-width: 30px;
+	max-width: 30px;
+	height: 30px;
+	min-height: 30px;
+	max-height: 30px;
+	pointer-events: all;
+	position: absolute;
+	top: 0;
+	left: 100px;
+	background-color: #FF8F00;
+	-webkit-mask-image: url(/arrow.svg);
+	mask-image: url(/arrow.svg);
+	-webkit-mask-size: contain;
+	mask-size: contain;
+	-webkit-mask-repeat: no-repeat;
+	mask-repeat: no-repeat;
+	-webkit-mask-position: center;
+	mask-position: center;
+	transform: rotate(180deg);
+}
+
+.g-popup-arrows button.g-popup-next{
+	transform: rotate(0deg);
+	left: unset;
+	right: 100px;
 }

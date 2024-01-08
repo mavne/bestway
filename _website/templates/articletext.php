@@ -536,7 +536,7 @@ The store will not work correctly in the case when cookies are disabled.</div>
         <div class="g-popup-nav">
             <ul>
                 <?php
-                if(!empty($youtube1) || !empty($youtube2) || !empty($youtube3)):
+                if(!empty($youtube1) || !empty($youtube2) || !empty($youtube3) || !empty($youtube4) || !empty($youtube5)):
                 ?>
                 <li><a href="javascript:void(0)" class="g-change-poptype" data-type="video">ვიდეო</a></li>
                 <?php endif; ?>
@@ -544,12 +544,21 @@ The store will not work correctly in the case when cookies are disabled.</div>
             </ul>
         </div>
 
-        <div class="g-popup-main-image">
-            <img src="<?=$image1?>" />
+        <div class="g-popup-main-image-wrapper">
+            <div class="g-popup-main-image">
+                <img src="<?=$image1?>" />
+            </div>
+
+            <div class="g-popup-arrows">
+                <button class="g-popup-prev"></button>
+                <button class="g-popup-next"></button>
+            </div>
         </div>
 
         <div class="g-popup-title-and-thumbs">
             <h3><?=$title?></h3>
+
+            <input type="hidden" name="g-popup-active-img-vid" id="g-popup-active-img-vid" value="1">
 
             <div class="g-popup-thumbs">
                 
@@ -573,15 +582,17 @@ The store will not work correctly in the case when cookies are disabled.</div>
                     endfor;
                 }
 
+                $index=0;
                 foreach($imageP as $im):
                     if($$im != ""):
+                        $index++;
                 ?>
                     <li>
-                        <a href="#g-popup" class="lightbox-link" data-type="image" data-src="<?=$$im?>">
+                        <a href="#g-popup" class="lightbox-link" data-type="image" data-src="<?=$$im?>" data-index="<?=$index?>">
                             <img src="<?=$$im?>" alt="">
                         </a>
                     </li>
-                <?php
+                <?php                    
                     endif;
                 endforeach;
                 ?>
@@ -590,13 +601,14 @@ The store will not work correctly in the case when cookies are disabled.</div>
 
                 <?php
                 if(!empty($youtube1)):
+                    $index++;
                     $urlParts = parse_url($youtube1);
                     parse_str($urlParts['query'], $queryParameters);
                     $videoId = $queryParameters['v'];
                 ?>
                 <li>
-                    <a href="#g-popup" class="lightbox-link" data-type="video" data-src="<?=$youtube1?>" data-videoImage="https://i3.ytimg.com/vi/<?=$videoId?>/maxresdefault.jpg">
-                        <img src="https://i3.ytimg.com/vi/<?=$videoId?>/maxresdefault.jpg" alt="">
+                    <a href="#g-popup" class="lightbox-link" data-type="video" data-src="<?=$youtube1?>" data-videoImage="https://img.youtube.com/vi/<?=$videoId?>/0.jpg" data-index="<?=$index?>">
+                        <img src="https://img.youtube.com/vi/<?=$videoId?>/0.jpg" alt="">
                     </a>
                 </li>
                 <?php
@@ -605,13 +617,14 @@ The store will not work correctly in the case when cookies are disabled.</div>
 
                 <?php
                 if(!empty($youtube2)):
+                    $index++;
                     $urlParts = parse_url($youtube2);
                     parse_str($urlParts['query'], $queryParameters);
                     $videoId = $queryParameters['v'];
                 ?>
                 <li>
-                    <a href="#g-popup" class="lightbox-link" data-type="video" data-src="<?=$youtube2?>" data-videoImage="https://i3.ytimg.com/vi/<?=$videoId?>/maxresdefault.jpg">
-                        <img src="https://i3.ytimg.com/vi/<?=$videoId?>/maxresdefault.jpg" alt="">
+                    <a href="#g-popup" class="lightbox-link" data-type="video" data-src="<?=$youtube2?>" data-videoImage="https://img.youtube.com/vi/<?=$videoId?>/0.jpg" data-index="<?=$index?>">
+                        <img src="https://img.youtube.com/vi/<?=$videoId?>/0.jpg" alt="">
                     </a>
                 </li>
                 <?php
@@ -620,13 +633,14 @@ The store will not work correctly in the case when cookies are disabled.</div>
 
                 <?php
                 if(!empty($youtube3)):
+                    $index++;
                     $urlParts = parse_url($youtube3);
                     parse_str($urlParts['query'], $queryParameters);
                     $videoId = $queryParameters['v'];
                 ?>
                 <li>
-                    <a href="#g-popup" class="lightbox-link" data-type="video" data-src="<?=$youtube3?>" data-videoImage="https://i3.ytimg.com/vi/<?=$videoId?>/maxresdefault.jpg">
-                        <img src="https://i3.ytimg.com/vi/<?=$videoId?>/maxresdefault.jpg" alt="">
+                    <a href="#g-popup" class="lightbox-link" data-type="video" data-src="<?=$youtube3?>" data-videoImage="https://img.youtube.com/vi/<?=$videoId?>/0.jpg" data-index="<?=$index?>">
+                        <img src="https://img.youtube.com/vi/<?=$videoId?>/0.jpg" alt="">
                     </a>
                 </li>
                 <?php
@@ -635,13 +649,14 @@ The store will not work correctly in the case when cookies are disabled.</div>
 
                 <?php
                 if(!empty($youtube4)):
+                    $index++;
                     $urlParts = parse_url($youtube4);
                     parse_str($urlParts['query'], $queryParameters);
                     $videoId = $queryParameters['v'];
                 ?>
                 <li>
-                    <a href="#g-popup" class="lightbox-link" data-type="video" data-src="<?=$youtube4?>" data-videoImage="https://i3.ytimg.com/vi/<?=$videoId?>/maxresdefault.jpg">
-                        <img src="https://i3.ytimg.com/vi/<?=$videoId?>/maxresdefault.jpg" alt="">
+                    <a href="#g-popup" class="lightbox-link" data-type="video" data-src="<?=$youtube4?>" data-videoImage="https://img.youtube.com/vi/<?=$videoId?>/0.jpg" data-index="<?=$index?>">
+                        <img src="https://img.youtube.com/vi/<?=$videoId?>/0.jpg" alt="">
                     </a>
                 </li>
                 <?php
@@ -650,13 +665,14 @@ The store will not work correctly in the case when cookies are disabled.</div>
 
                 <?php
                 if(!empty($youtube5)):
+                    $index++;
                     $urlParts = parse_url($youtube5);
                     parse_str($urlParts['query'], $queryParameters);
                     $videoId = $queryParameters['v'];
                 ?>
                 <li>
-                    <a href="#g-popup" class="lightbox-link" data-type="video" data-src="<?=$youtube5?>" data-videoImage="https://i3.ytimg.com/vi/<?=$videoId?>/maxresdefault.jpg">
-                        <img src="https://i3.ytimg.com/vi/<?=$videoId?>/maxresdefault.jpg" alt="">
+                    <a href="#g-popup" class="lightbox-link" data-type="video" data-src="<?=$youtube5?>" data-videoImage="https://img.youtube.com/vi/<?=$videoId?>/0.jpg" data-index="<?=$index?>">
+                        <img src="https://img.youtube.com/vi/<?=$videoId?>/0.jpg" alt="">
                     </a>
                 </li>
                 <?php
@@ -665,7 +681,13 @@ The store will not work correctly in the case when cookies are disabled.</div>
             </ul>
         </div>
 
+        <input type="hidden" name="g-active-image" id="g-active-image" value="1">
+        <input type="hidden" name="g-max-image" id="g-max-image" value="<?=$index?>">
         <div class="g-main-image">
+            <div class="g-arrows">
+                <button class="g-prev"></button>
+                <button class="g-next"></button>
+            </div>
             <a href="#g-popup" class="lightbox-link">
                 <?php
                 $imagexx = ($image_positions!="") ? explode(",", $image_positions) : array('image1');
@@ -1347,6 +1369,10 @@ var gMenuClosed = true;
 $(document).on('mouseenter', '.g-images-box .g-thumbs ul li a', function(){
     var type = $(this).attr('data-type');
     var src = $(this).attr('data-src');
+    var indx = $(this).attr('data-index');
+
+    $('#g-popup-active-img-vid').val(indx);
+
     if(type=="image"){
         $('#g-popup .g-popup-main-image').html('<img>');
         $('.g-main-image a img').attr('src', src);
@@ -1403,6 +1429,10 @@ $('.lightbox-link').magnificPopup({
             $(document).on('click', '#g-popup .popup-lightbox', function(){
                 var type = $(this).attr('data-type');
                 var src = $(this).attr('data-src');
+                var indx = $(this).attr('data-index');
+
+                $('#g-popup-active-img-vid').val(indx);
+
                 if(type=="image"){
                     $('#g-popup .g-popup-main-image').html('<img>');
                     $('#g-popup .g-popup-main-image img').attr('src', src);
@@ -1483,10 +1513,10 @@ $(document).ready(function(){
 
         $('#mobile-product-slider').owlCarousel({
             autoplay: false,
-            smartSpeed:1500,
-            loop:false,
+            smartSpeed:500,
+            loop:true,
             margin:0,
-            nav:false,
+            nav:true,
             dots: true,
             responsive:{
                 0:{
@@ -1567,7 +1597,159 @@ $(document).ready(function(){
     $('.g-owl-container .g-owlBtns button.next').on('click', function () {
         $('#g-ralated-products').trigger('next.owl.carousel');
     });
+});
 
+$(document).on('click', '.g-arrows button.g-next', function(){
+    var activeImageIndex = parseInt($('#g-active-image').val());
+    var maxImageIndex = parseInt($('#g-max-image').val());
+    var next = activeImageIndex + 1;
+
+    if(next <= maxImageIndex){
+        var src = $('.g-images-box .g-thumbs ul li a[data-index="'+next+'"] img').attr('src');
+        var videoimage = $('.g-images-box .g-thumbs ul li a[data-index="'+next+'"]').attr('data-type');
+        
+
+        if(videoimage=="image"){
+            $('.g-main-image a').removeClass('videosvg');
+            $('.g-popup-main-image').html('<img src="'+src+'">');
+        }else{
+            var dataSrc = $('.g-images-box .g-thumbs ul li a[data-index="'+next+'"]').attr('data-src');
+            const url = new URL(dataSrc);
+            const videoId = url.searchParams.get("v");
+
+            $('.g-main-image a').addClass('videosvg');
+            $('.g-popup-main-image').html('<iframe src="https://www.youtube.com/embed/'+videoId+'?autoplay=1&amp;mute=1" frameborder="0" allowfullscreen="true" style="width: 100%; height: 600px;"></iframe>>');
+        }
+
+
+        $('.g-images-box .g-main-image img').attr('src', src);
+        $('#g-active-image').val(next);
+    }else{
+        var src = $('.g-images-box .g-thumbs ul li a[data-index="1"] img').attr('src');
+        var videoimage = $('.g-images-box .g-thumbs ul li a[data-index="1"]').attr('data-type');
+        
+        if(videoimage=="image"){
+            $('.g-main-image a').removeClass('videosvg');
+            $('.g-popup-main-image').html('<img src="'+src+'">');
+        }else{
+            var dataSrc = $('.g-images-box .g-thumbs ul li a[data-index="1"]').attr('data-src');
+            const url = new URL(dataSrc);
+            const videoId = url.searchParams.get("v");
+
+            $('.g-main-image a').addClass('videosvg');
+            $('.g-popup-main-image').html('<iframe src="https://www.youtube.com/embed/'+videoId+'?autoplay=1&amp;mute=1" frameborder="0" allowfullscreen="true" style="width: 100%; height: 600px;"></iframe>>');
+        }
+
+        $('.g-images-box .g-main-image img').attr('src', src);
+        $('#g-active-image').val(1);
+    }
+});
+
+$(document).on('click', '.g-arrows button.g-prev', function(){
+    var activeImageIndex = parseInt($('#g-active-image').val());
+    var maxImageIndex = parseInt($('#g-max-image').val());
+    var prev = activeImageIndex - 1;
+
+
+    if(prev >= 1){
+        var src = $('.g-images-box .g-thumbs ul li a[data-index="'+prev+'"] img').attr('src');
+        var videoimage = $('.g-images-box .g-thumbs ul li a[data-index="'+prev+'"]').attr('data-type');
+        
+        if(videoimage=="image"){
+            $('.g-main-image a').removeClass('videosvg');
+            $('.g-popup-main-image').html('<img src="'+src+'">');
+        }else{
+            var dataSrc = $('.g-images-box .g-thumbs ul li a[data-index="'+prev+'"]').attr('data-src');
+            const url = new URL(dataSrc);
+            const videoId = url.searchParams.get("v");
+
+            $('.g-main-image a').addClass('videosvg');
+            $('.g-popup-main-image').html('<iframe src="https://www.youtube.com/embed/'+videoId+'?autoplay=1&amp;mute=1" frameborder="0" allowfullscreen="true" style="width: 100%; height: 600px;"></iframe>>');
+        }
+
+        $('.g-images-box .g-main-image img').attr('src', src);
+        $('#g-active-image').val(prev);
+    }else{
+        var src = $('.g-images-box .g-thumbs ul li a[data-index="'+maxImageIndex+'"] img').attr('src');
+        var videoimage = $('.g-images-box .g-thumbs ul li a[data-index="'+maxImageIndex+'"]').attr('data-type');
+
+        if(videoimage=="image"){
+            $('.g-main-image a').removeClass('videosvg');
+            $('.g-popup-main-image').html('<img src="'+src+'">');
+        }else{
+            var dataSrc = $('.g-images-box .g-thumbs ul li a[data-index="'+maxImageIndex+'"]').attr('data-src');
+            const url = new URL(dataSrc);
+            const videoId = url.searchParams.get("v");
+
+            $('.g-main-image a').addClass('videosvg');
+            $('.g-popup-main-image').html('<iframe src="https://www.youtube.com/embed/'+videoId+'?autoplay=1&amp;mute=1" frameborder="0" allowfullscreen="true" style="width: 100%; height: 600px;"></iframe>>');
+        }
+
+        $('.g-images-box .g-main-image img').attr('src', src);
+        $('#g-active-image').val(maxImageIndex);
+    }
+});
+
+$(document).on('click', '.g-popup-next', function(){
+    var activeImageIndex = parseInt($('#g-popup-active-img-vid').val());  
+    var next = activeImageIndex + 1;
+    
+    if($('.g-change-poptype[data-type="image"]').hasClass('active')){
+        if($('#g-popup .g-popup-title-and-thumbs .g-popup-thumbs ul li:not(:hidden) a[data-index="'+next+'"]').length){
+            var nextImage = $('#g-popup .g-popup-title-and-thumbs .g-popup-thumbs ul li a[data-index="'+next+'"]').attr('data-src');
+            $('#g-popup-active-img-vid').val(next);
+            $('.g-popup-main-image img').attr('src', nextImage);
+        }else{
+            var nextImage = $('#g-popup .g-popup-title-and-thumbs .g-popup-thumbs ul li a[data-index="1"]').attr('data-src');
+            $('#g-popup-active-img-vid').val(1);
+            $('.g-popup-main-image img').attr('src', nextImage);
+        }
+    }else{
+         if($('#g-popup .g-popup-title-and-thumbs .g-popup-thumbs ul li:not(:hidden) a[data-index="'+next+'"]').length){
+            var nextVideo = $('#g-popup .g-popup-title-and-thumbs .g-popup-thumbs ul li a[data-index="'+next+'"]').attr('data-src');
+            const url = new URL(nextVideo);
+            const videoId = url.searchParams.get("v");
+
+            // console.log(videoId);
+            var owlHtml = '<iframe width="100%" height="600" src="https://www.youtube.com/embed/'+videoId+'?autoplay=1&mute=1" frameborder="0" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>';
+
+            $('#g-popup-active-img-vid').val(next);
+
+            $('#g-popup .g-popup-main-image').html(owlHtml);
+        }
+    }    
+});
+
+$(document).on('click', '.g-popup-prev', function(){
+    var activeImageIndex = parseInt($('#g-popup-active-img-vid').val());
+    var prev = activeImageIndex - 1;
+
+    if($('.g-change-poptype[data-type="image"]').hasClass('active')){     
+        if($('#g-popup .g-popup-title-and-thumbs .g-popup-thumbs ul li:not(:hidden) a[data-index="'+prev+'"]').length){
+            var nextImage = $('#g-popup .g-popup-title-and-thumbs .g-popup-thumbs ul li a[data-index="'+prev+'"]').attr('data-src');
+            $('#g-popup-active-img-vid').val(prev);
+            $('.g-popup-main-image img').attr('src', nextImage);
+        }else{
+            var max = $('#g-popup .g-popup-title-and-thumbs .g-popup-thumbs ul li:not(:hidden)').length;
+
+            var nextImage = $('#g-popup .g-popup-title-and-thumbs .g-popup-thumbs ul li a[data-index="'+max+'"]').attr('data-src');
+            $('#g-popup-active-img-vid').val(max);
+            $('.g-popup-main-image img').attr('src', nextImage);
+        }
+    }else{
+        if($('#g-popup .g-popup-title-and-thumbs .g-popup-thumbs ul li:not(:hidden) a[data-index="'+prev+'"]').length){
+            var prevVideo = $('#g-popup .g-popup-title-and-thumbs .g-popup-thumbs ul li a[data-index="'+prev+'"]').attr('data-src');
+            const url = new URL(prevVideo);
+            const videoId = url.searchParams.get("v");
+
+            // console.log(videoId);
+            var owlHtml = '<iframe width="100%" height="600" src="https://www.youtube.com/embed/'+videoId+'?autoplay=1&mute=1" frameborder="0" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>';
+
+            $('#g-popup-active-img-vid').val(prev);
+
+            $('#g-popup .g-popup-main-image').html(owlHtml);
+        }
+    }
 });
 </script>
 </body>
