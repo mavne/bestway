@@ -616,11 +616,23 @@ width: 100%;
                         </strong>
                         
                         <div class="details-container">
-                            <div class="trust-reviews" data-prod_id="6012"></div>
                             <div class="price-box price-final_price" data-role="priceBox" data-product-id="6012" data-price-box="product-id-6012">
                                 <span class="price-container price-final_price&#x20;tax&#x20;weee">
                                     <span id="product-price-6012" data-price-amount="6.99" data-price-type="finalPrice" class="price-wrapper ">
-                                        <span class="price g-menuitem"><?=$a['price']?> ₾</span>
+                                        <?php
+                                        if($a['discount']!=""){
+                                            ?>
+                                            <span class="price g-menuitem" style="text-decoration: line-through; padding-right:10px;"><?=$a['price']?> ₾</span>
+                                            <span class="price g-menuitem"><?=$a['discount']?> ₾</span>
+                                            <?php
+                                        }else{
+                                            ?>
+                                            <span class="price g-menuitem"><?=$a['price']?> ₾</span>
+                                            <?php
+                                        }
+                                        ?>
+                                        <!-- <span class="price g-menuitem"><?=$a['price']?> ₾</span> -->
+
                                     </span>
                                 </span>
                             </div>

@@ -751,7 +751,21 @@ The store will not work correctly in the case when cookies are disabled.</div>
     <div class="product-add-form" style="padding-top:0">
 
 
-        <h2 class="g-price"><?=$price?>₾</h2> 
+        <h2 class="g-price">
+            <?php
+            if($discount!=""){
+            ?>
+            <span style="text-decoration: line-through; padding-right:10px;"><?=$price?>₾</span>
+            <span><?=$discount?>₾</span>
+            <?php
+            }else{
+            ?>
+            <span><?=$price?>₾</span>
+            <?php
+            }
+            ?>
+            
+        </h2> 
 
         <?php
         if($max_quentity >= 1){
@@ -888,7 +902,20 @@ The store will not work correctly in the case when cookies are disabled.</div>
                             <div class="price-box price-final_price">
                                 <span class="price-container price-final_price tax weee">
                                     <span id="product-price-5997" class="price-wrapper ">
-                                        <span class="price g-menuitem-sub"><?=$rel['price']?> ₾</span>
+                                        <?php
+                                        if($rel['discount']!=""){
+                                            ?>
+                                            <span class="price g-menuitem-sub" style="text-decoration: line-through; padding-right:10px;"><?=$rel['price']?> ₾</span>
+                                            <span class="price g-menuitem-sub"><?=$rel['discount']?> ₾</span>
+                                            <?php
+                                        }else{
+                                            ?>
+                                            <span class="price g-menuitem-sub"><?=$rel['price']?> ₾</span>
+                                            <?php
+                                        }
+                                        ?>  
+
+                                        <!-- <span class="price g-menuitem-sub"><?=$rel['price']?> ₾</span> -->
                                     </span>
                                 </span>
                             </div>

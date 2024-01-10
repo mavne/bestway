@@ -1056,19 +1056,17 @@ function g_related($menu_id, $limit = ''){
     return $out;
 }
 
-// function replace_language($toLang){
-// 	$protocol = isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http";
-// 	$host = $_SERVER['HTTP_HOST'];
-// 	$uri = $_SERVER['REQUEST_URI'];
+function g_allfeatured($limit = ''){
+	$out = db_fetch_all('SELECT * FROM `pages` WHERE `language`="'.l().'" AND `deleted`=0 AND `visibility` = 1 AND `homepage`=1 AND `price`!="" AND `image1`!=""'.$limit);
+	return $out;
+}
 
-// 	$fullURL = $protocol . "://" . $host . $uri;
+function g_newadded(){
+	$out = db_fetch_all('SELECT * FROM `pages` WHERE `language`="'.l().'" AND `deleted`=0 AND `visibility` = 1 AND `price`!="" AND `image1`!="" ORDER BY `postdate` DESC LIMIT 8');
+	return $out;
+}
 
-// 	$find = sprintf("/%s/", l());
-	
-// 	if (strpos($fullURL, $find) !== false) {
-// 		$replace = sprintf("/%s/", $toLang);
-// 		return str_replace($find, $replace, $fullURL);
-// 	}else{
-// 		return sprintf("/%s/", $toLang);
-// 	}
-// }
+function g_discounts(){
+	$out = db_fetch_all('SELECT * FROM `pages` WHERE `language`="'.l().'" AND `deleted`=0 AND `visibility` = 1 AND `price`!="" AND `image1`!="" AND `discount`!="" ORDER BY `postdate` DESC LIMIT 8');
+	return $out;
+}

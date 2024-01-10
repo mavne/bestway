@@ -155,7 +155,14 @@ switch($type){
                     $html .= '<div class="price-box price-final_price">';
                     $html .= '<span class="price-container';
                     $html .= '<span id="product-price-6012" class="price-wrapper">';
-                    $html .= sprintf('<span class="price g-menuitem">%s ₾</span>', $a['price']);
+
+                    if($a['discount']!=""){
+                        $html .= sprintf('<span class="price g-menuitem" style="text-decoration: line-through; padding-right:10px;">%s ₾</span>', $a['price']);
+                        $html .= sprintf('<span class="price g-menuitem">%s ₾</span>', $a['discount']);
+                    }else{
+                        $html .= sprintf('<span class="price g-menuitem">%s ₾</span>', $a['price']);    
+                    }
+                    
                     $html .= '</span>';
                     $html .= '</span>';
                     $html .= '</div>';

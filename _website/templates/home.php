@@ -595,263 +595,188 @@ width: 100%;
 
 <div class="featured-products-block">
 <div class="content-limit">
-<h3>FEATURED PRODUCTS</h3>
-<h2>Check out these fantastic products</h2>
+<h2 class="g-menuitem"><?=l('featured.products')?></h2>
 <div class="featured-product-category-filter">
-<a id="featured" href="javascript:void(0)" onclick="changeSlick('featured')">Featured</a> 
-<a id="new-arrivals" href="javascript:void(0)" onclick="changeSlick('new-arrivals')">New Arrivals</a> 
-<a class="sale" id="sale" href="javascript:void(0)" onclick="changeSlick('sale')">Sale</a> 
+
+<a id="featured" class="g-menuitem-sub" href="javascript:void(0)" onclick="changeSlick('featured')"><?=l('featured.products')?></a> 
+<a id="new-arrivals" class="g-menuitem-sub" href="javascript:void(0)" onclick="changeSlick('new-arrivals')"><?=l('new.arrivals')?></a> 
+<a id="sale" class="sale g-menuitem-sub" href="javascript:void(0)" onclick="changeSlick('sale')"><?=l('sale')?></a> 
 </div>
 <div class="loading"><img src="./Bestway Store UK _ Leaders in Inflatables &amp; Above Ground Pools_files/loading.webp"></div>
+
 <div class="products slick" id="featured-block">
-<div class="product-wrapper">
-<div class="product">
-<a href="/10-x33-x4-75-hf-oceana-sup.html"><img class="product-image" src="./Bestway Store UK _ Leaders in Inflatables &amp; Above Ground Pools_files/bw65350-9ft-hydro-force-aqua-journey-sup-set-1.jpg" alt="10ft Inflatable Paddle Board Set - Oceana Hydro-Force "></a>
-<a href="/10-x33-x4-75-hf-oceana-sup.html"><strong class="product name product-item-name">10ft Inflatable Paddle Board Set - Oceana Hydro-Force </strong></a>
-<div class="trust-reviews" data-prod_id="5816"></div>
-<p class="product-price">
-<span class="special-price">£229.99</span>
-<span class="old-price">£449.99</span>
-</p>
-<a class="see-more" href="/10-x33-x4-75-hf-oceana-sup.html">View Details</a>
-<div class="actions">
-<form data-role="tocart-form" action="/checkout/cart/add/uenc/aHR0cHM6Ly93d3cuYmVzdHdheXN0b3JlLmNvLnVrLw%2C%2C/product/5816/" method="post">
-<input type="hidden" name="product" value="5816">
-<input type="hidden" name="uenc" value="aHR0cHM6Ly93d3cuYmVzdHdheXN0b3JlLmNvLnVrL2NoZWNrb3V0L2NhcnQvYWRkL3VlbmMvYUhSMGNITTZMeTkzZDNjdVltVnpkSGRoZVhOMGIzSmxMbU52TG5Wckx3JTJDJTJDL3Byb2R1Y3QvNTgxNi8,">
-<input name="form_key" type="hidden" value="6kj7yiM8GD7js6E2"> <button type="submit" title="Add" class="action tocart primary">
-<span>Add</span>
-</button>
-</form>
- <div class="stock available"><span>In stock</span></div>
+    <?php
+    $featured = g_allfeatured(' ORDER BY `postdate` DESC LIMIT 8');
+
+    foreach($featured as $rel):
+        $link = href($rel['id']);
+    ?>
+    <div class="product-wrapper">
+        <div class="product">
+            <a href="<?=$link?>">
+                <?php
+                $image_positions = ($rel['image_positions']!="") ? explode(",", $rel['image_positions']) : array('image1');
+                ?>
+                <img class="product-image" src="<?=$rel[$image_positions[0]]?>" alt="">
+            </a>
+            <a href="<?=$link?>">
+                <strong class="product name product-item-name g-menuitem-sub"><?=$rel['title']?></strong>
+            </a>
+            <p class="product-price">
+                <?php
+                if($rel['discount']!=""){
+                    ?>
+                    <span class="old-price g-menuitem-sub"><?=$rel['price']?> ₾</span>
+                    <span class="special-price g-menuitem-sub"><?=$rel['discount']?> ₾</span>
+                    <?php
+                }else{
+                    ?>
+                    <span class="g-menuitem-sub"><?=$rel['price']?> ₾</span>
+                    <?php
+                }
+                ?>                
+            </p>
+            <a class="see-more g-menuitem-sub" href="<?=$link?>"><?=l('read.more')?></a>
+            
+            <div class="actions">
+                <?php 
+                if($rel['max_quentity']>=1){
+                ?>
+                <form data-role="tocart-form" action="" method="post">
+                    <button type="submit" title="<?=l('add.cart')?>" class="action tocart primary g-menuitem-sub">
+                        <span><?=l('add.cart')?></span>
+                    </button>
+                </form>
+                <div class="stock available g-menuitem-sub"><span><?=l('instack')?></span></div>
+                <?php
+                }else{
+                ?>
+                <div class="g-stock-box">
+                    <div class="g-stock available g-menuitem-sub g-unavailable g-menuitem-sub"><span><?=l('outonstack')?></span></div>
+                </div>
+                <?php
+                }
+                ?>
+            </div>
+        </div>
+    </div>
+    <?php 
+    endforeach;
+    ?>
 </div>
-</div>
-</div>
-<div class="product-wrapper">
-<div class="product">
-<a href="/1000-bestway-kondor-elite-x1-inflatable-raft.html"><img class="product-image" src="./Bestway Store UK _ Leaders in Inflatables &amp; Above Ground Pools_files/61135xxx23_27155_pr_web_pl001_300dpi.jpg" alt="5’4” x 38” Kondor Elite 1000 Boat "></a>
-<a href="/1000-bestway-kondor-elite-x1-inflatable-raft.html"><strong class="product name product-item-name">5’4” x 38” Kondor Elite 1000 Boat </strong></a>
-<div class="trust-reviews" data-prod_id="6444"></div>
-<p class="product-price">£29.99</p>
-<a class="see-more" href="/1000-bestway-kondor-elite-x1-inflatable-raft.html">View Details</a>
-<div class="actions">
-<form data-role="tocart-form" action="/checkout/cart/add/uenc/aHR0cHM6Ly93d3cuYmVzdHdheXN0b3JlLmNvLnVrLw%2C%2C/product/6444/" method="post">
-<input type="hidden" name="product" value="6444">
-<input type="hidden" name="uenc" value="aHR0cHM6Ly93d3cuYmVzdHdheXN0b3JlLmNvLnVrL2NoZWNrb3V0L2NhcnQvYWRkL3VlbmMvYUhSMGNITTZMeTkzZDNjdVltVnpkSGRoZVhOMGIzSmxMbU52TG5Wckx3JTJDJTJDL3Byb2R1Y3QvNjQ0NC8,">
-<input name="form_key" type="hidden" value="6kj7yiM8GD7js6E2"> <button type="submit" title="Add" class="action tocart primary">
-<span>Add</span>
-</button>
-</form>
-<div class="stock available"><span>In stock</span></div>
-</div>
-</div>
-</div>
-<div class="product-wrapper">
-<div class="product">
-<a href="/2000-bestway-kondor-elite-x2-inflatable-raft.html"><img class="product-image" src="./Bestway Store UK _ Leaders in Inflatables &amp; Above Ground Pools_files/61139xxx23_27186_pr_web_pl001_300dpi.jpg" alt="6’5” x 42” Kondor Elite 2000 Boat "></a>
-<a href="/2000-bestway-kondor-elite-x2-inflatable-raft.html"><strong class="product name product-item-name">6’5” x 42” Kondor Elite 2000 Boat </strong></a>
- <div class="trust-reviews" data-prod_id="6445"></div>
-<p class="product-price">£42.99</p>
-<a class="see-more" href="/2000-bestway-kondor-elite-x2-inflatable-raft.html">View Details</a>
-<div class="actions">
-<form data-role="tocart-form" action="/checkout/cart/add/uenc/aHR0cHM6Ly93d3cuYmVzdHdheXN0b3JlLmNvLnVrLw%2C%2C/product/6445/" method="post">
-<input type="hidden" name="product" value="6445">
-<input type="hidden" name="uenc" value="aHR0cHM6Ly93d3cuYmVzdHdheXN0b3JlLmNvLnVrL2NoZWNrb3V0L2NhcnQvYWRkL3VlbmMvYUhSMGNITTZMeTkzZDNjdVltVnpkSGRoZVhOMGIzSmxMbU52TG5Wckx3JTJDJTJDL3Byb2R1Y3QvNjQ0NS8,">
-<input name="form_key" type="hidden" value="6kj7yiM8GD7js6E2"> <button type="submit" title="Add" class="action tocart primary">
-<span>Add</span>
-</button>
-</form>
-<div class="stock available"><span>In stock</span></div>
-</div>
-</div>
-</div>
-<div class="product-wrapper">
-<div class="product">
-<a href="/2000-bestway-kondor-elite-x2-inflatable-raft-set.html"><img class="product-image" src="./Bestway Store UK _ Leaders in Inflatables &amp; Above Ground Pools_files/bestway_water_sports_set_61141_300dpi.jpg" alt="6’5” x 42” Kondor 2000 Boat Set "></a>
-<a href="/2000-bestway-kondor-elite-x2-inflatable-raft-set.html"><strong class="product name product-item-name">6’5” x 42” Kondor 2000 Boat Set </strong></a>
-<div class="trust-reviews" data-prod_id="6446"></div>
-<p class="product-price">£59.99</p>
-<a class="see-more" href="/2000-bestway-kondor-elite-x2-inflatable-raft-set.html">View Details</a>
-<div class="actions">
-<form data-role="tocart-form" action="/checkout/cart/add/uenc/aHR0cHM6Ly93d3cuYmVzdHdheXN0b3JlLmNvLnVrLw%2C%2C/product/6446/" method="post">
-<input type="hidden" name="product" value="6446">
-<input type="hidden" name="uenc" value="aHR0cHM6Ly93d3cuYmVzdHdheXN0b3JlLmNvLnVrL2NoZWNrb3V0L2NhcnQvYWRkL3VlbmMvYUhSMGNITTZMeTkzZDNjdVltVnpkSGRoZVhOMGIzSmxMbU52TG5Wckx3JTJDJTJDL3Byb2R1Y3QvNjQ0Ni8,">
- <input name="form_key" type="hidden" value="6kj7yiM8GD7js6E2"> <button type="submit" title="Add" class="action tocart primary">
-<span>Add</span>
-</button>
-</form>
-<div class="stock available"><span>In stock</span></div>
-</div>
-</div>
-</div>
-</div>
+
 <div class="products slick" id="new-arrivals-block">
-<div class="product-wrapper">
-<div class="product">
-<a href="/hydro-force-1-person-inflatable-fishing-kayak-koracle.html"><img class="product-image" src="./Bestway Store UK _ Leaders in Inflatables &amp; Above Ground Pools_files/koracle.jpg" alt="Hydro‑Force™ Koracle™ 1 Person Inflatable Fishing Kayak Complete Set"></a>
-<a href="/hydro-force-1-person-inflatable-fishing-kayak-koracle.html"><strong class="product name product-item-name">Hydro‑Force™ Koracle™ 1 Person Inflatable Fishing Kayak Complete Set</strong></a>
-<div class="trust-reviews" data-prod_id="6497"></div>
-<p class="product-price">£149.99</p>
-<a class="see-more" href="/hydro-force-1-person-inflatable-fishing-kayak-koracle.html">View Details</a>
-<div class="actions">
-<form data-role="tocart-form" action="/checkout/cart/add/uenc/aHR0cHM6Ly93d3cuYmVzdHdheXN0b3JlLmNvLnVrLw%2C%2C/product/6497/" method="post">
-<input type="hidden" name="product" value="6497">
-<input type="hidden" name="uenc" value="aHR0cHM6Ly93d3cuYmVzdHdheXN0b3JlLmNvLnVrL2NoZWNrb3V0L2NhcnQvYWRkL3VlbmMvYUhSMGNITTZMeTkzZDNjdVltVnpkSGRoZVhOMGIzSmxMbU52TG5Wckx3JTJDJTJDL3Byb2R1Y3QvNjQ5Ny8,">
-<input name="form_key" type="hidden" value="6kj7yiM8GD7js6E2"> <button type="submit" title="Add" class="action tocart primary">
-<span>Add</span>
-</button>
-</form>
-<div class="stock available"><span>In stock</span></div>
+    <?php
+    $g_newadded = g_newadded();
+
+    foreach($g_newadded as $rel):
+        $link = href($rel['id']);
+    ?>
+    <div class="product-wrapper">
+        <div class="product">
+            <a href="<?=$link?>">
+                <?php
+                $image_positions = ($rel['image_positions']!="") ? explode(",", $rel['image_positions']) : array('image1');
+                ?>
+                <img class="product-image" src="<?=$rel[$image_positions[0]]?>" alt="">
+            </a>
+            <a href="<?=$link?>">
+                <strong class="product name product-item-name g-menuitem-sub"><?=$rel['title']?></strong>
+            </a>
+            <p class="product-price">
+                <?php
+                if($rel['discount']!=""){
+                    ?>
+                    <span class="old-price g-menuitem-sub"><?=$rel['price']?> ₾</span>
+                    <span class="special-price g-menuitem-sub"><?=$rel['discount']?> ₾</span>
+                    <?php
+                }else{
+                    ?>
+                    <span class="g-menuitem-sub"><?=$rel['price']?> ₾</span>
+                    <?php
+                }
+                ?>                
+            </p>
+            <a class="see-more g-menuitem-sub" href="<?=$link?>"><?=l('read.more')?></a>
+            
+            <div class="actions">
+                <?php 
+                if($rel['max_quentity']>=1){
+                ?>
+                <form data-role="tocart-form" action="" method="post">
+                    <button type="submit" title="<?=l('add.cart')?>" class="action tocart primary g-menuitem-sub">
+                        <span><?=l('add.cart')?></span>
+                    </button>
+                </form>
+                <div class="stock available g-menuitem-sub"><span><?=l('instack')?></span></div>
+                <?php
+                }else{
+                ?>
+                <div class="g-stock-box">
+                    <div class="g-stock available g-menuitem-sub g-unavailable g-menuitem-sub"><span><?=l('outonstack')?></span></div>
+                </div>
+                <?php
+                }
+                ?>
+            </div>
+        </div>
+    </div>
+    <?php
+    endforeach;
+    ?>
 </div>
- </div>
-</div>
-<div class="product-wrapper">
-<div class="product">
-<a href="/king-size-flocked-airbed.html"><img class="product-image" src="./Bestway Store UK _ Leaders in Inflatables &amp; Above Ground Pools_files/bw67004main_callout.jpg" alt="80" king="" flocked="" airbed="" "=""></a>
-<a href="/king-size-flocked-airbed.html"><strong class="product name product-item-name">80" King Flocked Airbed </strong></a>
-<div class="trust-reviews" data-prod_id="6496"></div>
-<p class="product-price">£42.99</p>
-<a class="see-more" href="/king-size-flocked-airbed.html">View Details</a>
-<div class="actions">
-<form data-role="tocart-form" action="/checkout/cart/add/uenc/aHR0cHM6Ly93d3cuYmVzdHdheXN0b3JlLmNvLnVrLw%2C%2C/product/6496/" method="post">
-<input type="hidden" name="product" value="6496">
-<input type="hidden" name="uenc" value="aHR0cHM6Ly93d3cuYmVzdHdheXN0b3JlLmNvLnVrL2NoZWNrb3V0L2NhcnQvYWRkL3VlbmMvYUhSMGNITTZMeTkzZDNjdVltVnpkSGRoZVhOMGIzSmxMbU52TG5Wckx3JTJDJTJDL3Byb2R1Y3QvNjQ5Ni8,">
-<input name="form_key" type="hidden" value="6kj7yiM8GD7js6E2"> <button type="submit" title="Add" class="action tocart primary">
-<span>Add</span>
-</button>
-</form>
-<div class="stock available"><span>In stock</span></div>
-</div>
-</div>
-</div>
-<div class="product-wrapper">
-<div class="product">
-<a href="/6ft-indoor-outdoor-double-flocked-airbed.html"><img class="product-image" src="./Bestway Store UK _ Leaders in Inflatables &amp; Above Ground Pools_files/base_2_1_bw.webp" alt="75" double="" flocked="" airbed="" "=""></a>
-<a href="/6ft-indoor-outdoor-double-flocked-airbed.html"><strong class="product name product-item-name">75" Double Flocked Airbed </strong></a>
-<div class="trust-reviews" data-prod_id="6495"></div>
-<p class="product-price">£32.99</p>
-<a class="see-more" href="/6ft-indoor-outdoor-double-flocked-airbed.html">View Details</a>
-<div class="actions">
-<form data-role="tocart-form" action="/checkout/cart/add/uenc/aHR0cHM6Ly93d3cuYmVzdHdheXN0b3JlLmNvLnVrLw%2C%2C/product/6495/" method="post">
-<input type="hidden" name="product" value="6495">
-<input type="hidden" name="uenc" value="aHR0cHM6Ly93d3cuYmVzdHdheXN0b3JlLmNvLnVrL2NoZWNrb3V0L2NhcnQvYWRkL3VlbmMvYUhSMGNITTZMeTkzZDNjdVltVnpkSGRoZVhOMGIzSmxMbU52TG5Wckx3JTJDJTJDL3Byb2R1Y3QvNjQ5NS8,">
-<input name="form_key" type="hidden" value="6kj7yiM8GD7js6E2"> <button type="submit" title="Add" class="action tocart primary">
-<span>Add</span>
-</button>
-</form>
-<div class="stock available"><span>In stock</span></div>
-</div>
-</div>
-</div>
-<div class="product-wrapper">
-<div class="product">
-<a href="/single-jr-twin-airbed.html"><img class="product-image" src="./Bestway Store UK _ Leaders in Inflatables &amp; Above Ground Pools_files/bw67000main_callout.jpg" alt="Single JR Twin Airbed "></a>
-<a href="/single-jr-twin-airbed.html"><strong class="product name product-item-name">Single JR Twin Airbed </strong></a>
-<div class="trust-reviews" data-prod_id="6494"></div>
-<p class="product-price">£1999.98</p>
-<a class="see-more" href="/single-jr-twin-airbed.html">View Details</a>
-<div class="actions">
-<form data-role="tocart-form" action="/checkout/cart/add/uenc/aHR0cHM6Ly93d3cuYmVzdHdheXN0b3JlLmNvLnVrLw%2C%2C/product/6494/" method="post">
-<input type="hidden" name="product" value="6494">
-<input type="hidden" name="uenc" value="aHR0cHM6Ly93d3cuYmVzdHdheXN0b3JlLmNvLnVrL2NoZWNrb3V0L2NhcnQvYWRkL3VlbmMvYUhSMGNITTZMeTkzZDNjdVltVnpkSGRoZVhOMGIzSmxMbU52TG5Wckx3JTJDJTJDL3Byb2R1Y3QvNjQ5NC8,">
-<input name="form_key" type="hidden" value="6kj7yiM8GD7js6E2"> <button type="submit" title="Add" class="action tocart primary">
-<span>Add</span>
-</button>
- </form>
-<div class="stock available"><span>In stock</span></div>
-</div>
-</div>
-</div>
-</div>
+
+
 <div class="products slick" id="sale-block">
-<div class="product-wrapper">
-<div class="product">
-<a href="/single-size-airbed-tritech-built-in-pump.html"><img class="product-image" src="./Bestway Store UK _ Leaders in Inflatables &amp; Above Ground Pools_files/untitled-2_3.jpg" alt="Bestway TriTech Single Size Airbed with Built-in Pump"></a>
-<a href="/single-size-airbed-tritech-built-in-pump.html"><strong class="product name product-item-name">Bestway TriTech Single Size Airbed with Built-in Pump</strong></a>
-<div class="trust-reviews" data-prod_id="6440"></div>
-<p class="product-price">
-<span class="special-price">£39.99</span>
-<span class="old-price">£79.99</span>
-</p>
-<a class="see-more" href="/single-size-airbed-tritech-built-in-pump.html">View Details</a>
-<div class="actions">
-<form data-role="tocart-form" action="/checkout/cart/add/uenc/aHR0cHM6Ly93d3cuYmVzdHdheXN0b3JlLmNvLnVrLw%2C%2C/product/6440/" method="post">
-<input type="hidden" name="product" value="6440">
-<input type="hidden" name="uenc" value="aHR0cHM6Ly93d3cuYmVzdHdheXN0b3JlLmNvLnVrL2NoZWNrb3V0L2NhcnQvYWRkL3VlbmMvYUhSMGNITTZMeTkzZDNjdVltVnpkSGRoZVhOMGIzSmxMbU52TG5Wckx3JTJDJTJDL3Byb2R1Y3QvNjQ0MC8,">
-<input name="form_key" type="hidden" value="6kj7yiM8GD7js6E2"> <button type="submit" title="Add" class="action tocart primary">
-<span>Add</span>
-</button>
-</form>
-<div class="stock available"><span>In stock</span></div>
+    <?php
+    $g_discounts = g_discounts();
+
+    foreach($g_discounts as $rel):
+    ?>
+    <div class="product-wrapper">
+        <div class="product">
+            <a href="<?=$link?>">
+                <?php
+                $image_positions = ($rel['image_positions']!="") ? explode(",", $rel['image_positions']) : array('image1');
+                ?>
+                <img class="product-image" src="<?=$rel[$image_positions[0]]?>" alt="">
+            </a>
+            <a href="<?=$link?>">
+                <strong class="product name product-item-name g-menuitem-sub"><?=$rel['title']?></strong>
+            </a>
+            <p class="product-price">
+                <span class="old-price g-menuitem-sub"><?=$rel['price']?> ₾</span>   
+                <span class="special-price g-menuitem-sub"><?=$rel['discount']?> ₾</span>
+            </p>
+            <a class="see-more g-menuitem-sub" href="<?=$link?>"><?=l('read.more')?></a>
+            
+            <div class="actions">
+                <?php 
+                if($rel['max_quentity']>=1){
+                ?>
+                <form data-role="tocart-form" action="" method="post">
+                    <button type="submit" title="<?=l('add.cart')?>" class="action tocart primary g-menuitem-sub">
+                        <span><?=l('add.cart')?></span>
+                    </button>
+                </form>
+                <div class="stock available g-menuitem-sub"><span><?=l('instack')?></span></div>
+                <?php
+                }else{
+                ?>
+                <div class="g-stock-box">
+                    <div class="g-stock available g-menuitem-sub g-unavailable g-menuitem-sub"><span><?=l('outonstack')?></span></div>
+                </div>
+                <?php
+                }
+                ?>
+            </div>
+        </div>
+    </div>
+    <?php
+    endforeach;
+    ?>
 </div>
-</div>
-</div>
-<div class="product-wrapper">
-<div class="product">
-<a href="/lay-z-spa-majorca-hydrojet-pro-hot-tub.html"><img class="product-image" src="./Bestway Store UK _ Leaders in Inflatables &amp; Above Ground Pools_files/majorca-main-images.jpg" alt="Majorca HydroJet Pro™"></a>
-<a href="/lay-z-spa-majorca-hydrojet-pro-hot-tub.html"><strong class="product name product-item-name">Majorca HydroJet Pro™</strong></a>
-<div class="trust-reviews" data-prod_id="6275"></div>
-<p class="product-price">
-<span class="special-price">£999.00</span>
-<span class="old-price">£1,199.00</span>
-</p>
-<a class="see-more" href="/lay-z-spa-majorca-hydrojet-pro-hot-tub.html">View Details</a>
-<div class="actions">
-<form data-role="tocart-form" action="/checkout/cart/add/uenc/aHR0cHM6Ly93d3cuYmVzdHdheXN0b3JlLmNvLnVrLw%2C%2C/product/6275/" method="post">
-<input type="hidden" name="product" value="6275">
-<input type="hidden" name="uenc" value="aHR0cHM6Ly93d3cuYmVzdHdheXN0b3JlLmNvLnVrL2NoZWNrb3V0L2NhcnQvYWRkL3VlbmMvYUhSMGNITTZMeTkzZDNjdVltVnpkSGRoZVhOMGIzSmxMbU52TG5Wckx3JTJDJTJDL3Byb2R1Y3QvNjI3NS8,">
-<input name="form_key" type="hidden" value="6kj7yiM8GD7js6E2"> <button type="submit" title="Add" class="action tocart primary">
-<span>Add</span>
-</button>
-</form>
-<div class="stock available"><span>In stock</span></div>
-</div>
-</div>
-</div>
-<div class="product-wrapper">
-<div class="product">
-<a href="/hydro-force-caspian-inflatable-boat-set.html"><img class="product-image" src="./Bestway Store UK _ Leaders in Inflatables &amp; Above Ground Pools_files/caspianinflatableboatraft.jpg" alt="Hydro-Force™ Caspian™ Inflatable Sport Boat"></a>
-<a href="/hydro-force-caspian-inflatable-boat-set.html"><strong class="product name product-item-name">Hydro-Force™ Caspian™ Inflatable Sport Boat</strong></a>
-<div class="trust-reviews" data-prod_id="5807"></div>
-<p class="product-price">
-<span class="special-price">£299.99</span>
-<span class="old-price">£549.99</span>
-</p>
-<a class="see-more" href="/hydro-force-caspian-inflatable-boat-set.html">View Details</a>
-<div class="actions">
-<form data-role="tocart-form" action="/checkout/cart/add/uenc/aHR0cHM6Ly93d3cuYmVzdHdheXN0b3JlLmNvLnVrLw%2C%2C/product/5807/" method="post">
-<input type="hidden" name="product" value="5807">
-<input type="hidden" name="uenc" value="aHR0cHM6Ly93d3cuYmVzdHdheXN0b3JlLmNvLnVrL2NoZWNrb3V0L2NhcnQvYWRkL3VlbmMvYUhSMGNITTZMeTkzZDNjdVltVnpkSGRoZVhOMGIzSmxMbU52TG5Wckx3JTJDJTJDL3Byb2R1Y3QvNTgwNy8,">
-<input name="form_key" type="hidden" value="6kj7yiM8GD7js6E2"> <button type="submit" title="Add" class="action tocart primary">
-<span>Add</span>
-</button>
-</form>
-<div class="stock available"><span>In stock</span></div>
-</div>
-</div>
-</div>
-<div class="product-wrapper">
-<div class="product">
-<a href="/barbados-airjet.html"><img class="product-image" src="./Bestway Store UK _ Leaders in Inflatables &amp; Above Ground Pools_files/barbados-main-image_1.jpg" alt="Barbados AirJet™"></a>
-<a href="/barbados-airjet.html"><strong class="product name product-item-name">Barbados AirJet™</strong></a>
-<div class="trust-reviews" data-prod_id="5387"></div>
-<p class="product-price">
-<span class="special-price">£569.00</span>
-<span class="old-price">£699.00</span>
-</p>
-<a class="see-more" href="/barbados-airjet.html">View Details</a>
-<div class="actions">
-<form data-role="tocart-form" action="/checkout/cart/add/uenc/aHR0cHM6Ly93d3cuYmVzdHdheXN0b3JlLmNvLnVrLw%2C%2C/product/5387/" method="post">
-<input type="hidden" name="product" value="5387">
-<input type="hidden" name="uenc" value="aHR0cHM6Ly93d3cuYmVzdHdheXN0b3JlLmNvLnVrL2NoZWNrb3V0L2NhcnQvYWRkL3VlbmMvYUhSMGNITTZMeTkzZDNjdVltVnpkSGRoZVhOMGIzSmxMbU52TG5Wckx3JTJDJTJDL3Byb2R1Y3QvNTM4Ny8,">
-<input name="form_key" type="hidden" value="6kj7yiM8GD7js6E2"> <button type="submit" title="Add" class="action tocart primary">
-<span>Add</span>
- </button>
-</form>
-<div class="stock available"><span>In stock</span></div>
-</div>
-</div>
-</div>
-</div>
+
 </div>
 </div>
 <script type="text/javascript">window.reviewsArray ={"5816":{"@type":"aggregateRating","ratingValue":"4.9","reviewCount":"80","bestRating":"5","worstRating":"0","percent":97.25},"6444":{"@type":"aggregateRating","ratingValue":"0","reviewCount":"0","bestRating":"5","worstRating":"0","percent":0},"6445":{"@type":"aggregateRating","ratingValue":"0","reviewCount":"0","bestRating":"5","worstRating":"0","percent":0},"6446":{"@type":"aggregateRating","ratingValue":"0","reviewCount":"0","bestRating":"5","worstRating":"0","percent":0},"6497":{"@type":"aggregateRating","ratingValue":"0","reviewCount":"0","bestRating":"5","worstRating":"0","percent":0},"6496":{"@type":"aggregateRating","ratingValue":"0","reviewCount":"0","bestRating":"5","worstRating":"0","percent":0},"6495":{"@type":"aggregateRating","ratingValue":"0","reviewCount":"0","bestRating":"5","worstRating":"0","percent":0},"6494":{"@type":"aggregateRating","ratingValue":"0","reviewCount":"0","bestRating":"5","worstRating":"0","percent":0},"6440":{"@type":"aggregateRating","ratingValue":"4.5","reviewCount":"6","bestRating":"5","worstRating":"0","percent":90},"6275":{"@type":"aggregateRating","ratingValue":"0","reviewCount":"0","bestRating":"5","worstRating":"0","percent":0},"5807":{"@type":"aggregateRating","ratingValue":"1","reviewCount":"1","bestRating":"5","worstRating":"0","percent":20},"5387":{"@type":"aggregateRating","ratingValue":"5","reviewCount":"1","bestRating":"5","worstRating":"0","percent":100}}</script>
