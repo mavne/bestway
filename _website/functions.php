@@ -1070,3 +1070,8 @@ function g_discounts(){
 	$out = db_fetch_all('SELECT * FROM `pages` WHERE `language`="'.l().'" AND `deleted`=0 AND `visibility` = 1 AND `price`!="" AND `image1`!="" AND `discount`!="" ORDER BY `postdate` DESC LIMIT 8');
 	return $out;
 }
+
+function g_pages_master($masterid, $columns = '*', $limit = ''){
+	$out = db_fetch_all("SELECT ".$columns." FROM `" . c("table.pages") . "` WHERE  `language` = '" . l() . "' AND `deleted`=0 AND `masterid`='".$masterid."' AND `visibility` = 1".$limit);
+    return $out;
+}

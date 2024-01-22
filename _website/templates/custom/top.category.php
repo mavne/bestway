@@ -519,77 +519,9 @@ width: 100%;
 
 </div></div></div></main>
 
-<footer class="page-footer">
-    <div class="footer-wrapper">
-        <div class="footer-wrapper-limit"><div class="footer-logo">
-<img src="./Bestway Store UK _ Leaders in Inflatables &amp; Above Ground Pools_files/logo.svg" alt="Bestway Store Logo">
-</div>
-<div class="social-links">
-<a href="https://www.facebook.com/BestwayUK/" target="_blank">
-<img src="./Bestway Store UK _ Leaders in Inflatables &amp; Above Ground Pools_files/facebook-f.svg" alt="Facebook Logo">
-</a>
-<a href="https://www.instagram.com/bestway_uk/" target="_blank">
-<img src="./Bestway Store UK _ Leaders in Inflatables &amp; Above Ground Pools_files/instagram.svg" alt="Facebook Logo">
-</a>
-</div>
-<div class="footer-column">
-<div class="title" data-role="collapsible">
-<div data-role="trigger">
-<h5 data-role="trigger">Quick Links</h5>
-</div>
-</div>
-<ul class="footer links" data-role="content">
-<li class="nav item"><a href="/airbeds-furniture.html">Airbeds &amp; Furniture</a></li>
-<li><a href="/pool-accessories-and-chemicals.html">Pool Accessories &amp; Chemicals</a></li>
-<li><a href="/boats-sups.html">Boats and SUPs</a></li>
-<li class="nav item"><a href="/above-ground-pools-accessories/above-ground-pools.html">Above Ground Pools</a></li>
-<li><a href="/inflatable-hot-tubs/inflatable-hot-tubs.html">Inflatable Hot Tub</a></li>
-</ul>
-</div>
-<div class="footer-column">
-<div class="title" data-role="collapsible">
-<div data-role="trigger">
-<h5>Useful Information</h5>
-</div>
-</div>
-<ul class="footer links" data-role="content">
-<li><a href="/about-us">About Us</a></li>
-<li><a href="/interest-free-finance">Klarna FAQ</a></li>
-<li><a href="/privacy-policy">Privacy Policy</a></li>
-<li><a href="/cookie-policy">Cookie Policy</a></li>
-<li><a href="/terms-conditions">Terms &amp; Conditions</a></li>
-<li class="nav item"><a href="/" data-amcookie-js="footer-link" class="-show">Cookie Settings</a></li>
-</ul>
-</div>
-<div class="footer-column">
-<div class="title" data-role="collapsible">
-<div data-role="trigger">
-<h5>Buyers Guide</h5>
-</div>
-</div>
-<ul class="footer links" data-role="content">
-<li class="nav item"><a href="/pool-chemical-advice" target="_blank" rel="noopener">Chemical Guides</a></li>
-</ul>
-</div>
-<div class="footer-column">
-<div class="title" data-role="collapsible">
-<div data-role="trigger">
-<h5>Support</h5>
-</div>
-</div>
-<ul class="footer links" data-role="content">
-<li><a href="/support-category/product-support">Troubleshooting</a></li>
-<li><a href="/warranty-list">Warranties</a></li>
-<li><a href="/manuals">Product Manuals</a></li>
-<li><a href="/delivery-and-returns" data-action="advanced-search">Delivery &amp; Returns</a></li>
-<li><a href="/contact">Contact Us</a></li>
-</ul>
-</div>
-<a id="smoothup" style="display: block;" href="/#top"></a>
-</div>
-</div>
-
-</footer>
+<?php
+    @include '_website/templates/widgets/footer.php';
+?>
 <style>
 /*Hide qty input due to max order limit of 1 per customer*/
 .product-view .add-to-cart .qty-wrapper,

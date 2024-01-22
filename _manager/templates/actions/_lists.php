@@ -68,12 +68,12 @@ function _build_lists($parent, $order_by, $start = -1, $per_page)
 <?php if(is_from_list($result["menuid"])&&$result['menuid']!=15 ) {	?>
 						<div class="icon">&nbsp;</div>
 <?php } else { ?>
-						<div class="icon"><?php echo $arrows;?>&nbsp;</div>
+						<div class="icon g-scale13"><?php echo $arrows;?>&nbsp;</div>
 <?php } ?>
 						<div class="name">
                         	<div class="arrows">
                         		<?php
-                        		if($route[2]==1){
+                        		if($route[2]==1 || $route[2]==26){
                         			echo $pad;
                         		}else{
                         			?>

@@ -361,5 +361,9 @@ li#lang { background: none; padding: 0px; text-shadow: 0 0 0;float: right }
 }
 
 .g-scale12{
-	transform: scale(1.2);
+	transform: translateX(15px) scale(1.4);
+}
+
+.g-scale13{
+	transform: scale(1.4) translateX(-3px);
 }

@@ -115,7 +115,7 @@ switch($type){
 
             $limit = sprintf(' LIMIT %d, %d', $from, $to);
 
-            $sql = "SELECT * FROM `pages` WHERE `language` = 'ge' AND `deleted` = '0' AND `menuid`='".$menutype."' ORDER BY `postdate` ASC".$limit;
+            $sql = "SELECT * FROM `pages` WHERE `language` = 'ge' AND `deleted` = '0' AND `menuid`='".$menutype."' ORDER BY `position` ASC".$limit;
             $articles = db_fetch_all($sql);
 
             $html = '';
