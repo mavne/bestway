@@ -93,20 +93,6 @@ width: 100%;
     text-transform: lowercase; !important;
 }
 
-@media (max-width: 960px){
-    .columns .column.main{
-        padding-bottom: 0px !important;
-    }
-
-    .toolbar .pages{
-        margin-bottom: 0px !important;
-    }
-
-    .featured-four, .featured-six{
-        margin-top: 40px !important;
-    }
-}
-
 </style> 
 <script type="e028b536ec15088aeba82394-text/javascript">
 
@@ -581,14 +567,6 @@ width: 100%;
 
 <div id="amasty-shopby-product-list">
     <div class="toolbar toolbar-products">
-        <p class="toolbar-total g-toolbar-total" id="toolbar-total">
-            <span class="toolbar-number g-menuitem-sub">
-            <?php
-            echo sprintf(l('allproducts'), $item_count)
-            ?>
-            </span>
-        </p>
-
         <div style="clear: both;"></div>
         
         <div class="page-title-wrapper product">
@@ -607,7 +585,7 @@ width: 100%;
         </style>
         <ol class="products list items product-items" id="g_ajax_load_container">
             <?php 
-            foreach($articles as $a): 
+            foreach($news as $a): 
             ?>
             <li class="item product product-item">
                 <div class="product-item-info" data-container="product-grid">
@@ -616,10 +594,7 @@ width: 100%;
                     <a href="<?=href($a['id'])?>" class="product photo product-item-photo" tabindex="-1">
                         <span class="product-image-container product-image-container-6012">
                             <span class="product-image-wrapper">
-                                <?php
-                                $image_positions = ($a['image_positions']!="") ? explode(",", $a['image_positions']) : array('image1');
-                                ?>
-                                <img class="product-image-photo" src="<?=$a[$image_positions[0]]?>" loading="lazy" width="440" height="260" alt="Filter&#x20;Cartridge&#x20;&#x28;Size&#x20;1&#x29;&#x20;" />
+                                <img class="product-image-photo" src="<?=$a['image1']?>" loading="lazy" width="440" height="260" alt="Filter&#x20;Cartridge&#x20;&#x28;Size&#x20;1&#x29;&#x20;" />
                             </span>
                         </span>
                     </a>
@@ -628,62 +603,6 @@ width: 100%;
                         <strong class="product name product-item-name">
                             <a class="g-menuitem" href="<?=href($a['id'])?>"><?=$a['title']?></a>
                         </strong>
-                        
-                        <div class="details-container">
-                            <div class="price-box price-final_price" data-role="priceBox" data-product-id="6012" data-price-box="product-id-6012">
-                                <span class="price-container price-final_price&#x20;tax&#x20;weee">
-                                    <span id="product-price-6012" data-price-amount="6.99" data-price-type="finalPrice" class="price-wrapper ">
-                                        <?php
-                                        if($a['discount']!=""){
-                                            ?>
-                                            <span class="price g-menuitem" style="text-decoration: line-through; padding-right:10px;"><?=$a['price']?> ₾</span>
-                                            <span class="price g-menuitem"><?=$a['discount']?> ₾</span>
-                                            <?php
-                                        }else{
-                                            ?>
-                                            <span class="price g-menuitem"><?=$a['price']?> ₾</span>
-                                            <?php
-                                        }
-                                        ?>
-                                        <!-- <span class="price g-menuitem"><?=$a['price']?> ₾</span> -->
-
-                                    </span>
-                                </span>
-                            </div>
-
-                            
-
-                            <div class="product-item-inner">
-                                <div class="product actions product-item-actions">
-                                    <div class="actions-primary">
-                                        <?php
-                                        if($a['max_quentity']>=1){
-                                        ?>
-                                            <div class="stock available g-menuitem-sub"><span><?=l('instack')?></span></div>
-                                            
-                                            <form data-role="tocart-form" data-product-configurable="false" data-product-type="simple" data-product-sku="BW58093-21" action="" method="post" style="width: unset;">
-                                                <input type="hidden" name="product" value="6012">
-                                                <input type="hidden" name="uenc" value="">
-                                                <input name="form_key" type="hidden" value="m8qrOfNYC6kwzS74" />
-                                                <button type="submit" title="Add" class="action tocart g-tocart primary">
-                                                    <span class="g-menuitem-sub"><?=l('add.cart')?></span>
-                                                </button>
-
-                                                <div class="view-details-wrapper g-view-details-wrapper">
-                                                    <a class="product-item-link details g-menuitem-sub" href="<?=href($a['id'])?>"><?=l('read.more')?></a>
-                                                </div>
-                                            </form>
-                                        <?php
-                                        }else{
-                                        ?>
-                                        <div class="stock unavailable g-menuitem-sub"><span><?=l('outonstack')?></span></div>
-                                        <?php
-                                        }
-                                        ?>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
                     </div>
                 </div>
             </li>
@@ -692,63 +611,93 @@ width: 100%;
     </div>
 
     <div class="toolbar toolbar-products">
-        <div class="pages" style="float:none;">
-            <button class="primary amscroll-load-button g_load_more_items" data-loaded="<?=count($articles)?>" data-max="<?=$item_count?>" data-perpage="<?=$per_page?>" data-type="<?=$menutype?>" style="color: rgb(71, 118, 240); border-color: rgb(71, 118, 240); width:250px; display:block; margin:0 auto;">
-                <span class="amscroll-text g-menuitem-sub"><?=l('read.more')?></span>
-            </button>
-        </div>
-    </div>
-</div>
+        <style type="text/css">
+            .pagination a{
+                margin: 0 5px;
+                padding: 10px;
+                background-color: #7cc6d1;
+                color: white;
+                border-radius: 10px;
+                text-align: center;
+                display: inline-block;
+                text-decoration: none;
+            }
 
+            .pagination a.active,
+            .pagination a:hover{
+                background-color: #FFA41C;
+                color: #0F1111;
+            }
+        </style>
 
+        <div class="pages" style="float:none; width: 100%; text-align: center;">
 
-
-
-</div>
-
-</div></main>
-
-<div class="page-bottom">
-    <div class="featured-four">
-        <div class="content-limit">
-            <h3 class="g-menuitem"><?=l('category.title1')?></h3>
-            <h2 class="g-menuitem-sub"><?=l('category.title2')?></h2>
-            
-            <?php
-            $g_feature_categories = g_feature_categories();
-            $chunk = array_chunk($g_feature_categories, 2);
-            ?>
-            <div class="content-container">
-                <div class="row">
-                    <?php
-                    foreach(@$chunk[0] as $v):
-                    ?>
-                        <div class="column">
-                            <a href="<?=href($v['id'])?>">
-                                <img src="<?=$v['image1']?>" alt="featured category Image">
-                                
-                                <button class="action primary"><span class="g-menuitem"><?=$v['title']?></span></button>
-                            </a>
-                        </div>
-                    <?php endforeach; ?>
-                </div>
-
-                <div class="row">
-                    <?php
-                    foreach(@$chunk[1] as $v):
-                    ?>
-                    <div class="column">
-                        <a href="<?=href($v['id'])?>">
-                            <img src="<?=$v['image1']?>" alt="featured category Image">
-                            <button class="action primary"><span class="g-menuitem"><?=$v['title']?></span></button>
-                        </a>
+            <?php if($page_max>1) : ?>
+                    <div class="pagination">
+                <?php for($i=1;$i<=$page_max;$i++) : ?>
+                        <a href="<?php echo href($id).'?page='.$i;?>" <?php echo ($page_cur==$i) ? 'class="g-menuitem active"':' class="g-menuitem"';?>><?php echo $i;?></a>
+                <?php endfor; ?>
+                        <div class="clear"></div>
                     </div>
-                    <?php endforeach; ?>
-                </div>
-            </div>
+                <?php endif;?>
         </div>
     </div>
 </div>
+
+
+
+
+
+</div>
+
+<div class="sidebar sidebar-main">
+<div class="block filter" id="layered-filter-block" data-mage-init='
+    {
+        "collapsible":
+        {
+            "openedState": "active",
+            "collapsible": true,
+            "active": false,
+            "collateral":
+            {
+                "openedState": "filter-active",
+                "element": "body"
+            }
+        }
+    }'>
+<div class="block-title filter-title" data-count="0">
+<strong data-role="title">Shop By</strong>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- <div class="block-content filter-content">
+
+<div role="heading" aria-level="2" class="block-subtitle filter-subtitle">Left </div>
+<div class="filter-options" id="narrow-by-list" data-role="content" data-mage-init=''>
+
+LeftSide
+
+</div>
+</div> -->
+</div>
+</div></div></main>
+
+
 
 <?php
     @include '_website/templates/widgets/footer.php';
@@ -1011,46 +960,6 @@ var gMenuClosed = true;
                     jQuery('html').removeClass('nav-before-open');
                 }, 300);               
                 
-            }
-        });
-
-        var loading = false;
-        jQuery(document).on('click', '.g_load_more_items', function(){
-            var that = jQuery(this);
-            if(!loading){
-                that.append('<span class="g-load-dots" style="color:white;">...</span>');
-                loading = true;
-                var that = jQuery(this);
-                var loaded = parseInt(jQuery(this).attr('data-loaded'));
-                var max = parseInt(jQuery(this).attr('data-max'));
-                var perpage = parseInt(jQuery(this).attr('data-perpage'));
-                var menutype = parseInt(jQuery(this).attr('data-type'));
-                var nextLoad = loaded + perpage;
-                if(nextLoad >= max){
-                    jQuery(this).hide();
-                }
-
-                var ajaxUrl = 'type=loadlist&menutype='+menutype+'&from='+loaded+'&to='+perpage;
-                var xhttp = new XMLHttpRequest();
-                xhttp.open("POST", "/ge/?ajax=true", true);
-                xhttp.setRequestHeader('Content-type', 'application/x-www-form-urlencoded; charset=UTF-8');
-                xhttp.send(ajaxUrl);
-
-                xhttp.onreadystatechange = function() {
-                    if (this.readyState == 4 && this.status == 200) {
-                        var responseText = JSON.parse(this.responseText);
-
-                        if(responseText.Error.Code==1){
-                            console.log(responseText.Error.Text);
-                        }else{
-                            // $(".msg").html(responseText.Success.Text).fadeIn();    
-                            jQuery("#g_ajax_load_container").append(responseText.Success.Text);  
-                            that.attr('data-loaded', nextLoad);
-                        }
-                        $('.g-load-dots').remove();
-                        loading = false;
-                    }
-                };
             }
         });
 

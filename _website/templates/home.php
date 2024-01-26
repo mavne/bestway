@@ -538,9 +538,9 @@ width: 100%;
                             <img src="<?=$g['image1']?>" alt />
                             <div class="content-limit">
                                 <div class="hero-block">
-                                    <p><?=strip_tags($g['title'])?></p>
+                                    <p class="g-menuitem"><?=strip_tags($g['title'])?></p>
                                     <a href="<?=strip_tags($g['link'])?>">
-                                        <button class="action primary"><span><?=strip_tags($g['description'])?></span></button>
+                                        <button class="action primary g-menuitem-sub"><span><?=strip_tags($g['description'])?></span></button>
                                     </a>
                                 </div>
                             </div>
@@ -780,34 +780,112 @@ width: 100%;
 </div>
 </div>
 <script type="text/javascript">window.reviewsArray ={"5816":{"@type":"aggregateRating","ratingValue":"4.9","reviewCount":"80","bestRating":"5","worstRating":"0","percent":97.25},"6444":{"@type":"aggregateRating","ratingValue":"0","reviewCount":"0","bestRating":"5","worstRating":"0","percent":0},"6445":{"@type":"aggregateRating","ratingValue":"0","reviewCount":"0","bestRating":"5","worstRating":"0","percent":0},"6446":{"@type":"aggregateRating","ratingValue":"0","reviewCount":"0","bestRating":"5","worstRating":"0","percent":0},"6497":{"@type":"aggregateRating","ratingValue":"0","reviewCount":"0","bestRating":"5","worstRating":"0","percent":0},"6496":{"@type":"aggregateRating","ratingValue":"0","reviewCount":"0","bestRating":"5","worstRating":"0","percent":0},"6495":{"@type":"aggregateRating","ratingValue":"0","reviewCount":"0","bestRating":"5","worstRating":"0","percent":0},"6494":{"@type":"aggregateRating","ratingValue":"0","reviewCount":"0","bestRating":"5","worstRating":"0","percent":0},"6440":{"@type":"aggregateRating","ratingValue":"4.5","reviewCount":"6","bestRating":"5","worstRating":"0","percent":90},"6275":{"@type":"aggregateRating","ratingValue":"0","reviewCount":"0","bestRating":"5","worstRating":"0","percent":0},"5807":{"@type":"aggregateRating","ratingValue":"1","reviewCount":"1","bestRating":"5","worstRating":"0","percent":20},"5387":{"@type":"aggregateRating","ratingValue":"5","reviewCount":"1","bestRating":"5","worstRating":"0","percent":100}}</script>
+
+
+<?php
+$g_home_news = g_home_news();
+if(isset($g_home_news[0]) && isset($g_home_news[1])):
+?>
 <div class="sets-us-apart-wrapper">
-<div class="content-limit">
-<div class="columns2 flipme">
-<div class="column">
-<div class="magezon-builder magezon-builder-preload"><div class="ofwwovx mgz-element mgz-element-row full_width_row"><div class="mgz-element-inner ofwwovx-s"><div class="inner-content mgz-container"><div class="o8j9t4k mgz-element mgz-element-column mgz-col-xs-12"><div class="mgz-element-inner o8j9t4k-s"><div class="reeyvrn mgz-element mgz-child mgz-element-text"><div class="mgz-element-inner reeyvrn-s"><h3>How To Maintain Your Pool Water</h3><p>Keeping your pool water clean and clear is one of the most important tasks for ensuring you can enjoy your pool throughout summer. From chlorine shock treatment through to pH balancing, there's a variety of pool treatment tasks to keep your pool at its best. Click here to read our handy pool chemical guide and learn how to keep your water at its best year after year.&nbsp;</p><p><a href="/pool-chemical-advice/"><button class="action primary">find out more</button></a></p><style class="mgz-style">.reeyvrn-s{text-align:center;}</style></div></div></div></div></div></div></div></div> </div>
-<div class="column breakout">
-<div class="highlight">
-<img src="./Bestway Store UK _ Leaders in Inflatables &amp; Above Ground Pools_files/Above_Ground_Pools.webp" alt="Hot tub in use">
+    <div class="content-limit">
+        
+        <div class="columns2 flipme">
+            <div class="column">
+                <div class="magezon-builder magezon-builder-preload">
+                    <div class="ofwwovx mgz-element mgz-element-row full_width_row">
+                        <div class="mgz-element-inner ofwwovx-s">
+                            <div class="inner-content mgz-container">
+                                <div class="o8j9t4k mgz-element mgz-element-column mgz-col-xs-12">
+                                    <div class="mgz-element-inner o8j9t4k-s">
+                                        <div class="reeyvrn mgz-element mgz-child mgz-element-text">
+                                            <div class="mgz-element-inner reeyvrn-s">
+                                                <h3><?=$g_home_news[0]['title']?></h3>
+                                                <p><?=strip_tags($g_home_news[0]['content'])?></p>
+
+                                                <p>
+                                                    <a href="<?=href($g_home_news[0]['id'])?>">
+                                                        <button class="action primary g-menuitem-sub"><?=l('read.more')?></button>
+                                                    </a>
+                                                </p>
+
+                                                <style class="mgz-style">.reeyvrn-s{text-align:center;}</style>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="column breakout">
+                <div class="highlight">
+                    <img src="<?=$g_home_news[0]['image1']?>" alt="Hot tub in use">
+                </div>
+            </div>
+        </div>
+    
+        <div class="columns2">
+            <div class="column breakout dark">
+                <div class="highlight">
+                    <img src="<?=$g_home_news[1]['image1']?>" alt="Hot tub in use">
+                </div>
+            </div>
+            
+            <div class="column">
+                <div class="magezon-builder magezon-builder-preload">
+                    <div class="e8v08bb mgz-element mgz-element-row full_width_row">
+                        <div class="mgz-element-inner e8v08bb-s">
+                            <div class="inner-content mgz-container">
+                                <div class="k6lhses mgz-element mgz-element-column mgz-col-xs-12">
+                                    <div class="mgz-element-inner k6lhses-s">
+                                        <div class="cwl37qi mgz-element mgz-child mgz-element-text">
+                                            <div class="mgz-element-inner cwl37qi-s">
+                                                <h3><?=$g_home_news[1]['title']?></h3>
+                                                <p style="text-align: center;"><?=strip_tags($g_home_news[1]['content'])?></p>
+                                                <p style="text-align: center;">
+                                                    <a href="<?=href($g_home_news[1]['id'])?>">
+                                                        <button class="action primary g-menuitem-sub"><?=l('read.more')?></button>
+                                                    </a>
+                                                </p>
+                                                <style class="mgz-style">.cwl37qi-s{text-align:center;}</style>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="xlurp98 mgz-element mgz-element-row full_width_row">
+                        <div class="mgz-element-inner xlurp98-s">
+                            <div class="inner-content mgz-container">
+                                <div class="lclli9s mgz-element mgz-element-column mgz-col-xs-12 mgz-element-column-empty">
+                                    <div class="mgz-element-inner lclli9s-s"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div style="text-align: center; margin: 40px 0 0 0;">
+        <a href="<?=href(328)?>" style="text-align: center; display: block;">
+            <button class="action primary g-menuitem-sub"><span><?=l('view.all')?></span></button>
+        </a>
+        </div>
+    </div>
 </div>
-</div>
-</div>
-<div class="columns2">
-<div class="column breakout dark">
-<div class="highlight">
-<img src="./Bestway Store UK _ Leaders in Inflatables &amp; Above Ground Pools_files/Summer.webp" alt="Hot tub in use">
-</div>
-</div>
-<div class="column">
-<div class="magezon-builder magezon-builder-preload"><div class="e8v08bb mgz-element mgz-element-row full_width_row"><div class="mgz-element-inner e8v08bb-s"><div class="inner-content mgz-container"><div class="k6lhses mgz-element mgz-element-column mgz-col-xs-12"><div class="mgz-element-inner k6lhses-s"><div class="lxikv7j mgz-element mgz-child mgz-element-single_image mgz-image-hovers"><div class="mgz-element-inner lxikv7j-s"><div class="mgz-single-image-wrapper"><div class="mgz-single-image-inner "><img class="mgz-hover-main" src="./Bestway Store UK _ Leaders in Inflatables &amp; Above Ground Pools_files/mobile_banner_300x200.webp" alt="mobile_banner_300x200" title=""></div></div><style class="mgz-style">.lxikv7j-s{text-align:center;}.mgz-element.lxikv7j .image-content{width:100%;text-align:center;}.mgz-element.lxikv7j .image-title{font-size:16px;}</style></div></div><div class="cwl37qi mgz-element mgz-child mgz-element-text"><div class="mgz-element-inner cwl37qi-s"><p style="text-align: center;">Klarna helps you to spread the cost of your purchase and is a trusted and transparent service we have carefully selected.</p><p style="text-align: center;"><a href="/bestway-interest-free-finance"><button class="action primary">find out more</button></a></p><style class="mgz-style">.cwl37qi-s{text-align:center;}</style></div></div></div></div></div></div></div><div class="xlurp98 mgz-element mgz-element-row full_width_row"><div class="mgz-element-inner xlurp98-s"><div class="inner-content mgz-container"><div class="lclli9s mgz-element mgz-element-column mgz-col-xs-12 mgz-element-column-empty"><div class="mgz-element-inner lclli9s-s"></div></div></div></div></div></div> </div>
-</div>
-</div>
-</div>
+<?php
+endif;
+?>
 
 
 <div class="featured-four">
     <div class="content-limit">
-        <h3>FEATURED CATEGORIES</h3>
-        <h2>Explore our featured categories</h2>
+        <h3 class="g-menuitem"><?=l('category.title1')?></h3>
+        <h2 class="g-menuitem-sub"><?=l('category.title2')?></h2>
         
         <div class="content-container">
             <div class="row"> 

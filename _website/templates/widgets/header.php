@@ -125,10 +125,22 @@
 <p><a href="tel:<?=s('telephone')?>" class="g-menuitem-sub"><?=s('telephone')?></a></p>
 </li>
 <li class="banner displayed g-mobile-top-right">
-<p class="g-mobile-hide"><a href="" class="g-menuitem-sub">ჩვენ შესახებ</a> /</p>
-<p class="g-mobile-hide"><a href="" class="g-menuitem-sub">პარტნიორებისთვის</a> /</p>
-<p class="g-mobile-hide"><a href="" class="g-menuitem-sub">კონტაქტი</a></p>
     <?php 
+    $g_pages_master = g_pages_master(333, '*', ' ORDER BY `position` ASC');
+    $maxPages = count($g_pages_master);
+    $ixx=1;
+    foreach($g_pages_master as $itx):
+        if($ixx==$maxPages){
+            ?>
+            <p class="g-mobile-hide"><a href="<?=href($itx['id'])?>" class="g-menuitem-sub"><?=$itx['title']?></a></p>
+            <?php 
+        }else{
+            ?>
+            <p class="g-mobile-hide"><a href="<?=href($itx['id'])?>" class="g-menuitem-sub"><?=$itx['title']?></a> /</p>
+            <?php 
+        }
+    $ixx++;
+    endforeach;
     //
     $glangs = array('ge', 'en', 'ru');
     foreach($glangs as $lan):
@@ -153,7 +165,7 @@ Skip to Content </span>
     <div class="block block-search">
         <div class="block block-title"><strong>Search</strong></div>
         <div class="block block-content">
-            <form class="form minisearch" id="search_mini_form" action="" method="get">
+            <form class="form minisearch" id="search_mini_form" action="/<?=l()?>/search" method="get">
                 <div class="field search">
                     <label class="label" for="search" data-role="minisearch-label">
                         <span>Search</span>
@@ -173,8 +185,15 @@ Skip to Content </span>
                         <button class="amsearch-loupe" title="Search" type="submit"></button>
 
                         <div class="amsearch-wrapper-input -left-position -bottom-position">
-                            <input id="search" type="text" name="q" value="" placeholder="Search for products, parts and more" class="input-text" maxlength="128">
+                            <input id="search" type="text" name="q" value="<?=(isset($_GET['q'])) ? htmlentities($_GET['q']) : ''?>" placeholder="<?=l('search')?>" class="input-text g-menuitem-sub">
                             <div class="amasty-xsearch-loader amasty-xsearch-hide"></div>
+
+                            <?php if(isset($_GET['q'])): ?>
+                            <script>
+                            var inputElement = document.getElementById("search");
+                            inputElement.focus();
+                            </script>
+                            <?php endif; ?>
                         </div>
                     </div>
                 </div>

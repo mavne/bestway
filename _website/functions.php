@@ -1039,12 +1039,13 @@ function g_feature_categories(){
 	FROM 
 	`pages` 
 	WHERE 
-	`masterid`=0 AND 
+	`level`<=2 AND 
 	`id`!=1 AND 
 	`language`='".l()."' AND 
 	`deleted`=0 AND 
 	`visibility`=1 AND 
-	`homepage`=1";
+	`homepage`=1
+	ORDER BY `id` ASC";
 	$fecth2 = db_fetch_all($sql2);
 
 	return $fecth2;
@@ -1073,5 +1074,11 @@ function g_discounts(){
 
 function g_pages_master($masterid, $columns = '*', $limit = ''){
 	$out = db_fetch_all("SELECT ".$columns." FROM `" . c("table.pages") . "` WHERE  `language` = '" . l() . "' AND `deleted`=0 AND `masterid`='".$masterid."' AND `visibility` = 1".$limit);
+    return $out;
+}
+
+function g_home_news(){
+	$out = db_fetch_all("SELECT `id`, `title`, `description`, `content`, `image1` FROM `" . c("table.pages") . "` WHERE  `language` = '" . l() . "' AND `deleted`=0 AND `menuid`='29' AND `visibility` = 1 AND `homepage`= 1 ORDER BY `id` DESC LIMIT 2");
+
     return $out;
 }

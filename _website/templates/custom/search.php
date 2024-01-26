@@ -93,20 +93,6 @@ width: 100%;
     text-transform: lowercase; !important;
 }
 
-@media (max-width: 960px){
-    .columns .column.main{
-        padding-bottom: 0px !important;
-    }
-
-    .toolbar .pages{
-        margin-bottom: 0px !important;
-    }
-
-    .featured-four, .featured-six{
-        margin-top: 40px !important;
-    }
-}
-
 </style> 
 <script type="e028b536ec15088aeba82394-text/javascript">
 
@@ -706,13 +692,58 @@ width: 100%;
 
 </div>
 
-</div></main>
+<div class="sidebar sidebar-main">
+<div class="block filter" id="layered-filter-block" data-mage-init='
+    {
+        "collapsible":
+        {
+            "openedState": "active",
+            "collapsible": true,
+            "active": false,
+            "collateral":
+            {
+                "openedState": "filter-active",
+                "element": "body"
+            }
+        }
+    }'>
+<div class="block-title filter-title" data-count="0">
+<strong data-role="title">Shop By</strong>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- <div class="block-content filter-content">
+
+<div role="heading" aria-level="2" class="block-subtitle filter-subtitle">Left </div>
+<div class="filter-options" id="narrow-by-list" data-role="content" data-mage-init=''>
+
+LeftSide
+
+</div>
+</div> -->
+</div>
+</div></div></main>
 
 <div class="page-bottom">
     <div class="featured-four">
         <div class="content-limit">
-            <h3 class="g-menuitem"><?=l('category.title1')?></h3>
-            <h2 class="g-menuitem-sub"><?=l('category.title2')?></h2>
+            <h3>You may also be interested in</h3>
+            <h2>These other fantastic products</h2>
             
             <?php
             $g_feature_categories = g_feature_categories();
@@ -1016,9 +1047,7 @@ var gMenuClosed = true;
 
         var loading = false;
         jQuery(document).on('click', '.g_load_more_items', function(){
-            var that = jQuery(this);
             if(!loading){
-                that.append('<span class="g-load-dots" style="color:white;">...</span>');
                 loading = true;
                 var that = jQuery(this);
                 var loaded = parseInt(jQuery(this).attr('data-loaded'));
@@ -1026,11 +1055,13 @@ var gMenuClosed = true;
                 var perpage = parseInt(jQuery(this).attr('data-perpage'));
                 var menutype = parseInt(jQuery(this).attr('data-type'));
                 var nextLoad = loaded + perpage;
+                var q = '<?=htmlentities(@$_GET['q'])?>';
+
                 if(nextLoad >= max){
                     jQuery(this).hide();
                 }
 
-                var ajaxUrl = 'type=loadlist&menutype='+menutype+'&from='+loaded+'&to='+perpage;
+                var ajaxUrl = 'type=loadlist&menutype='+menutype+'&from='+loaded+'&to='+perpage+'&q='+q;
                 var xhttp = new XMLHttpRequest();
                 xhttp.open("POST", "/ge/?ajax=true", true);
                 xhttp.setRequestHeader('Content-type', 'application/x-www-form-urlencoded; charset=UTF-8');
@@ -1047,7 +1078,7 @@ var gMenuClosed = true;
                             jQuery("#g_ajax_load_container").append(responseText.Success.Text);  
                             that.attr('data-loaded', nextLoad);
                         }
-                        $('.g-load-dots').remove();
+
                         loading = false;
                     }
                 };

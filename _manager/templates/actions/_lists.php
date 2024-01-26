@@ -73,7 +73,7 @@ function _build_lists($parent, $order_by, $start = -1, $per_page)
 						<div class="name">
                         	<div class="arrows">
                         		<?php
-                        		if($route[2]==1 || $route[2]==26){
+                        		if($route[2]==1 || $route[2]==26 || $route[2]==29){
                         			echo $pad;
                         		}else{
                         			?>

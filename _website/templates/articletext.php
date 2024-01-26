@@ -84,8 +84,7 @@ width: 100%;
 }
 
 </style> 
-<script type="e028b536ec15088aeba82394-text/javascript">
-
+<script type="text/javascript">
     let host = window.location.hostname.replace('www.', '');
     let domain = '.'+host;
     let additionalDomain = '.www.'+host;
@@ -214,6 +213,18 @@ width: 100%;
 
         .products-related .product-items .action.primary{
             width: 60% !important;
+        }
+
+        body{
+            overflow-x: hidden !important;
+        }
+
+        .price-as-configured{
+            margin-bottom: 20px !important;
+        }
+
+        .nav-open .nav-sections, .nav-before-open .nav-sections{
+            top: 198px !important;
         }
     }
     </style>
@@ -781,7 +792,7 @@ The store will not work correctly in the case when cookies are disabled.</div>
                         <span class="bundle-price">
                             <span class="price-container price-configured_price tax weee">
                                 <strong class="g-menuitem-sub" style="font-size:14px;"><?=l('quentity')?>:</strong> 
-                                <select class="g-select-quantity g-menuitem-sub">
+                                <!-- <select class="g-select-quantity g-menuitem-sub">
                                     <?php
                                     for ($i=1; $i <= $max_quentity; $i++) { 
                                         ?>
@@ -789,7 +800,18 @@ The store will not work correctly in the case when cookies are disabled.</div>
                                         <?php
                                     }
                                     ?>
-                                </select>
+                                </select> -->
+                                <style type="text/css">
+                                    .g-quentity-input{
+                                        margin: 0 5px !important;
+                                        padding: 0 5px !important;
+                                        width: 70px !important;
+                                        background-color: #F0F2F2 !important;
+                                        box-shadow: 0 2px 5px rgba(15,17,17,.15);
+                                        clear: both;
+                                    }
+                                </style>
+                                <input type="number" name="g-quentity-input" class="g-quentity-input g-menuitem-sub" value="1">
                             </span>
                         </span>
 

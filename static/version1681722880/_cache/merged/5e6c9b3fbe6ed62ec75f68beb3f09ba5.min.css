@@ -2467,12 +2467,12 @@ transform:rotate(359deg)
 
 @media(min-width: 960px){
 	.catalog-product-view.page-layout-1column .product-view-product-wrapper .product.media{
-		width: 540px !important;
+		width: 640px !important;
 		margin-left: 10% !important;
 	}
 
 	.catalog-product-view.page-layout-1column .product-view-product-wrapper .product-info-main{
-		width: 626px !important;
+		width: 526px !important;
 		margin-right: 0 !important;
 		float: left !important;
 		margin-left: 25px !important;
@@ -2785,6 +2785,10 @@ transform:rotate(359deg)
 	.product-items .product-item .g-view-details-wrapper{
 		float: none !important;
 		width: 100% !important;
+		text-align: center !important;
+	}
+
+	.product-items .product-item .view-details-wrapper{
 		text-align: center !important;
 	}
 

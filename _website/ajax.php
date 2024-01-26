@@ -112,10 +112,16 @@ switch($type){
             $menutype = (isset($_POST['menutype']) && !empty($_POST['menutype'])) ? (int)$_POST['menutype'] : 0;
             $from = (isset($_POST['from']) && !empty($_POST['from'])) ? (int)$_POST['from'] : 0;
             $to = (isset($_POST['to']) && !empty($_POST['to'])) ? (int)$_POST['to'] : 0;
+            $q = str_replace(array('"', "'", "\$", "@", "-"), '', @$_POST['q']);
 
             $limit = sprintf(' LIMIT %d, %d', $from, $to);
 
-            $sql = "SELECT * FROM `pages` WHERE `language` = 'ge' AND `deleted` = '0' AND `menuid`='".$menutype."' ORDER BY `position` ASC".$limit;
+            if(isset($q) && $q != ""){
+                $sql = "SELECT * FROM `pages` WHERE `language` = '" . l() . "' AND `deleted` = 0 AND `price`!='' AND `image1`!='' AND `title` LIKE '%".$q."%' ORDER BY `position` ASC".$limit;   
+            }else{
+                $sql = "SELECT * FROM `pages` WHERE `language` = '" . l() . "' AND `deleted` = '0' AND `menuid`='".$menutype."' ORDER BY `position` ASC".$limit; 
+            }
+            
             $articles = db_fetch_all($sql);
 
             $html = '';
@@ -180,20 +186,33 @@ switch($type){
                     $html .= '<div class="product actions product-item-actions">';
                     $html .= '<div class="actions-primary">';
 
-                    if($a['visibility']==1){
-                        $html .= sprintf(
-                            '<div class="stock available g-menuitem-sub"><span>%s</span></div>',
-                            l('instack')
-                        );
-                        $html .= '<form action="" method="post" style="width: unset;">';
-                        $html .= sprintf('<input type="hidden" name="product" value="%d">', $a['id']);
-                        $html .= '<button type="submit" title="Add" class="action tocart primary">';
-                        $html .= sprintf(
-                            '<span class="g-menuitem-sub">%s</span>',
-                            l('add.cart')
-                        );
+                    if($a['max_quentity']>=1 && $a['visibility']==1){
+                        // $html .= sprintf(
+                        //     '<div class="stock available g-menuitem-sub"><span>%s</span></div>',
+                        //     l('instack')
+                        // );
+                        // $html .= '<form action="" method="post" style="width: unset;">';
+                        // $html .= sprintf('<input type="hidden" name="product" value="%d">', $a['id']);
+                        // $html .= '<button type="submit" title="Add" class="action tocart primary">';
+                        // $html .= sprintf(
+                        //     '<span class="g-menuitem-sub">%s</span>',
+                        //     l('add.cart')
+                        // );
+                        // $html .= '</button>';
+                        // $html .= '</form>';
+
+
+                        $html .= sprintf('<div class="stock available g-menuitem-sub"><span>%s</span></div>', l('instack'));
+                                            
+                        $html .= '<form data-role="tocart-form" data-product-configurable="false" data-product-type="simple" data-product-sku="BW58093-21" action="" method="post" style="width: unset;">';
+                        $html .= '<button type="submit" title="Add" class="action tocart g-tocart primary">';
+                        $html .= sprintf('<span class="g-menuitem-sub">%s</span>', l('add.cart'));
                         $html .= '</button>';
-                        $html .= '</form>';
+
+                        $html .= '<div class="view-details-wrapper g-view-details-wrapper">';
+                        $html .= sprintf('<a class="product-item-link details g-menuitem-sub" href="%s">%s</a>', href($a['id']), l('read.more'));
+                        $html .= '</div></form>';
+
                     }else{
                         $html .= sprintf(
                             '<div class="stock unavailable g-menuitem-sub"><span>%s</span></div>',

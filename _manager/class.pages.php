@@ -224,7 +224,7 @@ class Manager_Pages
 
         // pager
         $page = abs(get('page', 1));
-        $per_page = c('news.per_page');
+        $per_page = 30;
         $count = $count['cnt'];
         $page_max = ceil($count / $per_page);
         $page = ($page > $page_max && $page_max != 0) ? $page_max : $page;
@@ -313,14 +313,34 @@ class Manager_Pages
         $menu_id = $this->storage->section['menutype'];
         if (!$all AND (empty($menu_id) OR $menu_id == 'NULL'))
             return ($this->storage->content = NULL);
-        $all_news = $all ? " AND menuid IN (SELECT id FROM `".c("table.menus")."` WHERE `deleted` = '0' AND type = 'articles') " : " AND menuid = {$menu_id} ";
+        
+
+
         //Pager: start
         $page = abs(get('page', 1));
         $per_page = 12;
         $limit = " LIMIT " . (($page - 1) * $per_page) . ",{$per_page}";
-        $count = "SELECT COUNT(*) AS cnt FROM `".c("table.pages")."` WHERE language = '" . l() . "' {$all_news}AND deleted = 0 ORDER BY postdate ASC;";
-        $count = db_fetch($count);
-        $count = empty($count) ? 0 : $count['cnt'];
+
+        if(isset($_GET['q'])){
+            $q = str_replace(array('"', "'", "\$", "@", "-"), '', $_GET['q']);
+            $count = db_fetch("SELECT COUNT(`id`) as cnt FROM `pages` WHERE `language` = '" . l() . "' AND `deleted` = 0 AND `price`!='' AND `image1`!='' AND `title` LIKE '%".$q."%'");
+
+            $count = (isset($count['cnt'])) ? $count['cnt'] : 0;
+
+
+            $res = db_fetch_all("SELECT * FROM `pages` WHERE `language` = '" . l() . "' AND `deleted` = 0 AND `price`!='' AND `image1`!='' AND `title` LIKE '%".$q."%' ORDER BY `position` ASC{$limit}");
+        }else{
+            $all_news = $all ? " AND menuid IN (SELECT id FROM `".c("table.menus")."` WHERE `deleted` = '0' AND type = 'articles') " : " AND menuid = {$menu_id} ";
+            $count = "SELECT COUNT(*) AS cnt FROM `".c("table.pages")."` WHERE language = '" . l() . "' {$all_news}AND deleted = 0 ORDER BY postdate ASC;";
+            $count = db_fetch($count);
+            $count = empty($count) ? 0 : $count['cnt'];
+
+            
+            $sql = "SELECT * FROM `".c("table.pages")."` WHERE language = '" . l() . "' {$all_news}AND `deleted` = '0' ORDER BY `position` ASC{$limit};";
+            $res = db_fetch_all($sql);
+        }
+        
+
         $page_max = ceil($count / $per_page);
         $tpl = $this->storage->section;
         $tpl['per_page'] = $per_page;
@@ -328,10 +348,6 @@ class Manager_Pages
         $tpl['page_max'] = $page_max;
         $tpl['item_count'] = $count;
         $tpl['all_par'] = $all ? '&all=show' : null;
-        //Pager: end
-
-        $sql = "SELECT * FROM `".c("table.pages")."` WHERE language = '" . l() . "' {$all_news}AND `deleted` = '0' ORDER BY `position` ASC{$limit};";
-        $res = db_fetch_all($sql);
         $tpl['articles'] = $res;
 
         if($this->storage->section["template"]==''){
