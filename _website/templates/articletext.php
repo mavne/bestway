@@ -542,37 +542,372 @@ The store will not work correctly in the case when cookies are disabled.</div>
 
 </div>
 
+<style type="text/css">
+    .g-new-wrapper{
+        margin: 20px 0;
+        padding: 0;
+        width: 100%;
+    }
+
+    .g-new-row{
+        --bs-gutter-x: 1.5rem;
+        --bs-gutter-y: 0;
+        display: flex;
+        flex-wrap: wrap;
+        margin-right: -1.5rem;
+        margin-left: -1.5rem;
+    }
+
+    .g-new-col-15{
+        flex: 0 0 auto;
+        width: calc(15% - 3rem);
+        padding-right: calc(1.5rem / 2);
+        padding-left: calc(1.5rem / 2);
+    }
+
+    .g-new-col-70{
+        flex: 0 0 auto;
+        width: calc(70% - 3rem);
+        padding-right: calc(1.5rem / 2);
+        padding-left: calc(1.5rem / 2);
+    }
+
+    .g-new-media-list{
+        margin: 0;
+        padding: 0;
+        width: 100%;
+        height: 600px;
+        overflow-y: auto;
+        list-style-type: none;
+        padding-right: 15px;
+        position: relative;
+    }
+
+    .g-videox{
+        position: relative;
+    }
+
+    .g-videox::after{
+        content: "";
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: 1000;
+        background-color: white;
+        -webkit-mask-image: url(/images/play.svg);
+        mask-image: url(/images/play.svg);
+        -webkit-mask-size: 50px;
+        mask-size: 50px;
+        -webkit-mask-repeat: no-repeat;
+        mask-repeat: no-repeat;
+        -webkit-mask-position: center;
+        mask-position: center;
+        pointer-events: none;
+    }
+
+    .g-new-media-list li{
+        margin: 0;
+        padding: 0;
+        width: 100%;
+        margin-bottom: 20px;
+    }
+
+    .g-new-media-list li a{
+        margin: 0;
+        padding: 0;
+        display: block;
+        text-decoration: none;
+    }
+
+    .g-new-media-list li a img{
+        margin: 0;
+        padding: 0;
+        width: 100%;
+        height: 140px;
+        object-fit: cover;
+        object-position: center;
+    }
+
+    #g-new-popup-main{
+        margin: 0 50px;
+        padding: 0;
+        width: calc(100% - 100px);
+        height: 600px;
+    }
+
+    #g-new-popup-main .item a{
+        margin: 0;
+        padding: 0;
+        display: block;
+        width: 100%;
+        height: 600px;
+    }
+
+    #g-new-popup-main .item a img{
+        margin: 0;
+        padding: 0;
+        display: block;
+        width: 100%;
+        height: 600px;
+        object-fit: contain;
+        object-position: center;
+    }
+
+    #g-new-popup-main .owl-nav{
+        margin: 0 !important;
+        padding: 0 !important;
+        width: 100% !important;
+        height: 40px !important;
+        position: absolute !important;
+        top: calc(50% - 20px) !important;
+        left: 0 !important;
+        z-index: 100 !important;
+        pointer-events: none !important;
+    }
+
+    #g-new-popup-main .owl-nav button{
+        margin: 0 !important;
+        padding: 0 !important;
+        border: 0 !important;
+        width: 40px !important;
+        min-width: 40px !important;
+        max-width: 40px !important;
+        height: 40px !important;
+        min-height: 40px !important;
+        max-height: 40px !important;
+        pointer-events: all !important;
+        position: absolute !important;
+        top: 0 !important;
+        left: 15px !important;
+        background-color: #ffffff !important;
+        box-shadow: 0 4px 4px rgba(0,0,0,.3), 0 0 4px rgba(0,0,0,.2);
+        border-radius: 100%;
+    }
+
+    #g-new-popup-main .owl-nav button:hover,
+    #g-new-popup-main .owl-nav button:focus{
+        background-color: #c5cae9 !important;
+    }
+
+    #g-new-popup-main .owl-nav button span{
+        display: none;
+    }
+
+    #g-new-popup-main .owl-nav button:first-child::after{
+        content: "";
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        top: 0;
+        left: -1px;
+        background-color: #000;
+        -webkit-mask-image: url(/images/icon-arrow.svg);
+        mask-image: url(/images/icon-arrow.svg);
+        -webkit-mask-size: 25px;
+        mask-size: 25px;
+        -webkit-mask-repeat: no-repeat;
+        mask-repeat: no-repeat;
+        -webkit-mask-position: center;
+        mask-position: center;
+        transform: rotate(180deg);
+    }
+
+    #g-new-popup-main .owl-nav button:last-child::after{
+        content: "";
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        top: 0px;
+        left: 2px;
+        background-color: #000;
+        -webkit-mask-image: url(/images/icon-arrow.svg);
+        mask-image: url(/images/icon-arrow.svg);
+        -webkit-mask-size: 25px;
+        mask-size: 25px;
+        -webkit-mask-repeat: no-repeat;
+        mask-repeat: no-repeat;
+        -webkit-mask-position: center;
+        mask-position: center;
+    }
+
+    #g-new-popup-main .owl-nav .owl-next{
+        left: unset !important;
+        right: 15px !important;
+    }
+
+    .g-new-subtitle{
+        margin: 0 0 15px 0;
+        padding: 0;
+        font-size: 14px;
+    }
+</style>
+
 <div class="product media"> 
     <div class="g-popup" id="g-popup" style="display:none;">
         <div class="g-popup-nav">
             <ul>
-                <?php
-                if(!empty($youtube1) || !empty($youtube2) || !empty($youtube3) || !empty($youtube4) || !empty($youtube5)):
-                ?>
-                <li><a href="javascript:void(0)" class="g-change-poptype" data-type="video">ვიდეო</a></li>
-                <?php endif; ?>
-                <li><a href="javascript:void(0)" class="g-change-poptype active" data-type="image">ფოტო</a></li>
+                <li><a href="javascript:void(0)" class="g-change-poptype active"><?=$title?></a></li>
             </ul>
         </div>
 
-        <div class="g-popup-main-image-wrapper">
-            <div class="g-popup-main-image">
-                <img src="<?=$image1?>" />
-            </div>
+        <div class="g-new-wrapper">
+            <div class="g-new-row">
+                <div class="g-new-col-15">
+                    <h4 class="g-menuitem g-new-subtitle">ვიდეო</h4>
+                    <ul class="g-new-media-list">
+                    <?php
+                    $imageCount = 1;
+                    for($x=1; $x<=30; $x++):
+                        $imgVariable = "image".$x;
 
-            <div class="g-popup-arrows">
-                <button class="g-popup-prev"></button>
-                <button class="g-popup-next"></button>
-            </div>
-        </div>
+                        if(isset($$imgVariable) && $$imgVariable!=""){
+                            $imageCount++;
+                        }
+                    endfor;
 
-        <div class="g-popup-title-and-thumbs">
-            <h3><?=$title?></h3>
+                    if(!empty($youtube1)):
+                        $urlParts = parse_url($youtube1);
+                        parse_str($urlParts['query'], $queryParameters);
+                        $videoId = $queryParameters['v'];
+                    ?>
+                    <li>
+                        <a href="javascript:void(0)" class="g-new-popup-goto g-videox" data-index="<?=$imageCount?>">
+                            <img src="https://img.youtube.com/vi/<?=$videoId?>/0.jpg" alt="">
+                        </a>
+                    </li>
+                    <?php
+                    endif;
+                    ?>
 
-            <input type="hidden" name="g-popup-active-img-vid" id="g-popup-active-img-vid" value="1">
+                    <?php
+                    if(!empty($youtube2)):
+                        $urlParts = parse_url($youtube2);
+                        parse_str($urlParts['query'], $queryParameters);
+                        $videoId = $queryParameters['v'];
+                    ?>
+                    <li>
+                        <a href="javascript:void(0)" class="g-new-popup-goto g-videox" data-index="<?=($imageCount + 1)?>">
+                            <img src="https://img.youtube.com/vi/<?=$videoId?>/0.jpg" alt="">
+                        </a>
+                    </li>
+                    <?php
+                    endif;
+                    ?>
 
-            <div class="g-popup-thumbs">
+                    <?php
+                    if(!empty($youtube3)):
+                        $urlParts = parse_url($youtube3);
+                        parse_str($urlParts['query'], $queryParameters);
+                        $videoId = $queryParameters['v'];
+                    ?>
+                    <li>
+                        <a href="javascript:void(0)" class="g-new-popup-goto g-videox" data-index="<?=($imageCount + 2)?>">
+                            <img src="https://img.youtube.com/vi/<?=$videoId?>/0.jpg" alt="">
+                        </a>
+                    </li>
+                    <?php
+                    endif;
+                    ?>
+                    </ul>
+                </div>
                 
+                <div class="g-new-col-70">
+                    <div class="owl-carousel owl-theme" id="g-new-popup-main">
+                            <?php
+                            if($image_positions!=""){
+                               $imageP = explode(",", $image_positions);
+                            }else{ 
+                                $imageP = array();
+                                for($x=1; $x<=30; $x++):
+                                    $imageP[] = "image".$x;
+                                endfor;
+                            }
+
+                            foreach($imageP as $im):
+                                if($$im != ""):
+                            ?>
+                                <div class="item">
+                                    <a href="javascript:void(0)">
+                                        <img src="<?=$$im?>" alt="">
+                                    </a>
+                                </div>
+                            <?php                    
+                                endif;
+                            endforeach;
+                            ?>
+
+                            <?php
+                            if(!empty($youtube1)):
+                                $urlParts = parse_url($youtube1);
+                                parse_str($urlParts['query'], $queryParameters);
+                                $videoId = $queryParameters['v'];
+                            ?>
+                            <div class="item">
+                                <iframe src="https://www.youtube.com/embed/<?=$videoId?>" width="100%" height="600px" frameborder="0" allowfullscreen="true" class="g-new-iframe"></iframe>
+                            </div>
+                            <?php
+                            endif;
+                            ?>
+
+                            <?php
+                            if(!empty($youtube2)):
+                                $urlParts = parse_url($youtube2);
+                                parse_str($urlParts['query'], $queryParameters);
+                                $videoId = $queryParameters['v'];
+                            ?>
+                            <div class="item">
+                                <iframe src="https://www.youtube.com/embed/<?=$videoId?>" width="100%" height="600px" frameborder="0" allowfullscreen="true" class="g-new-iframe"></iframe>
+                            </div>
+                            <?php
+                            endif;
+                            ?>
+
+                            <?php
+                            if(!empty($youtube3)):
+                                $urlParts = parse_url($youtube3);
+                                parse_str($urlParts['query'], $queryParameters);
+                                $videoId = $queryParameters['v'];
+                            ?>
+                            <div class="item">
+                                <iframe src="https://www.youtube.com/embed/<?=$videoId?>" width="100%" height="600px" frameborder="0" allowfullscreen="true" class="g-new-iframe"></iframe>
+                            </div>
+                            <?php
+                            endif;
+                            ?>                        
+                    </div>
+                </div>
+                
+                <div class="g-new-col-15">
+                    <h4 class="g-menuitem g-new-subtitle">ფოტო</h4>
+                    <ul class="g-new-media-list">
+                        <?php
+                        if($image_positions!=""){
+                           $imageP = explode(",", $image_positions);
+                        }else{ 
+                            $imageP = array();
+                            for($x=1; $x<=30; $x++):
+                                $imageP[] = "image".$x;
+                            endfor;
+                        }
+
+                        $index=0;
+                        foreach($imageP as $im):
+                            if($$im != ""):
+                                $index++;
+                        ?>
+                            <li>
+                                <a href="javascript:void(0)" class="g-new-popup-goto" data-index="<?=$index?>">
+                                    <img src="<?=$$im?>" alt="">
+                                </a>
+                            </li>
+                        <?php                    
+                            endif;
+                        endforeach;
+                        ?>
+                    </ul>
+                </div>
             </div>
         </div>
 
@@ -1029,55 +1364,78 @@ display: none;
     margin: 0;
     padding: 0;
     width: calc(100% + 100px);
-    height: 50px;
+    height: 40px;
     position: absolute;
-    top: calc(50% - 25px);
-    left: -50px;
+    top: calc(50% - 20px);
+    left: -40px;
     pointer-events: none;
 }
 
 .g-owl-container .g-owlBtns button{
     margin: 0;
     padding: 0;
-    width: 50px;
-    height: 50px;
-    min-width: 50px;
-    max-width: 50px;
+    width: 40px;
+    height: 40px;
+    min-width: 40px;
+    max-width: 40px;
+    min-height: 40px;
+    min-height: 40px;
     pointer-events: all;
-    background-color: #7cc6d1;
+    background-color: #ffffff;
     text-indent: -9999px;
     position: relative;
-    border-radius: 0px;
+    border-radius: 100%;
+    box-shadow: 0 4px 4px rgba(0,0,0,.3), 0 0 4px rgba(0,0,0,.2);
 }
 
-.g-owl-container .g-owlBtns button::after{
-    content: "";
-    width: 100%;
-    height: 100%;
-    position: absolute;
-    top: 0;
-    left: 0;
-    -webkit-mask-image: url(/images/arrow.svg);
-    mask-image: url(/images/arrow.svg);
-    -webkit-mask-size: 25px;
-    mask-size: 25px;
-    -webkit-mask-repeat: no-repeat;
-    mask-repeat: no-repeat;
-    -webkit-mask-position: center;
-    mask-position: center;
-    background-color: white;
+.g-owl-container .g-owlBtns button:hover,
+.g-owl-container .g-owlBtns button:focus{
+    background-color: #c5cae9;
 }
 
 .g-owl-container .g-owlBtns button:first-child{
     float: left;
 }
 
+.g-owl-container .g-owlBtns button:last-child{
+    float: right;
+}
+
 .g-owl-container .g-owlBtns button:first-child::after{
+    content: "";
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: -1px;
+    background-color: #000;
+    -webkit-mask-image: url(/images/icon-arrow.svg);
+    mask-image: url(/images/icon-arrow.svg);
+    -webkit-mask-size: 25px;
+    mask-size: 25px;
+    -webkit-mask-repeat: no-repeat;
+    mask-repeat: no-repeat;
+    -webkit-mask-position: center;
+    mask-position: center;
     transform: rotate(180deg);
 }
 
-.g-owl-container .g-owlBtns button:last-child{
-    float: right;
+.g-owl-container .g-owlBtns button:last-child::after{
+    content: "";
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0px;
+    left: 2px;
+    background-color: #000;
+    -webkit-mask-image: url(/images/icon-arrow.svg);
+    mask-image: url(/images/icon-arrow.svg);
+    -webkit-mask-size: 25px;
+    mask-size: 25px;
+    -webkit-mask-repeat: no-repeat;
+    mask-repeat: no-repeat;
+    -webkit-mask-position: center;
+    mask-position: center;
 }
 
 @media (max-width:960px){
@@ -1358,11 +1716,13 @@ $(document).on('mouseenter', '.g-images-box .g-thumbs ul li a', function(){
 
     $('#g-popup-active-img-vid').val(indx);
 
+    $('.g-main-image a').attr('data-index', indx);
+
     if(type=="image"){
         $('#g-popup .g-popup-main-image').html('<img>');
         $('.g-main-image a img').attr('src', src);
         $('.g-popup-main-image img').attr('src', src);
-        $('.g-main-image a').removeClass('videosvg');                
+        $('.g-main-image a').removeClass('videosvg');                                
     }else{
         var videoImage = $(this).attr('data-videoImage');
         $('.g-main-image a').addClass('videosvg');
@@ -1370,31 +1730,36 @@ $(document).on('mouseenter', '.g-images-box .g-thumbs ul li a', function(){
 
 
         // $('.g-popup-main-image img').attr('src', videoImage);
-        var videoId = src.match(/[?&]v=([^&]+)/)[1];
-        var iframe = $("<iframe>", {
-            src: "https://www.youtube.com/embed/" + videoId + "?autoplay=1&mute=1",
-            frameborder: 0,
-            allowfullscreen: true,
-            width: "100%",
-            height: "600" // You can adjust the width and height as needed
-          });
-        $('#g-popup .g-popup-main-image').html(iframe);
+        // var videoId = src.match(/[?&]v=([^&]+)/)[1];
+        // var iframe = $("<iframe>", {
+        //     src: "https://www.youtube.com/embed/" + videoId + "?autoplay=1&mute=1",
+        //     frameborder: 0,
+        //     allowfullscreen: true,
+        //     width: "100%",
+        //     height: "600" // You can adjust the width and height as needed
+        //   });
+        // $('#g-popup .g-popup-main-image').html(iframe);
     }            
 });
 
-function changePopType(type){
-    if(type=="image"){
-        $('#g-popup .g-popup-nav ul li a').removeClass('active');
-        $('#g-popup .g-popup-nav ul li a[data-type="image"]').addClass('active');
-        $('#g-popup .g-popup-title-and-thumbs .g-popup-thumbs ul li a[data-type="image"]').parent().show();
-        $('#g-popup .g-popup-title-and-thumbs .g-popup-thumbs ul li a[data-type="video"]').parent().hide();
-    }else{
-        $('#g-popup .g-popup-nav ul li a').removeClass('active');
-        $('#g-popup .g-popup-nav ul li a[data-type="video"]').addClass('active');
-        $('#g-popup .g-popup-title-and-thumbs .g-popup-thumbs ul li a[data-type="image"]').parent().hide();
-        $('#g-popup .g-popup-title-and-thumbs .g-popup-thumbs ul li a[data-type="video"]').parent().show();
-    }
-}
+// function changePopType(type){
+//     if(type=="image"){
+//         $('#g-popup .g-popup-nav ul li a').removeClass('active');
+//         $('#g-popup .g-popup-nav ul li a[data-type="image"]').addClass('active');
+//         $('#g-popup .g-popup-title-and-thumbs .g-popup-thumbs ul li a[data-type="image"]').parent().show();
+//         $('#g-popup .g-popup-title-and-thumbs .g-popup-thumbs ul li a[data-type="video"]').parent().hide();
+//     }else{
+//         $('#g-popup .g-popup-nav ul li a').removeClass('active');
+//         $('#g-popup .g-popup-nav ul li a[data-type="video"]').addClass('active');
+//         $('#g-popup .g-popup-title-and-thumbs .g-popup-thumbs ul li a[data-type="image"]').parent().hide();
+//         $('#g-popup .g-popup-title-and-thumbs .g-popup-thumbs ul li a[data-type="video"]').parent().show();
+//     }
+// }
+
+$(document).on("click", ".g-new-popup-goto", function(){
+    var ind = $(this).attr('data-index');
+    $('#g-new-popup-main').trigger('to.owl.carousel', [(ind - 1), 0]);
+});
 
 $('.lightbox-link').magnificPopup({
     type: 'inline',
@@ -1404,56 +1769,83 @@ $('.lightbox-link').magnificPopup({
             var ul = $('.g-thumbs ul').prop('outerHTML');
             $('#g-popup .g-popup-thumbs').html(ul);
             $('#g-popup .g-popup-thumbs a').attr('href', 'javascript:void(0)').removeClass('lightbox-link').addClass('popup-lightbox');
+            var dataIndexValue = $(this.currItem.el).attr('data-index');
 
-            if($('#g-popup .g-popup-main-image img').length){
-                changePopType('image');
-            }else{
-                changePopType('video');
-            }
+            // $('.g-new-iframe')[0].contentWindow.postMessage('{"event":"command","func":"stopVideo","args":""}', '*');
 
-            $(document).on('click', '#g-popup .popup-lightbox', function(){
-                var type = $(this).attr('data-type');
-                var src = $(this).attr('data-src');
-                var indx = $(this).attr('data-index');
-
-                $('#g-popup-active-img-vid').val(indx);
-
-                if(type=="image"){
-                    $('#g-popup .g-popup-main-image').html('<img>');
-                    $('#g-popup .g-popup-main-image img').attr('src', src);
-
-                    changePopType('image');
-                }else{
-                    var videoImage = $(this).attr('data-videoImage');
-                    var videoId = src.match(/[?&]v=([^&]+)/)[1];
-                    
-                    var iframe = $("<iframe>", {
-                        src: "https://www.youtube.com/embed/" + videoId + "?autoplay=1&mute=1",
-                        frameborder: 0,
-                        allowfullscreen: true,
-                        width: "100%",
-                        height: "600" // You can adjust the width and height as needed
-                      });
-                    $('#g-popup .g-popup-main-image').html(iframe);
-
-                    changePopType('video');
-                }            
+            $('#g-new-popup-main').owlCarousel({
+                autoplay: false,
+                smartSpeed:500,
+                loop:true,
+                margin:0,
+                nav:true,
+                dots: false,
+                responsive:{
+                    0:{
+                        items:1
+                    },
+                    600:{
+                        items:1
+                    },
+                    1000:{
+                        items:1
+                    }
+                }
             });
 
-            $(document).on('click', '#g-popup .g-change-poptype', function(){
-                $('#g-popup .g-change-poptype').removeClass('active');
-                $(this).addClass('active');
+            setTimeout(function(){
+                console.log('started');
+                $('#g-new-popup-main').trigger('to.owl.carousel', [(dataIndexValue - 1), 0]);
+            }, 100);
+                  
 
-                var type = $(this).attr('data-type');
-                var src = $(this).attr('data-src');
-                if(type=="image"){
-                    $('#g-popup .g-popup-title-and-thumbs .g-popup-thumbs ul li:first-child a').click();
-                }else{
+            // if($('#g-popup .g-popup-main-image img').length){
+            //     changePopType('image');
+            // }else{
+            //     changePopType('video');
+            // }
+
+            // $(document).on('click', '#g-popup .popup-lightbox', function(){
+            //     var type = $(this).attr('data-type');
+            //     var src = $(this).attr('data-src');
+            //     var indx = $(this).attr('data-index');
+
+            //     $('#g-popup-active-img-vid').val(indx);
+
+            //     if(type=="image"){
+            //         $('#g-popup .g-popup-main-image').html('<img>');
+            //         $('#g-popup .g-popup-main-image img').attr('src', src);
+
+            //         // changePopType('image');
+            //     }else{
+            //         var videoImage = $(this).attr('data-videoImage');
+            //         var videoId = src.match(/[?&]v=([^&]+)/)[1];
                     
-                    // $('#g-popup .g-popup-title-and-thumbs .g-popup-thumbs ul li a[data-type="video"]').click();
-                    $('#g-popup .g-popup-title-and-thumbs .g-popup-thumbs ul li a[data-type="video"]').parent()[0].children[0].click();
-                }            
-            });
+            //         var iframe = $("<iframe>", {
+            //             src: "https://www.youtube.com/embed/" + videoId + "?autoplay=1&mute=1",
+            //             frameborder: 0,
+            //             allowfullscreen: true,
+            //             width: "100%",
+            //             height: "600" // You can adjust the width and height as needed
+            //           });
+            //         $('#g-popup .g-popup-main-image').html(iframe);
+
+            //         // changePopType('video');
+            //     }            
+            // });
+
+            // $(document).on('click', '#g-popup .g-change-poptype', function(){
+            //     $('#g-popup .g-change-poptype').removeClass('active');
+            //     $(this).addClass('active');
+
+            //     var type = $(this).attr('data-type');
+            //     var src = $(this).attr('data-src');
+            //     if(type=="image"){
+            //         $('#g-popup .g-popup-title-and-thumbs .g-popup-thumbs ul li:first-child a').click();
+            //     }else{
+            //         $('#g-popup .g-popup-title-and-thumbs .g-popup-thumbs ul li a[data-type="video"]').parent()[0].children[0].click();
+            //     }            
+            // });
 
 
         }
@@ -1572,9 +1964,6 @@ $(document).ready(function(){
             }
         });
 
-
-    //.g-owl-container .g-owlBtns button
-
     $('.g-owl-container .g-owlBtns button.prev').on('click', function () {
         $('#g-ralated-products').trigger('prev.owl.carousel');
     });
@@ -1642,14 +2031,14 @@ $(document).on('click', '.g-arrows button.g-prev', function(){
         
         if(videoimage=="image"){
             $('.g-main-image a').removeClass('videosvg');
-            $('.g-popup-main-image').html('<img src="'+src+'">');
+            // $('.g-popup-main-image').html('<img src="'+src+'">');
         }else{
             var dataSrc = $('.g-images-box .g-thumbs ul li a[data-index="'+prev+'"]').attr('data-src');
             const url = new URL(dataSrc);
             const videoId = url.searchParams.get("v");
 
             $('.g-main-image a').addClass('videosvg');
-            $('.g-popup-main-image').html('<iframe src="https://www.youtube.com/embed/'+videoId+'?autoplay=1&amp;mute=1" frameborder="0" allowfullscreen="true" style="width: 100%; height: 600px;"></iframe>>');
+            // $('.g-popup-main-image').html('<iframe src="https://www.youtube.com/embed/'+videoId+'?autoplay=1&amp;mute=1" frameborder="0" allowfullscreen="true" style="width: 100%; height: 600px;"></iframe>>');
         }
 
         $('.g-images-box .g-main-image img').attr('src', src);
@@ -1660,14 +2049,14 @@ $(document).on('click', '.g-arrows button.g-prev', function(){
 
         if(videoimage=="image"){
             $('.g-main-image a').removeClass('videosvg');
-            $('.g-popup-main-image').html('<img src="'+src+'">');
+            // $('.g-popup-main-image').html('<img src="'+src+'">');
         }else{
             var dataSrc = $('.g-images-box .g-thumbs ul li a[data-index="'+maxImageIndex+'"]').attr('data-src');
             const url = new URL(dataSrc);
             const videoId = url.searchParams.get("v");
 
             $('.g-main-image a').addClass('videosvg');
-            $('.g-popup-main-image').html('<iframe src="https://www.youtube.com/embed/'+videoId+'?autoplay=1&amp;mute=1" frameborder="0" allowfullscreen="true" style="width: 100%; height: 600px;"></iframe>>');
+            // $('.g-popup-main-image').html('<iframe src="https://www.youtube.com/embed/'+videoId+'?autoplay=1&amp;mute=1" frameborder="0" allowfullscreen="true" style="width: 100%; height: 600px;"></iframe>>');
         }
 
         $('.g-images-box .g-main-image img').attr('src', src);
@@ -1675,67 +2064,67 @@ $(document).on('click', '.g-arrows button.g-prev', function(){
     }
 });
 
-$(document).on('click', '.g-popup-next', function(){
-    var activeImageIndex = parseInt($('#g-popup-active-img-vid').val());  
-    var next = activeImageIndex + 1;
+// $(document).on('click', '.g-popup-next', function(){
+//     var activeImageIndex = parseInt($('#g-popup-active-img-vid').val());  
+//     var next = activeImageIndex + 1;
     
-    if($('.g-change-poptype[data-type="image"]').hasClass('active')){
-        if($('#g-popup .g-popup-title-and-thumbs .g-popup-thumbs ul li:not(:hidden) a[data-index="'+next+'"]').length){
-            var nextImage = $('#g-popup .g-popup-title-and-thumbs .g-popup-thumbs ul li a[data-index="'+next+'"]').attr('data-src');
-            $('#g-popup-active-img-vid').val(next);
-            $('.g-popup-main-image img').attr('src', nextImage);
-        }else{
-            var nextImage = $('#g-popup .g-popup-title-and-thumbs .g-popup-thumbs ul li a[data-index="1"]').attr('data-src');
-            $('#g-popup-active-img-vid').val(1);
-            $('.g-popup-main-image img').attr('src', nextImage);
-        }
-    }else{
-         if($('#g-popup .g-popup-title-and-thumbs .g-popup-thumbs ul li:not(:hidden) a[data-index="'+next+'"]').length){
-            var nextVideo = $('#g-popup .g-popup-title-and-thumbs .g-popup-thumbs ul li a[data-index="'+next+'"]').attr('data-src');
-            const url = new URL(nextVideo);
-            const videoId = url.searchParams.get("v");
+//     if($('.g-change-poptype[data-type="image"]').hasClass('active')){
+//         if($('#g-popup .g-popup-title-and-thumbs .g-popup-thumbs ul li:not(:hidden) a[data-index="'+next+'"]').length){
+//             var nextImage = $('#g-popup .g-popup-title-and-thumbs .g-popup-thumbs ul li a[data-index="'+next+'"]').attr('data-src');
+//             $('#g-popup-active-img-vid').val(next);
+//             $('.g-popup-main-image img').attr('src', nextImage);
+//         }else{
+//             var nextImage = $('#g-popup .g-popup-title-and-thumbs .g-popup-thumbs ul li a[data-index="1"]').attr('data-src');
+//             $('#g-popup-active-img-vid').val(1);
+//             $('.g-popup-main-image img').attr('src', nextImage);
+//         }
+//     }else{
+//          if($('#g-popup .g-popup-title-and-thumbs .g-popup-thumbs ul li:not(:hidden) a[data-index="'+next+'"]').length){
+//             var nextVideo = $('#g-popup .g-popup-title-and-thumbs .g-popup-thumbs ul li a[data-index="'+next+'"]').attr('data-src');
+//             const url = new URL(nextVideo);
+//             const videoId = url.searchParams.get("v");
 
-            // console.log(videoId);
-            var owlHtml = '<iframe width="100%" height="600" src="https://www.youtube.com/embed/'+videoId+'?autoplay=1&mute=1" frameborder="0" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>';
+//             // console.log(videoId);
+//             var owlHtml = '<iframe width="100%" height="600" src="https://www.youtube.com/embed/'+videoId+'?autoplay=1&mute=1" frameborder="0" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>';
 
-            $('#g-popup-active-img-vid').val(next);
+//             $('#g-popup-active-img-vid').val(next);
 
-            $('#g-popup .g-popup-main-image').html(owlHtml);
-        }
-    }    
-});
+//             $('#g-popup .g-popup-main-image').html(owlHtml);
+//         }
+//     }    
+// });
 
-$(document).on('click', '.g-popup-prev', function(){
-    var activeImageIndex = parseInt($('#g-popup-active-img-vid').val());
-    var prev = activeImageIndex - 1;
+// $(document).on('click', '.g-popup-prev', function(){
+//     var activeImageIndex = parseInt($('#g-popup-active-img-vid').val());
+//     var prev = activeImageIndex - 1;
 
-    if($('.g-change-poptype[data-type="image"]').hasClass('active')){     
-        if($('#g-popup .g-popup-title-and-thumbs .g-popup-thumbs ul li:not(:hidden) a[data-index="'+prev+'"]').length){
-            var nextImage = $('#g-popup .g-popup-title-and-thumbs .g-popup-thumbs ul li a[data-index="'+prev+'"]').attr('data-src');
-            $('#g-popup-active-img-vid').val(prev);
-            $('.g-popup-main-image img').attr('src', nextImage);
-        }else{
-            var max = $('#g-popup .g-popup-title-and-thumbs .g-popup-thumbs ul li:not(:hidden)').length;
+//     if($('.g-change-poptype[data-type="image"]').hasClass('active')){     
+//         if($('#g-popup .g-popup-title-and-thumbs .g-popup-thumbs ul li:not(:hidden) a[data-index="'+prev+'"]').length){
+//             var nextImage = $('#g-popup .g-popup-title-and-thumbs .g-popup-thumbs ul li a[data-index="'+prev+'"]').attr('data-src');
+//             $('#g-popup-active-img-vid').val(prev);
+//             $('.g-popup-main-image img').attr('src', nextImage);
+//         }else{
+//             var max = $('#g-popup .g-popup-title-and-thumbs .g-popup-thumbs ul li:not(:hidden)').length;
 
-            var nextImage = $('#g-popup .g-popup-title-and-thumbs .g-popup-thumbs ul li a[data-index="'+max+'"]').attr('data-src');
-            $('#g-popup-active-img-vid').val(max);
-            $('.g-popup-main-image img').attr('src', nextImage);
-        }
-    }else{
-        if($('#g-popup .g-popup-title-and-thumbs .g-popup-thumbs ul li:not(:hidden) a[data-index="'+prev+'"]').length){
-            var prevVideo = $('#g-popup .g-popup-title-and-thumbs .g-popup-thumbs ul li a[data-index="'+prev+'"]').attr('data-src');
-            const url = new URL(prevVideo);
-            const videoId = url.searchParams.get("v");
+//             var nextImage = $('#g-popup .g-popup-title-and-thumbs .g-popup-thumbs ul li a[data-index="'+max+'"]').attr('data-src');
+//             $('#g-popup-active-img-vid').val(max);
+//             $('.g-popup-main-image img').attr('src', nextImage);
+//         }
+//     }else{
+//         if($('#g-popup .g-popup-title-and-thumbs .g-popup-thumbs ul li:not(:hidden) a[data-index="'+prev+'"]').length){
+//             var prevVideo = $('#g-popup .g-popup-title-and-thumbs .g-popup-thumbs ul li a[data-index="'+prev+'"]').attr('data-src');
+//             const url = new URL(prevVideo);
+//             const videoId = url.searchParams.get("v");
 
-            // console.log(videoId);
-            var owlHtml = '<iframe width="100%" height="600" src="https://www.youtube.com/embed/'+videoId+'?autoplay=1&mute=1" frameborder="0" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>';
+//             // console.log(videoId);
+//             var owlHtml = '<iframe width="100%" height="600" src="https://www.youtube.com/embed/'+videoId+'?autoplay=1&mute=1" frameborder="0" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>';
 
-            $('#g-popup-active-img-vid').val(prev);
+//             $('#g-popup-active-img-vid').val(prev);
 
-            $('#g-popup .g-popup-main-image').html(owlHtml);
-        }
-    }
-});
+//             $('#g-popup .g-popup-main-image').html(owlHtml);
+//         }
+//     }
+// });
 </script>
 </body>
 </html>
