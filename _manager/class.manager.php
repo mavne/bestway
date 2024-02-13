@@ -259,6 +259,8 @@ class Admin_Manager
 						$slug = empty($_POST['slug']) ? $_POST['title'] : $_POST['slug'];
 						$posttime = isset($_POST["posttime"]) ? $_POST["posttime"]:date("H:i:s");
 						$_POST["postdate"] .= ' ' . $posttime;
+
+						$_POST["countdown_time"] .= ' ' . $_POST["countdown_time_time"];
 						$_POST["visibility"] = (isset($_POST["visibility"])) ? 1 : 0;
 						$_POST["homepage"] = (isset($_POST["homepage"])) ? 1 : 0;
 
@@ -399,11 +401,14 @@ class Admin_Manager
 
                     $update = db_update(c("table.pages"), $data, "WHERE id = {$this->route[2]} and language='".l()."' LIMIT 1");
                     db_query($update);
+
+                    $_POST["countdown_time"] .= ' ' . $_POST["countdown_time_time"];
                     
 //  update identically
                     $data = array(
 						'price' => $_POST['price'],
 						'discount' => $_POST['discount'],
+						'countdown_time' => $_POST['countdown_time'],
 						'slug' => $_POST['slug'],
 						'template' => $_POST['template'],
 						'image1' => $_POST['image1'],

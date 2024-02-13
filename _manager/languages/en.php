@@ -377,6 +377,7 @@
 	$a["noprivileges"] = 'Deny access to all modules';
 	$a["terms"] = 'Terms of Use';
 	$a["privacy"] = 'Privacy Policy';
+	$a["countdown_time"] = 'Countdown time';
 // Tooltips
 
 ?>

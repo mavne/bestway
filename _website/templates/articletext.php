@@ -31,10 +31,12 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js" integrity="sha512-XtmMtDEcNz2j7ekrtHvOVR4iwwaD6o/FUJe6+Zq+HgcCsk3kj4uSQQR8weQ2QVj1o0Pk6PwYLohm206ZzNfubg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <script src="https://cdn.jsdelivr.net/npm/owl.carousel@2.3.4/dist/owl.carousel.min.js"></script>
 
-
 <script async src="https://www.googleoptimize.com/optimize.js?id=OPT-TQJT2MC" type="e028b536ec15088aeba82394-text/javascript"></script>
 
 <style>
+body, html{
+    overflow-x: hidden !important;
+}
 .product-offers.category-view-offers .product-offer-trigger.secondary {
 background-color: #7CC6D1;
 }
@@ -630,6 +632,23 @@ The store will not work correctly in the case when cookies are disabled.</div>
         object-position: center;
     }
 
+    .g-new-popup-goto.active img{
+        border: solid 1px #0a65ae;
+    }
+
+    .g-ppoto{
+        width: calc(50% - 12px) !important;
+        margin: 5px !important;
+        display: inline-block !important;
+    }
+
+    .g-ppoto img{
+        width: 100% !important;
+        object-position: center !important;
+        object-fit: contain !important;
+        border: solid 1px #f2f2f2;
+    }
+
     #g-new-popup-main{
         margin: 0 50px;
         padding: 0;
@@ -897,7 +916,7 @@ The store will not work correctly in the case when cookies are disabled.</div>
                             if($$im != ""):
                                 $index++;
                         ?>
-                            <li>
+                            <li class="g-ppoto">
                                 <a href="javascript:void(0)" class="g-new-popup-goto" data-index="<?=$index?>">
                                     <img src="<?=$$im?>" alt="">
                                 </a>
@@ -1095,14 +1114,89 @@ The store will not work correctly in the case when cookies are disabled.</div>
 
 <div class="bundle-options-container">
     <div class="product-add-form" style="padding-top:0">
+        <?php
+        if($discount!="" && $countdown_time!=""){
+            $totime = strtotime($countdown_time);
+            if(time() >= $totime){
+                db_query("UPDATE `pages` SET `discount`='' WHERE `id`='".(int)$id."'");
+                $discount="";
+            }
+        }
 
+        if($discount!="" && $countdown_time!=""){    
+            $countdown_to = date("Y-m-d H:i:s", $totime);
+        ?>
+        <style type="text/css">
+            #countdown{
+                margin: 0 0 15px 0;
+                padding: 0;
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                width: 100%;
+            }
+
+            #countdown span{
+                margin: 0;
+                padding: 0;
+                width: 50px;
+                height: 60px;
+                line-break: 60px;
+                text-align: center;
+                background-color: #7cc6d1;
+                color: #000;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                font-size: 26px;
+            }
+        </style>
+        <div id="countdown"></div>
+        <script>
+            function pad(n, len) {
+              n = n.toString();
+              return n.length < len ? pad("0" + n, len) : n;
+            }
+
+          // Set the date we're counting down to
+          const countDownDate = new Date("<?=$countdown_to?>").getTime();
+
+          // Update the countdown every 1 second
+          const x = setInterval(function() {
+
+            // Get the current date and time
+            const now = new Date().getTime();
+
+            // Calculate the remaining time
+            const distance = countDownDate - now;
+
+            // Calculate days, hours, minutes, and seconds
+            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+            // Display the countdown
+            document.getElementById("countdown").innerHTML = "<span>"+pad(days, 2) + "</span> <span>" + pad(hours, 2) + "</span> <span>"
+              + pad(minutes, 2) + "</span> <span>" + pad(seconds, 2) + "</span>";
+
+            // If the countdown is over, display a message
+            if (distance < 0) {
+              clearInterval(x);
+              location.reload();
+            }
+          }, 1000);
+        </script>
+        <?php
+        }
+        ?>
 
         <h2 class="g-price">
             <?php
             if($discount!=""){
             ?>
-            <span style="text-decoration: line-through; padding-right:10px;"><?=$price?>₾</span>
-            <span><?=$discount?>₾</span>
+            <span style="text-decoration: line-through; padding-right:10px; color:red;"><?=$price?>₾</span>
+            <span style="color:green;"><?=$discount?>₾</span>
             <?php
             }else{
             ?>
@@ -1110,8 +1204,9 @@ The store will not work correctly in the case when cookies are disabled.</div>
             <?php
             }
             ?>
-            
         </h2> 
+
+        <div style="clear:both;"></div>
 
         <?php
         if($max_quentity >= 1){
@@ -1322,6 +1417,45 @@ The store will not work correctly in the case when cookies are disabled.</div>
     </div>
 </div>
 
+<div style="clear: both;"></div>
+<div class="featured-four">
+    <div class="content-limit">
+        <h3 class="g-menuitem"><?=l('category.title1')?></h3>
+        <h2 class="g-menuitem-sub"><?=l('category.title2')?></h2>
+        
+        <div class="content-container">
+            <div class="row"> 
+                <?php
+                $g_feature_categories = g_feature_categories();
+                $chunk = array_chunk($g_feature_categories, 2);
+
+                foreach(@$chunk[0] as $v):
+                ?>
+                <div class="column">
+                    <a href="<?=href($v['id'])?>">
+                        <img src="<?=$v['image1']?>" alt="featured category Image">
+                        
+                        <button class="action primary"><span class="g-menuitem"><?=$v['title']?></span></button>
+                    </a>
+                </div>
+                <?php endforeach; ?>
+            </div>
+
+            <div class="row">
+                <?php
+                foreach(@$chunk[1] as $v):
+                ?>
+                <div class="column">
+                    <a href="<?=href($v['id'])?>">
+                        <img src="<?=$v['image1']?>" alt="featured category Image">
+                        <button class="action primary"><span class="g-menuitem"><?=$v['title']?></span></button>
+                    </a>
+                </div>
+                <?php endforeach; ?>
+            </div>
+        </div>
+    </div>
+</div>
 <div style="clear: both;"></div>
 
 </div>
@@ -1756,11 +1890,7 @@ $(document).on('mouseenter', '.g-images-box .g-thumbs ul li a', function(){
 //     }
 // }
 
-$(document).on("click", ".g-new-popup-goto", function(){
-    var ind = $(this).attr('data-index');
-    $('#g-new-popup-main').trigger('to.owl.carousel', [(ind - 1), 0]);
-});
-
+var owlxxx;
 $('.lightbox-link').magnificPopup({
     type: 'inline',
     callbacks: {
@@ -1769,87 +1899,57 @@ $('.lightbox-link').magnificPopup({
             var ul = $('.g-thumbs ul').prop('outerHTML');
             $('#g-popup .g-popup-thumbs').html(ul);
             $('#g-popup .g-popup-thumbs a').attr('href', 'javascript:void(0)').removeClass('lightbox-link').addClass('popup-lightbox');
-            var dataIndexValue = $(this.currItem.el).attr('data-index');
+            var dataIndexValue = parseInt($(this.currItem.el).attr('data-index'));
 
             // $('.g-new-iframe')[0].contentWindow.postMessage('{"event":"command","func":"stopVideo","args":""}', '*');
 
-            $('#g-new-popup-main').owlCarousel({
-                autoplay: false,
-                smartSpeed:500,
-                loop:true,
-                margin:0,
-                nav:true,
-                dots: false,
-                responsive:{
-                    0:{
-                        items:1
-                    },
-                    600:{
-                        items:1
-                    },
-                    1000:{
-                        items:1
-                    }
-                }
-            });
+            $('.g-new-popup-goto').removeClass('active');
+            // $('#g-new-popup-main').owlCarousel('destroy');
+            if(dataIndexValue<=1 || isNaN(dataIndexValue)){ dataIndexValue = 1; }
+
+            $('.g-new-popup-goto[data-index="'+dataIndexValue+'"]').addClass('active');
+
+            console.log(dataIndexValue);
 
             setTimeout(function(){
-                console.log('started');
-                $('#g-new-popup-main').trigger('to.owl.carousel', [(dataIndexValue - 1), 0]);
-            }, 100);
-                  
+                owlxxx = $('#g-new-popup-main').owlCarousel({
+                    autoplay: false,
+                    smartSpeed:500,
+                    loop:false,
+                    margin:0,
+                    nav:true,
+                    dots: false,
+                    responsive:{
+                        0:{
+                            items:1
+                        },
+                        600:{
+                            items:1
+                        },
+                        1000:{
+                            items:1
+                        }
+                    }
+                });
 
-            // if($('#g-popup .g-popup-main-image img').length){
-            //     changePopType('image');
-            // }else{
-            //     changePopType('video');
-            // }
+                owlxxx.trigger('to.owl.carousel', [dataIndexValue - 1]);
 
-            // $(document).on('click', '#g-popup .popup-lightbox', function(){
-            //     var type = $(this).attr('data-type');
-            //     var src = $(this).attr('data-src');
-            //     var indx = $(this).attr('data-index');
-
-            //     $('#g-popup-active-img-vid').val(indx);
-
-            //     if(type=="image"){
-            //         $('#g-popup .g-popup-main-image').html('<img>');
-            //         $('#g-popup .g-popup-main-image img').attr('src', src);
-
-            //         // changePopType('image');
-            //     }else{
-            //         var videoImage = $(this).attr('data-videoImage');
-            //         var videoId = src.match(/[?&]v=([^&]+)/)[1];
-                    
-            //         var iframe = $("<iframe>", {
-            //             src: "https://www.youtube.com/embed/" + videoId + "?autoplay=1&mute=1",
-            //             frameborder: 0,
-            //             allowfullscreen: true,
-            //             width: "100%",
-            //             height: "600" // You can adjust the width and height as needed
-            //           });
-            //         $('#g-popup .g-popup-main-image').html(iframe);
-
-            //         // changePopType('video');
-            //     }            
-            // });
-
-            // $(document).on('click', '#g-popup .g-change-poptype', function(){
-            //     $('#g-popup .g-change-poptype').removeClass('active');
-            //     $(this).addClass('active');
-
-            //     var type = $(this).attr('data-type');
-            //     var src = $(this).attr('data-src');
-            //     if(type=="image"){
-            //         $('#g-popup .g-popup-title-and-thumbs .g-popup-thumbs ul li:first-child a').click();
-            //     }else{
-            //         $('#g-popup .g-popup-title-and-thumbs .g-popup-thumbs ul li a[data-type="video"]').parent()[0].children[0].click();
-            //     }            
-            // });
-
-
+                owlxxx.on('changed.owl.carousel', function(event) {
+                  $('.g-new-popup-goto').removeClass('active');
+                  var currentItem = event.item.index + 1;
+                  console.log(currentItem);
+                  $('.g-new-popup-goto[data-index="'+currentItem+'"]').addClass('active');
+                });
+            }, 500);
         }
     }
+});
+
+$(document).on("click", ".g-new-popup-goto", function(){
+    $('.g-new-popup-goto').removeClass('active');
+    $(this).addClass('active');
+    var ind = $(this).attr('data-index');
+    owlxxx.trigger('to.owl.carousel', [(ind - 1), 0]);
 });
 
 $(document).ready(function(){

@@ -99,6 +99,19 @@
                         <input type="text" id="discount" name="discount" value="<?php echo ($route[1]=='edit') ? $edit["discount"] : '' ?>" class="inp"/>
                     </div>
 
+                    <div class="list2 fix">
+                        <?php
+                        if($edit["countdown_time"]==""){ 
+                            $edit["countdown_time"] = time(); 
+                        }
+                        ?>
+                        <div class="name"><?php echo a("countdown_time");?>:</div>
+                        <input type="text" name="countdown_time" value="<?php echo ($route[1]=='edit') ? date('Y-m-d', strtotime($edit["countdown_time"])) : date('Y-m-d'); ?>" id="countdown_time" class="inp-small" data-beatpicker="true" data-beatpicker-position="['*','*']" data-beatpicker-module="today,gotoDate,clear,icon" />
+
+                        <div class="name"><?php echo a("time");?>: <span class="star">*</span></div>
+                        <input type="text" name="countdown_time_time" value="<?php echo ($route[1]=='edit') ? date('H:i:s', strtotime($edit["countdown_time"])) : date('H:i:s'); ?>" id="countdown_time_time" class="inp-small" />
+                    </div>
+
                     <div class="list fix">
                         <div class="name"><?php echo a("friendlyURL");?>: <span class="star">*</span></div>
                         <?php echo c('site.url') . l() . $parent_slug.'/'; ?>

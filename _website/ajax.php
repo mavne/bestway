@@ -173,14 +173,14 @@ switch($type){
                     $html .= '</span>';
                     $html .= '</div>';
 
-                    $html .= '<div class="view-details-wrapper">';
-                    $html .= sprintf(
-                        '<a class="product-item-link details g-menuitem-sub" href="%s">',
-                        href($a['id'])
-                    );
-                    $html .= l('read.more');
-                    $html .= '</a>';
-                    $html .= '</div>';
+                    // $html .= '<div class="view-details-wrapper">';
+                    // $html .= sprintf(
+                    //     '<a class="product-item-link details g-menuitem-sub" href="%s">',
+                    //     href($a['id'])
+                    // );
+                    // $html .= l('read.more');
+                    // $html .= '</a>';
+                    // $html .= '</div>';
 
                     $html .= '<div class="product-item-inner">';
                     $html .= '<div class="product actions product-item-actions">';
