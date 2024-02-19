@@ -101,7 +101,7 @@
 
                     <div class="list2 fix">
                         <?php
-                        if($edit["countdown_time"]==""){ 
+                        if(isset($edit["countdown_time"]) && $edit["countdown_time"]==""){ 
                             $edit["countdown_time"] = time(); 
                         }
                         ?>
@@ -205,6 +205,11 @@
                     <div class="list2 fix">
                         <div class="name"><?php echo a("homepage");?>: <span class="star">*</span></div>
                         <input type="checkbox" name="homepage" class="inp-check"<?php echo (($route[1]=='edit')&&($edit["homepage"]==0)) ? '' : ' checked' ?> />
+                    </div>
+
+                    <div class="list2 fix">
+                        <div class="name"><?php echo a("homepage2");?>: <span class="star">*</span></div>
+                        <input type="checkbox" name="homepage2" class="inp-check"<?php echo (($route[1]=='edit')&&($edit["homepage2"]==0)) ? '' : ' checked' ?> />
                     </div>
 
                     <div class="list fix">
@@ -321,8 +326,29 @@
 
                     <div class="list2 fix">
                         <div class="name"><?php echo a("quantity");?>:</div>
-                        <input type="text" id="max_quentity" name="max_quentity" value="<?php echo ($route[1]=='edit') ? $edit["max_quentity"] : '' ?>" class="inp"/>
+                        <input type="text" id="max_quentity" name="max_quentity" value="<?php echo ($route[1]=='edit') ? $edit["max_quentity"] : '' ?>" class="inp-small" style="margin-right: 20px;" />
+                        <input type="checkbox" id="max_quantity_check" <?=(isset($edit["max_quentity"]) && $edit["max_quentity"]<1) ? ' checked="checked"' : ''?>>
+                        <span>Не продается</span>
                     </div>
+
+                    <script type="text/javascript">
+                        const checkbox = document.getElementById('max_quantity_check');
+                        const textInput = document.getElementById('max_quentity');
+
+                        checkbox.addEventListener('change', function() {
+                            if (checkbox.checked) {
+                                textInput.value = '0';
+                            } else {
+                                textInput.value = '1';
+                            }
+                        });
+
+                        textInput.addEventListener('input', function() {
+                            if (textInput.value !== '0') {
+                                checkbox.checked = false;
+                            }
+                        });
+                    </script>
                 </div>
 
                 <div id="t2">

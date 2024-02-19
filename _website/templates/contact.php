@@ -666,6 +666,16 @@ $imgx = true;
                         </div>
                     </div>
                 </div>
+
+                <div class="col-sm-12">
+                    <div class="Item">
+                        <div class="Icon Address"></div>
+                        <div class="Info">
+                            <strong><span><?php echo l('address')?> 2:</span></strong>
+                            <label><?php echo s('address2');?></label>
+                        </div>
+                    </div>
+                </div>
                 <div class="col-sm-12">
                     <div class="ContactSocial HideMobile">
                         <a href="<?php echo s('facebook');?>" target="_blank" class="Facebook" style="margin-right:10px;"><i class="fa fa-facebook"></i></a>
@@ -687,6 +697,7 @@ $imgx = true;
          <script>
             <?php
             $maps = explode(",", s('map.makhinjauri'));
+            $maps2 = explode(",", s('map.makhinjauri2'));
             ?>
         function initMap() {
             var map = new google.maps.Map(document.getElementById('g-map'), {
@@ -707,6 +718,19 @@ $imgx = true;
                 // Open a new window with directions
                 window.open('https://www.google.com/maps/dir/?api=1&destination=' + 
                             marker.getPosition().lat() + ',' + marker.getPosition().lng(), '_blank');
+            });
+
+            var marker2 = new google.maps.Marker({
+                position: {lat: <?=$maps2[0]?>, lng: <?=$maps2[1]?>},
+                map: map,
+                title: 'Marker Title'
+            });
+
+            // Add a click event listener to the marker
+            marker2.addListener('click', function() {
+                // Open a new window with directions
+                window.open('https://www.google.com/maps/dir/?api=1&destination=' + 
+                            marker2.getPosition().lat() + ',' + marker2.getPosition().lng(), '_blank');
             });
         }
     </script>

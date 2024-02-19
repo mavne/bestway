@@ -205,6 +205,7 @@
 	$a["redirectlink"] = "Redirect Link";
 	$a["visibility"] = "Visibility";
 	$a["homepage"] = "Homepage";
+	$a["homepage2"] = "Features Categories";
 	$a["quantity"] = "Quentity";
 	$a["show"] = "Show";
 	$a["link_header"] = "Link in header";

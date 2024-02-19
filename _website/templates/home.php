@@ -124,6 +124,36 @@ float: left;
 margin: 0 auto;
 width: 100%;
 }
+
+#featured-block .owl-item{
+    background-color: transparent !important;
+}
+
+#featured-block .product-wrapper{
+    width: 100%;
+}
+
+#new-arrivals-block .owl-item{
+    background-color: transparent !important;
+}
+
+#new-arrivals-block .product-wrapper{
+    width: 100%;
+}
+
+#sale-block .owl-item{
+    background-color: transparent !important;
+}
+
+#sale-block .product-wrapper{
+    width: 100%;
+}
+
+@media (max-width: 960px){
+    .mobileHide{
+        display: none !important;
+    }
+}
 </style> <script type="text/javascript">
 
     let host = window.location.hostname.replace('www.', '');
@@ -450,13 +480,36 @@ width: 100%;
 ?>
 <div class="md-menu-overlay">
 </div>
-<div class="confidence-banner" style="display: none">
-<div class="cb-columns">
-<div class="cb-col  nb">
-<div class="magezon-builder magezon-builder-preload"><div class="cufm6eo mgz-element mgz-element-row full_width_row"><div class="mgz-element-inner cufm6eo-s"><div class="inner-content mgz-container"><div class="goq5t8b mgz-element mgz-element-column mgz-col-xs-12"><div class="mgz-element-inner goq5t8b-s"><div class="myr0eeq mgz-element mgz-child mgz-element-text"><div class="mgz-element-inner myr0eeq-s"><p style="text-align: center;"><a href="/sale.html" title="Bestway Sale"><strong>UP TO 50% OFF</strong></a></p><p style="text-align: center;"><a href="/sale.html" title="Bestway Sale">On Selected Pools, Hot Tubs And More...</a></p></div></div></div></div></div></div></div></div> </div>
+
+<?php if(g_checkVisibility(346)): ?>
+<div class="confidence-banner">
+    <div class="cb-columns">
+        <div class="cb-col  nb">
+            <div class="magezon-builder magezon-builder-preload">
+                <div class="cufm6eo mgz-element mgz-element-row full_width_row">
+                    <div class="mgz-element-inner cufm6eo-s">
+                        <div class="inner-content mgz-container">
+                            <div class="goq5t8b mgz-element mgz-element-column mgz-col-xs-12">
+                                <div class="mgz-element-inner goq5t8b-s">
+                                    <div class="myr0eeq mgz-element mgz-child mgz-element-text">
+                                        <div class="mgz-element-inner myr0eeq-s">
+                                            <?php echo text(346);?>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <span class="close">
+        <img src="./Bestway Store UK _ Leaders in Inflatables &amp; Above Ground Pools_files/close.webp" alt="Close button">
+    </span>
 </div>
-<span class="close"><img src="./Bestway Store UK _ Leaders in Inflatables &amp; Above Ground Pools_files/close.webp" alt="Close button"></span>
-</div>
+<?php endif; ?>
+
 <style>
         .confidence-banner-wrapper {
             min-height: 60px;
@@ -559,29 +612,35 @@ width: 100%;
             <h2 class="g-menuitem"><?=l('categories')?></h2>
             
             <div class="content-container g-content-container">
-
-
                 <?php
                     $g_categories = g_categories();
-
                     $slicedArray = array_chunk($g_categories, 3);
-
                     foreach($slicedArray as $sliced):
                     ?>
                     <div class="row">
-                        <?php 
-                        foreach($sliced as $cat): 
-                            $href = href($cat['id']);
-                        ?>
-                        <div class="column g-column-hover-effect">
-                            <a href="<?=$href?>">
-                                <img src="<?=$cat['image1']?>" alt="<?=htmlentities($cat['title'])?>">
-                                <button class="action primary"><span class="g-menuitem"><?=$cat['title']?></span></button>
+                       
+
+                        <div class="column g-column-hover-effect<?=(!isset($sliced[0])) ? ' mobileHide' : ''?>"<?=(!isset($sliced[0])) ? ' style="visibility:hidden;"' : ''?>>
+                            <a href="<?=href($sliced[0]['id'])?>">
+                                <img src="<?=$sliced[0]['image1']?>" alt="<?=htmlentities($sliced[0]['title'])?>">
+                                <button class="action primary"><span class="g-menuitem"><?=$sliced[0]['title']?></span></button>
                             </a>
                         </div>
-                        <?php
-                        endforeach;
-                        ?>
+
+                        <div class="column g-column-hover-effect<?=(!isset($sliced[1])) ? ' mobileHide' : ''?>"<?=(!isset($sliced[1])) ? ' style="visibility:hidden;"' : ''?>>
+                            <a href="<?=href(@$sliced[1]['id'])?>">
+                                <img src="<?=@$sliced[1]['image1']?>" alt="<?=htmlentities(@$sliced[1]['title'])?>">
+                                <button class="action primary"><span class="g-menuitem"><?=@$sliced[1]['title']?></span></button>
+                            </a>
+                        </div>
+
+                        <div class="column g-column-hover-effect<?=(!isset($sliced[2])) ? ' mobileHide' : ''?>"<?=(!isset($sliced[2])) ? ' style="visibility:hidden;"' : ''?>>
+                            <a href="<?=href(@$sliced[2]['id'])?>">
+                                <img src="<?=@$sliced[2]['image1']?>" alt="<?=htmlentities(@$sliced[2]['title'])?>">
+                                <button class="action primary"><span class="g-menuitem"><?=@$sliced[2]['title']?></span></button>
+                            </a>
+                        </div>
+
                     </div>
                     <?php
                     endforeach;
@@ -604,7 +663,7 @@ width: 100%;
 </div>
 <div class="loading"><img src="./Bestway Store UK _ Leaders in Inflatables &amp; Above Ground Pools_files/loading.webp"></div>
 
-<div class="products slick" id="featured-block">
+<div class="owl-carousel products slick" id="featured-block">
     <?php
     $featured = g_allfeatured(' ORDER BY `postdate` DESC LIMIT 8');
 
@@ -665,7 +724,7 @@ width: 100%;
     ?>
 </div>
 
-<div class="products slick" id="new-arrivals-block">
+<div class="owl-carousel products slick" id="new-arrivals-block">
     <?php
     $g_newadded = g_newadded();
 
@@ -727,7 +786,7 @@ width: 100%;
 </div>
 
 
-<div class="products slick" id="sale-block">
+<div class="owl-carousel products slick" id="sale-block">
     <?php
     $g_discounts = g_discounts();
 
@@ -777,6 +836,8 @@ width: 100%;
     ?>
 </div>
 
+
+
 </div>
 </div>
 <script type="text/javascript">window.reviewsArray ={"5816":{"@type":"aggregateRating","ratingValue":"4.9","reviewCount":"80","bestRating":"5","worstRating":"0","percent":97.25},"6444":{"@type":"aggregateRating","ratingValue":"0","reviewCount":"0","bestRating":"5","worstRating":"0","percent":0},"6445":{"@type":"aggregateRating","ratingValue":"0","reviewCount":"0","bestRating":"5","worstRating":"0","percent":0},"6446":{"@type":"aggregateRating","ratingValue":"0","reviewCount":"0","bestRating":"5","worstRating":"0","percent":0},"6497":{"@type":"aggregateRating","ratingValue":"0","reviewCount":"0","bestRating":"5","worstRating":"0","percent":0},"6496":{"@type":"aggregateRating","ratingValue":"0","reviewCount":"0","bestRating":"5","worstRating":"0","percent":0},"6495":{"@type":"aggregateRating","ratingValue":"0","reviewCount":"0","bestRating":"5","worstRating":"0","percent":0},"6494":{"@type":"aggregateRating","ratingValue":"0","reviewCount":"0","bestRating":"5","worstRating":"0","percent":0},"6440":{"@type":"aggregateRating","ratingValue":"4.5","reviewCount":"6","bestRating":"5","worstRating":"0","percent":90},"6275":{"@type":"aggregateRating","ratingValue":"0","reviewCount":"0","bestRating":"5","worstRating":"0","percent":0},"5807":{"@type":"aggregateRating","ratingValue":"1","reviewCount":"1","bestRating":"5","worstRating":"0","percent":20},"5387":{"@type":"aggregateRating","ratingValue":"5","reviewCount":"1","bestRating":"5","worstRating":"0","percent":100}}</script>
@@ -798,9 +859,9 @@ if(isset($g_home_news[0]) && isset($g_home_news[1])):
                                 <div class="o8j9t4k mgz-element mgz-element-column mgz-col-xs-12">
                                     <div class="mgz-element-inner o8j9t4k-s">
                                         <div class="reeyvrn mgz-element mgz-child mgz-element-text">
-                                            <div class="mgz-element-inner reeyvrn-s">
-                                                <h3><?=$g_home_news[0]['title']?></h3>
-                                                <p><?=strip_tags($g_home_news[0]['content'])?></p>
+                                            <div class="mgz-element-inner reeyvrn-s g-menuitem-sub">
+                                                <h3 class="g-menuitem"><?=$g_home_news[0]['title']?></h3>
+                                                <p><?=strip_tags($g_home_news[0]['description'])?></p>
 
                                                 <p>
                                                     <a href="<?=href($g_home_news[0]['id'])?>">
@@ -840,9 +901,9 @@ if(isset($g_home_news[0]) && isset($g_home_news[1])):
                                 <div class="k6lhses mgz-element mgz-element-column mgz-col-xs-12">
                                     <div class="mgz-element-inner k6lhses-s">
                                         <div class="cwl37qi mgz-element mgz-child mgz-element-text">
-                                            <div class="mgz-element-inner cwl37qi-s">
-                                                <h3><?=$g_home_news[1]['title']?></h3>
-                                                <p style="text-align: center;"><?=strip_tags($g_home_news[1]['content'])?></p>
+                                            <div class="mgz-element-inner cwl37qi-s g-menuitem-sub">
+                                                <h3 class="g-menuitem"><?=$g_home_news[1]['title']?></h3>
+                                                <p style="text-align: center;"><?=strip_tags($g_home_news[1]['description'])?></p>
                                                 <p style="text-align: center;">
                                                     <a href="<?=href($g_home_news[1]['id'])?>">
                                                         <button class="action primary g-menuitem-sub"><?=l('read.more')?></button>
@@ -893,6 +954,7 @@ endif;
                 $g_feature_categories = g_feature_categories();
                 $chunk = array_chunk($g_feature_categories, 2);
 
+                if(isset($chunk[0])):
                 foreach(@$chunk[0] as $v):
                 ?>
                 <div class="column">
@@ -902,11 +964,15 @@ endif;
                         <button class="action primary"><span class="g-menuitem"><?=$v['title']?></span></button>
                     </a>
                 </div>
-                <?php endforeach; ?>
+                <?php 
+                endforeach; 
+                endif;
+                ?>
             </div>
 
             <div class="row">
                 <?php
+                if(isset($chunk[1])):
                 foreach(@$chunk[1] as $v):
                 ?>
                 <div class="column">
@@ -915,7 +981,10 @@ endif;
                         <button class="action primary"><span class="g-menuitem"><?=$v['title']?></span></button>
                     </a>
                 </div>
-                <?php endforeach; ?>
+                <?php 
+                endforeach; 
+                endif;
+                ?>
             </div>
         </div>
     </div>
@@ -1234,6 +1303,62 @@ display: none;
                 return false;
             });
         }
+</script>
+
+<script type="text/javascript">
+$('#featured-block').owlCarousel({
+    loop:true,
+    margin:20,
+    nav:true,
+    dots:false,
+    responsive:{
+        0:{
+            items:1
+        },
+        600:{
+            items:2
+        },
+        1000:{
+            items:4
+        }
+    }
+})
+
+$('#new-arrivals-block').owlCarousel({
+    loop:true,
+    margin:20,
+    nav:true,
+    dots:false,
+    responsive:{
+        0:{
+            items:1
+        },
+        600:{
+            items:2
+        },
+        1000:{
+            items:4
+        }
+    }
+})
+
+$('#sale-block').owlCarousel({
+    loop:true,
+    margin:20,
+    nav:true,
+    dots:false,
+    responsive:{
+        0:{
+            items:1
+        },
+        600:{
+            items:2
+        },
+        1000:{
+            items:4
+        }
+    }
+})
 </script>
 
 </body></html>

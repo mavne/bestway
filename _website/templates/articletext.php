@@ -567,9 +567,13 @@ The store will not work correctly in the case when cookies are disabled.</div>
         padding-left: calc(1.5rem / 2);
     }
 
+    .g-new-col-20{
+        width: calc(20% - 3rem);
+    }
+
     .g-new-col-70{
         flex: 0 0 auto;
-        width: calc(70% - 3rem);
+        width: calc(65% - 3rem);
         padding-right: calc(1.5rem / 2);
         padding-left: calc(1.5rem / 2);
     }
@@ -614,6 +618,12 @@ The store will not work correctly in the case when cookies are disabled.</div>
         padding: 0;
         width: 100%;
         margin-bottom: 20px;
+        margin-right: 10px;
+    }
+
+    .g-new-media-list li{
+        width: calc(50% - 20px);
+        margin-right: 10px;
     }
 
     .g-new-media-list li a{
@@ -627,7 +637,7 @@ The store will not work correctly in the case when cookies are disabled.</div>
         margin: 0;
         padding: 0;
         width: 100%;
-        height: 140px;
+        height: 100px;
         object-fit: cover;
         object-position: center;
     }
@@ -642,11 +652,19 @@ The store will not work correctly in the case when cookies are disabled.</div>
         display: inline-block !important;
     }
 
+    .g-new-col-20 .g-ppoto{
+        width: calc(33.33% - 15px) !important;
+    }
+
     .g-ppoto img{
         width: 100% !important;
         object-position: center !important;
         object-fit: contain !important;
         border: solid 1px #f2f2f2;
+    }
+
+    .g-new-col-20 .g-ppoto a img{
+        height: 100px;
     }
 
     #g-new-popup-main{
@@ -764,6 +782,61 @@ The store will not work correctly in the case when cookies are disabled.</div>
 </style>
 
 <div class="product media"> 
+    <div class="g-purchase-box" id="g-purchase-box" style="display: none;">
+        <h2 class="purchase-box-title">
+            <?=l('purchase')?>
+        </h2>
+
+        <div class="purchase-product">
+            <table border="1">
+                <tr>
+                    <th><span><?=l('theProductTitle')?></span></th>
+                    <th><span><?=l('price')?></span></th>
+                </tr>
+
+                <tr>
+                    <td><span><?=$title?></span></td>
+                    <td>
+                        <?php
+                        if($discount!=""){
+                        ?>
+                        <span style="text-decoration: line-through; padding-right:10px; color:red;"><?=$price?>₾</span>
+                        <span style="color:green;"><?=$discount?>₾</span>
+                        <?php
+                        }else{
+                        ?>
+                        <span><?=$price?>₾</span>
+                        <?php
+                        }
+                        ?>
+                    </td>
+                </tr>
+            </table>
+        </div>
+
+        <form action="" method="post" class="purchase-box-form">
+            <label for="purchase-firstname"><?=l('firstname')?></label>
+            <input type="text" name="purchase-firstname" id="purchase-firstname" value="">
+
+            <label for="purchase-lastname"><?=l('lastname')?></label>
+            <input type="text" name="purchase-lastname" id="purchase-lastname" value="">
+
+            <label for="purchase-mobile"><?=l('mobile')?></label>
+            <input type="text" name="purchase-mobile" id="purchase-mobile" value="">
+
+            <label for="purchase-email"><?=l('e.mail')?></label>
+            <input type="text" name="purchase-email" id="purchase-email" value="">
+
+            <label for="purchase-address"><?=l('address')?></label>
+            <input type="text" name="purchase-address" id="purchase-address" value="">
+
+            <button type="submit" class="action primary g-menuitem g-orange-btn"><?=l('purchase')?></button>
+
+            <div style="width:100%;clear: both;"></div>
+        </form>
+    </div>
+
+
     <div class="g-popup" id="g-popup" style="display:none;">
         <div class="g-popup-nav">
             <ul>
@@ -775,7 +848,7 @@ The store will not work correctly in the case when cookies are disabled.</div>
             <div class="g-new-row">
                 <div class="g-new-col-15">
                     <h4 class="g-menuitem g-new-subtitle">ვიდეო</h4>
-                    <ul class="g-new-media-list">
+                    <ul class="g-new-media-list g-new-media-video">
                     <?php
                     $imageCount = 1;
                     for($x=1; $x<=30; $x++):
@@ -898,7 +971,7 @@ The store will not work correctly in the case when cookies are disabled.</div>
                     </div>
                 </div>
                 
-                <div class="g-new-col-15">
+                <div class="g-new-col-15 g-new-col-20">
                     <h4 class="g-menuitem g-new-subtitle">ფოტო</h4>
                     <ul class="g-new-media-list">
                         <?php
@@ -1113,7 +1186,23 @@ The store will not work correctly in the case when cookies are disabled.</div>
 </div>
 
 <div class="bundle-options-container">
-    <div class="product-add-form" style="padding-top:0">
+    <div class="box-wrapper product-add-form" style="padding-top:0">
+        <h2 class="g-price">
+            <?php
+            if($discount!=""){
+            ?>
+            <span style="text-decoration: line-through; padding-right:10px; color:red;"><?=$price?>₾</span>
+            <span style="color:green;"><?=$discount?>₾</span>
+            <?php
+            }else{
+            ?>
+            <span><?=$price?>₾</span>
+            <?php
+            }
+            ?>
+        </h2> 
+
+        <div style="clear:both;"></div>
         <?php
         if($discount!="" && $countdown_time!=""){
             $totime = strtotime($countdown_time);
@@ -1190,22 +1279,6 @@ The store will not work correctly in the case when cookies are disabled.</div>
         <?php
         }
         ?>
-
-        <h2 class="g-price">
-            <?php
-            if($discount!=""){
-            ?>
-            <span style="text-decoration: line-through; padding-right:10px; color:red;"><?=$price?>₾</span>
-            <span style="color:green;"><?=$discount?>₾</span>
-            <?php
-            }else{
-            ?>
-            <span><?=$price?>₾</span>
-            <?php
-            }
-            ?>
-        </h2> 
-
         <div style="clear:both;"></div>
 
         <?php
@@ -1248,7 +1321,7 @@ The store will not work correctly in the case when cookies are disabled.</div>
                         <div style="clear: both;"></div>
 
                
-                        <a href="" class="action primary g-menuitem g-buy-button g-orange-btn">
+                        <a href="#g-purchase-box" class="action primary g-menuitem g-buy-button g-orange-btn">
                             <span><?=l('buy')?></span>
                         </a>
 
@@ -1288,7 +1361,41 @@ The store will not work correctly in the case when cookies are disabled.</div>
         }
         ?>
     </div>
+
+    <div class="box-wrapper delivery-box">
+    <h4 class="g-menuitem">
+        <svg enable-background="new 0 0 50 50" height="50px" id="Layer_1" version="1.1" viewBox="0 0 50 50" width="50px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><rect fill="none" height="50" width="50"/><g><circle cx="13" cy="44" fill="none" r="5" stroke="#000000" stroke-miterlimit="10" stroke-width="2"/></g><g><circle cx="39" cy="44" fill="none" r="5" stroke="#000000" stroke-miterlimit="10" stroke-width="2"/></g><path d="M45,44h2c1.018,0,2-0.982,2-2c0,0,0-7.867,0-9.615  c0-1.749-1.414-3.729-1.414-3.729l-4.125-5.502C42.617,22.137,41.355,21,40,21h-8c-1.018,0-2,0.983-2,2v19c0,1.014,0.988,1.992,2,2  h2 M49,33c0,0-10,0-11,0s-2-1-2-2c0-0.577,0-2.488,0-4c0-1.107,1-2,2-2s6.846,0,6.846,0" fill="none" stroke="#000000" stroke-miterlimit="10" stroke-width="2"/><path d="M18,44h10.154C29.17,44,30,43.171,30,42.154V16  c0-1.017-2.137-2.077-3.154-2.077h-24C1.829,13.923,1,14.752,1,15.769V42c0,1.018,0.983,2,2,2h5" fill="none" stroke="#000000" stroke-miterlimit="10" stroke-width="2"/></svg>
+        <span><?=menu_title(339)?></span>
+    </h4>
+    <?php
+    $g_pages_delivery = g_pages_master(339, '*', ' ORDER BY `position` ASC');
+    $tt=1;
+    ?>
+
+    <table>
+        <?php foreach($g_pages_delivery as $item): ?>
+        <tr>
+            <td><strong><?=$item['title']?></strong></td>
+        </tr>
+        <tr>
+             <td><?=$item['menutitle']?></td>
+        </tr>
+        <tr>
+            <td><?=$item['price']?> ₾</td>
+        </tr>
+        <?php if($tt<=2): ?>
+        <tr>
+            <td><hr></td>
+        </tr>
+        <?php 
+        endif;
+        $tt++;
+        endforeach; ?>
+    </table>
 </div>
+</div>
+
+
 
 </div>
 
@@ -1429,6 +1536,7 @@ The store will not work correctly in the case when cookies are disabled.</div>
                 $g_feature_categories = g_feature_categories();
                 $chunk = array_chunk($g_feature_categories, 2);
 
+                if(isset($chunk[0])):
                 foreach(@$chunk[0] as $v):
                 ?>
                 <div class="column">
@@ -1438,11 +1546,14 @@ The store will not work correctly in the case when cookies are disabled.</div>
                         <button class="action primary"><span class="g-menuitem"><?=$v['title']?></span></button>
                     </a>
                 </div>
-                <?php endforeach; ?>
+                <?php endforeach; 
+                endif;
+                ?>
             </div>
 
             <div class="row">
                 <?php
+                if(isset($chunk[1])):
                 foreach(@$chunk[1] as $v):
                 ?>
                 <div class="column">
@@ -1451,7 +1562,10 @@ The store will not work correctly in the case when cookies are disabled.</div>
                         <button class="action primary"><span class="g-menuitem"><?=$v['title']?></span></button>
                     </a>
                 </div>
-                <?php endforeach; ?>
+                <?php 
+                endforeach; 
+                endif;
+                ?>
             </div>
         </div>
     </div>
@@ -1861,95 +1975,7 @@ $(document).on('mouseenter', '.g-images-box .g-thumbs ul li a', function(){
         var videoImage = $(this).attr('data-videoImage');
         $('.g-main-image a').addClass('videosvg');
         $('.g-main-image a img').attr('src', videoImage);
-
-
-        // $('.g-popup-main-image img').attr('src', videoImage);
-        // var videoId = src.match(/[?&]v=([^&]+)/)[1];
-        // var iframe = $("<iframe>", {
-        //     src: "https://www.youtube.com/embed/" + videoId + "?autoplay=1&mute=1",
-        //     frameborder: 0,
-        //     allowfullscreen: true,
-        //     width: "100%",
-        //     height: "600" // You can adjust the width and height as needed
-        //   });
-        // $('#g-popup .g-popup-main-image').html(iframe);
     }            
-});
-
-// function changePopType(type){
-//     if(type=="image"){
-//         $('#g-popup .g-popup-nav ul li a').removeClass('active');
-//         $('#g-popup .g-popup-nav ul li a[data-type="image"]').addClass('active');
-//         $('#g-popup .g-popup-title-and-thumbs .g-popup-thumbs ul li a[data-type="image"]').parent().show();
-//         $('#g-popup .g-popup-title-and-thumbs .g-popup-thumbs ul li a[data-type="video"]').parent().hide();
-//     }else{
-//         $('#g-popup .g-popup-nav ul li a').removeClass('active');
-//         $('#g-popup .g-popup-nav ul li a[data-type="video"]').addClass('active');
-//         $('#g-popup .g-popup-title-and-thumbs .g-popup-thumbs ul li a[data-type="image"]').parent().hide();
-//         $('#g-popup .g-popup-title-and-thumbs .g-popup-thumbs ul li a[data-type="video"]').parent().show();
-//     }
-// }
-
-var owlxxx;
-$('.lightbox-link').magnificPopup({
-    type: 'inline',
-    callbacks: {
-        open: function() {
-            $('#g-popup').show();
-            var ul = $('.g-thumbs ul').prop('outerHTML');
-            $('#g-popup .g-popup-thumbs').html(ul);
-            $('#g-popup .g-popup-thumbs a').attr('href', 'javascript:void(0)').removeClass('lightbox-link').addClass('popup-lightbox');
-            var dataIndexValue = parseInt($(this.currItem.el).attr('data-index'));
-
-            // $('.g-new-iframe')[0].contentWindow.postMessage('{"event":"command","func":"stopVideo","args":""}', '*');
-
-            $('.g-new-popup-goto').removeClass('active');
-            // $('#g-new-popup-main').owlCarousel('destroy');
-            if(dataIndexValue<=1 || isNaN(dataIndexValue)){ dataIndexValue = 1; }
-
-            $('.g-new-popup-goto[data-index="'+dataIndexValue+'"]').addClass('active');
-
-            console.log(dataIndexValue);
-
-            setTimeout(function(){
-                owlxxx = $('#g-new-popup-main').owlCarousel({
-                    autoplay: false,
-                    smartSpeed:500,
-                    loop:false,
-                    margin:0,
-                    nav:true,
-                    dots: false,
-                    responsive:{
-                        0:{
-                            items:1
-                        },
-                        600:{
-                            items:1
-                        },
-                        1000:{
-                            items:1
-                        }
-                    }
-                });
-
-                owlxxx.trigger('to.owl.carousel', [dataIndexValue - 1]);
-
-                owlxxx.on('changed.owl.carousel', function(event) {
-                  $('.g-new-popup-goto').removeClass('active');
-                  var currentItem = event.item.index + 1;
-                  console.log(currentItem);
-                  $('.g-new-popup-goto[data-index="'+currentItem+'"]').addClass('active');
-                });
-            }, 500);
-        }
-    }
-});
-
-$(document).on("click", ".g-new-popup-goto", function(){
-    $('.g-new-popup-goto').removeClass('active');
-    $(this).addClass('active');
-    var ind = $(this).attr('data-index');
-    owlxxx.trigger('to.owl.carousel', [(ind - 1), 0]);
 });
 
 $(document).ready(function(){
@@ -2033,16 +2059,8 @@ $(document).ready(function(){
             type: 'iframe'
         });
 
-        // $('.mobile-lightbox').magnificPopup({
-        //     type: 'inline',
-        //     callbacks: {
-        //         open: function() {
-        //             $('#g-popup').show();
-        //         }
-        //     }
-        // });
+        $('.mobile-lightbox').magnificPopup();
     }
-
 
     $('#g-ralated-products').owlCarousel({
             autoplay: true,
@@ -2070,6 +2088,75 @@ $(document).ready(function(){
 
     $('.g-owl-container .g-owlBtns button.next').on('click', function () {
         $('#g-ralated-products').trigger('next.owl.carousel');
+    });
+
+    var owlxxx;
+
+    $(document).on("click", ".g-new-popup-goto", function(){
+        $('.g-new-popup-goto').removeClass('active');
+        $(this).addClass('active');
+        var ind = $(this).attr('data-index');
+        owlxxx.trigger('to.owl.carousel', [(ind - 1), 0]);
+    });
+
+    $('.lightbox-link').magnificPopup({
+        type: 'inline',
+        callbacks: {
+            open: function() {
+                $('#g-popup').show();
+                var ul = $('.g-thumbs ul').prop('outerHTML');
+                $('#g-popup .g-popup-thumbs').html(ul);
+
+                $('#g-popup .g-popup-thumbs a').attr('href', 'javascript:void(0)').removeClass('lightbox-link').addClass('popup-lightbox');
+                var dataIndexValue = parseInt($(this.currItem.el).attr('data-index'));
+
+                $('.g-new-popup-goto').removeClass('active');
+                // $('#g-new-popup-main').owlCarousel('destroy');
+                if(dataIndexValue<=1 || isNaN(dataIndexValue)){ dataIndexValue = 1; }
+
+                $('.g-new-popup-goto[data-index="'+dataIndexValue+'"]').addClass('active');
+
+                setTimeout(function(){
+                    owlxxx = $('#g-new-popup-main').owlCarousel({
+                        autoplay: false,
+                        smartSpeed:500,
+                        loop:false,
+                        margin:0,
+                        nav:true,
+                        dots: false,
+                        responsive:{
+                            0:{
+                                items:1
+                            },
+                            600:{
+                                items:1
+                            },
+                            1000:{
+                                items:1
+                            }
+                        }
+                    });
+
+                    owlxxx.trigger('to.owl.carousel', [dataIndexValue - 1]);
+
+                    owlxxx.on('changed.owl.carousel', function(event) {
+                      $('.g-new-popup-goto').removeClass('active');
+                      var currentItem = event.item.index + 1;
+                      console.log(currentItem);
+                      $('.g-new-popup-goto[data-index="'+currentItem+'"]').addClass('active');
+                    });
+                }, 500);
+            }
+        }
+    });
+
+    $('.g-buy-button').magnificPopup({
+        type: 'inline',
+        callbacks: {
+            open: function() {
+                $('#g-purchase-box').show();
+            }
+        }
     });
 });
 
@@ -2156,75 +2243,12 @@ $(document).on('click', '.g-arrows button.g-prev', function(){
             const videoId = url.searchParams.get("v");
 
             $('.g-main-image a').addClass('videosvg');
-            // $('.g-popup-main-image').html('<iframe src="https://www.youtube.com/embed/'+videoId+'?autoplay=1&amp;mute=1" frameborder="0" allowfullscreen="true" style="width: 100%; height: 600px;"></iframe>>');
         }
 
         $('.g-images-box .g-main-image img').attr('src', src);
         $('#g-active-image').val(maxImageIndex);
     }
 });
-
-// $(document).on('click', '.g-popup-next', function(){
-//     var activeImageIndex = parseInt($('#g-popup-active-img-vid').val());  
-//     var next = activeImageIndex + 1;
-    
-//     if($('.g-change-poptype[data-type="image"]').hasClass('active')){
-//         if($('#g-popup .g-popup-title-and-thumbs .g-popup-thumbs ul li:not(:hidden) a[data-index="'+next+'"]').length){
-//             var nextImage = $('#g-popup .g-popup-title-and-thumbs .g-popup-thumbs ul li a[data-index="'+next+'"]').attr('data-src');
-//             $('#g-popup-active-img-vid').val(next);
-//             $('.g-popup-main-image img').attr('src', nextImage);
-//         }else{
-//             var nextImage = $('#g-popup .g-popup-title-and-thumbs .g-popup-thumbs ul li a[data-index="1"]').attr('data-src');
-//             $('#g-popup-active-img-vid').val(1);
-//             $('.g-popup-main-image img').attr('src', nextImage);
-//         }
-//     }else{
-//          if($('#g-popup .g-popup-title-and-thumbs .g-popup-thumbs ul li:not(:hidden) a[data-index="'+next+'"]').length){
-//             var nextVideo = $('#g-popup .g-popup-title-and-thumbs .g-popup-thumbs ul li a[data-index="'+next+'"]').attr('data-src');
-//             const url = new URL(nextVideo);
-//             const videoId = url.searchParams.get("v");
-
-//             // console.log(videoId);
-//             var owlHtml = '<iframe width="100%" height="600" src="https://www.youtube.com/embed/'+videoId+'?autoplay=1&mute=1" frameborder="0" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>';
-
-//             $('#g-popup-active-img-vid').val(next);
-
-//             $('#g-popup .g-popup-main-image').html(owlHtml);
-//         }
-//     }    
-// });
-
-// $(document).on('click', '.g-popup-prev', function(){
-//     var activeImageIndex = parseInt($('#g-popup-active-img-vid').val());
-//     var prev = activeImageIndex - 1;
-
-//     if($('.g-change-poptype[data-type="image"]').hasClass('active')){     
-//         if($('#g-popup .g-popup-title-and-thumbs .g-popup-thumbs ul li:not(:hidden) a[data-index="'+prev+'"]').length){
-//             var nextImage = $('#g-popup .g-popup-title-and-thumbs .g-popup-thumbs ul li a[data-index="'+prev+'"]').attr('data-src');
-//             $('#g-popup-active-img-vid').val(prev);
-//             $('.g-popup-main-image img').attr('src', nextImage);
-//         }else{
-//             var max = $('#g-popup .g-popup-title-and-thumbs .g-popup-thumbs ul li:not(:hidden)').length;
-
-//             var nextImage = $('#g-popup .g-popup-title-and-thumbs .g-popup-thumbs ul li a[data-index="'+max+'"]').attr('data-src');
-//             $('#g-popup-active-img-vid').val(max);
-//             $('.g-popup-main-image img').attr('src', nextImage);
-//         }
-//     }else{
-//         if($('#g-popup .g-popup-title-and-thumbs .g-popup-thumbs ul li:not(:hidden) a[data-index="'+prev+'"]').length){
-//             var prevVideo = $('#g-popup .g-popup-title-and-thumbs .g-popup-thumbs ul li a[data-index="'+prev+'"]').attr('data-src');
-//             const url = new URL(prevVideo);
-//             const videoId = url.searchParams.get("v");
-
-//             // console.log(videoId);
-//             var owlHtml = '<iframe width="100%" height="600" src="https://www.youtube.com/embed/'+videoId+'?autoplay=1&mute=1" frameborder="0" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>';
-
-//             $('#g-popup-active-img-vid').val(prev);
-
-//             $('#g-popup .g-popup-main-image').html(owlHtml);
-//         }
-//     }
-// });
 </script>
 </body>
 </html>

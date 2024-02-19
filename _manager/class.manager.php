@@ -263,6 +263,7 @@ class Admin_Manager
 						$_POST["countdown_time"] .= ' ' . $_POST["countdown_time_time"];
 						$_POST["visibility"] = (isset($_POST["visibility"])) ? 1 : 0;
 						$_POST["homepage"] = (isset($_POST["homepage"])) ? 1 : 0;
+						$_POST["homepage2"] = (isset($_POST["homepage2"])) ? 1 : 0;
 
 						$columns = db_fetch_all("SELECT column_name FROM information_schema.columns WHERE table_schema = '".c('database.name')."' AND table_name = '".c('table.pages')."';","column_name");
 						$columns2 = array();
@@ -364,6 +365,7 @@ class Admin_Manager
 					$_POST["postdate"] .= ' ' . $_POST["posttime"];
 					$_POST["visibility"] = (isset($_POST["visibility"])) ? 1 : 0;
 					$_POST["homepage"] = (isset($_POST["homepage"])) ? 1 : 0;
+					$_POST["homepage2"] = (isset($_POST["homepage2"])) ? 1 : 0;
 
 		                if ($_POST["meta_desc"]=='') {
 		                    $_POST["meta_desc"] = text_match(text_limit(($_POST["description"]=='') ? $_POST["content"] : $_POST["description"]), $_POST["title"]);

@@ -626,7 +626,7 @@ width: 100%;
 
                     <div class="product details product-item-details">
                         <strong class="product name product-item-name">
-                            <a class="g-menuitem" href="<?=href($a['id'])?>"><?=$a['title']?></a>
+                            <a class="g-menuitem" href="<?=href($a['id'])?>"><?=$a['menutitle']?></a>
                         </strong>
                         
                         <div class="details-container">
@@ -636,7 +636,7 @@ width: 100%;
                                         <?php
                                         if($a['discount']!=""){
                                             ?>
-                                            <span class="price g-menuitem" style="text-decoration: line-through; padding-right:10px;"><?=$a['price']?> ₾</span>
+                                            <span class="price g-menuitem" style="text-decoration: line-through; padding-right:10px; color:red !important;"><?=$a['price']?> ₾</span>
                                             <span class="price g-menuitem"><?=$a['discount']?> ₾</span>
                                             <?php
                                         }else{
@@ -721,6 +721,7 @@ width: 100%;
             <div class="content-container">
                 <div class="row">
                     <?php
+                    if(isset($chunk[0])):
                     foreach(@$chunk[0] as $v):
                     ?>
                         <div class="column">
@@ -730,11 +731,15 @@ width: 100%;
                                 <button class="action primary"><span class="g-menuitem"><?=$v['title']?></span></button>
                             </a>
                         </div>
-                    <?php endforeach; ?>
+                    <?php 
+                    endforeach; 
+                    endif;
+                    ?>
                 </div>
 
                 <div class="row">
                     <?php
+                    if(isset($chunk[1])):
                     foreach(@$chunk[1] as $v):
                     ?>
                     <div class="column">
@@ -743,7 +748,10 @@ width: 100%;
                             <button class="action primary"><span class="g-menuitem"><?=$v['title']?></span></button>
                         </a>
                     </div>
-                    <?php endforeach; ?>
+                    <?php 
+                    endforeach;
+                    endif;
+                    ?>
                 </div>
             </div>
         </div>
