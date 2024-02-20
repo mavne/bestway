@@ -482,7 +482,7 @@ width: 100%;
 </div>
 
 <?php if(g_checkVisibility(346)): ?>
-<div class="confidence-banner">
+<div class="confidence-banner" id="topbanner">
     <div class="cb-columns">
         <div class="cb-col  nb">
             <div class="magezon-builder magezon-builder-preload">
@@ -504,7 +504,7 @@ width: 100%;
             </div>
         </div>
     </div>
-    <span class="close">
+    <span class="close" onclick="document.getElementById('topbanner').style.display = 'none';">
         <img src="./Bestway Store UK _ Leaders in Inflatables &amp; Above Ground Pools_files/close.webp" alt="Close button">
     </span>
 </div>

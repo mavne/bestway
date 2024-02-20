@@ -405,13 +405,34 @@ width: 100%;
 ?>
 <div class="md-menu-overlay">
 </div>
-<div class="confidence-banner" style="display: none">
-<div class="cb-columns">
-<div class="cb-col  nb">
-<div class="magezon-builder magezon-builder-preload"><div class="cufm6eo mgz-element mgz-element-row full_width_row"><div class="mgz-element-inner cufm6eo-s"><div class="inner-content mgz-container"><div class="goq5t8b mgz-element mgz-element-column mgz-col-xs-12"><div class="mgz-element-inner goq5t8b-s"><div class="myr0eeq mgz-element mgz-child mgz-element-text"><div class="mgz-element-inner myr0eeq-s"><p style="text-align: center;"><a href="/sale.html" title="Bestway Sale"><strong>UP TO 50% OFF</strong></a></p><p style="text-align: center;"><a href="/sale.html" title="Bestway Sale">On Selected Pools, Hot Tubs And More...</a></p></div></div></div></div></div></div></div></div> </div>
+<?php if(g_checkVisibility(346)): ?>
+<div class="confidence-banner" id="topbanner">
+    <div class="cb-columns">
+        <div class="cb-col  nb">
+            <div class="magezon-builder magezon-builder-preload">
+                <div class="cufm6eo mgz-element mgz-element-row full_width_row">
+                    <div class="mgz-element-inner cufm6eo-s">
+                        <div class="inner-content mgz-container">
+                            <div class="goq5t8b mgz-element mgz-element-column mgz-col-xs-12">
+                                <div class="mgz-element-inner goq5t8b-s">
+                                    <div class="myr0eeq mgz-element mgz-child mgz-element-text">
+                                        <div class="mgz-element-inner myr0eeq-s">
+                                            <?php echo text(346);?>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <span class="close" onclick="document.getElementById('topbanner').style.display = 'none';">
+        <img src="./Bestway Store UK _ Leaders in Inflatables &amp; Above Ground Pools_files/close.webp" alt="Close button">
+    </span>
 </div>
-<span class="close"><img src="./Bestway Store UK _ Leaders in Inflatables &amp; Above Ground Pools_files/close.webp" alt="Close button"></span>
-</div>
+<?php endif; ?>
 <style>
         .confidence-banner-wrapper {
             min-height: 60px;
@@ -476,6 +497,15 @@ width: 100%;
 
 <div class="get_compare_list_bar"></div>
 <div></div>
+
+<style type="text/css">
+    .featured-four .content-container .row, .featured-six .content-container .row{
+        justify-content: flex-start;
+    }
+    .featured-four .content-container .row .column, .featured-six .content-container .row .column{
+        max-width: 460px;
+    }
+</style>
 
 <div class="homepage-wrapper"> 
     <div class="featured-six">

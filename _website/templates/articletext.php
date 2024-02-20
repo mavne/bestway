@@ -443,13 +443,34 @@ The store will not work correctly in the case when cookies are disabled.</div>
 ?>
 <div class="md-menu-overlay">
 </div>
-<div class="confidence-banner" style="display: none">
-<div class="cb-columns">
-<div class="cb-col ">
-<div class="magezon-builder magezon-builder-preload"><div class="cufm6eo mgz-element mgz-element-row full_width_row"><div class="mgz-element-inner cufm6eo-s"><div class="inner-content mgz-container"><div class="goq5t8b mgz-element mgz-element-column mgz-col-xs-12"><div class="mgz-element-inner goq5t8b-s"><div class="myr0eeq mgz-element mgz-child mgz-element-text"><div class="mgz-element-inner myr0eeq-s"><p style="text-align: center;"><a href="/sale.html" title="Bestway Sale"><strong>UP TO 50% OFF</strong></a></p><p style="text-align: center;"><a href="/sale.html" title="Bestway Sale">On Selected Pools, Hot Tubs And More...</a></p></div></div></div></div></div></div></div></div> </div>
+<?php if(g_checkVisibility(346)): ?>
+<div class="confidence-banner">
+    <div class="cb-columns">
+        <div class="cb-col  nb">
+            <div class="magezon-builder magezon-builder-preload">
+                <div class="cufm6eo mgz-element mgz-element-row full_width_row">
+                    <div class="mgz-element-inner cufm6eo-s">
+                        <div class="inner-content mgz-container">
+                            <div class="goq5t8b mgz-element mgz-element-column mgz-col-xs-12">
+                                <div class="mgz-element-inner goq5t8b-s">
+                                    <div class="myr0eeq mgz-element mgz-child mgz-element-text">
+                                        <div class="mgz-element-inner myr0eeq-s">
+                                            <?php echo text(346);?>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <span class="close">
+        <img src="./Bestway Store UK _ Leaders in Inflatables &amp; Above Ground Pools_files/close.webp" alt="Close button">
+    </span>
 </div>
-<span class="close"><img src="/media/wysiwyg/close.webp" alt="Close button"></span>
-</div>
+<?php endif; ?>
 <style>
         .confidence-banner-wrapper {
             min-height: 60px;
@@ -587,6 +608,7 @@ The store will not work correctly in the case when cookies are disabled.</div>
         list-style-type: none;
         padding-right: 15px;
         position: relative;
+        overflow-x: hidden;
     }
 
     .g-videox{
@@ -616,13 +638,8 @@ The store will not work correctly in the case when cookies are disabled.</div>
     .g-new-media-list li{
         margin: 0;
         padding: 0;
-        width: 100%;
         margin-bottom: 20px;
-        margin-right: 10px;
-    }
-
-    .g-new-media-list li{
-        width: calc(50% - 20px);
+        width: 100%;
         margin-right: 10px;
     }
 
@@ -637,7 +654,7 @@ The store will not work correctly in the case when cookies are disabled.</div>
         margin: 0;
         padding: 0;
         width: 100%;
-        height: 100px;
+        height: 130px;
         object-fit: cover;
         object-position: center;
     }
@@ -891,6 +908,36 @@ The store will not work correctly in the case when cookies are disabled.</div>
                     <?php
                     if(!empty($youtube3)):
                         $urlParts = parse_url($youtube3);
+                        parse_str($urlParts['query'], $queryParameters);
+                        $videoId = $queryParameters['v'];
+                    ?>
+                    <li>
+                        <a href="javascript:void(0)" class="g-new-popup-goto g-videox" data-index="<?=($imageCount + 2)?>">
+                            <img src="https://img.youtube.com/vi/<?=$videoId?>/0.jpg" alt="">
+                        </a>
+                    </li>
+                    <?php
+                    endif;
+                    ?>
+
+                    <?php
+                    if(!empty($youtube4)):
+                        $urlParts = parse_url($youtube4);
+                        parse_str($urlParts['query'], $queryParameters);
+                        $videoId = $queryParameters['v'];
+                    ?>
+                    <li>
+                        <a href="javascript:void(0)" class="g-new-popup-goto g-videox" data-index="<?=($imageCount + 2)?>">
+                            <img src="https://img.youtube.com/vi/<?=$videoId?>/0.jpg" alt="">
+                        </a>
+                    </li>
+                    <?php
+                    endif;
+                    ?>
+
+                    <?php
+                    if(!empty($youtube5)):
+                        $urlParts = parse_url($youtube5);
                         parse_str($urlParts['query'], $queryParameters);
                         $videoId = $queryParameters['v'];
                     ?>

@@ -152,7 +152,7 @@ switch($type){
                     $html .= sprintf(
                         '<a class="product-item-link g-menuitem" href="%s">%s</a>',
                         href($a['id']),
-                        $a['title']
+                        $a['menutitle']
                     );
                     $html .= '</strong>';
 

@@ -402,6 +402,10 @@ class Admin_Manager
 					// exit();
 
                     $update = db_update(c("table.pages"), $data, "WHERE id = {$this->route[2]} and language='".l()."' LIMIT 1");
+
+                    // echo $update;
+                    // exit();
+
                     db_query($update);
 
                     $_POST["countdown_time"] .= ' ' . $_POST["countdown_time_time"];

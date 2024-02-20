@@ -612,7 +612,7 @@ width: 100%;
 
                     <div class="product details product-item-details">
                         <strong class="product name product-item-name">
-                            <a class="g-menuitem" href="<?=href($a['id'])?>"><?=$a['title']?></a>
+                            <a class="g-menuitem" href="<?=href($a['id'])?>"><?=$a['menutitle']?></a>
                         </strong>
                         
                         <div class="details-container">
@@ -678,11 +678,17 @@ width: 100%;
     </div>
 
     <div class="toolbar toolbar-products">
+        <?php
+        if(count($articles) >= $per_page):
+        ?>
         <div class="pages" style="float:none;">
             <button class="primary amscroll-load-button g_load_more_items" data-loaded="<?=count($articles)?>" data-max="<?=$item_count?>" data-perpage="<?=$per_page?>" data-type="<?=$menutype?>" style="color: rgb(71, 118, 240); border-color: rgb(71, 118, 240); width:250px; display:block; margin:0 auto;">
                 <span class="amscroll-text g-menuitem-sub"><?=l('read.more')?></span>
             </button>
         </div>
+        <?php
+        endif;
+        ?>
     </div>
 </div>
 
