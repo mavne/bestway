@@ -1057,6 +1057,14 @@ function g_related($menu_id, $limit = ''){
     return $out;
 }
 
+function g_recomended($menuid, $limit = ''){
+	$getId = db_fetch('SELECT `id` FROM `pages` WHERE `menutype`="'.$menuid.'" AND `language`="'.l().'"');
+
+	$out = db_fetch_all("SELECT * FROM `" . c("table.pages") . "` WHERE  `language` = '" . l() . "' AND `deleted`=0 AND `visibility` = 1 AND FIND_IN_SET(".$getId['id'].", `in_carousel`)".$limit);
+
+    return $out;
+}
+
 function g_allfeatured($limit = ''){
 	$out = db_fetch_all('SELECT * FROM `pages` WHERE `language`="'.l().'" AND `deleted`=0 AND `visibility` = 1 AND `homepage`=1 AND `price`!="" AND `image1`!=""'.$limit);
 	return $out;

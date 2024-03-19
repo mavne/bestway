@@ -1,18 +1,4 @@
 <?php defined('DIR') OR exit; ?>
-
-<!doctype html>
-<html lang="en">
-<head>
-    <base href="https://bestway.404.ge/">
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<meta name="title" content="">
-<meta name="description" content="">
-<meta name="keywords" content="">
-<meta name="robots" content="INDEX,FOLLOW">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="format-detection" content="telephone=no">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<title>Best</title>
 <link rel="stylesheet" type="text/css" media="all" href="/static/version1681722880/_cache/merged/5e6c9b3fbe6ed62ec75f68beb3f09ba5.min.css" />
 <link rel="stylesheet" type="text/css" media="screen and (min-width: 768px)" href="/static/version1681722880/frontend/Wilton/BW/en_GB/css/styles-l.min.css" />
 <link rel="stylesheet" type="text/css" media="print" href="/static/version1681722880/frontend/Wilton/BW/en_GB/css/print.min.css" />
@@ -22,11 +8,6 @@
 <link rel="preload" as="font" crossorigin="anonymous" href="/static/version1681722880/frontend/Wilton/BW/en_GB/fonts/opensans/semibold/opensans-600.woff2" />
 <link rel="preload" as="font" crossorigin="anonymous" href="/static/version1681722880/frontend/Wilton/BW/en_GB/fonts/opensans/bold/opensans-700.woff2" />
 <link rel="preload" as="font" crossorigin="anonymous" href="/static/version1681722880/frontend/Wilton/BW/en_GB/fonts/Luma-Icons.woff2" />
-<link rel="canonical" href="/pool-accessories-and-chemicals/pool-accessories.html" />
-<link rel="icon" type="image/x-icon" href="/media/favicon/stores/10/bestway-favicon.png" />
-<link rel="shortcut icon" type="image/x-icon" href="/media/favicon/stores/10/bestway-favicon.png" />
-
-
 <script src="https://code.jquery.com/jquery-3.6.4.min.js" integrity="sha256-oP6HI9z1XaZNBrJURtCoUT5SUnxFr8s3BzRl+cbzUq8=" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js" integrity="sha512-XtmMtDEcNz2j7ekrtHvOVR4iwwaD6o/FUJe6+Zq+HgcCsk3kj4uSQQR8weQ2QVj1o0Pk6PwYLohm206ZzNfubg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <script src="https://cdn.jsdelivr.net/npm/owl.carousel@2.3.4/dist/owl.carousel.min.js"></script>

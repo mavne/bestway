@@ -34,10 +34,47 @@
 		$desc = $cat["description"];
 		if($desc=="") $desc = $producttitle;
 	}
-	if($photo=="") $photo = href().WEBSITE."/assets/img/logo.png";
+
+	if($photo==""){ 
+		$photo = href().WEBSITE."/assets/img/logo.png";
+	}
 	$pageid = href($storage->section['id']).(($prod>0) ? "?product=".$_GET["product"]:"");
 
+	$protocol = isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? 'https://' : 'http://';
+	$fullUrl = $protocol . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
+
 ?>
+
+<!doctype html>
+<html lang="en">
+<head>
+
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+<base href="<?php echo href(); ?>" />
+<title><?php echo strip_tags(s('sitetitle').' - '.$storage->section["title"]); ?></title>
+<meta name="keywords" content="<?php echo s('keywords').', '.$storage->section["meta_keys"] ?>" />
+<meta name="description" content="<?php echo s('description').', '.$storage->section["meta_desc"] ?>" />
+<meta name="robots" content="index, follow" />
+<meta property="og:title" content="<?php echo strip_tags($storage->section["title"]).' - '.s('sitetitle');?>" />
+<?php
+if(isset($storage->section['image_fb'])){
+	?>	
+	<meta property="og:image" content="<?php echo $storage->section['image_fb'];?>" />
+	<?php
+}else{
+	?>	
+	<meta property="og:image" content="<?php echo (!empty($storage->section["image1"])) ? $storage->section["image1"] : href().WEBSITE."/assets/img/share_".l().".jpg";?>" />
+	<?php
+}
+?>
+<meta property="og:description" content="<?php echo $storage->section["meta_desc"] ?>"/>
+<meta property="og:url" content="<?php echo $fullUrl;?>" />
+<meta property="og:site_name" content="<?php echo s('sitetitle'); ?>" />
+<meta property="og:type" content="Website" />
+<link rel="icon" type="image/x-icon" href="/media/favicon/stores/10/bestway-favicon.png" />
+<link rel="shortcut icon" type="image/x-icon" href="/media/favicon/stores/10/bestway-favicon.png" />
 
 
 

@@ -2297,6 +2297,10 @@ transform:rotate(359deg)
 	display: none;
 }
 
+.featured-four .content-container .row .column:hover{
+	opacity: 0.5;
+}
+
 @media(max-width: 960px){
 	#bannerslider-list-items-1-64ddd630ef5be .owl-nav{
 		display: none !important;

@@ -1,18 +1,4 @@
 <?php defined('DIR') OR exit; ?>
-
-<!doctype html>
-<html lang="en">
-<head>
-    <base href="https://bestway.404.ge/">
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<meta name="title" content="">
-<meta name="description" content="">
-<meta name="keywords" content="">
-<meta name="robots" content="INDEX,FOLLOW">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="format-detection" content="telephone=no">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<title>Best</title>
 <link rel="stylesheet" type="text/css" media="all" href="/static/version1681722880/_cache/merged/5e6c9b3fbe6ed62ec75f68beb3f09ba5.min.css" />
 <link rel="stylesheet" type="text/css" media="screen and (min-width: 768px)" href="/static/version1681722880/frontend/Wilton/BW/en_GB/css/styles-l.min.css" />
 <link rel="stylesheet" type="text/css" media="print" href="/static/version1681722880/frontend/Wilton/BW/en_GB/css/print.min.css" />
@@ -22,10 +8,6 @@
 <link rel="preload" as="font" crossorigin="anonymous" href="/static/version1681722880/frontend/Wilton/BW/en_GB/fonts/opensans/semibold/opensans-600.woff2" />
 <link rel="preload" as="font" crossorigin="anonymous" href="/static/version1681722880/frontend/Wilton/BW/en_GB/fonts/opensans/bold/opensans-700.woff2" />
 <link rel="preload" as="font" crossorigin="anonymous" href="/static/version1681722880/frontend/Wilton/BW/en_GB/fonts/Luma-Icons.woff2" />
-<link rel="canonical" href="/pool-accessories-and-chemicals/pool-accessories.html" />
-<link rel="icon" type="image/x-icon" href="/media/favicon/stores/10/bestway-favicon.png" />
-<link rel="shortcut icon" type="image/x-icon" href="/media/favicon/stores/10/bestway-favicon.png" />
-
 
 <script src="https://code.jquery.com/jquery-3.6.4.min.js" integrity="sha256-oP6HI9z1XaZNBrJURtCoUT5SUnxFr8s3BzRl+cbzUq8=" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js" integrity="sha512-XtmMtDEcNz2j7ekrtHvOVR4iwwaD6o/FUJe6+Zq+HgcCsk3kj4uSQQR8weQ2QVj1o0Pk6PwYLohm206ZzNfubg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
@@ -818,11 +800,11 @@ The store will not work correctly in the case when cookies are disabled.</div>
                         if($discount!=""){
                         ?>
                         <span style="text-decoration: line-through; padding-right:10px; color:red;"><?=$price?>₾</span>
-                        <span style="color:green;"><?=$discount?>₾</span>
+                        <span style="color:green;" class="checkout-price" data-price="<?=$discount?>"><?=$discount?>₾</span>
                         <?php
                         }else{
                         ?>
-                        <span><?=$price?>₾</span>
+                        <span class="checkout-price" data-price="<?=$price?>"><?=$price?>₾</span>
                         <?php
                         }
                         ?>
@@ -846,6 +828,8 @@ The store will not work correctly in the case when cookies are disabled.</div>
 
             <label for="purchase-address"><?=l('address')?></label>
             <input type="text" name="purchase-address" id="purchase-address" value="">
+
+            <label for="home_delivery"><span><?=l('home.delivery')?></span> <input type="checkbox" name="home_delivery" id="home_delivery" value="1"></label>
 
             <button type="submit" class="action primary g-menuitem g-orange-btn"><?=l('purchase')?></button>
 
@@ -927,7 +911,7 @@ The store will not work correctly in the case when cookies are disabled.</div>
                         $videoId = $queryParameters['v'];
                     ?>
                     <li>
-                        <a href="javascript:void(0)" class="g-new-popup-goto g-videox" data-index="<?=($imageCount + 2)?>">
+                        <a href="javascript:void(0)" class="g-new-popup-goto g-videox" data-index="<?=($imageCount + 3)?>">
                             <img src="https://img.youtube.com/vi/<?=$videoId?>/0.jpg" alt="">
                         </a>
                     </li>
@@ -942,7 +926,7 @@ The store will not work correctly in the case when cookies are disabled.</div>
                         $videoId = $queryParameters['v'];
                     ?>
                     <li>
-                        <a href="javascript:void(0)" class="g-new-popup-goto g-videox" data-index="<?=($imageCount + 2)?>">
+                        <a href="javascript:void(0)" class="g-new-popup-goto g-videox" data-index="<?=($imageCount + 4)?>">
                             <img src="https://img.youtube.com/vi/<?=$videoId?>/0.jpg" alt="">
                         </a>
                     </li>
@@ -956,7 +940,7 @@ The store will not work correctly in the case when cookies are disabled.</div>
                     <div class="owl-carousel owl-theme" id="g-new-popup-main">
                             <?php
                             if($image_positions!=""){
-                               $imageP = explode(",", $image_positions);
+                                $imageP = explode(",", $image_positions);
                             }else{ 
                                 $imageP = array();
                                 for($x=1; $x<=30; $x++):
@@ -965,9 +949,9 @@ The store will not work correctly in the case when cookies are disabled.</div>
                             }
 
                             foreach($imageP as $im):
-                                if($$im != ""):
+                                if($$im != "" && $im != "image_fb"):
                             ?>
-                                <div class="item">
+                                <div class="item xxxx">
                                     <a href="javascript:void(0)">
                                         <img src="<?=$$im?>" alt="">
                                     </a>
@@ -1014,6 +998,32 @@ The store will not work correctly in the case when cookies are disabled.</div>
                             </div>
                             <?php
                             endif;
+                            ?>   
+
+                            <?php
+                            if(!empty($youtube4)):
+                                $urlParts = parse_url($youtube4);
+                                parse_str($urlParts['query'], $queryParameters);
+                                $videoId = $queryParameters['v'];
+                            ?>
+                            <div class="item">
+                                <iframe src="https://www.youtube.com/embed/<?=$videoId?>" width="100%" height="600px" frameborder="0" allowfullscreen="true" class="g-new-iframe"></iframe>
+                            </div>
+                            <?php
+                            endif;
+                            ?> 
+
+                            <?php
+                            if(!empty($youtube5)):
+                                $urlParts = parse_url($youtube5);
+                                parse_str($urlParts['query'], $queryParameters);
+                                $videoId = $queryParameters['v'];
+                            ?>
+                            <div class="item">
+                                <iframe src="https://www.youtube.com/embed/<?=$videoId?>" width="100%" height="600px" frameborder="0" allowfullscreen="true" class="g-new-iframe"></iframe>
+                            </div>
+                            <?php
+                            endif;
                             ?>                        
                     </div>
                 </div>
@@ -1023,7 +1033,7 @@ The store will not work correctly in the case when cookies are disabled.</div>
                     <ul class="g-new-media-list">
                         <?php
                         if($image_positions!=""){
-                           $imageP = explode(",", $image_positions);
+                            $imageP = explode(",", $image_positions);
                         }else{ 
                             $imageP = array();
                             for($x=1; $x<=30; $x++):
@@ -1033,7 +1043,7 @@ The store will not work correctly in the case when cookies are disabled.</div>
 
                         $index=0;
                         foreach($imageP as $im):
-                            if($$im != ""):
+                            if($$im != "" && $im != "image_fb"):
                                 $index++;
                         ?>
                             <li class="g-ppoto">
@@ -1059,7 +1069,7 @@ The store will not work correctly in the case when cookies are disabled.</div>
             <ul>
                 <?php
                 if($image_positions!=""){
-                   $imageP = explode(",", $image_positions);
+                    $imageP = explode(",", $image_positions);
                 }else{ 
                     $imageP = array();
                     for($x=1; $x<=30; $x++):
@@ -1069,7 +1079,7 @@ The store will not work correctly in the case when cookies are disabled.</div>
 
                 $index=0;
                 foreach($imageP as $im):
-                    if($$im != ""):
+                    if($$im != "" && $im != "image_fb"):
                         $index++;
                 ?>
                     <li>
@@ -1444,6 +1454,132 @@ The store will not work correctly in the case when cookies are disabled.</div>
 
 
 
+</div>
+
+<div style="clear: both;"></div>
+
+<div class="block related" style="overflow:visible;">
+    <h2 class="g-menuitem"><?=l('recomended.products');?></h2>
+
+    <style>
+        .page-wrapper footer.page-footer{
+            margin-top: 0px !important;
+        }
+    </style>
+
+    <script>
+        prodImageContainers = document.querySelectorAll(".product-image-container-5997");
+        for (var i = 0; i < prodImageContainers.length; i++) {
+            prodImageContainers[i].style.width = "250px";
+        }
+        
+        prodImageContainersWrappers = document.querySelectorAll(
+            ".product-image-container-5997  span.product-image-wrapper"
+        );
+
+        for (var i = 0; i < prodImageContainersWrappers.length; i++) {
+            prodImageContainersWrappers[i].style.paddingBottom = "100%";
+        }
+    </script>
+    
+    <div class="block-content content" aria-labelledby="block-related-heading">
+        <div class="products wrapper grid products-grid products-related g-owl-container">
+            <ol class="products list items product-items owl-carousel owl-theme" id="g-ralated-products2" style="width:100%; margin-left: 0px;">
+                <?php
+
+                $limit = ' ORDER BY RAND() LIMIT 15';
+
+                $g_recomended = g_recomended($menuid, $limit);
+
+                foreach($g_recomended as $rel):
+                    $link = href($rel['id']);
+                ?>
+
+                <li class="item product product-item related-prod-cat-poolcleaning&care" style="width:100% !important;">
+                    <div class="product-item-info related-available ">
+                        <a href="<?=$link?>" class="product photo product-item-photo">
+                            <span class="product-image-container product-image-container-5997">
+                                <span class="product-image-wrapper">
+                                    <?php
+                                    $image_positions = ($rel['image_positions']!="") ? explode(",", $rel['image_positions']) : array('image1');
+                                    ?>
+
+                                    <img class="product-image-photo" src="<?=$rel[$image_positions[0]]?>" loading="lazy" alt="" />
+                                </span>
+                            </span>
+                        </a>
+                        
+                        <div class="product details product-item-details">
+                            <strong class="product name product-item-name">
+                                <a class="product-item-link g-menuitem-sub" title="" href="<?=$link?>">
+                                    <?=$rel['title']?>
+                                </a>
+                            </strong>
+
+                            <div class="price-box price-final_price">
+                                <span class="price-container price-final_price tax weee">
+                                    <span id="product-price-5997" class="price-wrapper ">
+                                        <?php
+                                        if($rel['discount']!=""){
+                                            ?>
+                                            <span class="price g-menuitem-sub" style="text-decoration: line-through; padding-right:10px;"><?=$rel['price']?> ₾</span>
+                                            <span class="price g-menuitem-sub"><?=$rel['discount']?> ₾</span>
+                                            <?php
+                                        }else{
+                                            ?>
+                                            <span class="price g-menuitem-sub"><?=$rel['price']?> ₾</span>
+                                            <?php
+                                        }
+                                        ?>  
+
+                                        <!-- <span class="price g-menuitem-sub"><?=$rel['price']?> ₾</span> -->
+                                    </span>
+                                </span>
+                            </div>
+
+                            <?php 
+                            if($rel['max_quentity']>=1){
+                            ?>
+                            <div class="g-stock-box">
+                                <div class="g-stock available g-menuitem-sub"><span><?=l('instack')?></span></div>
+                            </div>
+                        
+
+                            <form data-role="tocart-form" data-product-configurable="false" data-product-type="simple" data-product-sku="BW58093-21" action="" method="post" style="width: unset;">
+                                <input type="hidden" name="product" value="6012">
+                                <input type="hidden" name="uenc" value="">
+                                <input name="form_key" type="hidden" value="m8qrOfNYC6kwzS74" />
+                                <button type="submit" title="Add" class="action tocart primary">
+                                    <span class="g-menuitem-sub"><?=l('add.cart')?></span>
+                                </button>
+
+                                <div class="view-details-wrapper">
+                                    <a class="product-item-link details g-menuitem-sub" href="<?=$link?>"><?=l('read.more')?></a>
+                                </div>
+                            </form>
+                            <?php
+                            }else{
+                            ?>
+                            <div class="g-stock-box">
+                                <div class="g-stock available g-menuitem-sub g-unavailable"><span><?=l('outonstack')?></span></div>
+                            </div>
+                            <?php
+                            }
+                            ?>
+                        </div>
+                    </div>
+                </li>
+                <?php
+                endforeach;
+                ?>
+            </ol>
+
+            <div class="g-owlBtns">
+                <button class="prev">prev</button>
+                <button class="next">next</button>
+            </div>
+        </div>
+    </div>
 </div>
 
 <div style="clear: both;"></div>
@@ -2110,24 +2246,44 @@ $(document).ready(function(){
     }
 
     $('#g-ralated-products').owlCarousel({
-            autoplay: true,
-            smartSpeed:1500,
-            loop:true,
-            margin:10,
-            nav:false,
-            dots: false,
-            responsive:{
-                0:{
-                    items:1
-                },
-                600:{
-                    items:1
-                },
-                1000:{
-                    items:4
-                }
+        autoplay: true,
+        smartSpeed:1500,
+        loop:true,
+        margin:10,
+        nav:false,
+        dots: false,
+        responsive:{
+            0:{
+                items:1
+            },
+            600:{
+                items:1
+            },
+            1000:{
+                items:4
             }
-        });
+        }
+    });
+
+    $('#g-ralated-products2').owlCarousel({
+        autoplay: true,
+        smartSpeed:1500,
+        loop:true,
+        margin:10,
+        nav:false,
+        dots: false,
+        responsive:{
+            0:{
+                items:1
+            },
+            600:{
+                items:1
+            },
+            1000:{
+                items:4
+            }
+        }
+    });
 
     $('.g-owl-container .g-owlBtns button.prev').on('click', function () {
         $('#g-ralated-products').trigger('prev.owl.carousel');
@@ -2294,6 +2450,19 @@ $(document).on('click', '.g-arrows button.g-prev', function(){
 
         $('.g-images-box .g-main-image img').attr('src', src);
         $('#g-active-image').val(maxImageIndex);
+    }
+});
+
+$(document).on('change', '#home_delivery', function(){
+    var chKed = $(this).prop('checked');
+    var checkOutPrice = parseFloat($('.checkout-price').attr('data-price'));
+    var plusFive = checkOutPrice + ((checkOutPrice * <?=s('home.delivery')?>) / 100);
+    plusFive = Math.round(plusFive);
+    
+    if(chKed){
+        $('.checkout-price').html(plusFive + "₾");
+    }else{
+        $('.checkout-price').html(checkOutPrice + "₾");
     }
 });
 </script>

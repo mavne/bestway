@@ -26,6 +26,210 @@
         }
     }
 ?>
+<style type="text/css">
+    .g-popup{
+        margin: 0;
+        padding: 0;
+        width: 100%;
+        height: 100%;
+        position: fixed;
+        top: 0;
+        left: 0;
+        z-index: 1000;
+    }
+
+    .g-cover{
+        margin: 0;
+        padding: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.5);
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: 1;
+    }
+
+    .g-content{
+        margin: 50px auto;
+        padding: 0 20px 20px 20px;
+        width: 450px;
+        background-color: white;
+        position: relative;
+        z-index: 2;
+        max-height: 600px;
+        overflow: auto;
+    }
+
+    .g-content .g-close{
+        margin: 0;
+        padding: 0;
+        width: 50px;
+        height: 50px;
+        line-height: 50px;
+        font-size: 22px;
+        color: black;
+        position: absolute;
+        top: 0px;
+        right: 0px;
+        text-align: center;
+        text-decoration: none;
+    }
+
+    .g-content h2{
+        margin: 0;
+        padding: 0;
+        font-size: 18px;
+        text-align: left;
+        font-weight: bold;
+        color: black;
+        line-height: 50px;
+        height: 50px;
+        border-bottom: 1px solid #f2f2f2;
+    }
+
+    .g-content ul{
+        margin: 20px 0 0 0;
+        padding: 0;
+        list-style-type: none;
+    }
+
+    .g-content ul li{
+        margin: 0;
+        padding: 0;
+        width: 100%;
+        display: block;
+        min-height: 30px;
+        margin-bottom: 10px;
+    }
+
+    .g-content ul li a{
+        margin: 0;
+        padding: 0;
+        display: block;
+        height: 30px;
+        line-height: 30px;
+        font-size: 14px;
+        color: black;
+        position: relative;
+    }
+
+    .g-content ul li label{
+        margin: 0;
+        padding: 0;
+        display: block;
+        width: 100%;
+        height: 30px;
+        line-height: 30px;
+        font-size: 14px;
+        color: black;
+        position: relative;
+        font-weight: bold;
+    }
+
+    .g-content ul li label span{
+        margin: 0;
+        padding: 0;
+        display: inline-block;
+        height: 30px;
+        line-height: 30px;
+        font-size: 14px;
+        color: black;
+        margin-right: 10px;
+    }
+
+    .g-content ul li label input{
+        margin: 0;
+        padding: 0;
+        display: inline-block;
+    }
+
+    .g-content ul li a svg{
+        margin: 0;
+        padding: 0;
+        width: 15px ;
+        height: 15px;
+        margin-right: 5px;
+        margin-top: 9px;
+        float: left;
+        transform: rotate(180deg);
+    }
+
+    .g-content ul li a[data-open="true"] svg{
+        transform: rotate(0deg);
+    }
+
+    .g-content ul li .sub{
+        margin: 0;
+        padding: 10px 15px;
+        background-color: #ccc;
+        display: none;
+    }
+</style>
+
+<div class="g-popup" style="display:none;">
+    <div class="g-cover"></div>
+    <div class="g-content">
+        <a href="javascript:void(0)" class="g-close">x</a>
+        <h2>Choose category</h2>
+        <?php
+        $g_select = db_fetch_all('SELECT `id`, `title` FROM `pages` WHERE `masterid`=0 AND `menuid`=1 AND `deleted`=0 AND `id`!=1 AND `level`=1 AND `language`="'.l().'"');
+        $in_carousel_array = ($route[1]=='edit') ? explode(",", $edit['in_carousel']) : array();
+        ?>
+        <ul>
+            <?php
+            foreach($g_select as $it):
+                $sub = db_fetch_all('SELECT `id`, `title` FROM `pages` WHERE `masterid`="'.$it['id'].'" AND `menuid`=1 AND `deleted`=0 AND `level`=2 AND `language`="'.l().'"');
+            ?>
+            <li>
+                <?php
+                if(!isset($sub[0]['id'])){
+                ?>
+                <label for="g-i<?=$it['id']?>">
+                    <span><?=$it['title']?></span>
+                    <input type="checkbox" name="g-i<?=$it['id']?>" class="g-i<?=$it['id']?>" id="g-i<?=$it['id']?>" value="<?=$it['id']?>"<?=(in_array($it['id'], $in_carousel_array) ? ' checked="checked"' : '')?>>
+                </label>
+                <?php
+                }else{
+                    $count_car = 0;
+                    foreach($sub as $s): 
+                        if(in_array($s['id'], $in_carousel_array)){
+                            $count_car++;
+                        }
+                    endforeach;
+                ?>
+                <a href="javascript:void(0)" class="g-parent" data-id="<?=$it['id']?>" data-open="false">
+                    <strong><?=$it['title']?> (<span id="amount<?=$it['id']?>"><?=$count_car?></span>)</strong><svg enable-background="new 0 0 32 32" height="32px" id="svg2" version="1.1" viewBox="0 0 32 32" width="32px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:cc="http://creativecommons.org/ns#" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd" xmlns:svg="http://www.w3.org/2000/svg"><g id="backbord"><rect fill="none" height="32" width="32"/></g><g id="arrow_x5F_up"><polygon points="30,22 16.001,8 2.001,22  "/></g></svg>
+                </a>
+                <ul class="sub" id="sub<?=$it['id']?>">
+                    <li>
+                        <?php
+                        foreach($sub as $s):
+                        ?>
+                        <label for="g-i<?=$s['id']?>">
+                            <span><?=$s['title']?></span>
+                            <input type="checkbox" name="g-i<?=$s['id']?>" class="g-i<?=$s['id']?>" id="g-i<?=$s['id']?>" value="<?=$s['id']?>"<?=(in_array($s['id'], $in_carousel_array) ? ' checked="checked"' : '')?>>
+                        </label>
+                        <?php
+                        endforeach;
+                        ?>
+                    </li>
+                </ul>
+                <?php
+                }
+                ?>
+                
+            </li>
+            <?php
+            endforeach;
+            ?>
+        </ul>
+
+        <button type="button" class="g-save-carousel">Save</button>
+    </div>
+</div>
+
+
     <div id="title" class="fix">
         <div class="icon"><img src="_manager/img/edit.png" width="16" height="16" alt="" /></div>
         <div class="name"><?php echo $pagetitle . ': ' . (($route[1] == 'edit') ? $edit["title"] : a('add')); ?></div>
@@ -243,7 +447,8 @@
                         'image17',
                         'image18',
                         'image19',
-                        'image20'
+                        'image20', 
+                        'image_fb'
                     );
                     if(isset($edit['image_positions']) && $edit['image_positions']!=""){
                         $imagePositions = explode(",", $edit['image_positions']);
@@ -254,7 +459,11 @@
                         <?php foreach($imagePositions as $col): ?>
                             <div class="dragable">
                                 <div class="list fix g-image-list" data-col="<?=$col?>">
+                                    <?php if($col=="image_fb"){ ?>
+                                    <div class="name"><?php echo a("image");?> FB Share: <span class="star">*</span></div>
+                                    <?php }else{ ?>
                                     <div class="name"><?php echo a("image");?>: <span class="star">*</span></div>
+                                    <?php } ?>
                                     <input type="text" id="<?=$col?>" name="<?=$col?>" value="<?php echo ($route[1]=='edit') ? $edit[$col] : '' ?>" class="inp" style="width:500px;" />
                                     <a href="javascript:;" class="popup button br" data-browse="<?=$col?>"><?php echo a('browse') ?></a>
                                     <?php if($route[1]=='edit' && $edit[$col] != ""): ?> 
@@ -322,6 +531,12 @@
                             <p style="margin-left: 15px;">video</p>
                         </a>
                         <?php endif; ?>
+                    </div>
+
+                    <div class="list fix">
+                        <div class="name">Recommend it:</div>
+                        <input type="text" id="in_carousel" name="in_carousel" value="<?php echo ($route[1]=='edit') ? $edit["in_carousel"] : '' ?>" class="inp" style="width:500px;" readonly="readonly" />
+                        <a href="javascript:;" class="button br in_carousel_popup"><?php echo a('browse') ?></a>
                     </div>
 
                     <div class="list2 fix">
@@ -529,4 +744,42 @@
     });
     <?php endif; ?>
 
+
+    $(document).on('click', '.in_carousel_popup', function() {
+        $('.g-popup').fadeIn();   
+    });
+
+    $(document).on('click', '.g-close', function() {
+        $('.g-popup').fadeOut();   
+    });
+
+    $(document).on('click', '.g-save-carousel', function() {
+        var arr = new Array();
+        $('.g-content input[type="checkbox"]').each(function(){
+            var chk = $(this).prop('checked');
+            var val = $(this).val();
+            if(chk){
+                arr.push(val);
+            }
+        })
+
+        $('#in_carousel').val(arr.join(","));
+        $('.g-popup').fadeOut();
+    });
+
+    $(document).on('click', '.g-parent', function() {
+        var open = $(this).attr('data-open');  
+        var id = $(this).attr('data-id');
+        
+        $('.g-parent').attr('data-open', 'false');
+        $('.sub').slideUp();        
+
+        if(open=="true"){
+            $(this).attr('data-open', 'false');
+            $('#sub'+id).slideUp();
+        }else{
+            $(this).attr('data-open', 'true');
+            $('#sub'+id).slideDown();
+        }
+    });
 </script>

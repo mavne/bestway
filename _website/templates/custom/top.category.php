@@ -1,19 +1,4 @@
 <?php defined('DIR') OR exit; ?>
-
-<!DOCTYPE html>
-<!-- saved from url=(0031)/ -->
-<html lang="en">
-<head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <base href="https://bestway.404.ge/">
-<meta name="title" content="">
-<meta name="description" content="">
-<meta name="keywords" content="">
-<meta name="robots" content="INDEX,FOLLOW">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="format-detection" content="telephone=no">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<title>Best</title>
 <link rel="stylesheet" type="text/css" media="all" href="./Bestway Store UK _ Leaders in Inflatables &amp; Above Ground Pools_files/f7476e11845f15d504abee96d9fdffd1.min.css">
 <link rel="stylesheet" type="text/css" media="screen and (min-width: 768px)" href="./Bestway Store UK _ Leaders in Inflatables &amp; Above Ground Pools_files/styles-l.min.css">
 <link rel="stylesheet" type="text/css" media="print" href="./Bestway Store UK _ Leaders in Inflatables &amp; Above Ground Pools_files/print.min.css">
