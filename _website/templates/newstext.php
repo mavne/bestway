@@ -513,98 +513,72 @@ The store will not work correctly in the case when cookies are disabled.</div>
 
 </div>
 
-<div class="product media"> 
-    <div class="g-popup" id="g-popup" style="display:none;">
-        <div class="g-popup-nav">
-            <ul>
-                <?php
-                if(!empty($youtube1) || !empty($youtube2) || !empty($youtube3) || !empty($youtube4) || !empty($youtube5)):
-                ?>
-                <li><a href="javascript:void(0)" class="g-change-poptype" data-type="video">ვიდეო</a></li>
-                <?php endif; ?>
-                <li><a href="javascript:void(0)" class="g-change-poptype active" data-type="image">ფოტო</a></li>
-            </ul>
-        </div>
+<style>
+    .g-new-content-wrap{
+        margin: 0 auto;
+        width: 1534px;
+    }
 
-        <div class="g-popup-main-image-wrapper">
-            <div class="g-popup-main-image">
-                <img src="<?=$image1?>" />
-            </div>
+    .g-new-content-wrap h1{
+        margin: 0 0 20px 0;
+        padding: 0;
+        width: 100%;
+        text-align: left;
+        font-family: 'Roboto _GEO Mt' !important;
+        font-size: 24px;
+    }
 
-            <div class="g-popup-arrows">
-                <button class="g-popup-prev"></button>
-                <button class="g-popup-next"></button>
-            </div>
-        </div>
+    .g-new-content-wrap .g-new-main-image{
+        margin: 0 15px 15px 0;
+        text-align: left;
+        max-width: 600px;
+        float: left;
+    }
 
-        <div class="g-popup-title-and-thumbs">
-            <h3><?=$title?></h3>
+    .g-new-content-wrap p{
+        margin-top: 0px;
+        font-family: 'Roboto _Nusx' !important;
+        font-size: 14px;
+        line-height: 22px;
+        margin-bottom: 10px;
+    }
 
-            <input type="hidden" name="g-popup-active-img-vid" id="g-popup-active-img-vid" value="1">
+    .g-new-content-wrap iframe{
+        margin: 40px 0 0 0;
+        display: block;
+        float: left;
+    }
 
-            <div class="g-popup-thumbs">
-                
-            </div>
-        </div>
+    @media (max-width: 960px){
+        .g-new-content-wrap{
+            width: 90%;
+        }
 
-        <div style="clear: both;"></div>
-    </div>
+        .g-new-content-wrap .g-new-main-image{
+            float: none;
+            display: block;
+            width: 100%;
+            margin: 0 0 15px 0;
+        }
 
+        .g-new-content-wrap iframe{
+            width: 100%;
+        }
+    }
+</style>
 
-    <div class="g-images-box" style="width:100%;">
-        <div class="g-main-image">
-            <a href="#" class="lightbox-link">
-                <img src="<?php echo $image1; ?>">
-
-                <svg height="100%" version="1.1" viewBox="0 0 68 48" width="100%"><path class="ytp-large-play-button-bg" d="M66.52,7.74c-0.78-2.93-2.49-5.41-5.42-6.19C55.79,.13,34,0,34,0S12.21,.13,6.9,1.55 C3.97,2.33,2.27,4.81,1.48,7.74C0.06,13.05,0,24,0,24s0.06,10.95,1.48,16.26c0.78,2.93,2.49,5.41,5.42,6.19 C12.21,47.87,34,48,34,48s21.79-0.13,27.1-1.55c2.93-0.78,4.64-3.26,5.42-6.19C67.94,34.95,68,24,68,24S67.94,13.05,66.52,7.74z" fill="#f00"></path><path d="M 45,24 27,14 27,34" fill="#fff"></path></svg>
-            </a>
-        </div>
-    </div>
+<div class="g-new-content-wrap">
+    <h1><?=$title?></h1>
+    <div style="clear: both;"></div>
+    <?php if($image1!=""): ?>
+    <a href="https://bestway.404.ge/<?=str_replace("https://bestway.404.ge/","",$image1)?>" class="magicpopup"><img src="<?=$image1?>" class="g-new-main-image" alt=""></a>
+    <?php
+    endif;
+    echo embedYouTubeInText(strip_tags($content, "<p><a><strong><ul><li>"));
+    ?>
+    <div style="clear:both;"></div>
 </div>
 
-<div class="product-info-main">
-    <style>
-    [data-bv-show="rating_summary"] .bv_main_container .bv_numReviews_text {
-        text-decoration: underline !important;
-    }
-    [data-bv-show="rating_summary"] .bv_main_container .bv_numReviews_text::before {
-        content: '(';
-    }
-    [data-bv-show="rating_summary"] .bv_main_container .bv_numReviews_text::after{
-        content: ')';
-    }
-    [data-bv-show="rating_summary"] .bv_main_container .bv_avgRating_component_container {
-        margin-left: 5px !important;
-    }
-    .product-bazaarvoice-reviews .reviews-wrapper {
-        max-width: 1220px !important;
-        margin: 70px auto 0 auto !important;
-    }
-    </style>
-    <div class="product-features-wrapper g-menuitem-sub">
-        <div class="page-title-wrapper&#x20;product" style="margin-top:0px;">
-            <h1 class="page-title g-product-title" style="text-align: left;">
-                <span class="base g-menuitem" data-ui-id="page-title-wrapper">
-                    <?=$title?>
-                </span>
-            </h1>
-        </div>
-
-        <div style="clear: both;"></div>
-        <div class="g-images-box ggg-show">
-        <div class="g-thumbs g-hidemobimages" style="display:none">
-        </div>
-        </div>
-
-        <div style="clear: both;"></div>
-
-        <div class="mobile-price-button-box"></div>
-
-        <div style="clear: both;"></div>
-
-        <?=strip_tags($content, "<p><strong><a><ul><li>")?>
-    </div>
-</div>
 
 </div>
 
@@ -1041,6 +1015,18 @@ var gMenuClosed = true;
 
 <!-- <script src="/cdn-cgi/scripts/7d0fa10a/cloudflare-static/rocket-loader.min.js" data-cf-settings="e028b536ec15088aeba82394-|49" defer=""></script> -->
 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/jquery.magnific-popup.min.js"></script>
+<script>
+    $(document).ready(function() {
+        $('.magicpopup').magnificPopup({
+            type: 'image',
+            gallery: {
+                enabled: true
+            }
+        });
+    });
+</script>
+
 <script>
 $(document).on('mouseenter', '.g-images-box .g-thumbs ul li a', function(){
     var type = $(this).attr('data-type');
@@ -1087,160 +1073,10 @@ function changePopType(type){
     }
 }
 
-$('.lightbox-link').magnificPopup({
-    type: 'inline',
-    callbacks: {
-        open: function() {
-            $('#g-popup').show();
-            var ul = $('.g-thumbs ul').prop('outerHTML');
-            $('#g-popup .g-popup-thumbs').html(ul);
-            $('#g-popup .g-popup-thumbs a').attr('href', 'javascript:void(0)').removeClass('lightbox-link').addClass('popup-lightbox');
 
-            if($('#g-popup .g-popup-main-image img').length){
-                changePopType('image');
-            }else{
-                changePopType('video');
-            }
-
-            $(document).on('click', '#g-popup .popup-lightbox', function(){
-                var type = $(this).attr('data-type');
-                var src = $(this).attr('data-src');
-                var indx = $(this).attr('data-index');
-
-                $('#g-popup-active-img-vid').val(indx);
-
-                if(type=="image"){
-                    $('#g-popup .g-popup-main-image').html('<img>');
-                    $('#g-popup .g-popup-main-image img').attr('src', src);
-
-                    changePopType('image');
-                }else{
-                    var videoImage = $(this).attr('data-videoImage');
-                    var videoId = src.match(/[?&]v=([^&]+)/)[1];
-                    
-                    var iframe = $("<iframe>", {
-                        src: "https://www.youtube.com/embed/" + videoId + "?autoplay=1&mute=1",
-                        frameborder: 0,
-                        allowfullscreen: true,
-                        width: "100%",
-                        height: "600" // You can adjust the width and height as needed
-                      });
-                    $('#g-popup .g-popup-main-image').html(iframe);
-
-                    changePopType('video');
-                }            
-            });
-
-            $(document).on('click', '#g-popup .g-change-poptype', function(){
-                $('#g-popup .g-change-poptype').removeClass('active');
-                $(this).addClass('active');
-
-                var type = $(this).attr('data-type');
-                var src = $(this).attr('data-src');
-                if(type=="image"){
-                    $('#g-popup .g-popup-title-and-thumbs .g-popup-thumbs ul li:first-child a').click();
-                }else{
-                    
-                    // $('#g-popup .g-popup-title-and-thumbs .g-popup-thumbs ul li a[data-type="video"]').click();
-                    $('#g-popup .g-popup-title-and-thumbs .g-popup-thumbs ul li a[data-type="video"]').parent()[0].children[0].click();
-                }            
-            });
-
-
-        }
-    }
-});
 
 $(document).ready(function(){
     var width = $(window).width();
-
-    if(width <= 960){
-        var owlHtml = '<div class="owl-carousel owl-theme" id="mobile-product-slider">';
-
-        $('.g-images-box .g-thumbs ul li').each(function(){
-            var type = $('a', this).attr('data-type');
-            var src = $('a', this).attr('data-src');
-            var videoimage = $('a', this).attr('data-videoimage');
-
-            
-
-            if(type=='video'){
-                const url = new URL(src);
-                const videoId = url.searchParams.get("v");
-
-                // console.log(videoId);
-                owlHtml += '<iframe width="100%" height="300" src="https://www.youtube.com/embed/'+videoId+'" frameborder="0" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>';
-                
-            }else{
-                owlHtml += '<a href="'+src+'" class="item mobile-lightbox" data-type="'+type+'" data-src="'+src+'">';
-                owlHtml += '<img src="'+src+'" alt="" loading="lazy">';
-                owlHtml += '</a>';
-            }           
-        });
-
-        owlHtml += '</div>';
-
-        $('.g-hidemobimages').html(owlHtml).show();
-
-        var bundle = $('.bundle-options-container').prop('outerHTML');
-        $('.bundle-options-container').remove();
-        $('.mobile-price-button-box').html(bundle);
-
-
-        $('#mobile-product-slider').owlCarousel({
-            autoplay: false,
-            smartSpeed:500,
-            loop:true,
-            margin:0,
-            nav:true,
-            dots: true,
-            responsive:{
-                0:{
-                    items:1
-                },
-                600:{
-                    items:1
-                },
-                1000:{
-                    items:1
-                }
-            }
-        });
-
-        $('.column.main .products .product-items').addClass('owl-carousel owl-theme');
-        $('.column.main .products .product-items').owlCarousel({
-            autoplay: true,
-            smartSpeed:1500,
-            loop:true,
-            margin:0,
-            nav:true,
-            dots: false,
-            responsive:{
-                0:{
-                    items:1
-                },
-                600:{
-                    items:1
-                },
-                1000:{
-                    items:1
-                }
-            }
-        });
-
-        $('.video-link').magnificPopup({
-            type: 'iframe'
-        });
-
-        // $('.mobile-lightbox').magnificPopup({
-        //     type: 'inline',
-        //     callbacks: {
-        //         open: function() {
-        //             $('#g-popup').show();
-        //         }
-        //     }
-        // });
-    }
 
 
     $('#g-ralated-products').owlCarousel({

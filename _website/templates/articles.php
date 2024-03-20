@@ -679,10 +679,13 @@ width: 100%;
                                         <?php
                                         }else{
                                         ?>
-                                        <div class="stock unavailable g-menuitem-sub"><span><?=l('outonstack')?></span></div>
+                                        <div class="stock unavailable g-menuitem-sub" style="margin-bottom: 15px;"><span style="color:red"><?=l('outonstack')?></span></div>
 
 
                                         <form data-role="tocart-form" data-product-configurable="false" data-product-type="simple" data-product-sku="BW58093-21" action="" method="post" style="width: unset;">
+                                            <button type="button" title="Add" class="action tocart g-tocart primary" disabled>
+                                                    <span class="g-menuitem-sub"><?=l('add.cart')?></span>
+                                            </button>
                                             <div class="view-details-wrapper g-view-details-wrapper" style="float:none">
                                                 <a class="product-item-link details g-menuitem-sub" href="<?=href($a['id'])?>"><?=l('read.more')?></a>
                                             </div>
@@ -1056,7 +1059,7 @@ var gMenuClosed = true;
 
                 var ajaxUrl = 'type=loadlist&menutype='+menutype+'&from='+loaded+'&to='+perpage;
                 var xhttp = new XMLHttpRequest();
-                xhttp.open("POST", "/ge/?ajax=true", true);
+                xhttp.open("POST", "/<?=l()?>/?ajax=true", true);
                 xhttp.setRequestHeader('Content-type', 'application/x-www-form-urlencoded; charset=UTF-8');
                 xhttp.send(ajaxUrl);
 

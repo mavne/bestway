@@ -620,7 +620,7 @@ width: 100%;
                 <img class="product-image" src="<?=$rel[$image_positions[0]]?>" alt="">
             </a>
             <a href="<?=$link?>">
-                <strong class="product name product-item-name g-menuitem-sub"><?=$rel['title']?></strong>
+                <strong class="product name product-item-name g-menuitem-sub"><?=$rel['menutitle']?></strong>
             </a>
             <p class="product-price">
                 <?php
@@ -681,7 +681,7 @@ width: 100%;
                 <img class="product-image" src="<?=$rel[$image_positions[0]]?>" alt="">
             </a>
             <a href="<?=$link?>">
-                <strong class="product name product-item-name g-menuitem-sub"><?=$rel['title']?></strong>
+                <strong class="product name product-item-name g-menuitem-sub"><?=$rel['menutitle']?></strong>
             </a>
             <p class="product-price">
                 <?php
@@ -742,7 +742,7 @@ width: 100%;
                 <img class="product-image" src="<?=$rel[$image_positions[0]]?>" alt="">
             </a>
             <a href="<?=$link?>">
-                <strong class="product name product-item-name g-menuitem-sub"><?=$rel['title']?></strong>
+                <strong class="product name product-item-name g-menuitem-sub"><?=$rel['menutitle']?></strong>
             </a>
             <p class="product-price">
                 <span class="old-price g-menuitem-sub"><?=$rel['price']?> ₾</span>   

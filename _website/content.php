@@ -76,6 +76,7 @@ if(isset($storage->section['image_fb'])){
 <link rel="icon" type="image/x-icon" href="/media/favicon/stores/10/bestway-favicon.png" />
 <link rel="shortcut icon" type="image/x-icon" href="/media/favicon/stores/10/bestway-favicon.png" />
 
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/magnific-popup.min.css">
 
 
 <?php echo html_decode($storage->content); ?>

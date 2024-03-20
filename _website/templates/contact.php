@@ -555,7 +555,7 @@ $imgx = true;
 
     <div class="product-features-wrapper g-menuitem-sub">
         <div class="page-title-wrapper&#x20;product" style="margin-top:40px;">
-            <h1 class="page-title g-product-title" style="text-align: left;">
+            <h1 class="page-title g-product-title" style="text-align: left; margin: 0 0 15px 0;">
                 <span class="base g-menuitem" data-ui-id="page-title-wrapper">
                     <?=$title?>
                 </span>
@@ -677,45 +677,46 @@ $imgx = true;
             async defer></script>
         
          <script>
-            <?php
-            $maps = explode(",", s('map.makhinjauri'));
-            $maps2 = explode(",", s('map.makhinjauri2'));
-            ?>
+        <?php
+        $getMapMarkers = g_pages(37);
+        ?>
         function initMap() {
             var map = new google.maps.Map(document.getElementById('g-map'), {
-                center: {lat: <?=$maps[0]?>, lng: <?=$maps[1]?>},
                 zoom: 8,
                 disableDefaultUI: true
             });
 
-            // Add a marker
-            var marker = new google.maps.Marker({
-                position: {lat: <?=$maps[0]?>, lng: <?=$maps[1]?>},
+            var bounds = new google.maps.LatLngBounds();
+
+            <?php 
+            $i=1;
+            foreach($getMapMarkers as $m): 
+                $explode = explode(",", $m['price']);
+            ?>
+            var marker<?=$i?> = new google.maps.Marker({
+                position: {lat: <?=$explode[0]?>, lng: <?=$explode[1]?>},
                 map: map,
-                title: 'Marker Title'
+                title: 'Marker 1 Title'
             });
 
-            // Add a click event listener to the marker
-            marker.addListener('click', function() {
-                // Open a new window with directions
-                window.open('https://www.google.com/maps/dir/?api=1&destination=' + 
-                            marker.getPosition().lat() + ',' + marker.getPosition().lng(), '_blank');
+            var infoWindow<?=$i?> = new google.maps.InfoWindow({
+                content: '<div class="g-menuitem-sub"><strong><?=strip_tags($m['title'])?></strong><br><?=strip_tags($m['menutitle'])?></div>'
             });
 
-            var marker2 = new google.maps.Marker({
-                position: {lat: <?=$maps2[0]?>, lng: <?=$maps2[1]?>},
-                map: map,
-                title: 'Marker Title'
+            marker<?=$i?>.addListener('click', function() {
+                infoWindow<?=$i?>.open(map, marker<?=$i?>);
             });
+            bounds.extend(marker<?=$i?>.getPosition());
+            <?php
+            $i++;
+            endforeach;
+            ?>
 
-            // Add a click event listener to the marker
-            marker2.addListener('click', function() {
-                // Open a new window with directions
-                window.open('https://www.google.com/maps/dir/?api=1&destination=' + 
-                            marker2.getPosition().lat() + ',' + marker2.getPosition().lng(), '_blank');
-            });
+
+            map.fitBounds(bounds);
         }
     </script>
+
 
         <div style="clear: both;"></div>
     </div>
@@ -1225,32 +1226,32 @@ $(document).ready(function(){
 
         owlHtml += '</div>';
 
-        $('.g-hidemobimages').html(owlHtml).show();
+        // $('.g-hidemobimages').html(owlHtml).show();
 
         var bundle = $('.bundle-options-container').prop('outerHTML');
         $('.bundle-options-container').remove();
         $('.mobile-price-button-box').html(bundle);
 
 
-        $('#mobile-product-slider').owlCarousel({
-            autoplay: false,
-            smartSpeed:500,
-            loop:true,
-            margin:0,
-            nav:true,
-            dots: true,
-            responsive:{
-                0:{
-                    items:1
-                },
-                600:{
-                    items:1
-                },
-                1000:{
-                    items:1
-                }
-            }
-        });
+        // $('#mobile-product-slider').owlCarousel({
+        //     autoplay: false,
+        //     smartSpeed:500,
+        //     loop:true,
+        //     margin:0,
+        //     nav:true,
+        //     dots: true,
+        //     responsive:{
+        //         0:{
+        //             items:1
+        //         },
+        //         600:{
+        //             items:1
+        //         },
+        //         1000:{
+        //             items:1
+        //         }
+        //     }
+        // });
 
         $('.column.main .products .product-items').addClass('owl-carousel owl-theme');
         $('.column.main .products .product-items').owlCarousel({

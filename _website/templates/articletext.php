@@ -207,9 +207,9 @@ width: 100%;
             margin-bottom: 20px !important;
         }
 
-        .nav-open .nav-sections, .nav-before-open .nav-sections{
+        /*.nav-open .nav-sections, .nav-before-open .nav-sections{
             top: 198px !important;
-        }
+        }*/
     }
     </style>
 <link rel="stylesheet" type="text/css" media="all" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" />
@@ -779,165 +779,258 @@ The store will not work correctly in the case when cookies are disabled.</div>
         font-size: 14px;
     }
 </style>
+<div class="g-new-leftside">
+    <div class="product media"> 
+        <div class="g-purchase-box" id="g-purchase-box" style="display: none;">
+            <h2 class="purchase-box-title">
+                <?=l('purchase')?>
+            </h2>
 
-<div class="product media"> 
-    <div class="g-purchase-box" id="g-purchase-box" style="display: none;">
-        <h2 class="purchase-box-title">
-            <?=l('purchase')?>
-        </h2>
+            <div class="purchase-product">
+                <table border="1">
+                    <tr>
+                        <th><span><?=l('theProductTitle')?></span></th>
+                        <th><span><?=l('price')?></span></th>
+                    </tr>
 
-        <div class="purchase-product">
-            <table border="1">
-                <tr>
-                    <th><span><?=l('theProductTitle')?></span></th>
-                    <th><span><?=l('price')?></span></th>
-                </tr>
+                    <tr>
+                        <td><span><?=$title?></span></td>
+                        <td>
+                            <?php
+                            if($discount!=""){
+                            ?>
+                            <span style="text-decoration: line-through; padding-right:10px; color:red;"><?=$price?>₾</span>
+                            <span style="color:green;" class="checkout-price" data-price="<?=$discount?>"><?=$discount?>₾</span>
+                            <?php
+                            }else{
+                            ?>
+                            <span class="checkout-price" data-price="<?=$price?>"><?=$price?>₾</span>
+                            <?php
+                            }
+                            ?>
+                        </td>
+                    </tr>
+                </table>
+            </div>
 
-                <tr>
-                    <td><span><?=$title?></span></td>
-                    <td>
-                        <?php
-                        if($discount!=""){
-                        ?>
-                        <span style="text-decoration: line-through; padding-right:10px; color:red;"><?=$price?>₾</span>
-                        <span style="color:green;" class="checkout-price" data-price="<?=$discount?>"><?=$discount?>₾</span>
-                        <?php
-                        }else{
-                        ?>
-                        <span class="checkout-price" data-price="<?=$price?>"><?=$price?>₾</span>
-                        <?php
-                        }
-                        ?>
-                    </td>
-                </tr>
-            </table>
+            <form action="" method="post" class="purchase-box-form">
+                <label for="purchase-firstname"><?=l('firstname')?></label>
+                <input type="text" name="purchase-firstname" id="purchase-firstname" value="">
+
+                <label for="purchase-lastname"><?=l('lastname')?></label>
+                <input type="text" name="purchase-lastname" id="purchase-lastname" value="">
+
+                <label for="purchase-mobile"><?=l('mobile')?></label>
+                <input type="text" name="purchase-mobile" id="purchase-mobile" value="">
+
+                <label for="purchase-email"><?=l('e.mail')?></label>
+                <input type="text" name="purchase-email" id="purchase-email" value="">
+
+                <label for="purchase-address"><?=l('address')?></label>
+                <input type="text" name="purchase-address" id="purchase-address" value="">
+
+                <label for="home_delivery"><span><?=l('home.delivery')?></span> <input type="checkbox" name="home_delivery" id="home_delivery" value="1"></label>
+
+                <button type="submit" class="action primary g-menuitem g-orange-btn"><?=l('purchase')?></button>
+
+                <div style="width:100%;clear: both;"></div>
+            </form>
         </div>
 
-        <form action="" method="post" class="purchase-box-form">
-            <label for="purchase-firstname"><?=l('firstname')?></label>
-            <input type="text" name="purchase-firstname" id="purchase-firstname" value="">
 
-            <label for="purchase-lastname"><?=l('lastname')?></label>
-            <input type="text" name="purchase-lastname" id="purchase-lastname" value="">
+        <div class="g-popup" id="g-popup" style="display:none;">
+            <div class="g-popup-nav">
+                <ul>
+                    <li><a href="javascript:void(0)" class="g-change-poptype active"><?=$title?></a></li>
+                </ul>
+            </div>
 
-            <label for="purchase-mobile"><?=l('mobile')?></label>
-            <input type="text" name="purchase-mobile" id="purchase-mobile" value="">
+            <div class="g-new-wrapper">
+                <div class="g-new-row">
+                    <div class="g-new-col-15">
+                        <h4 class="g-menuitem g-new-subtitle">ვიდეო</h4>
+                        <ul class="g-new-media-list g-new-media-video">
+                        <?php
+                        $imageCount = 1;
+                        for($x=1; $x<=30; $x++):
+                            $imgVariable = "image".$x;
 
-            <label for="purchase-email"><?=l('e.mail')?></label>
-            <input type="text" name="purchase-email" id="purchase-email" value="">
+                            if(isset($$imgVariable) && $$imgVariable!=""){
+                                $imageCount++;
+                            }
+                        endfor;
 
-            <label for="purchase-address"><?=l('address')?></label>
-            <input type="text" name="purchase-address" id="purchase-address" value="">
+                        if(!empty($youtube1)):
+                            $urlParts = parse_url($youtube1);
+                            parse_str($urlParts['query'], $queryParameters);
+                            $videoId = $queryParameters['v'];
+                        ?>
+                        <li>
+                            <a href="javascript:void(0)" class="g-new-popup-goto g-videox" data-index="<?=$imageCount?>">
+                                <img src="https://img.youtube.com/vi/<?=$videoId?>/0.jpg" alt="">
+                            </a>
+                        </li>
+                        <?php
+                        endif;
+                        ?>
 
-            <label for="home_delivery"><span><?=l('home.delivery')?></span> <input type="checkbox" name="home_delivery" id="home_delivery" value="1"></label>
+                        <?php
+                        if(!empty($youtube2)):
+                            $urlParts = parse_url($youtube2);
+                            parse_str($urlParts['query'], $queryParameters);
+                            $videoId = $queryParameters['v'];
+                        ?>
+                        <li>
+                            <a href="javascript:void(0)" class="g-new-popup-goto g-videox" data-index="<?=($imageCount + 1)?>">
+                                <img src="https://img.youtube.com/vi/<?=$videoId?>/0.jpg" alt="">
+                            </a>
+                        </li>
+                        <?php
+                        endif;
+                        ?>
 
-            <button type="submit" class="action primary g-menuitem g-orange-btn"><?=l('purchase')?></button>
+                        <?php
+                        if(!empty($youtube3)):
+                            $urlParts = parse_url($youtube3);
+                            parse_str($urlParts['query'], $queryParameters);
+                            $videoId = $queryParameters['v'];
+                        ?>
+                        <li>
+                            <a href="javascript:void(0)" class="g-new-popup-goto g-videox" data-index="<?=($imageCount + 2)?>">
+                                <img src="https://img.youtube.com/vi/<?=$videoId?>/0.jpg" alt="">
+                            </a>
+                        </li>
+                        <?php
+                        endif;
+                        ?>
 
-            <div style="width:100%;clear: both;"></div>
-        </form>
-    </div>
+                        <?php
+                        if(!empty($youtube4)):
+                            $urlParts = parse_url($youtube4);
+                            parse_str($urlParts['query'], $queryParameters);
+                            $videoId = $queryParameters['v'];
+                        ?>
+                        <li>
+                            <a href="javascript:void(0)" class="g-new-popup-goto g-videox" data-index="<?=($imageCount + 3)?>">
+                                <img src="https://img.youtube.com/vi/<?=$videoId?>/0.jpg" alt="">
+                            </a>
+                        </li>
+                        <?php
+                        endif;
+                        ?>
 
+                        <?php
+                        if(!empty($youtube5)):
+                            $urlParts = parse_url($youtube5);
+                            parse_str($urlParts['query'], $queryParameters);
+                            $videoId = $queryParameters['v'];
+                        ?>
+                        <li>
+                            <a href="javascript:void(0)" class="g-new-popup-goto g-videox" data-index="<?=($imageCount + 4)?>">
+                                <img src="https://img.youtube.com/vi/<?=$videoId?>/0.jpg" alt="">
+                            </a>
+                        </li>
+                        <?php
+                        endif;
+                        ?>
+                        </ul>
+                    </div>
+                    
+                    <div class="g-new-col-70">
+                        <div class="owl-carousel owl-theme" id="g-new-popup-main">
+                                <?php
+                                if($image_positions!=""){
+                                    $imageP = explode(",", $image_positions);
+                                }else{ 
+                                    $imageP = array();
+                                    for($x=1; $x<=30; $x++):
+                                        $imageP[] = "image".$x;
+                                    endfor;
+                                }
 
-    <div class="g-popup" id="g-popup" style="display:none;">
-        <div class="g-popup-nav">
-            <ul>
-                <li><a href="javascript:void(0)" class="g-change-poptype active"><?=$title?></a></li>
-            </ul>
-        </div>
+                                foreach($imageP as $im):
+                                    if($$im != "" && $im != "image_fb"):
+                                ?>
+                                    <div class="item xxxx">
+                                        <a href="javascript:void(0)">
+                                            <img src="<?=$$im?>" alt="">
+                                        </a>
+                                    </div>
+                                <?php                    
+                                    endif;
+                                endforeach;
+                                ?>
 
-        <div class="g-new-wrapper">
-            <div class="g-new-row">
-                <div class="g-new-col-15">
-                    <h4 class="g-menuitem g-new-subtitle">ვიდეო</h4>
-                    <ul class="g-new-media-list g-new-media-video">
-                    <?php
-                    $imageCount = 1;
-                    for($x=1; $x<=30; $x++):
-                        $imgVariable = "image".$x;
+                                <?php
+                                if(!empty($youtube1)):
+                                    $urlParts = parse_url($youtube1);
+                                    parse_str($urlParts['query'], $queryParameters);
+                                    $videoId = $queryParameters['v'];
+                                ?>
+                                <div class="item">
+                                    <iframe src="https://www.youtube.com/embed/<?=$videoId?>" width="100%" height="600px" frameborder="0" allowfullscreen="true" class="g-new-iframe"></iframe>
+                                </div>
+                                <?php
+                                endif;
+                                ?>
 
-                        if(isset($$imgVariable) && $$imgVariable!=""){
-                            $imageCount++;
-                        }
-                    endfor;
+                                <?php
+                                if(!empty($youtube2)):
+                                    $urlParts = parse_url($youtube2);
+                                    parse_str($urlParts['query'], $queryParameters);
+                                    $videoId = $queryParameters['v'];
+                                ?>
+                                <div class="item">
+                                    <iframe src="https://www.youtube.com/embed/<?=$videoId?>" width="100%" height="600px" frameborder="0" allowfullscreen="true" class="g-new-iframe"></iframe>
+                                </div>
+                                <?php
+                                endif;
+                                ?>
 
-                    if(!empty($youtube1)):
-                        $urlParts = parse_url($youtube1);
-                        parse_str($urlParts['query'], $queryParameters);
-                        $videoId = $queryParameters['v'];
-                    ?>
-                    <li>
-                        <a href="javascript:void(0)" class="g-new-popup-goto g-videox" data-index="<?=$imageCount?>">
-                            <img src="https://img.youtube.com/vi/<?=$videoId?>/0.jpg" alt="">
-                        </a>
-                    </li>
-                    <?php
-                    endif;
-                    ?>
+                                <?php
+                                if(!empty($youtube3)):
+                                    $urlParts = parse_url($youtube3);
+                                    parse_str($urlParts['query'], $queryParameters);
+                                    $videoId = $queryParameters['v'];
+                                ?>
+                                <div class="item">
+                                    <iframe src="https://www.youtube.com/embed/<?=$videoId?>" width="100%" height="600px" frameborder="0" allowfullscreen="true" class="g-new-iframe"></iframe>
+                                </div>
+                                <?php
+                                endif;
+                                ?>   
 
-                    <?php
-                    if(!empty($youtube2)):
-                        $urlParts = parse_url($youtube2);
-                        parse_str($urlParts['query'], $queryParameters);
-                        $videoId = $queryParameters['v'];
-                    ?>
-                    <li>
-                        <a href="javascript:void(0)" class="g-new-popup-goto g-videox" data-index="<?=($imageCount + 1)?>">
-                            <img src="https://img.youtube.com/vi/<?=$videoId?>/0.jpg" alt="">
-                        </a>
-                    </li>
-                    <?php
-                    endif;
-                    ?>
+                                <?php
+                                if(!empty($youtube4)):
+                                    $urlParts = parse_url($youtube4);
+                                    parse_str($urlParts['query'], $queryParameters);
+                                    $videoId = $queryParameters['v'];
+                                ?>
+                                <div class="item">
+                                    <iframe src="https://www.youtube.com/embed/<?=$videoId?>" width="100%" height="600px" frameborder="0" allowfullscreen="true" class="g-new-iframe"></iframe>
+                                </div>
+                                <?php
+                                endif;
+                                ?> 
 
-                    <?php
-                    if(!empty($youtube3)):
-                        $urlParts = parse_url($youtube3);
-                        parse_str($urlParts['query'], $queryParameters);
-                        $videoId = $queryParameters['v'];
-                    ?>
-                    <li>
-                        <a href="javascript:void(0)" class="g-new-popup-goto g-videox" data-index="<?=($imageCount + 2)?>">
-                            <img src="https://img.youtube.com/vi/<?=$videoId?>/0.jpg" alt="">
-                        </a>
-                    </li>
-                    <?php
-                    endif;
-                    ?>
-
-                    <?php
-                    if(!empty($youtube4)):
-                        $urlParts = parse_url($youtube4);
-                        parse_str($urlParts['query'], $queryParameters);
-                        $videoId = $queryParameters['v'];
-                    ?>
-                    <li>
-                        <a href="javascript:void(0)" class="g-new-popup-goto g-videox" data-index="<?=($imageCount + 3)?>">
-                            <img src="https://img.youtube.com/vi/<?=$videoId?>/0.jpg" alt="">
-                        </a>
-                    </li>
-                    <?php
-                    endif;
-                    ?>
-
-                    <?php
-                    if(!empty($youtube5)):
-                        $urlParts = parse_url($youtube5);
-                        parse_str($urlParts['query'], $queryParameters);
-                        $videoId = $queryParameters['v'];
-                    ?>
-                    <li>
-                        <a href="javascript:void(0)" class="g-new-popup-goto g-videox" data-index="<?=($imageCount + 4)?>">
-                            <img src="https://img.youtube.com/vi/<?=$videoId?>/0.jpg" alt="">
-                        </a>
-                    </li>
-                    <?php
-                    endif;
-                    ?>
-                    </ul>
-                </div>
-                
-                <div class="g-new-col-70">
-                    <div class="owl-carousel owl-theme" id="g-new-popup-main">
+                                <?php
+                                if(!empty($youtube5)):
+                                    $urlParts = parse_url($youtube5);
+                                    parse_str($urlParts['query'], $queryParameters);
+                                    $videoId = $queryParameters['v'];
+                                ?>
+                                <div class="item">
+                                    <iframe src="https://www.youtube.com/embed/<?=$videoId?>" width="100%" height="600px" frameborder="0" allowfullscreen="true" class="g-new-iframe"></iframe>
+                                </div>
+                                <?php
+                                endif;
+                                ?>                        
+                        </div>
+                    </div>
+                    
+                    <div class="g-new-col-15 g-new-col-20">
+                        <h4 class="g-menuitem g-new-subtitle">ფოტო</h4>
+                        <ul class="g-new-media-list">
                             <?php
                             if($image_positions!=""){
                                 $imageP = explode(",", $image_positions);
@@ -948,296 +1041,208 @@ The store will not work correctly in the case when cookies are disabled.</div>
                                 endfor;
                             }
 
+                            $index=0;
                             foreach($imageP as $im):
                                 if($$im != "" && $im != "image_fb"):
+                                    $index++;
                             ?>
-                                <div class="item xxxx">
-                                    <a href="javascript:void(0)">
+                                <li class="g-ppoto">
+                                    <a href="javascript:void(0)" class="g-new-popup-goto" data-index="<?=$index?>">
                                         <img src="<?=$$im?>" alt="">
                                     </a>
-                                </div>
+                                </li>
                             <?php                    
                                 endif;
                             endforeach;
                             ?>
-
-                            <?php
-                            if(!empty($youtube1)):
-                                $urlParts = parse_url($youtube1);
-                                parse_str($urlParts['query'], $queryParameters);
-                                $videoId = $queryParameters['v'];
-                            ?>
-                            <div class="item">
-                                <iframe src="https://www.youtube.com/embed/<?=$videoId?>" width="100%" height="600px" frameborder="0" allowfullscreen="true" class="g-new-iframe"></iframe>
-                            </div>
-                            <?php
-                            endif;
-                            ?>
-
-                            <?php
-                            if(!empty($youtube2)):
-                                $urlParts = parse_url($youtube2);
-                                parse_str($urlParts['query'], $queryParameters);
-                                $videoId = $queryParameters['v'];
-                            ?>
-                            <div class="item">
-                                <iframe src="https://www.youtube.com/embed/<?=$videoId?>" width="100%" height="600px" frameborder="0" allowfullscreen="true" class="g-new-iframe"></iframe>
-                            </div>
-                            <?php
-                            endif;
-                            ?>
-
-                            <?php
-                            if(!empty($youtube3)):
-                                $urlParts = parse_url($youtube3);
-                                parse_str($urlParts['query'], $queryParameters);
-                                $videoId = $queryParameters['v'];
-                            ?>
-                            <div class="item">
-                                <iframe src="https://www.youtube.com/embed/<?=$videoId?>" width="100%" height="600px" frameborder="0" allowfullscreen="true" class="g-new-iframe"></iframe>
-                            </div>
-                            <?php
-                            endif;
-                            ?>   
-
-                            <?php
-                            if(!empty($youtube4)):
-                                $urlParts = parse_url($youtube4);
-                                parse_str($urlParts['query'], $queryParameters);
-                                $videoId = $queryParameters['v'];
-                            ?>
-                            <div class="item">
-                                <iframe src="https://www.youtube.com/embed/<?=$videoId?>" width="100%" height="600px" frameborder="0" allowfullscreen="true" class="g-new-iframe"></iframe>
-                            </div>
-                            <?php
-                            endif;
-                            ?> 
-
-                            <?php
-                            if(!empty($youtube5)):
-                                $urlParts = parse_url($youtube5);
-                                parse_str($urlParts['query'], $queryParameters);
-                                $videoId = $queryParameters['v'];
-                            ?>
-                            <div class="item">
-                                <iframe src="https://www.youtube.com/embed/<?=$videoId?>" width="100%" height="600px" frameborder="0" allowfullscreen="true" class="g-new-iframe"></iframe>
-                            </div>
-                            <?php
-                            endif;
-                            ?>                        
+                        </ul>
                     </div>
                 </div>
-                
-                <div class="g-new-col-15 g-new-col-20">
-                    <h4 class="g-menuitem g-new-subtitle">ფოტო</h4>
-                    <ul class="g-new-media-list">
-                        <?php
-                        if($image_positions!=""){
-                            $imageP = explode(",", $image_positions);
-                        }else{ 
-                            $imageP = array();
-                            for($x=1; $x<=30; $x++):
-                                $imageP[] = "image".$x;
-                            endfor;
-                        }
-
-                        $index=0;
-                        foreach($imageP as $im):
-                            if($$im != "" && $im != "image_fb"):
-                                $index++;
-                        ?>
-                            <li class="g-ppoto">
-                                <a href="javascript:void(0)" class="g-new-popup-goto" data-index="<?=$index?>">
-                                    <img src="<?=$$im?>" alt="">
-                                </a>
-                            </li>
-                        <?php                    
-                            endif;
-                        endforeach;
-                        ?>
-                    </ul>
-                </div>
             </div>
+
+            <div style="clear: both;"></div>
         </div>
 
-        <div style="clear: both;"></div>
-    </div>
 
+        <div class="g-images-box">
+            <div class="g-thumbs">
+                <ul>
+                    <?php
+                    if($image_positions!=""){
+                        $imageP = explode(",", $image_positions);
+                    }else{ 
+                        $imageP = array();
+                        for($x=1; $x<=30; $x++):
+                            $imageP[] = "image".$x;
+                        endfor;
+                    }
 
-    <div class="g-images-box">
-        <div class="g-thumbs">
-            <ul>
-                <?php
-                if($image_positions!=""){
-                    $imageP = explode(",", $image_positions);
-                }else{ 
-                    $imageP = array();
-                    for($x=1; $x<=30; $x++):
-                        $imageP[] = "image".$x;
-                    endfor;
-                }
+                    $index=0;
+                    foreach($imageP as $im):
+                        if($$im != "" && $im != "image_fb"):
+                            $index++;
+                    ?>
+                        <li>
+                            <a href="#g-popup" class="lightbox-link" data-type="image" data-src="<?=$$im?>" data-index="<?=$index?>">
+                                <img src="<?=$$im?>" alt="">
+                            </a>
+                        </li>
+                    <?php                    
+                        endif;
+                    endforeach;
+                    ?>
 
-                $index=0;
-                foreach($imageP as $im):
-                    if($$im != "" && $im != "image_fb"):
+                    
+
+                    <?php
+                    if(!empty($youtube1)):
                         $index++;
-                ?>
+                        $urlParts = parse_url($youtube1);
+                        parse_str($urlParts['query'], $queryParameters);
+                        $videoId = $queryParameters['v'];
+                    ?>
                     <li>
-                        <a href="#g-popup" class="lightbox-link" data-type="image" data-src="<?=$$im?>" data-index="<?=$index?>">
-                            <img src="<?=$$im?>" alt="">
+                        <a href="#g-popup" class="lightbox-link" data-type="video" data-src="<?=$youtube1?>" data-videoImage="https://img.youtube.com/vi/<?=$videoId?>/0.jpg" data-index="<?=$index?>">
+                            <img src="https://img.youtube.com/vi/<?=$videoId?>/0.jpg" alt="">
                         </a>
                     </li>
-                <?php                    
+                    <?php
                     endif;
-                endforeach;
-                ?>
+                    ?>
 
-                
+                    <?php
+                    if(!empty($youtube2)):
+                        $index++;
+                        $urlParts = parse_url($youtube2);
+                        parse_str($urlParts['query'], $queryParameters);
+                        $videoId = $queryParameters['v'];
+                    ?>
+                    <li>
+                        <a href="#g-popup" class="lightbox-link" data-type="video" data-src="<?=$youtube2?>" data-videoImage="https://img.youtube.com/vi/<?=$videoId?>/0.jpg" data-index="<?=$index?>">
+                            <img src="https://img.youtube.com/vi/<?=$videoId?>/0.jpg" alt="">
+                        </a>
+                    </li>
+                    <?php
+                    endif;
+                    ?>
 
-                <?php
-                if(!empty($youtube1)):
-                    $index++;
-                    $urlParts = parse_url($youtube1);
-                    parse_str($urlParts['query'], $queryParameters);
-                    $videoId = $queryParameters['v'];
-                ?>
-                <li>
-                    <a href="#g-popup" class="lightbox-link" data-type="video" data-src="<?=$youtube1?>" data-videoImage="https://img.youtube.com/vi/<?=$videoId?>/0.jpg" data-index="<?=$index?>">
-                        <img src="https://img.youtube.com/vi/<?=$videoId?>/0.jpg" alt="">
-                    </a>
-                </li>
-                <?php
-                endif;
-                ?>
+                    <?php
+                    if(!empty($youtube3)):
+                        $index++;
+                        $urlParts = parse_url($youtube3);
+                        parse_str($urlParts['query'], $queryParameters);
+                        $videoId = $queryParameters['v'];
+                    ?>
+                    <li>
+                        <a href="#g-popup" class="lightbox-link" data-type="video" data-src="<?=$youtube3?>" data-videoImage="https://img.youtube.com/vi/<?=$videoId?>/0.jpg" data-index="<?=$index?>">
+                            <img src="https://img.youtube.com/vi/<?=$videoId?>/0.jpg" alt="">
+                        </a>
+                    </li>
+                    <?php
+                    endif;
+                    ?>
 
-                <?php
-                if(!empty($youtube2)):
-                    $index++;
-                    $urlParts = parse_url($youtube2);
-                    parse_str($urlParts['query'], $queryParameters);
-                    $videoId = $queryParameters['v'];
-                ?>
-                <li>
-                    <a href="#g-popup" class="lightbox-link" data-type="video" data-src="<?=$youtube2?>" data-videoImage="https://img.youtube.com/vi/<?=$videoId?>/0.jpg" data-index="<?=$index?>">
-                        <img src="https://img.youtube.com/vi/<?=$videoId?>/0.jpg" alt="">
-                    </a>
-                </li>
-                <?php
-                endif;
-                ?>
+                    <?php
+                    if(!empty($youtube4)):
+                        $index++;
+                        $urlParts = parse_url($youtube4);
+                        parse_str($urlParts['query'], $queryParameters);
+                        $videoId = $queryParameters['v'];
+                    ?>
+                    <li>
+                        <a href="#g-popup" class="lightbox-link" data-type="video" data-src="<?=$youtube4?>" data-videoImage="https://img.youtube.com/vi/<?=$videoId?>/0.jpg" data-index="<?=$index?>">
+                            <img src="https://img.youtube.com/vi/<?=$videoId?>/0.jpg" alt="">
+                        </a>
+                    </li>
+                    <?php
+                    endif;
+                    ?>
 
-                <?php
-                if(!empty($youtube3)):
-                    $index++;
-                    $urlParts = parse_url($youtube3);
-                    parse_str($urlParts['query'], $queryParameters);
-                    $videoId = $queryParameters['v'];
-                ?>
-                <li>
-                    <a href="#g-popup" class="lightbox-link" data-type="video" data-src="<?=$youtube3?>" data-videoImage="https://img.youtube.com/vi/<?=$videoId?>/0.jpg" data-index="<?=$index?>">
-                        <img src="https://img.youtube.com/vi/<?=$videoId?>/0.jpg" alt="">
-                    </a>
-                </li>
-                <?php
-                endif;
-                ?>
-
-                <?php
-                if(!empty($youtube4)):
-                    $index++;
-                    $urlParts = parse_url($youtube4);
-                    parse_str($urlParts['query'], $queryParameters);
-                    $videoId = $queryParameters['v'];
-                ?>
-                <li>
-                    <a href="#g-popup" class="lightbox-link" data-type="video" data-src="<?=$youtube4?>" data-videoImage="https://img.youtube.com/vi/<?=$videoId?>/0.jpg" data-index="<?=$index?>">
-                        <img src="https://img.youtube.com/vi/<?=$videoId?>/0.jpg" alt="">
-                    </a>
-                </li>
-                <?php
-                endif;
-                ?>
-
-                <?php
-                if(!empty($youtube5)):
-                    $index++;
-                    $urlParts = parse_url($youtube5);
-                    parse_str($urlParts['query'], $queryParameters);
-                    $videoId = $queryParameters['v'];
-                ?>
-                <li>
-                    <a href="#g-popup" class="lightbox-link" data-type="video" data-src="<?=$youtube5?>" data-videoImage="https://img.youtube.com/vi/<?=$videoId?>/0.jpg" data-index="<?=$index?>">
-                        <img src="https://img.youtube.com/vi/<?=$videoId?>/0.jpg" alt="">
-                    </a>
-                </li>
-                <?php
-                endif;
-                ?>
-            </ul>
-        </div>
-
-        <input type="hidden" name="g-active-image" id="g-active-image" value="1">
-        <input type="hidden" name="g-max-image" id="g-max-image" value="<?=$index?>">
-        <div class="g-main-image">
-            <div class="g-arrows">
-                <button class="g-prev"></button>
-                <button class="g-next"></button>
+                    <?php
+                    if(!empty($youtube5)):
+                        $index++;
+                        $urlParts = parse_url($youtube5);
+                        parse_str($urlParts['query'], $queryParameters);
+                        $videoId = $queryParameters['v'];
+                    ?>
+                    <li>
+                        <a href="#g-popup" class="lightbox-link" data-type="video" data-src="<?=$youtube5?>" data-videoImage="https://img.youtube.com/vi/<?=$videoId?>/0.jpg" data-index="<?=$index?>">
+                            <img src="https://img.youtube.com/vi/<?=$videoId?>/0.jpg" alt="">
+                        </a>
+                    </li>
+                    <?php
+                    endif;
+                    ?>
+                </ul>
             </div>
-            <a href="#g-popup" class="lightbox-link">
-                <?php
-                $imagexx = ($image_positions!="") ? explode(",", $image_positions) : array('image1');
-                $newImage = ${$imagexx[0]};
-                ?>
-                <img src="<?php echo $newImage; ?>">
 
-                <svg height="100%" version="1.1" viewBox="0 0 68 48" width="100%"><path class="ytp-large-play-button-bg" d="M66.52,7.74c-0.78-2.93-2.49-5.41-5.42-6.19C55.79,.13,34,0,34,0S12.21,.13,6.9,1.55 C3.97,2.33,2.27,4.81,1.48,7.74C0.06,13.05,0,24,0,24s0.06,10.95,1.48,16.26c0.78,2.93,2.49,5.41,5.42,6.19 C12.21,47.87,34,48,34,48s21.79-0.13,27.1-1.55c2.93-0.78,4.64-3.26,5.42-6.19C67.94,34.95,68,24,68,24S67.94,13.05,66.52,7.74z" fill="#f00"></path><path d="M 45,24 27,14 27,34" fill="#fff"></path></svg>
-            </a>
+            <input type="hidden" name="g-active-image" id="g-active-image" value="1">
+            <input type="hidden" name="g-max-image" id="g-max-image" value="<?=$index?>">
+            <div class="g-main-image">
+                <div class="g-arrows">
+                    <button class="g-prev"></button>
+                    <button class="g-next"></button>
+                </div>
+                <a href="#g-popup" class="lightbox-link">
+                    <?php
+                    $imagexx = ($image_positions!="") ? explode(",", $image_positions) : array('image1');
+                    $newImage = ${$imagexx[0]};
+                    ?>
+                    <img src="<?php echo $newImage; ?>">
+
+                    <svg height="100%" version="1.1" viewBox="0 0 68 48" width="100%"><path class="ytp-large-play-button-bg" d="M66.52,7.74c-0.78-2.93-2.49-5.41-5.42-6.19C55.79,.13,34,0,34,0S12.21,.13,6.9,1.55 C3.97,2.33,2.27,4.81,1.48,7.74C0.06,13.05,0,24,0,24s0.06,10.95,1.48,16.26c0.78,2.93,2.49,5.41,5.42,6.19 C12.21,47.87,34,48,34,48s21.79-0.13,27.1-1.55c2.93-0.78,4.64-3.26,5.42-6.19C67.94,34.95,68,24,68,24S67.94,13.05,66.52,7.74z" fill="#f00"></path><path d="M 45,24 27,14 27,34" fill="#fff"></path></svg>
+                </a>
+            </div>
         </div>
     </div>
-</div>
-
-<div class="product-info-main">
 
 
-    <style>
-    [data-bv-show="rating_summary"] .bv_main_container .bv_numReviews_text {
-        text-decoration: underline !important;
-    }
-    [data-bv-show="rating_summary"] .bv_main_container .bv_numReviews_text::before {
-        content: '(';
-    }
-    [data-bv-show="rating_summary"] .bv_main_container .bv_numReviews_text::after{
-        content: ')';
-    }
-    [data-bv-show="rating_summary"] .bv_main_container .bv_avgRating_component_container {
-        margin-left: 5px !important;
-    }
-    .product-bazaarvoice-reviews .reviews-wrapper {
-        max-width: 1220px !important;
-        margin: 70px auto 0 auto !important;
-    }
-    </style>
-    <div class="product-features-wrapper g-menuitem-sub">
-        <div class="page-title-wrapper&#x20;product" style="margin-top:0px;">
-            <h1 class="page-title g-product-title" style="text-align: left;">
-                <span class="base g-menuitem" data-ui-id="page-title-wrapper">
-                    <?=$title?>
-                </span>
-            </h1>
+    <div class="product-info-main">
+        <style>
+        [data-bv-show="rating_summary"] .bv_main_container .bv_numReviews_text {
+            text-decoration: underline !important;
+        }
+        [data-bv-show="rating_summary"] .bv_main_container .bv_numReviews_text::before {
+            content: '(';
+        }
+        [data-bv-show="rating_summary"] .bv_main_container .bv_numReviews_text::after{
+            content: ')';
+        }
+        [data-bv-show="rating_summary"] .bv_main_container .bv_avgRating_component_container {
+            margin-left: 5px !important;
+        }
+        .product-bazaarvoice-reviews .reviews-wrapper {
+            max-width: 1220px !important;
+            margin: 70px auto 0 auto !important;
+        }
+        </style>
+        <div class="product-features-wrapper g-menuitem-sub">
+            <div class="page-title-wrapper&#x20;product" style="margin-top:0px;">
+                <h1 class="page-title g-product-title" style="text-align: left;">
+                    <span class="base g-menuitem" data-ui-id="page-title-wrapper">
+                        <?=$title?>
+                    </span>
+                </h1>
+            </div>
+
+            <div style="clear: both;"></div>
+            <div class="g-images-box ggg-show">
+            <div class="g-thumbs g-hidemobimages" style="display:none">
+            </div>
+            </div>
+
+            <div style="clear: both;"></div>
+
+            <div class="mobile-price-button-box"></div>
+
+            <div style="clear: both;"></div>
+
+            <?=g_strip_classes($description)?>
         </div>
+    </div>
 
-        <div style="clear: both;"></div>
-        <div class="g-images-box ggg-show">
-        <div class="g-thumbs g-hidemobimages" style="display:none">
-        </div>
-        </div>
-
-        <div style="clear: both;"></div>
-
-        <div class="mobile-price-button-box"></div>
-
-        <div style="clear: both;"></div>
-
+    <div style="clear:both;"></div>
+    <div class="g-long-text g-menuitem-sub">
         <?=g_strip_classes($content)?>
     </div>
 </div>
@@ -1298,17 +1303,17 @@ The store will not work correctly in the case when cookies are disabled.</div>
             }
         </style>
         <div id="countdown"></div>
-        <script>
+            <script>
             function pad(n, len) {
-              n = n.toString();
-              return n.length < len ? pad("0" + n, len) : n;
+            n = n.toString();
+            return n.length < len ? pad("0" + n, len) : n;
             }
 
-          // Set the date we're counting down to
-          const countDownDate = new Date("<?=$countdown_to?>").getTime();
+            // Set the date we're counting down to
+            const countDownDate = new Date("<?=$countdown_to?>").getTime();
 
-          // Update the countdown every 1 second
-          const x = setInterval(function() {
+            // Update the countdown every 1 second
+            const x = setInterval(function() {
 
             // Get the current date and time
             const now = new Date().getTime();
@@ -1324,15 +1329,15 @@ The store will not work correctly in the case when cookies are disabled.</div>
 
             // Display the countdown
             document.getElementById("countdown").innerHTML = "<span>"+pad(days, 2) + "</span> <span>" + pad(hours, 2) + "</span> <span>"
-              + pad(minutes, 2) + "</span> <span>" + pad(seconds, 2) + "</span>";
+            + pad(minutes, 2) + "</span> <span>" + pad(seconds, 2) + "</span>";
 
             // If the countdown is over, display a message
             if (distance < 0) {
-              clearInterval(x);
-              location.reload();
+            clearInterval(x);
+            location.reload();
             }
-          }, 1000);
-        </script>
+            }, 1000);
+            </script>
         <?php
         }
         ?>
@@ -1420,37 +1425,38 @@ The store will not work correctly in the case when cookies are disabled.</div>
     </div>
 
     <div class="box-wrapper delivery-box">
-    <h4 class="g-menuitem">
-        <svg enable-background="new 0 0 50 50" height="50px" id="Layer_1" version="1.1" viewBox="0 0 50 50" width="50px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><rect fill="none" height="50" width="50"/><g><circle cx="13" cy="44" fill="none" r="5" stroke="#000000" stroke-miterlimit="10" stroke-width="2"/></g><g><circle cx="39" cy="44" fill="none" r="5" stroke="#000000" stroke-miterlimit="10" stroke-width="2"/></g><path d="M45,44h2c1.018,0,2-0.982,2-2c0,0,0-7.867,0-9.615  c0-1.749-1.414-3.729-1.414-3.729l-4.125-5.502C42.617,22.137,41.355,21,40,21h-8c-1.018,0-2,0.983-2,2v19c0,1.014,0.988,1.992,2,2  h2 M49,33c0,0-10,0-11,0s-2-1-2-2c0-0.577,0-2.488,0-4c0-1.107,1-2,2-2s6.846,0,6.846,0" fill="none" stroke="#000000" stroke-miterlimit="10" stroke-width="2"/><path d="M18,44h10.154C29.17,44,30,43.171,30,42.154V16  c0-1.017-2.137-2.077-3.154-2.077h-24C1.829,13.923,1,14.752,1,15.769V42c0,1.018,0.983,2,2,2h5" fill="none" stroke="#000000" stroke-miterlimit="10" stroke-width="2"/></svg>
-        <span><?=menu_title(339)?></span>
-    </h4>
-    <?php
-    $g_pages_delivery = g_pages_master(339, '*', ' ORDER BY `position` ASC');
-    $tt=1;
-    ?>
+        <h4 class="g-menuitem">
+            <svg enable-background="new 0 0 50 50" height="50px" id="Layer_1" version="1.1" viewBox="0 0 50 50" width="50px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><rect fill="none" height="50" width="50"/><g><circle cx="13" cy="44" fill="none" r="5" stroke="#000000" stroke-miterlimit="10" stroke-width="2"/></g><g><circle cx="39" cy="44" fill="none" r="5" stroke="#000000" stroke-miterlimit="10" stroke-width="2"/></g><path d="M45,44h2c1.018,0,2-0.982,2-2c0,0,0-7.867,0-9.615  c0-1.749-1.414-3.729-1.414-3.729l-4.125-5.502C42.617,22.137,41.355,21,40,21h-8c-1.018,0-2,0.983-2,2v19c0,1.014,0.988,1.992,2,2  h2 M49,33c0,0-10,0-11,0s-2-1-2-2c0-0.577,0-2.488,0-4c0-1.107,1-2,2-2s6.846,0,6.846,0" fill="none" stroke="#000000" stroke-miterlimit="10" stroke-width="2"/><path d="M18,44h10.154C29.17,44,30,43.171,30,42.154V16  c0-1.017-2.137-2.077-3.154-2.077h-24C1.829,13.923,1,14.752,1,15.769V42c0,1.018,0.983,2,2,2h5" fill="none" stroke="#000000" stroke-miterlimit="10" stroke-width="2"/></svg>
+            <span><?=menu_title(339)?></span>
+        </h4>
+        <?php
+        $g_pages_delivery = g_pages_master(339, '*', ' ORDER BY `position` ASC');
+        $tt=1;
+        ?>
 
-    <table>
-        <?php foreach($g_pages_delivery as $item): ?>
-        <tr>
-            <td><strong><?=$item['title']?></strong></td>
-        </tr>
-        <tr>
-             <td><?=$item['menutitle']?></td>
-        </tr>
-        <tr>
-            <td><?=$item['price']?> ₾</td>
-        </tr>
-        <?php if($tt<=2): ?>
-        <tr>
-            <td><hr></td>
-        </tr>
-        <?php 
-        endif;
-        $tt++;
-        endforeach; ?>
-    </table>
+        <table>
+            <?php foreach($g_pages_delivery as $item): ?>
+            <tr>
+                <td><strong><?=$item['title']?></strong></td>
+            </tr>
+            <tr>
+                 <td><?=$item['menutitle']?></td>
+            </tr>
+            <tr>
+                <td><?=$item['price']?> ₾</td>
+            </tr>
+            <?php if($tt<=2): ?>
+            <tr>
+                <td><hr></td>
+            </tr>
+            <?php 
+            endif;
+            $tt++;
+            endforeach; ?>
+        </table>
+    </div>
 </div>
-</div>
+
 
 
 
@@ -1512,7 +1518,7 @@ The store will not work correctly in the case when cookies are disabled.</div>
                         <div class="product details product-item-details">
                             <strong class="product name product-item-name">
                                 <a class="product-item-link g-menuitem-sub" title="" href="<?=$link?>">
-                                    <?=$rel['title']?>
+                                    <?=$rel['menutitle']?>
                                 </a>
                             </strong>
 
@@ -1574,7 +1580,7 @@ The store will not work correctly in the case when cookies are disabled.</div>
                 ?>
             </ol>
 
-            <div class="g-owlBtns">
+            <div class="g-owlBtns g-owlBtns1">
                 <button class="prev">prev</button>
                 <button class="next">next</button>
             </div>
@@ -1637,7 +1643,7 @@ The store will not work correctly in the case when cookies are disabled.</div>
                         <div class="product details product-item-details">
                             <strong class="product name product-item-name">
                                 <a class="product-item-link g-menuitem-sub" title="" href="<?=$link?>">
-                                    <?=$rel['title']?>
+                                    <?=$rel['menutitle']?>
                                 </a>
                             </strong>
 
@@ -1699,7 +1705,7 @@ The store will not work correctly in the case when cookies are disabled.</div>
                 ?>
             </ol>
 
-            <div class="g-owlBtns">
+            <div class="g-owlBtns g-owlBtns2">
                 <button class="prev">prev</button>
                 <button class="next">next</button>
             </div>
@@ -2285,11 +2291,19 @@ $(document).ready(function(){
         }
     });
 
-    $('.g-owl-container .g-owlBtns button.prev').on('click', function () {
+    $('.g-owl-container .g-owlBtns1 button.prev').on('click', function () {
+        $('#g-ralated-products2').trigger('prev.owl.carousel');
+    });
+
+    $('.g-owl-container .g-owlBtns1 button.next').on('click', function () {
+        $('#g-ralated-products2').trigger('next.owl.carousel');
+    });
+
+    $('.g-owl-container .g-owlBtns2 button.prev').on('click', function () {
         $('#g-ralated-products').trigger('prev.owl.carousel');
     });
 
-    $('.g-owl-container .g-owlBtns button.next').on('click', function () {
+    $('.g-owl-container .g-owlBtns2 button.next').on('click', function () {
         $('#g-ralated-products').trigger('next.owl.carousel');
     });
 

@@ -80,7 +80,56 @@
     background-image: url('/images/ru.svg');
 }
 
+.g-address-li{
+    height: 30px;
+    line-height: 30px;
+}
+
+.g-address-li p{
+    height: 30px;
+    line-height: 30px;
+}
+
+.g-address-li p a{
+    display: block;
+    height: 30px;
+    line-height: 30px;
+}
+
+.g-address-li2{
+    height: 30px;
+    line-height: 30px;
+}
+
+.g-address-li2 p{
+    display: inline-block !important;
+    height: 30px;
+    line-height: 30px;
+    margin-top: -5px;
+    margin-bottom: 0px !important;
+}
+
+.g-address-li2 p.g-mobile-language{
+    margin-top: -3px;
+}
+
+.g-address-li2 p a{
+    display: inline-block !important;
+    height: 30px;
+    line-height: 30px;
+}
+
+.g-address-li2 p span{
+    display: inline-block !important;
+    height: 30px;
+    line-height: 30px;
+}
+
 @media(max-width:960px){
+    .g-address-li2 p.g-mobile-hide{
+        display: none !important;
+    }
+    
     .g-mobile-top-left{
         text-align: left !important;
         width: calc(60% - 15px) !important;
@@ -113,18 +162,27 @@
     .g-mobile-hide{
         display: none !important;
     }
+
+    .g-copy-box{
+        background-color: white;
+        margin-top: -6px;
+        padding: 5px 15px;
+        display: flex;
+        justify-content: space-between;
+    }
 }
 </style>
 <header class="page-header">
 <div class="header-confidence-banner">
 <ul id="banners" class="">
-<li class="banner displayed g-mobile-top-left">
+<li class="banner displayed g-mobile-top-left g-address-li">
 <p><a href="javascript:void(0)" class="g-menuitem-sub"><?=s('address')?></a></p>
 </li>
-<li class="banner displayed g-mobile-hide">
-<p><a href="tel:<?=s('telephone')?>" class="g-menuitem-sub"><?=s('telephone')?></a></p>
+
+<li class="banner displayed g-mobile-hide g-address-li">
+<p class="g-copy-telephone"><a href="tel:<?=s('telephone')?>" class="g-menuitem-sub"><?=s('telephone')?></a></p>
 </li>
-<li class="banner displayed g-mobile-top-right">
+<li class="banner displayed g-mobile-top-right g-address-li2">
     <?php 
     $g_pages_master = g_pages_master(333, '*', ' ORDER BY `position` ASC');
     $maxPages = count($g_pages_master);
@@ -132,11 +190,11 @@
     foreach($g_pages_master as $itx):
         if($ixx==$maxPages){
             ?>
-            <p class="g-mobile-hide"><a href="<?=href($itx['id'])?>" class="g-menuitem-sub"><?=$itx['title']?></a></p>
+            <p class="g-mobile-hide g-copy-partners"><a href="<?=href($itx['id'])?>" class="g-menuitem-sub"><?=$itx['title']?></a></p>
             <?php 
         }else{
             ?>
-            <p class="g-mobile-hide"><a href="<?=href($itx['id'])?>" class="g-menuitem-sub"><?=$itx['title']?></a> /</p>
+            <p class="g-mobile-hide g-copy-contact"><a href="<?=href($itx['id'])?>" class="g-menuitem-sub"><?=$itx['title']?></a> <span>/</span></p>
             <?php 
         }
     $ixx++;
@@ -153,7 +211,8 @@
 </li>
 </ul>
 </div>
-<div class="panel wrapper"><div class="panel header"><a class="action skip contentarea" href="/#contentarea">
+<div class="panel wrapper"><div class="panel header">
+    <a class="action skip contentarea" href="/#contentarea">
 <span>
 Skip to Content </span>
 </a>
@@ -211,7 +270,7 @@ Skip to Content </span>
         <span>Toggle Nav</span>
     </span>
 
-    <a class="logo" href="/" title="Bestway Store" aria-label="store logo">
+    <a class="logo" href="/<?=l()?>/" title="Bestway Store" aria-label="store logo">
         <img src="./Bestway Store UK _ Leaders in Inflatables &amp; Above Ground Pools_files/logo.svg" title="Bestway Store" alt="Bestway Store" width="170">
     </a>
 

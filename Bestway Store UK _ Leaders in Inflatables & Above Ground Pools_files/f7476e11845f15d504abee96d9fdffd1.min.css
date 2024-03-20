@@ -2301,6 +2301,14 @@ transform:rotate(359deg)
 	opacity: 0.5;
 }
 
+.section-item-content .menu-container .menu.horizontal>ul>li a{
+	font-family: 'Roboto _GEO Mt' !important;
+}
+
+.section-item-content .menu-container .menu.horizontal > ul > li ul a{
+	font-family: 'Roboto _Nusx' !important;
+}
+
 @media(max-width: 960px){
 	#bannerslider-list-items-1-64ddd630ef5be .owl-nav{
 		display: none !important;
@@ -2312,6 +2320,11 @@ transform:rotate(359deg)
 	}
 
 	.nav-open .nav-sections, .nav-before-open .nav-sections{
-		top:198px !important;
+		top:184px !important;
+		height: calc(100% - 184px);
+	}
+
+	#maincontent .homepage-wrapper .homepage-banner-wrapper img{
+		object-fit: cover !important;
 	}
 }

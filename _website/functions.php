@@ -973,13 +973,15 @@ function main_menu2(){
 			$out .= "</button>";
 			$out .= "</li>";
 			$out .= "</ul>";
-			$out .= "<div class=\"mobile-only mobile-shop-all\">";
-			$out .= "<div>";
-			$out .= "<span class=\"widget block block-category-link-inline\">";
-			$out .= "<a href=\"\" title=\"Shop all Pools\"><span>SEE ALL POOLS </span></a>";
-			$out .= "</span>";
-			$out .= "</div>";
-			$out .= "</div>";
+
+			// $out .= "<div class=\"mobile-only mobile-shop-all\">";			
+			// $out .= "<div>";
+			// $out .= "<span class=\"widget block block-category-link-inline\">";
+			// $out .= "<a href=\"\" title=\"Shop all Pools\"><span>SEE ALL POOLS </span></a>";
+			// $out .= "</span>";
+			// $out .= "</div>";
+			// $out .= "</div>";
+
 			$out .= "</li>";
 			$out .= "</ul>";
 			$out .= "</li>";
@@ -1085,6 +1087,11 @@ function g_pages_master($masterid, $columns = '*', $limit = ''){
     return $out;
 }
 
+function g_pages($menuid, $limit = ''){
+	$out = db_fetch_all("SELECT * FROM `" . c("table.pages") . "` WHERE  `language` = '" . l() . "' AND `deleted`=0 AND `menuid`='".$menuid."' AND `visibility` = 1".$limit);
+    return $out;
+}
+
 function g_checkVisibility($id){
 	$out = db_fetch("SELECT `visibility` FROM `pages` WHERE  `language` = '" . l() . "' AND `deleted`=0 AND `id`='".$id."'");
     return ($out['visibility'] == 1) ? true : false;
@@ -1094,4 +1101,34 @@ function g_home_news(){
 	$out = db_fetch_all("SELECT `id`, `title`, `description`, `content`, `image1` FROM `" . c("table.pages") . "` WHERE  `language` = '" . l() . "' AND `deleted`=0 AND `menuid`='29' AND `visibility` = 1 AND `homepage`= 1 ORDER BY `id` DESC LIMIT 2");
 
     return $out;
+}
+
+function getYoutubeEmbedUrl($url) {
+    // Regular expression to match YouTube URL formats
+    $pattern = '/^(?:https?:\/\/)?(?:www\.)?(?:youtube\.com\/(?:[^\/\n\s]+\/\S+\/|(?:v|e(?:mbed)?)\/|\S*?[?&]v=)|youtu\.be\/)([a-zA-Z0-9_-]{11})/i';
+    
+    // Check if the URL matches the pattern
+    if (preg_match($pattern, $url, $matches)) {
+        $youtube_video_id = $matches[1];
+        // Return the embed URL
+        return "https://www.youtube.com/embed/$youtube_video_id";
+    }
+    
+    // Return false if no match is found
+    return false;
+}
+
+function embedYouTubeInText($text) {
+    // Regular expression to find YouTube links in the text
+    $pattern = '/(?:https?:\/\/)?(?:www\.)?(?:youtube\.com\/(?:[^\/\n\s]+\/\S+\/|(?:v|e(?:mbed)?)\/|\S*?[?&]v=)|youtu\.be\/)([a-zA-Z0-9_-]{11})/i';
+    
+    // Replace YouTube links with iframes
+    $text_with_embeds = preg_replace_callback($pattern, function($matches) {
+        $youtube_video_id = $matches[1];
+        // Generate iframe for the YouTube video
+        $embed_url = "https://www.youtube.com/embed/$youtube_video_id";
+        return "<iframe width=\"560\" height=\"315\" src=\"$embed_url\" frameborder=\"0\" allowfullscreen></iframe>";
+    }, $text);
+    
+    return $text_with_embeds;
 }

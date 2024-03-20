@@ -215,11 +215,16 @@ switch($type){
 
                     }else{
                         $html .= sprintf(
-                            '<div class="stock unavailable g-menuitem-sub"><span>%s</span></div>',
+                            '<div class="stock unavailable g-menuitem-sub" style="margin-bottom: 15px;"><span style="color:red">%s</span></div>',
                             l('outonstack')
                         );
 
                         $html .= '<form data-role="tocart-form" data-product-configurable="false" data-product-type="simple" data-product-sku="BW58093-21" action="" method="post" style="width: unset;">';
+
+                        $html .= '<button type="button" title="Add" class="action tocart g-tocart primary" disabled>';
+                        $html .= sprintf('<span class="g-menuitem-sub">%s</span>', l('add.cart'));
+                        $html .= '</button>';
+
                         $html .= '<div class="view-details-wrapper g-view-details-wrapper" style="float:none">';
                         $html .= sprintf('<a class="product-item-link details g-menuitem-sub" href="%s">%s</a>', href($a['id']), l('read.more'));
                         $html .= '</div></form>';

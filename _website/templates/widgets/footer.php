@@ -138,3 +138,23 @@
 		</div>
 	</div>
 </footer>
+<script>
+	(function(){
+		var widthx = $(window).width();
+		if(widthx<=960){
+			var telephonex = $('.g-copy-telephone').prop('outerHTML');
+			var partnersx = $('.g-copy-partners').prop('outerHTML');
+			var contactx = $('.g-copy-contact').prop('outerHTML');
+
+			$('.header-confidence-banner').append('<div class="g-copy-box">'+telephonex+partnersx+contactx+'</div>');
+			$('.header-confidence-banner .g-copy-box p').removeClass('g-mobile-hide');
+			$('.g-copy-contact').contents().each(function() {
+		        if (this.nodeType === 3) { // Text node
+		            $(this).remove();
+		        } else if (this.nodeName !== 'A') { // Not an <a> tag
+		            $(this).remove();
+		        }
+		    });
+		}
+	})();
+</script>

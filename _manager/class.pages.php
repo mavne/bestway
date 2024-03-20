@@ -323,20 +323,20 @@ class Manager_Pages
 
         if(isset($_GET['q'])){
             $q = str_replace(array('"', "'", "\$", "@", "-"), '', $_GET['q']);
-            $count = db_fetch("SELECT COUNT(`id`) as cnt FROM `pages` WHERE `language` = '" . l() . "' AND `deleted` = 0 AND `price`!='' AND `image1`!='' AND `title` LIKE '%".$q."%'");
+            $count = db_fetch("SELECT COUNT(`id`) as cnt FROM `pages` WHERE `language` = '" . l() . "' AND `deleted` = 0 AND `price`!='' AND `image1`!='' AND `visibility`=1 AND `title` LIKE '%".$q."%'");
 
             $count = (isset($count['cnt'])) ? $count['cnt'] : 0;
 
 
-            $res = db_fetch_all("SELECT * FROM `pages` WHERE `language` = '" . l() . "' AND `deleted` = 0 AND `price`!='' AND `image1`!='' AND `title` LIKE '%".$q."%' ORDER BY `position` ASC{$limit}");
+            $res = db_fetch_all("SELECT * FROM `pages` WHERE `language` = '" . l() . "' AND `deleted` = 0 AND `price`!='' AND `image1`!='' AND `visibility`=1 AND `title` LIKE '%".$q."%' ORDER BY `position` ASC{$limit}");
         }else{
             $all_news = $all ? " AND menuid IN (SELECT id FROM `".c("table.menus")."` WHERE `deleted` = '0' AND type = 'articles') " : " AND menuid = {$menu_id} ";
-            $count = "SELECT COUNT(*) AS cnt FROM `".c("table.pages")."` WHERE language = '" . l() . "' {$all_news}AND deleted = 0 ORDER BY postdate ASC;";
+            $count = "SELECT COUNT(*) AS cnt FROM `".c("table.pages")."` WHERE language = '" . l() . "' {$all_news}AND deleted = 0 AND `visibility`=1 ORDER BY postdate ASC;";
             $count = db_fetch($count);
             $count = empty($count) ? 0 : $count['cnt'];
 
             
-            $sql = "SELECT * FROM `".c("table.pages")."` WHERE language = '" . l() . "' {$all_news}AND `deleted` = '0' ORDER BY `position` ASC{$limit};";
+            $sql = "SELECT * FROM `".c("table.pages")."` WHERE language = '" . l() . "' {$all_news}AND `deleted` = '0' AND `visibility`=1 ORDER BY `position` ASC{$limit};";
             $res = db_fetch_all($sql);
         }
         

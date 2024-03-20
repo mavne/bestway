@@ -288,15 +288,33 @@
                         <input type="text" id="pagetitle" name="title" value="<?php echo ($route[1]=='edit') ? $edit["title"] : '' ?>" class="inp"/>
                     </div>
 
-                    <div class="list2 fix">
-                        <div class="name"><?php echo a("menutitle");?>: <span class="star">*</span></div>
-                        <input type="text" id="menutitle" name="menutitle" value="<?php echo ($route[1]=='edit') ? $edit["menutitle"] : '' ?>" class="inp"/>
-                    </div>
+                    <?php
+                    if($menuid==37){
+                        ?>
+                        <div class="list2 fix">
+                            <div class="name">Адрес: <span class="star">*</span></div>
+                            <input type="text" id="menutitle" name="menutitle" value="<?php echo ($route[1]=='edit') ? $edit["menutitle"] : '' ?>" class="inp"/>
+                        </div>
 
-                    <div class="list2 fix">
-                        <div class="name"><?php echo a("price");?>:</div>
-                        <input type="text" id="price" name="price" value="<?php echo ($route[1]=='edit') ? $edit["price"] : '' ?>" class="inp"/>
-                    </div>
+                        <div class="list2 fix">
+                            <div class="name">координаты: <span class="star">*</span></div>
+                            <input type="text" id="price" name="price" value="<?php echo ($route[1]=='edit') ? $edit["price"] : '' ?>" class="inp"/>
+                        </div>
+                        <?php
+                    }else{
+                    ?>
+                        <div class="list2 fix">
+                            <div class="name"><?php echo a("menutitle");?>: <span class="star">*</span></div>
+                            <input type="text" id="menutitle" name="menutitle" value="<?php echo ($route[1]=='edit') ? $edit["menutitle"] : '' ?>" class="inp"/>
+                        </div>
+
+                        <div class="list2 fix">
+                            <div class="name"><?php echo a("price");?>:</div>
+                            <input type="text" id="price" name="price" value="<?php echo ($route[1]=='edit') ? $edit["price"] : '' ?>" class="inp"/>
+                        </div>
+                    <?php
+                    }
+                    ?>
 
                     <div class="list2 fix">
                         <div class="name"><?php echo a("discount");?>:</div>
